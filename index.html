@@ -3,53 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ਪੰਜਾਬ ਮਨੁੱਖੀ ਅਧਿਕਾਰ - ਸੁਰੱਖਿਅਤ ਪਲੇਟਫਾਰਮ</title>
+    <title>ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼ - ਮਨੁੱਖੀ ਅਧਿਕਾਰ</title>
+    <!-- Importing Fonts to match the screenshot -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333; margin: 0; padding: 0; }
-        header { background-color: #1a1a1a; color: white; padding: 20px; text-align: center; border-bottom: 5px solid #d9534f; }
-        .container { max-width: 800px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { margin: 0; font-size: 28px; }
-        p.subtitle { color: #d9534f; font-weight: bold; font-size: 18px; }
-        h2 { color: #d9534f; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 30px; }
-        .warning-box { background-color: #fff3cd; color: #856404; padding: 15px; border-left: 5px solid #d9534f; margin: 20px 0; font-weight: bold; line-height: 1.6; }
-        ul { line-height: 1.8; }
-        .email-text { font-size: 20px; color: #0056b3; font-weight: bold; background: #e9ecef; padding: 10px; text-align: center; border-radius: 5px; }
-        footer { text-align: center; padding: 20px; background-color: #1a1a1a; color: #aaa; margin-top: 40px; }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* Top Scrolling Marquee */
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
+        .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
+        @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
+        /* Header Navbar */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
+        nav { display: flex; gap: 30px; }
+        nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+        .header-buttons { display: flex; gap: 15px; align-items: center; }
+        .btn-outline { border: 1px solid #c04a2c; color: #c04a2c; padding: 8px 15px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; }
+        .btn-solid-green { background-color: #1a4331; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; box-shadow: 2px 2px 0px #111; }
+        .btn-solid-black { background-color: #111; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; box-shadow: 2px 2px 0px #c04a2c; }
+
+        /* Main Hero Section (Two Columns) */
+        .hero { display: flex; padding: 60px 40px; gap: 50px; align-items: center; flex-wrap: wrap; max-width: 1300px; margin: 0 auto; }
+        .hero-left { flex: 1; min-width: 350px; }
+        
+        .badge { display: inline-block; border: 1px solid #c04a2c; color: #c04a2c; padding: 6px 15px; border-radius: 30px; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; margin-bottom: 25px; text-transform: uppercase; }
+        
+        /* Huge Typography matching "Voice of the Lazy..." */
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 90px; font-weight: 900; line-height: 0.95; margin: 0 0 20px 0; letter-spacing: -2px; }
+        .text-black { color: #1a1a1a; }
+        .text-orange { color: #c04a2c; font-style: italic; }
+        .text-green { color: #1a4331; font-style: italic; }
+
+        .hero-desc { font-size: 16px; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
+
+        /* Big Blocky Buttons */
+        .action-buttons { display: flex; gap: 20px; }
+        .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
+        .btn-dark-rust { background-color: #8b331c; }
+
+        /* Right Column (Poster area) */
+        .hero-right { flex: 1; display: flex; justify-content: center; flex-direction: column; align-items: center; border-left: 1px solid #e0dcd2; padding-left: 50px; }
+        .poster-container { background-color: #111; padding: 10px; border: 2px solid #111; box-shadow: 8px 8px 0px rgba(0,0,0,0.8); max-width: 380px; text-align: center; color: white; }
+        .poster-header { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: #4CAF50; line-height: 1; margin: 20px 0; letter-spacing: -1px; }
+        .poster-header span { color: #fff; display: block; font-size: 42px; }
+        .poster-text { font-size: 14px; color: #aaa; padding: 0 20px 20px; line-height: 1.5; }
+        .poster-caption { display: flex; justify-content: space-between; width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; }
+        .caption-red { color: #c04a2c; font-style: italic; }
+
+        @media(max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; }
+            .hero-right { border-left: none; padding-left: 0; padding-top: 40px; border-top: 1px solid #e0dcd2; }
+            .hero-title { font-size: 60px; }
+            header { flex-direction: column; gap: 20px; }
+            nav { flex-wrap: wrap; justify-content: center; }
+            .action-buttons { justify-content: center; flex-wrap: wrap; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>ਪੰਜਾਬ ਮਨੁੱਖੀ ਅਧਿਕਾਰ ਰਿਪੋਰਟਿੰਗ</h1>
-        <p class="subtitle">ਸੱਚਾਈ ਅਤੇ ਇਨਸਾਫ਼ ਲਈ ਇੱਕ ਸੁਰੱਖਿਅਤ ਆਵਾਜ਼</p>
-    </header>
-
-    <div class="container">
-        <h2>ਸਾਡਾ ਮਕਸਦ</h2>
-        <p>ਇਹ ਪਲੇਟਫਾਰਮ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ਨੂੰ ਸਮਰਪਿਤ ਹੈ। ਜੇਕਰ ਤੁਸੀਂ ਪੰਜਾਬ ਵਿੱਚ ਪੁਲਿਸ ਦੀਆਂ ਵਧੀਕੀਆਂ, ਝੂਠੇ ਪਰਚਿਆਂ ਜਾਂ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੇ ਘਾਣ ਬਾਰੇ ਕੋਈ ਜਾਣਕਾਰੀ ਜਾਂ ਸਬੂਤ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਿਲਕੁਲ ਗੁਪਤ ਤਰੀਕੇ ਨਾਲ ਸਾਡੇ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦੇ ਹੋ।</p>
-
-        <div class="warning-box">
-            ⚠️ ਸੁਰੱਖਿਆ ਹਦਾਇਤਾਂ (ਬਹੁਤ ਜ਼ਰੂਰੀ):
-            <ul>
-                <li>ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਲਈ ਕਦੇ ਵੀ ਆਪਣੀ ਨਿੱਜੀ Gmail, ਅਸਲੀ ਨਾਮ ਜਾਂ ਆਪਣੇ ਫੋਨ ਨੰਬਰ ਦੀ ਵਰਤੋਂ ਨਾ ਕਰੋ।</li>
-                <li>ਆਪਣੀ ਪਛਾਣ ਲੁਕਾਉਣ ਲਈ ਸਿਰਫ਼ <b>ProtonMail</b> ਰਾਹੀਂ ਹੀ ਸਾਨੂੰ ਈਮੇਲ ਭੇਜੋ।</li>
-                <li>ਜਾਣਕਾਰੀ ਭੇਜਣ ਵੇਲੇ ਹਮੇਸ਼ਾ ਮੁਫ਼ਤ <b>ProtonVPN</b> ਦੀ ਵਰਤੋਂ ਕਰੋ ਤਾਂ ਜੋ ਤੁਹਾਡੀ ਲੋਕੇਸ਼ਨ ਟਰੈਕ ਨਾ ਹੋ ਸਕੇ।</li>
-            </ul>
-        </div>
-
-        <h2>ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਿਵੇਂ ਕਰੀਏ?</h2>
-        <p>ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਸਬੂਤ (ਫੋਟੋਆਂ, ਦਸਤਾਵੇਜ਼ ਜਾਂ ਵੀਡੀਓ) ਹੇਠਾਂ ਦਿੱਤੀ ਸਾਡੀ ਸੁਰੱਖਿਅਤ ਈਮੇਲ 'ਤੇ ਭੇਜੋ:</p>
-        
-        <!-- ਧਿਆਨ ਦਿਓ: ਹੇਠਾਂ ਦਿੱਤੀ ਈਮੇਲ ਦੀ ਜਗ੍ਹਾ ਆਪਣੀ ਅਸਲੀ Proton ਈਮੇਲ ਭਰੋ -->
-        <div class="email-text">
-            Fukradriver@gmail.com
-        </div>
-        
+    <div class="top-bar">
+        <span>+ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ + ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ + ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ + ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ + ZERO SPONSORS + 100% SECURE +</span>
     </div>
 
-    <footer>
-        <p>ਇਹ ਪਲੇਟਫਾਰਮ ਪੂਰੀ ਤਰ੍ਹਾਂ ਗੁਪਤ ਅਤੇ ਸੁਰੱਖਿਅਤ ਹੈ। ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।</p>
-    </footer>
+    <header>
+        <div class="logo">
+            ਸੱਚ ਦੀ ਆਵਾਜ਼.
+        </div>
+        <nav>
+            <a href="#">Vision</a>
+            <a href="#">Manifesto</a>
+            <a href="#">Security</a>
+            <a href="#">About Us</a>
+        </nav>
+        <div class="header-buttons">
+            <a href="#" class="btn-outline">🛡️ VPN REQUIRED</a>
+            <a href="#" class="btn-solid-green">READ RULES</a>
+            <a href="mailto:tuhadi_email@proton.me" class="btn-solid-black">SUBMIT EVIDENCE ➔</a>
+        </div>
+    </header>
+
+    <main class="hero">
+        <div class="hero-left">
+            <div class="badge">SECURE PLATFORM - LIVE NOW</div>
+            <h1 class="hero-title">
+                <span class="text-black">Voice for</span><br>
+                <span class="text-orange">Truth &</span><br>
+                <span class="text-green">Justice.</span>
+            </h1>
+            <p class="hero-desc">
+                ਇਹ ਪਲੇਟਫਾਰਮ ਪੰਜਾਬ ਦੇ ਲੋਕਾਂ ਲਈ ਹੈ ਜਿਨ੍ਹਾਂ ਦੀ ਆਵਾਜ਼ ਸਿਸਟਮ ਨੇ ਦਬਾ ਦਿੱਤੀ। ਬਿਨਾਂ ਆਪਣੀ ਪਛਾਣ ਦੱਸੇ, ਪੁਲਿਸ ਦੀਆਂ ਵਧੀਕੀਆਂ ਅਤੇ ਝੂਠੇ ਪਰਚਿਆਂ ਦੇ ਸਬੂਤ ਸਾਂਝੇ ਕਰੋ। One large, stubborn movement.
+            </p>
+            <div class="action-buttons">
+                <!-- ਧਿਆਨ ਦਿਓ: ਹੇਠਾਂ ਆਪਣੀ ਅਸਲੀ Proton ਈਮੇਲ ਭਰੋ -->
+                <a href="mailto:tuhadi_email@proton.me" class="btn-large">SUBMIT EVIDENCE ➔</a>
+                <a href="#" class="btn-large btn-dark-rust">OUR VISION ➔</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="poster-container">
+                <div class="poster-header">
+                    STRONGER,
+                    <span>TOGETHER.</span>
+                </div>
+                <!-- ਇੱਥੇ ਤੁਸੀਂ ਕੋਈ ਵੀ ਇਨਸਾਫ਼ ਨੂੰ ਦਰਸਾਉਂਦੀ ਫੋਟੋ ਲਗਾ ਸਕਦੇ ਹੋ -->
+                <div style="height: 200px; background-color: #222; display: flex; align-items: center; justify-content: center; border-top: 1px solid #444; border-bottom: 1px solid #444; margin-bottom: 15px;">
+                    <span style="color: #666; font-style: italic;">[ Image Placeholder ]</span>
+                </div>
+                <div class="poster-text">
+                    <b style="color: white;">BE PART OF THE REVELATION.</b><br>
+                    ਸੱਚਾਈ ਕਦੇ ਛੁਪਦੀ ਨਹੀਂ। ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰੋ, ਬਿਨਾਂ ਕਿਸੇ ਡਰ ਤੋਂ।
+                </div>
+                <div style="background-color: #c04a2c; padding: 10px; font-weight: bold; font-size: 14px;">
+                    SECURE REPORTING PORTAL
+                </div>
+            </div>
+            <div class="poster-caption">
+                <span>OFFICIAL CAMPAIGN POSTER</span>
+                <span class="caption-red">Est. Today</span>
+            </div>
+        </div>
+    </main>
 
 </body>
 </html>
