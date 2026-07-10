@@ -6,56 +6,54 @@
     <title>ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼ - ਮਨੁੱਖੀ ਅਧਿਕਾਰ</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; overflow-x: hidden; }
+        /* CSS Reset & Box Sizing */
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
         
         /* Top Scrolling Marquee */
-        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; width: 100%; }
         .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
         /* Header Navbar */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; width: 100%; flex-wrap: wrap; }
         .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
-        nav { display: flex; gap: 30px; }
+        nav { display: flex; gap: 20px; flex-wrap: wrap; }
         nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
-        .header-buttons { display: flex; gap: 15px; align-items: center; }
-        .btn-outline { border: 1px solid #c04a2c; color: #c04a2c; padding: 8px 15px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; }
-        .btn-solid-green { background-color: #1a4331; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; box-shadow: 2px 2px 0px #111; }
-        .btn-solid-black { background-color: #111; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; box-shadow: 2px 2px 0px #c04a2c; }
-
-        /* Main Hero Section */
-        .hero { display: flex; padding: 60px 40px; gap: 50px; align-items: center; flex-wrap: wrap; max-width: 1300px; margin: 0 auto; }
-        .hero-left { flex: 1; min-width: 350px; }
-        
-        .badge { display: inline-block; border: 1px solid #c04a2c; color: #c04a2c; padding: 6px 15px; border-radius: 30px; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; margin-bottom: 25px; text-transform: uppercase; }
-        
-        /* Huge Typography */
-        .hero-title { font-family: 'Playfair Display', serif; font-size: 90px; font-weight: 900; line-height: 0.95; margin: 0 0 20px 0; letter-spacing: -2px; }
-        .text-black { color: #1a1a1a; }
-        .text-orange { color: #c04a2c; font-style: italic; }
-        .text-green { color: #1a4331; font-style: italic; }
-
-        .hero-desc { font-size: 16px; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
-
-        /* Big Blocky Buttons */
-        .action-buttons { display: flex; gap: 20px; }
-        .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .header-buttons { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 12px 25px; font-size: 13px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
         .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
         .btn-dark-rust { background-color: #8b331c; }
 
+        /* Main Hero Section */
+        .hero { display: flex; padding: 60px 40px; gap: 50px; align-items: center; flex-wrap: wrap; max-width: 1300px; margin: 0 auto; width: 100%; }
+        .hero-left { flex: 1 1 100%; min-width: 280px; }
+        
+        .badge { display: inline-block; border: 1px solid #c04a2c; color: #c04a2c; padding: 6px 15px; border-radius: 30px; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; margin-bottom: 25px; text-transform: uppercase; }
+        
+        /* Typography */
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 80px; font-weight: 900; line-height: 0.95; margin: 0 0 20px 0; letter-spacing: -2px; }
+        .text-black { color: #1a1a1a; }
+        .text-orange { color: #c04a2c; font-style: italic; }
+        .text-green { color: #1a4331; font-style: italic; }
+        .hero-desc { font-size: 16px; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
+
+        /* Action Buttons */
+        .action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+
         /* Right Column (Poster area) */
-        .hero-right { flex: 1; display: flex; justify-content: center; flex-direction: column; align-items: center; border-left: 1px solid #e0dcd2; padding-left: 50px; }
-        .poster-container { background-color: #111; padding: 10px; border: 2px solid #111; box-shadow: 8px 8px 0px rgba(0,0,0,0.8); max-width: 380px; text-align: center; color: white; }
-        .poster-header { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: #4CAF50; line-height: 1; margin: 20px 0; letter-spacing: -1px; }
-        .poster-header span { color: #fff; display: block; font-size: 42px; }
+        .hero-right { flex: 1 1 100%; display: flex; justify-content: center; flex-direction: column; align-items: center; border-left: 1px solid #e0dcd2; padding-left: 50px; }
+        .poster-container { background-color: #111; padding: 10px; border: 2px solid #111; box-shadow: 8px 8px 0px rgba(0,0,0,0.8); width: 100%; max-width: 380px; text-align: center; color: white; }
+        .poster-header { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: #4CAF50; line-height: 1; margin: 20px 0; letter-spacing: -1px; }
+        .poster-header span { color: #fff; display: block; font-size: 38px; }
         .poster-text { font-size: 14px; color: #aaa; padding: 0 20px 20px; line-height: 1.5; }
-        .poster-caption { display: flex; justify-content: space-between; width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; }
+        .poster-caption { display: flex; justify-content: space-between; width: 100%; max-width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; }
         .caption-red { color: #c04a2c; font-style: italic; }
 
         /* Footer CSS */
-        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; }
-        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
-        .footer-col { flex: 1; min-width: 200px; }
+        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; width: 100%; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; width: 100%; }
+        .footer-col { flex: 1 1 200px; min-width: 200px; }
         .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
         .footer-brand { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1.1; margin: 0; color: #fff; }
         .footer-links { list-style: none; padding: 0; margin: 0; }
@@ -64,21 +62,26 @@
         .footer-links a:hover { color: #c04a2c; }
         .footer-msg-small { font-size: 12px; color: #aaa; font-weight: bold; }
         .footer-msg-big { font-family: 'Playfair Display', serif; font-size: 28px; color: #4CAF50; font-weight: 900; margin-top: 5px; }
-        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; width: 100%; }
         .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
         .footer-bottom a:hover { color: #fff; }
         .footer-warning { color: #c04a2c; letter-spacing: 1px; }
 
+        /* Media Queries for Mobile Auto-Adjust */
         @media(max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; }
-            .hero-right { border-left: none; padding-left: 0; padding-top: 40px; border-top: 1px solid #e0dcd2; }
-            .hero-title { font-size: 60px; }
-            header { flex-direction: column; gap: 20px; }
-            nav { flex-wrap: wrap; justify-content: center; }
-            .action-buttons { justify-content: center; flex-wrap: wrap; }
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
+            nav { justify-content: center; }
+            .header-buttons { justify-content: center; width: 100%; }
+            .hero { padding: 40px 20px; flex-direction: column; text-align: center; gap: 30px; }
+            .hero-right { border-left: none; padding-left: 0; padding-top: 30px; border-top: 1px solid #e0dcd2; width: 100%; }
+            .hero-title { font-size: 45px; } /* Smaller text for mobile */
+            .action-buttons { flex-direction: column; width: 100%; }
+            .action-buttons .btn-large { width: 100%; } /* Stack buttons full width on mobile */
+            .site-footer { padding: 40px 20px 20px; }
             .footer-grid { flex-direction: column; text-align: center; }
             .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
-            .bottom-left { margin-bottom: 10px; }
+            .bottom-left, .bottom-right, .bottom-center { width: 100%; }
+            .bottom-left a { margin: 0 10px; }
         }
     </style>
 </head>
@@ -194,6 +197,7 @@
             <div class="bottom-left">
                 <a href="https://www.instagram.com/biebersarpanch?igsh=eGlnbnQwMzN5N3pl" target="_blank">INSTAGRAM</a>
                 <a href="https://youtube.com/@biebersarpanch?si=oLMq8ha_QMw74H2T" target="_blank">YOUTUBE</a>
+                <a href="https://x.com/BieberOP22" target="_blank">TWITTER</a>
             </div>
             <div class="bottom-center footer-warning">
                 A SECURE PLATFORM · VOICE OF PUNJAB
