@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Complaint - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script>
@@ -13,44 +14,192 @@
             projectId: "sachdiawaaz-376ee",
             storageBucket: "sachdiawaaz-376ee.firebasestorage.app",
             messagingSenderId: "551243696190",
-            appId: "1:551243696190:web:d64b3600f26c227b08696f",
-            measurementId: "G-374Z9GL1HE"
+            appId: "1:551243696190:web:d64b3600f26c227b08696f"
         };
         firebase.initializeApp(firebaseConfig);
         
         firebase.auth().onAuthStateChanged(user => {
-            if (!user) {
-                window.location.href = "login.html";
-            }
+            if (!user) window.location.href = "login.html";
         });
 
         function logout() {
-            firebase.auth().signOut().then(() => {
-                window.location.href = "login.html";
-            });
+            firebase.auth().signOut().then(() => window.location.href = "login.html");
         }
     </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f4f1ea; padding: 40px 20px; display: flex; justify-content: center; margin: 0; }
-        .container { background: white; padding: 30px; width: 100%; max-width: 600px; border: 2px solid #111; box-shadow: 8px 8px 0px #111; }
-        h2 { color: #c04a2c; margin-top: 0; font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; }
-        textarea { width: 100%; height: 200px; padding: 15px; margin-top: 10px; box-sizing: border-box; border: 1px solid #ccc; font-family: inherit; resize: vertical; }
-        button { background: #111; color: white; padding: 12px 20px; border: none; font-weight: bold; cursor: pointer; margin-top: 15px; width: 100%; }
-        .btn-logout { background: #c04a2c; margin-top: 25px; }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; }
+        
+        /* Header */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
+        .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
+        .progress-bar-container { width: 100%; height: 4px; background: #e0dcd2; }
+        .progress-bar { width: 50%; height: 100%; background: #c04a2c; transition: width 0.3s; }
+
+        /* Layout */
+        .layout { display: flex; gap: 40px; padding: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
+        
+        /* Sidebar */
+        .sidebar { width: 280px; border: 2px solid #111; padding: 30px; background: #f4f1ea; height: fit-content; box-shadow: 4px 4px 0px #111; box-sizing: border-box; }
+        .sidebar-top { color: #c04a2c; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+        .sidebar h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin: 0 0 30px; line-height: 1.1; }
+        
+        .step-nav { list-style: none; padding: 0; margin: 0 0 40px 0; border-bottom: 2px solid #111; padding-bottom: 20px; }
+        .step { display: flex; align-items: center; margin-bottom: 25px; color: #a09d96; transition: color 0.3s; }
+        .step.active { color: #111; }
+        .step-num { width: 26px; height: 26px; border: 1px solid #a09d96; display: flex; justify-content: center; align-items: center; font-size: 10px; font-weight: bold; margin-right: 15px; }
+        .step.active .step-num { background: #c04a2c; color: white; border-color: #c04a2c; }
+        .step-text { font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+        .step-sub { font-size: 10px; font-weight: normal; color: #888; text-transform: none; display: block; margin-top: 3px; }
+
+        .btn-action { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; font-weight: bold; cursor: pointer; width: 100%; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 3px 3px 0px #111; transition: all 0.2s; }
+        .btn-action:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #111; }
+        .cancel-link { display: inline-block; margin-top: 15px; font-size: 10px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-bottom: 1px solid #555; }
+
+        /* Main Panel */
+        .main-panel { flex: 1; min-width: 300px; border: 2px solid #111; padding: 40px; background: #f4f1ea; box-shadow: 6px 6px 0px #111; box-sizing: border-box; }
+        .panel-header { font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #111; padding-bottom: 15px; margin-bottom: 30px; }
+        
+        .form-group { margin-bottom: 25px; }
+        label { display: block; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: #555; margin-bottom: 10px; }
+        input, textarea { width: 100%; padding: 15px; border: 1px solid #ccc; background: #ece8df; color: #111; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box; transition: border 0.3s; }
+        input:focus, textarea:focus { outline: none; border: 1px solid #111; background: #fff; }
+        textarea { height: 200px; resize: vertical; }
+
+        #step2-panel { display: none; }
+
+        @media(max-width: 768px) {
+            .layout { padding: 20px; flex-direction: column; }
+            .sidebar, .main-panel { width: 100%; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>ਸੁਰੱਖਿਅਤ ਸ਼ਿਕਾਇਤ ਫਾਰਮ</h2>
-        <p style="font-size: 14px; color: #555;">ਆਪਣੀ ਸ਼ਿਕਾਇਤ ਜਾਂ ਸਬੂਤ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਤੁਹਾਡੀ ਪਛਾਣ ਗੁਪਤ ਰੱਖੀ ਜਾਵੇਗੀ।</p>
-        
-        <!-- ਇੱਥੇ ਤੁਸੀਂ ਆਪਣਾ Formspree ਜਾਂ ਹੋਰ form action ਲਗਾ ਸਕਦੇ ਹੋ -->
-        <form>
-            <textarea placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea>
-            <button type="submit">SUBMIT COMPLAINT (ਜਮ੍ਹਾਂ ਕਰੋ)</button>
-        </form>
 
-        <button onclick="logout()" class="btn-logout">LOGOUT (ਸਿਸਟਮ ਤੋਂ ਬਾਹਰ ਜਾਓ)</button>
+    <header>
+        <div class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</div>
+        <div class="step-counter" id="step-counter">STEP 01 / 02</div>
+    </header>
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
     </div>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-top">SECURE PORTAL</div>
+            <h2>ਸਬੂਤ<br>ਦਰਜ ਕਰੋ.</h2>
+            
+            <ul class="step-nav">
+                <li class="step active" id="nav-step1">
+                    <div class="step-num">01</div>
+                    <div>
+                        <span class="step-text">IDENTITY</span>
+                        <span class="step-sub">Who are you?</span>
+                    </div>
+                </li>
+                <li class="step" id="nav-step2">
+                    <div class="step-num">02</div>
+                    <div>
+                        <span class="step-text">COMPLAINT</span>
+                        <span class="step-sub">Incident details</span>
+                    </div>
+                </li>
+            </ul>
+
+            <button type="button" class="btn-action" id="next-btn" onclick="nextStep()">NEXT ➔</button>
+            <button type="submit" form="complaint-form" class="btn-action" id="submit-btn" style="display:none; background: #1a4331;">SUBMIT ➔</button>
+            
+            <a href="#" class="cancel-link" onclick="logout()">LOGOUT (ਬਾਹਰ ਜਾਓ)</a>
+        </aside>
+
+        <!-- Main Form Panel -->
+        <section class="main-panel">
+            <!-- Formspree ਲਿੰਕ ਇੱਥੇ ਪਾਓ -->
+            <form id="complaint-form" action="YOUR_FORMSPREE_LINK" method="POST">
+                
+                <!-- STEP 1: IDENTITY -->
+                <div id="step1-panel">
+                    <div class="panel-header">01. IDENTITY — ਆਪਣੀ ਪਛਾਣ ਦੱਸੋ</div>
+
+                    <div class="form-group">
+                        <label>FULL NAME (ਪੂਰਾ ਨਾਮ) *</label>
+                        <input type="text" name="name" placeholder="e.g. Jaswant Singh" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>FATHER'S NAME (ਪਿਤਾ ਦਾ ਨਾਮ) *</label>
+                        <input type="text" name="father_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ) *</label>
+                        <input type="text" name="aadhaar" pattern="[0-9]{12}" placeholder="12-digit number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>MOBILE NUMBER (ਮੋਬਾਈਲ ਨੰਬਰ) *</label>
+                        <input type="tel" name="mobile" placeholder="+91" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>DATE OF BIRTH (ਜਨਮ ਤਰੀਕ) *</label>
+                        <input type="date" name="dob" required>
+                    </div>
+                </div>
+
+                <!-- STEP 2: COMPLAINT DETAILS (Hidden by default) -->
+                <div id="step2-panel">
+                    <div class="panel-header">02. COMPLAINT — ਸ਼ਿਕਾਇਤ ਦਾ ਵੇਰਵਾ</div>
+
+                    <div class="form-group">
+                        <label>LOCATION OF INCIDENT (ਘਟਨਾ ਵਾਲੀ ਜਗ੍ਹਾ) *</label>
+                        <input type="text" name="location" placeholder="City, Village, or Police Station name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>DETAILED DESCRIPTION (ਪੂਰਾ ਵੇਰਵਾ) *</label>
+                        <textarea name="complaint_details" placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+    </div>
+
+    <!-- JavaScript to handle steps -->
+    <script>
+        function nextStep() {
+            // Check if Step 1 inputs are filled before moving
+            let step1Inputs = document.querySelectorAll('#step1-panel input');
+            let allFilled = true;
+            step1Inputs.forEach(input => {
+                if(!input.checkValidity()) {
+                    input.reportValidity();
+                    allFilled = false;
+                }
+            });
+
+            if(allFilled) {
+                // Hide Step 1, Show Step 2
+                document.getElementById('step1-panel').style.display = 'none';
+                document.getElementById('step2-panel').style.display = 'block';
+                
+                // Update Sidebar
+                document.getElementById('nav-step1').classList.remove('active');
+                document.getElementById('nav-step2').classList.add('active');
+                
+                // Update Buttons
+                document.getElementById('next-btn').style.display = 'none';
+                document.getElementById('submit-btn').style.display = 'block';
+
+                // Update Header Progress
+                document.getElementById('step-counter').innerText = 'STEP 02 / 02';
+                document.getElementById('progress-bar').style.width = '100%';
+            }
+        }
+    </script>
 </body>
 </html>
