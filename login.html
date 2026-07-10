@@ -41,8 +41,17 @@
         function loginUser() {
             let e = document.getElementById("email").value;
             let p = document.getElementById("password").value;
+            
             auth.signInWithEmailAndPassword(e, p)
-            .then(() => window.location.href = "complaint.html")
+            .then((userCredential) => {
+                if (userCredential.user.emailVerified) {
+                    window.location.href = "complaint.html";
+                } else {
+                    auth.signOut().then(() => {
+                        document.getElementById("error-msg").innerText = "ਤੁਹਾਡੀ ਈਮੇਲ ਵੈਰੀਫਾਈ ਨਹੀਂ ਹੈ! ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਈਮੇਲ (Inbox ਜਾਂ Spam) ਚੈੱਕ ਕਰੋ ਅਤੇ ਲਿੰਕ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।";
+                    });
+                }
+            })
             .catch(err => document.getElementById("error-msg").innerText = err.message);
         }
     </script>
