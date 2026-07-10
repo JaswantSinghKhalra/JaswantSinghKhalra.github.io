@@ -2,23 +2,36 @@
 <html lang="pa">
 <head>
     <meta charset="UTF-8">
-    <title>ਸ਼ਿਕਾਇਤ ਦਾ ਸਟੇਟਸ - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Status - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; padding: 40px; }
-        .container { max-width: 500px; margin: auto; border: 2px solid #111; padding: 40px; background: #fff; box-shadow: 6px 6px 0px #111; }
-        input { width: 100%; padding: 15px; margin: 15px 0; border: 1px solid #ccc; box-sizing: border-box; }
-        button { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        .result-box { margin-top: 20px; padding: 15px; border: 1px solid #ddd; background: #f9f9f9; }
+        body { margin: 0; padding: 0; background-color: #111; height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Inter', sans-serif; }
+        .login-box { width: 100%; max-width: 400px; padding: 40px; background-color: #1a1a1a; border: 1px solid #333; text-align: center; color: white; }
+        .label-top { font-size: 10px; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+        .title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin-bottom: 30px; }
+        input { width: 100%; padding: 12px; margin: 15px 0; background: #222; border: 1px solid #444; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: #c04a2c; border: none; color: white; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        button:hover { background: #a03d24; }
+        .result-area { margin-top: 25px; text-align: left; border-top: 1px solid #333; padding-top: 20px; }
+        .res-item { background: #222; padding: 10px; margin-bottom: 10px; font-size: 13px; }
+        .back-link { display: block; margin-top: 20px; color: #888; text-decoration: none; font-size: 12px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>ਸ਼ਿਕਾਇਤ ਦਾ ਸਟੇਟਸ ਦੇਖੋ</h2>
-        <input type="email" id="userEmail" placeholder="ਆਪਣੀ ਰਜਿਸਟਰਡ ਈਮੇਲ ਭਰੋ...">
-        <button onclick="checkStatus()">ਸਟੇਟਸ ਚੈੱਕ ਕਰੋ</button>
-        <div id="result" style="margin-top:20px;"></div>
+
+    <div class="login-box">
+        <div class="label-top">SECURE PORTAL</div>
+        <div class="title">COMPLAINT STATUS</div>
+
+        <input type="email" id="userEmail" placeholder="ENTER YOUR EMAIL">
+        <button onclick="checkStatus()">CHECK STATUS ➔</button>
+
+        <div id="result" class="result-area"></div>
+        <a href="index.html" class="back-link">← BACK TO HOME</a>
     </div>
 
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script>
@@ -27,26 +40,27 @@
             databaseURL: "https://sachdiawaaz-376ee-default-rtdb.firebaseio.com",
             projectId: "sachdiawaaz-376ee"
         };
-        firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
         function checkStatus() {
             const email = document.getElementById('userEmail').value.toLowerCase();
             const resDiv = document.getElementById('result');
-            resDiv.innerHTML = "ਖੋਜ ਰਿਹਾ ਹਾਂ...";
+            if(!email) { alert("Please enter email"); return; }
+            resDiv.innerHTML = "SEARCHING...";
 
             db.ref('complaints').orderByChild('email').equalTo(email).once('value').then(snapshot => {
                 if(snapshot.exists()) {
                     resDiv.innerHTML = "";
                     snapshot.forEach(child => {
                         const data = child.val();
-                        resDiv.innerHTML += `<div class="result-box">
-                            <strong>ਦੋਸ਼ੀ:</strong> ${data.accused_name}<br>
-                            <strong>ਸਟੇਟਸ:</strong> <span style="color:green">${data.status}</span>
+                        resDiv.innerHTML += `<div class="res-item">
+                            <strong>ACCUSED:</strong> ${data.accused_name}<br>
+                            <strong>STATUS:</strong> <span style="color:#4CAF50">${data.status}</span>
                         </div>`;
                     });
                 } else {
-                    resDiv.innerHTML = "ਇਸ ਈਮੇਲ 'ਤੇ ਕੋਈ ਸ਼ਿਕਾਇਤ ਨਹੀਂ ਮਿਲੀ।";
+                    resDiv.innerHTML = "No complaints found for this email.";
                 }
             });
         }
