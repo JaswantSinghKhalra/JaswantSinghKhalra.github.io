@@ -7,17 +7,20 @@
     
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
             authDomain: "sachdiawaaz-376ee.firebaseapp.com",
             projectId: "sachdiawaaz-376ee",
+            databaseURL: "https://sachdiawaaz-376ee-default-rtdb.firebaseio.com",
             storageBucket: "sachdiawaaz-376ee.firebasestorage.app",
             messagingSenderId: "551243696190",
             appId: "1:551243696190:web:d64b3600f26c227b08696f"
         };
         firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
         
         firebase.auth().onAuthStateChanged(user => {
             if (!user) window.location.href = "login.html";
@@ -107,6 +110,7 @@
                 <div id="step1-panel">
                     <div class="panel-header">01. IDENTITY — ਆਪਣੀ ਪਛਾਣ ਦੱਸੋ</div>
                     <div class="form-group"><label>FULL NAME (ਪੂਰਾ ਨਾਮ) *</label><input type="text" name="name" required></div>
+                    <div class="form-group"><label>EMAIL ADDRESS (ਈਮੇਲ) *</label><input type="email" name="email" required></div>
                     <div class="form-group"><label>FATHER'S NAME (ਪਿਤਾ ਦਾ ਨਾਮ) *</label><input type="text" name="father_name" required></div>
                     <div class="form-group"><label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ) *</label><input type="text" name="aadhaar" pattern="[0-9]{12}" placeholder="12-digit number" required></div>
                     <div class="form-group"><label>MOBILE NUMBER (ਮੋਬਾਈਲ ਨੰਬਰ) *</label><input type="tel" name="mobile" required></div>
@@ -126,7 +130,6 @@
                     <div class="form-group">
                         <label>EVIDENCE LINK (ਸਬੂਤ ਦਾ ਗੂਗਲ ਡਰਾਈਵ ਲਿੰਕ) *</label>
                         <input type="url" name="evidence_link" placeholder="https://drive.google.com/..." required>
-                        <span style="font-size: 10px; color: #888; display: block; margin-top: 5px;">(ਆਪਣੀ ਵੀਡੀਓ/ਆਡੀਓ Google Drive 'ਤੇ ਅੱਪਲੋਡ ਕਰਕੇ ਉਸਦਾ 'Anyone with the link' ਵਾਲਾ ਲਿੰਕ ਇੱਥੇ ਪੇਸਟ ਕਰੋ)</span>
                     </div>
                     <div class="form-group"><label>LOCATION OF INCIDENT (ਘਟਨਾ ਵਾਲੀ ਜਗ੍ਹਾ) *</label><input type="text" name="location" required></div>
                     <div class="form-group"><label>DETAILED DESCRIPTION (ਪੂਰਾ ਵੇਰਵਾ) *</label><textarea name="complaint_details" placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea></div>
@@ -136,64 +139,63 @@
             <div id="success-panel" class="success-box">
                 <div class="success-icon">✔</div>
                 <div class="success-title">ਸ਼ਿਕਾਇਤ ਦਰਜ ਹੋ ਗਈ ਹੈ।</div>
-                <div class="success-text">ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਸਾਡੇ ਸਿਸਟਮ ਵਿੱਚ ਆ ਗਏ ਹਨ。<br>ਅਸੀਂ ਜਲਦੀ ਹੀ ਇਸਦੀ ਜਾਂਚ ਕਰਾਂਗੇ। ਤੁਹਾਡੀ ਪਛਾਣ ਗੁਪਤ ਰੱਖੀ ਜਾਵੇਗੀ।</div>
+                <div class="success-text">ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਸਾਡੇ ਸਿਸਟਮ ਵਿੱਚ ਆ ਗਏ ਹਨ。<br>ਅਸੀਂ ਜਲਦੀ ਹੀ ਇਸਦੀ ਜਾਂਚ ਕਰਾਂਗੇ।</div>
                 <button type="button" class="btn-action" style="background: #111; margin-top: 30px; width: auto; padding: 15px 30px;" onclick="window.location.reload()">ਨਵੀਂ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ</button>
             </div>
-
         </section>
     </div>
 
     <script>
         let currentStep = 1;
-
         function validatePanel(panelId) {
             let inputs = document.querySelectorAll('#' + panelId + ' input, #' + panelId + ' textarea');
             let valid = true;
-            inputs.forEach(input => {
-                if(!input.checkValidity()) {
-                    input.reportValidity();
-                    valid = false;
-                }
-            });
+            inputs.forEach(input => { if(!input.checkValidity()) { input.reportValidity(); valid = false; } });
             return valid;
         }
 
         function nextStep() {
-            if(currentStep === 1) {
-                if(validatePanel('step1-panel')) {
-                    document.getElementById('step1-panel').style.display = 'none';
-                    document.getElementById('step2-panel').style.display = 'block';
-                    document.getElementById('nav-step1').classList.remove('active');
-                    document.getElementById('nav-step2').classList.add('active');
-                    document.getElementById('step-counter').innerText = 'STEP 02 / 03';
-                    document.getElementById('progress-bar').style.width = '66%';
-                    currentStep = 2;
-                }
-            } else if(currentStep === 2) {
-                if(validatePanel('step2-panel')) {
-                    document.getElementById('step2-panel').style.display = 'none';
-                    document.getElementById('step3-panel').style.display = 'block';
-                    document.getElementById('nav-step2').classList.remove('active');
-                    document.getElementById('nav-step3').classList.add('active');
-                    document.getElementById('step-counter').innerText = 'STEP 03 / 03';
-                    document.getElementById('progress-bar').style.width = '100%';
-                    document.getElementById('next-btn').style.display = 'none';
-                    document.getElementById('submit-btn').style.display = 'block';
-                    currentStep = 3;
-                }
+            if(currentStep === 1 && validatePanel('step1-panel')) {
+                document.getElementById('step1-panel').style.display = 'none';
+                document.getElementById('step2-panel').style.display = 'block';
+                document.getElementById('nav-step1').classList.remove('active');
+                document.getElementById('nav-step2').classList.add('active');
+                document.getElementById('step-counter').innerText = 'STEP 02 / 03';
+                document.getElementById('progress-bar').style.width = '66%';
+                currentStep = 2;
+            } else if(currentStep === 2 && validatePanel('step2-panel')) {
+                document.getElementById('step2-panel').style.display = 'none';
+                document.getElementById('step3-panel').style.display = 'block';
+                document.getElementById('nav-step2').classList.remove('active');
+                document.getElementById('nav-step3').classList.add('active');
+                document.getElementById('step-counter').innerText = 'STEP 03 / 03';
+                document.getElementById('progress-bar').style.width = '100%';
+                document.getElementById('next-btn').style.display = 'none';
+                document.getElementById('submit-btn').style.display = 'block';
+                currentStep = 3;
             }
         }
 
         const form = document.getElementById('complaint-form');
         form.addEventListener("submit", async function(event) {
             event.preventDefault(); 
-            
             const submitBtn = document.getElementById('submit-btn');
-            submitBtn.innerText = "SUBMITTING COMPLAINT... (ਜਮ੍ਹਾਂ ਹੋ ਰਿਹਾ ਹੈ)";
+            submitBtn.innerText = "SUBMITTING...";
             submitBtn.disabled = true; 
 
             try {
+                // 1. Save to Firebase Database
                 const data = new FormData(form);
+                const dbData = {
+                    email: data.get('email').toLowerCase(),
+                    accused_name: data.get('accused_name'),
+                    status: "Pending",
+                    timestamp: Date.now()
+                };
+                database.ref('complaints').push(dbData);
+                database.ref('complaint_count').transaction((current) => (current || 0) + 1);
+
+                // 2. Send to Formspree
                 const response = await fetch(form.action, {
                     method: form.method,
                     body: data,
@@ -204,19 +206,13 @@
                     document.getElementById('step3-panel').style.display = 'none';
                     document.getElementById('success-panel').style.display = 'block';
                     submitBtn.style.display = 'none';
-                    document.getElementById('step-counter').innerText = 'COMPLETED';
                 } else {
-                    const resData = await response.json();
-                    if (Object.hasOwn(resData, 'errors')) {
-                        alert("ਐਰਰ: " + resData["errors"].map(error => error["message"]).join(", "));
-                    } else {
-                        alert("ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।");
-                    }
+                    alert("Error submitting to Formspree.");
                     submitBtn.innerText = "SUBMIT COMPLAINT ➔";
                     submitBtn.disabled = false;
                 }
             } catch (error) {
-                alert("ਨੈੱਟਵਰਕ ਐਰਰ! " + error.message);
+                alert("Error: " + error.message);
                 submitBtn.innerText = "SUBMIT COMPLAINT ➔";
                 submitBtn.disabled = false;
             }
