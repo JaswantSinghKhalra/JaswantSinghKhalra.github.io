@@ -18,7 +18,7 @@
 <body>
     <div class="login-box">
         <h2 style="margin-top: 0;">ਨਵਾਂ ਖਾਤਾ ਬਣਾਓ</h2>
-        <input type="email" id="email" placeholder="ਈਮੇਲ ਭਰੋ">
+        <input type="email" id="email" placeholder="ਅਸਲੀ ਈਮੇਲ ਭਰੋ">
         <input type="password" id="password" placeholder="ਪਾਸਵਰਡ ਬਣਾਓ (ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰ)">
         <button onclick="registerUser()">SIGN UP (ਖਾਤਾ ਬਣਾਓ)</button>
         <p id="error-msg" style="color: #ff4d4d; font-size: 12px; font-weight: bold; margin-top: 15px;"></p>
@@ -48,11 +48,12 @@
             }
 
             auth.createUserWithEmailAndPassword(e, p)
-            .then(() => {
-                // ਖਾਤਾ ਬਣਨ ਤੋਂ ਬਾਅਦ ਆਟੋ-ਲੌਗਿਨ ਰੋਕੋ ਅਤੇ ਲੌਗਿਨ ਪੇਜ 'ਤੇ ਭੇਜੋ
-                auth.signOut().then(() => {
-                    alert("ਤੁਹਾਡਾ ਖਾਤਾ ਸਫਲਤਾਪੂਰਵਕ ਬਣ ਗਿਆ ਹੈ! ਕਿਰਪਾ ਕਰਕੇ ਹੁਣ ਲੌਗਿਨ ਕਰੋ।");
-                    window.location.href = "login.html";
+            .then((userCredential) => {
+                userCredential.user.sendEmailVerification().then(() => {
+                    auth.signOut().then(() => {
+                        alert("ਖਾਤਾ ਬਣ ਗਿਆ ਹੈ! ਅਸੀਂ ਤੁਹਾਡੀ ਈਮੇਲ 'ਤੇ ਇੱਕ ਲਿੰਕ ਭੇਜਿਆ ਹੈ। ਲੌਗਿਨ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੀ ਈਮੇਲ ਖੋਲ੍ਹ ਕੇ ਉਸ ਲਿੰਕ 'ਤੇ ਕਲਿੱਕ ਕਰੋ। (Spam ਫੋਲਡਰ ਵੀ ਚੈੱਕ ਕਰ ਲਿਓ)");
+                        window.location.href = "login.html";
+                    });
                 });
             })
             .catch(err => document.getElementById("error-msg").innerText = err.message);
