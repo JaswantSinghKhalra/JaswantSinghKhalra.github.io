@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f4f1ea; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-box { background: #111; color: white; padding: 40px; text-align: center; border: 2px solid #1a4331; box-shadow: 8px 8px 0px #1a4331; width: 100%; max-width: 320px; box-sizing: border-box; }
+        input { width: 100%; padding: 12px; margin: 10px 0; box-sizing: border-box; border: 1px solid #333; background: #222; color: white; }
+        button { background: #1a4331; color: white; padding: 12px; border: none; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; font-size: 14px; text-transform: uppercase; }
+        .link-text { display: block; margin-top: 15px; color: #aaa; font-size: 13px; text-decoration: none; }
+        .link-text:hover { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2 style="margin-top: 0;">ਨਵਾਂ ਖਾਤਾ ਬਣਾਓ</h2>
+        <input type="email" id="email" placeholder="ਈਮੇਲ ਭਰੋ">
+        <input type="password" id="password" placeholder="ਪਾਸਵਰਡ ਬਣਾਓ (ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰ)">
+        <button onclick="registerUser()">SIGN UP (ਖਾਤਾ ਬਣਾਓ)</button>
+        <p id="error-msg" style="color: #ff4d4d; font-size: 12px; font-weight: bold; margin-top: 15px;"></p>
+        <a href="login.html" class="link-text">ਪਹਿਲਾਂ ਹੀ ਖਾਤਾ ਹੈ? ਲੌਗਿਨ ਕਰੋ</a>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
+            authDomain: "sachdiawaaz-376ee.firebaseapp.com",
+            projectId: "sachdiawaaz-376ee",
+            storageBucket: "sachdiawaaz-376ee.firebasestorage.app",
+            messagingSenderId: "551243696190",
+            appId: "1:551243696190:web:d64b3600f26c227b08696f",
+            measurementId: "G-374Z9GL1HE"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        function registerUser() {
+            let e = document.getElementById("email").value;
+            let p = document.getElementById("password").value;
+            
+            if(p.length < 6) {
+                document.getElementById("error-msg").innerText = "ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।";
+                return;
+            }
+
+            auth.createUserWithEmailAndPassword(e, p)
+            .then(() => {
+                // ਖਾਤਾ ਬਣਨ ਤੋਂ ਬਾਅਦ ਆਟੋ-ਲੌਗਿਨ ਰੋਕੋ ਅਤੇ ਲੌਗਿਨ ਪੇਜ 'ਤੇ ਭੇਜੋ
+                auth.signOut().then(() => {
+                    alert("ਤੁਹਾਡਾ ਖਾਤਾ ਸਫਲਤਾਪੂਰਵਕ ਬਣ ਗਿਆ ਹੈ! ਕਿਰਪਾ ਕਰਕੇ ਹੁਣ ਲੌਗਿਨ ਕਰੋ।");
+                    window.location.href = "login.html";
+                });
+            })
+            .catch(err => document.getElementById("error-msg").innerText = err.message);
+        }
+    </script>
+</body>
+</html>
