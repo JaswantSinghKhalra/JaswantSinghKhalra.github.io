@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Complaint - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
-    <!-- Firebase -->
+    
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script>
@@ -31,17 +31,14 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; }
         
-        /* Header */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
         .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
         .progress-bar-container { width: 100%; height: 4px; background: #e0dcd2; }
-        .progress-bar { width: 50%; height: 100%; background: #c04a2c; transition: width 0.3s; }
+        .progress-bar { width: 33%; height: 100%; background: #c04a2c; transition: width 0.3s; }
 
-        /* Layout */
         .layout { display: flex; gap: 40px; padding: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
         
-        /* Sidebar */
         .sidebar { width: 280px; border: 2px solid #111; padding: 30px; background: #f4f1ea; height: fit-content; box-shadow: 4px 4px 0px #111; box-sizing: border-box; }
         .sidebar-top { color: #c04a2c; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
         .sidebar h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin: 0 0 30px; line-height: 1.1; }
@@ -58,17 +55,17 @@
         .btn-action:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #111; }
         .cancel-link { display: inline-block; margin-top: 15px; font-size: 10px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-bottom: 1px solid #555; }
 
-        /* Main Panel */
         .main-panel { flex: 1; min-width: 300px; border: 2px solid #111; padding: 40px; background: #f4f1ea; box-shadow: 6px 6px 0px #111; box-sizing: border-box; }
         .panel-header { font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #111; padding-bottom: 15px; margin-bottom: 30px; }
         
         .form-group { margin-bottom: 25px; }
         label { display: block; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: #555; margin-bottom: 10px; }
         input, textarea { width: 100%; padding: 15px; border: 1px solid #ccc; background: #ece8df; color: #111; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box; transition: border 0.3s; }
+        input[type="file"] { padding: 10px; background: #ece8df; cursor: pointer; border: 1px dashed #111; }
         input:focus, textarea:focus { outline: none; border: 1px solid #111; background: #fff; }
-        textarea { height: 200px; resize: vertical; }
+        textarea { height: 180px; resize: vertical; }
 
-        #step2-panel { display: none; }
+        #step2-panel, #step3-panel { display: none; }
 
         @media(max-width: 768px) {
             .layout { padding: 20px; flex-direction: column; }
@@ -80,14 +77,13 @@
 
     <header>
         <div class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</div>
-        <div class="step-counter" id="step-counter">STEP 01 / 02</div>
+        <div class="step-counter" id="step-counter">STEP 01 / 03</div>
     </header>
     <div class="progress-bar-container">
         <div class="progress-bar" id="progress-bar"></div>
     </div>
 
     <div class="layout">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-top">SECURE PORTAL</div>
             <h2>ਸਬੂਤ<br>ਦਰਜ ਕਰੋ.</h2>
@@ -95,109 +91,100 @@
             <ul class="step-nav">
                 <li class="step active" id="nav-step1">
                     <div class="step-num">01</div>
-                    <div>
-                        <span class="step-text">IDENTITY</span>
-                        <span class="step-sub">Who are you?</span>
-                    </div>
+                    <div><span class="step-text">IDENTITY</span><span class="step-sub">Who are you?</span></div>
                 </li>
                 <li class="step" id="nav-step2">
                     <div class="step-num">02</div>
-                    <div>
-                        <span class="step-text">COMPLAINT</span>
-                        <span class="step-sub">Incident details</span>
-                    </div>
+                    <div><span class="step-text">ACCUSED</span><span class="step-sub">Target details</span></div>
+                </li>
+                <li class="step" id="nav-step3">
+                    <div class="step-num">03</div>
+                    <div><span class="step-text">EVIDENCE</span><span class="step-sub">Proof & Incident</span></div>
                 </li>
             </ul>
 
             <button type="button" class="btn-action" id="next-btn" onclick="nextStep()">NEXT ➔</button>
-            <button type="submit" form="complaint-form" class="btn-action" id="submit-btn" style="display:none; background: #1a4331;">SUBMIT ➔</button>
-            
+            <button type="submit" form="complaint-form" class="btn-action" id="submit-btn" style="display:none; background: #1a4331;">SUBMIT COMPLAINT ➔</button>
             <a href="#" class="cancel-link" onclick="logout()">LOGOUT (ਬਾਹਰ ਜਾਓ)</a>
         </aside>
 
-        <!-- Main Form Panel -->
         <section class="main-panel">
-            <!-- Formspree ਲਿੰਕ ਇੱਥੇ ਪਾਓ -->
-            <form id="complaint-form" action="YOUR_FORMSPREE_LINK" method="POST">
+            <!-- ਫਾਈਲ ਅੱਪਲੋਡ ਲਈ enctype="multipart/form-data" ਜ਼ਰੂਰੀ ਹੈ -->
+            <form id="complaint-form" action="YOUR_FORMSPREE_LINK" method="POST" enctype="multipart/form-data">
                 
                 <!-- STEP 1: IDENTITY -->
                 <div id="step1-panel">
                     <div class="panel-header">01. IDENTITY — ਆਪਣੀ ਪਛਾਣ ਦੱਸੋ</div>
-
-                    <div class="form-group">
-                        <label>FULL NAME (ਪੂਰਾ ਨਾਮ) *</label>
-                        <input type="text" name="name" placeholder="e.g. Jaswant Singh" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>FATHER'S NAME (ਪਿਤਾ ਦਾ ਨਾਮ) *</label>
-                        <input type="text" name="father_name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ) *</label>
-                        <input type="text" name="aadhaar" pattern="[0-9]{12}" placeholder="12-digit number" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>MOBILE NUMBER (ਮੋਬਾਈਲ ਨੰਬਰ) *</label>
-                        <input type="tel" name="mobile" placeholder="+91" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>DATE OF BIRTH (ਜਨਮ ਤਰੀਕ) *</label>
-                        <input type="date" name="dob" required>
-                    </div>
+                    <div class="form-group"><label>FULL NAME (ਪੂਰਾ ਨਾਮ) *</label><input type="text" name="name" required></div>
+                    <div class="form-group"><label>FATHER'S NAME (ਪਿਤਾ ਦਾ ਨਾਮ) *</label><input type="text" name="father_name" required></div>
+                    <div class="form-group"><label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ) *</label><input type="text" name="aadhaar" pattern="[0-9]{12}" placeholder="12-digit number" required></div>
+                    <div class="form-group"><label>MOBILE NUMBER (ਮੋਬਾਈਲ ਨੰਬਰ) *</label><input type="tel" name="mobile" required></div>
+                    <div class="form-group"><label>DATE OF BIRTH (ਜਨਮ ਤਰੀਕ) *</label><input type="date" name="dob" required></div>
                 </div>
 
-                <!-- STEP 2: COMPLAINT DETAILS (Hidden by default) -->
+                <!-- STEP 2: ACCUSED DETAILS -->
                 <div id="step2-panel">
-                    <div class="panel-header">02. COMPLAINT — ਸ਼ਿਕਾਇਤ ਦਾ ਵੇਰਵਾ</div>
+                    <div class="panel-header">02. ACCUSED DETAILS — ਕਿਸਦੇ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਹੈ?</div>
+                    <div class="form-group"><label>NAME OF ACCUSED (ਦੋਸ਼ੀ ਦਾ ਨਾਮ) *</label><input type="text" name="accused_name" required></div>
+                    <div class="form-group"><label>POST / DESIGNATION (ਅਹੁਦਾ - ਜੇਕਰ ਪਤਾ ਹੈ)</label><input type="text" name="accused_post" placeholder="e.g. Inspector, Patwari, Clerk"></div>
+                    <div class="form-group"><label>WORKPLACE / DEPARTMENT (ਕਿੱਥੇ ਕੰਮ ਕਰਦਾ ਹੈ)</label><input type="text" name="accused_workplace" placeholder="Department or Office address"></div>
+                    <div class="form-group"><label>MOBILE NUMBER (ਦੋਸ਼ੀ ਦਾ ਮੋਬਾਈਲ - ਜੇਕਰ ਹੈ)</label><input type="tel" name="accused_mobile" placeholder="Optional"></div>
+                </div>
 
+                <!-- STEP 3: COMPLAINT & EVIDENCE -->
+                <div id="step3-panel">
+                    <div class="panel-header">03. COMPLAINT & EVIDENCE — ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ</div>
                     <div class="form-group">
-                        <label>LOCATION OF INCIDENT (ਘਟਨਾ ਵਾਲੀ ਜਗ੍ਹਾ) *</label>
-                        <input type="text" name="location" placeholder="City, Village, or Police Station name" required>
+                        <label>UPLOAD PROOFS (ਸਬੂਤ ਅੱਪਲੋਡ ਕਰੋ) *</label>
+                        <input type="file" name="evidence" accept="audio/*,video/*,image/*,.pdf" multiple required>
+                        <span style="font-size: 10px; color: #888; display: block; margin-top: 5px;">(ਤੁਸੀਂ Audio, Video, Photo ਜਾਂ PDF ਅੱਪਲੋਡ ਕਰ ਸਕਦੇ ਹੋ)</span>
                     </div>
-
-                    <div class="form-group">
-                        <label>DETAILED DESCRIPTION (ਪੂਰਾ ਵੇਰਵਾ) *</label>
-                        <textarea name="complaint_details" placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea>
-                    </div>
+                    <div class="form-group"><label>LOCATION OF INCIDENT (ਘਟਨਾ ਵਾਲੀ ਜਗ੍ਹਾ) *</label><input type="text" name="location" required></div>
+                    <div class="form-group"><label>DETAILED DESCRIPTION (ਪੂਰਾ ਵੇਰਵਾ) *</label><textarea name="complaint_details" placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea></div>
                 </div>
 
             </form>
         </section>
     </div>
 
-    <!-- JavaScript to handle steps -->
     <script>
-        function nextStep() {
-            // Check if Step 1 inputs are filled before moving
-            let step1Inputs = document.querySelectorAll('#step1-panel input');
-            let allFilled = true;
-            step1Inputs.forEach(input => {
+        let currentStep = 1;
+
+        function validatePanel(panelId) {
+            let inputs = document.querySelectorAll('#' + panelId + ' input, #' + panelId + ' textarea');
+            let valid = true;
+            inputs.forEach(input => {
                 if(!input.checkValidity()) {
                     input.reportValidity();
-                    allFilled = false;
+                    valid = false;
                 }
             });
+            return valid;
+        }
 
-            if(allFilled) {
-                // Hide Step 1, Show Step 2
-                document.getElementById('step1-panel').style.display = 'none';
-                document.getElementById('step2-panel').style.display = 'block';
-                
-                // Update Sidebar
-                document.getElementById('nav-step1').classList.remove('active');
-                document.getElementById('nav-step2').classList.add('active');
-                
-                // Update Buttons
-                document.getElementById('next-btn').style.display = 'none';
-                document.getElementById('submit-btn').style.display = 'block';
-
-                // Update Header Progress
-                document.getElementById('step-counter').innerText = 'STEP 02 / 02';
-                document.getElementById('progress-bar').style.width = '100%';
+        function nextStep() {
+            if(currentStep === 1) {
+                if(validatePanel('step1-panel')) {
+                    document.getElementById('step1-panel').style.display = 'none';
+                    document.getElementById('step2-panel').style.display = 'block';
+                    document.getElementById('nav-step1').classList.remove('active');
+                    document.getElementById('nav-step2').classList.add('active');
+                    document.getElementById('step-counter').innerText = 'STEP 02 / 03';
+                    document.getElementById('progress-bar').style.width = '66%';
+                    currentStep = 2;
+                }
+            } else if(currentStep === 2) {
+                if(validatePanel('step2-panel')) {
+                    document.getElementById('step2-panel').style.display = 'none';
+                    document.getElementById('step3-panel').style.display = 'block';
+                    document.getElementById('nav-step2').classList.remove('active');
+                    document.getElementById('nav-step3').classList.add('active');
+                    document.getElementById('step-counter').innerText = 'STEP 03 / 03';
+                    document.getElementById('progress-bar').style.width = '100%';
+                    document.getElementById('next-btn').style.display = 'none';
+                    document.getElementById('submit-btn').style.display = 'block';
+                    currentStep = 3;
+                }
             }
         }
     </script>
