@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Complaint - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
     
-    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
     
     <script>
         const firebaseConfig = {
@@ -20,7 +18,6 @@
             appId: "1:551243696190:web:d64b3600f26c227b08696f"
         };
         firebase.initializeApp(firebaseConfig);
-        const storage = firebase.storage();
         
         firebase.auth().onAuthStateChanged(user => {
             if (!user) window.location.href = "login.html";
@@ -59,7 +56,6 @@
         .form-group { margin-bottom: 25px; }
         label { display: block; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: #555; margin-bottom: 10px; }
         input, textarea { width: 100%; padding: 15px; border: 1px solid #ccc; background: #ece8df; color: #111; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box; transition: border 0.3s; }
-        input[type="file"] { padding: 10px; background: #ece8df; cursor: pointer; border: 1px dashed #111; }
         input:focus, textarea:focus { outline: none; border: 1px solid #111; background: #fff; }
         textarea { height: 180px; resize: vertical; }
         #step2-panel, #step3-panel, #success-panel { display: none; }
@@ -106,7 +102,6 @@
         </aside>
 
         <section class="main-panel">
-            <!-- ਨੋਟ: enctype ਇੱਥੋਂ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ ਕਿਉਂਕਿ ਫਾਈਲ Formspree 'ਤੇ ਨਹੀਂ ਜਾਵੇਗੀ -->
             <form id="complaint-form" action="https://formspree.io/f/mvzjeqop" method="POST">
                 
                 <div id="step1-panel">
@@ -129,11 +124,9 @@
                 <div id="step3-panel">
                     <div class="panel-header">03. COMPLAINT & EVIDENCE — ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ</div>
                     <div class="form-group">
-                        <label>UPLOAD PROOFS (ਸਬੂਤ ਅੱਪਲੋਡ ਕਰੋ) *</label>
-                        <!-- ਨੋਟ: name attribute ਹਟਾ ਦਿੱਤਾ ਹੈ, ਤਾਂ ਜੋ Formspree ਫਾਈਲ ਮੰਗਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਨਾ ਕਰੇ -->
-                        <input type="file" id="evidence-file" accept="audio/*,video/*,image/*,.pdf" required>
-                        <!-- ਇਹ ਹਿਡਨ ਇਨਪੁਟ Formspree ਨੂੰ ਈਮੇਲ ਵਿੱਚ ਫਾਈਲ ਦਾ ਡਾਊਨਲੋਡ ਲਿੰਕ ਭੇਜੇਗਾ -->
-                        <input type="hidden" name="EVIDENCE_LINK" id="evidence-url">
+                        <label>EVIDENCE LINK (ਸਬੂਤ ਦਾ ਗੂਗਲ ਡਰਾਈਵ ਲਿੰਕ) *</label>
+                        <input type="url" name="evidence_link" placeholder="https://drive.google.com/..." required>
+                        <span style="font-size: 10px; color: #888; display: block; margin-top: 5px;">(ਆਪਣੀ ਵੀਡੀਓ/ਆਡੀਓ Google Drive 'ਤੇ ਅੱਪਲੋਡ ਕਰਕੇ ਉਸਦਾ 'Anyone with the link' ਵਾਲਾ ਲਿੰਕ ਇੱਥੇ ਪੇਸਟ ਕਰੋ)</span>
                     </div>
                     <div class="form-group"><label>LOCATION OF INCIDENT (ਘਟਨਾ ਵਾਲੀ ਜਗ੍ਹਾ) *</label><input type="text" name="location" required></div>
                     <div class="form-group"><label>DETAILED DESCRIPTION (ਪੂਰਾ ਵੇਰਵਾ) *</label><textarea name="complaint_details" placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea></div>
@@ -196,26 +189,11 @@
             event.preventDefault(); 
             
             const submitBtn = document.getElementById('submit-btn');
-            submitBtn.innerText = "UPLOADING FILE... (ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ)";
+            submitBtn.innerText = "SUBMITTING COMPLAINT... (ਜਮ੍ਹਾਂ ਹੋ ਰਿਹਾ ਹੈ)";
             submitBtn.disabled = true; 
 
             try {
-                // 1. ਪਹਿਲਾਂ ਫਾਈਲ ਨੂੰ Firebase Storage ਵਿੱਚ ਅੱਪਲੋਡ ਕਰੋ
-                const fileInput = document.getElementById('evidence-file');
-                if (fileInput.files.length > 0) {
-                    const file = fileInput.files[0];
-                    const storageRef = storage.ref('evidence/' + Date.now() + '_' + file.name);
-                    const snapshot = await storageRef.put(file);
-                    const downloadURL = await snapshot.ref.getDownloadURL();
-                    
-                    // 2. ਅੱਪਲੋਡ ਹੋਈ ਫਾਈਲ ਦਾ ਲਿੰਕ Hidden ਇਨਪੁਟ ਵਿੱਚ ਪਾਓ
-                    document.getElementById('evidence-url').value = downloadURL;
-                }
-
-                // 3. ਬਾਕੀ ਟੈਕਸਟ ਡਾਟਾ Formspree ਨੂੰ ਭੇਜੋ
-                submitBtn.innerText = "SUBMITTING COMPLAINT... (ਜਮ੍ਹਾਂ ਹੋ ਰਿਹਾ ਹੈ)";
                 const data = new FormData(form);
-                
                 const response = await fetch(form.action, {
                     method: form.method,
                     body: data,
@@ -238,7 +216,7 @@
                     submitBtn.disabled = false;
                 }
             } catch (error) {
-                alert("ਅੱਪਲੋਡ ਫੇਲ੍ਹ ਹੋਇਆ! " + error.message);
+                alert("ਨੈੱਟਵਰਕ ਐਰਰ! " + error.message);
                 submitBtn.innerText = "SUBMIT COMPLAINT ➔";
                 submitBtn.disabled = false;
             }
