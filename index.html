@@ -108,21 +108,22 @@
                 <div class="poster-header">
                     STRONGER,
                     <span>TOGETHER.</span>
-                </div>
-                <!-- ਇੱਥੇ ਤੁਸੀਂ ਕੋਈ ਵੀ ਇਨਸਾਫ਼ ਨੂੰ ਦਰਸਾਉਂਦੀ ਫੋਟੋ ਲਗਾ ਸਕਦੇ ਹੋ -->
-                <!-- ਬਦਲਣ ਵਾਲੀਆਂ ਫੋਟੋਆਂ ਦੀ ਜਗ੍ਹਾ (ਸਹੀ ਸਾਈਜ਼ ਨਾਲ) -->
-<img id="poster-slideshow" src="1.jpg" style="width: 100%; height: auto; display: block; border-top: 2px solid #222; border-bottom: 2px solid #222; margin: 15px 0;" alt="Jaswant Singh Khalra">
+                <!-- ਪੱਕੇ ਸਾਈਜ਼ ਵਾਲਾ ਫਰੇਮ ਜੋ ਬਿਲਕੁਲ ਨਹੀਂ ਹਿੱਲੇਗਾ -->
+<div style="width: 100%; height: 230px; background-color: #111; margin: 15px 0; border-top: 2px solid #333; border-bottom: 2px solid #333; overflow: hidden;">
+    <!-- ਬਦਲਣ ਵਾਲੀਆਂ ਫੋਟੋਆਂ ਦੀ ਜਗ੍ਹਾ -->
+    <img id="poster-slideshow" src="1.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Jaswant Singh Khalra">
+</div>
 
 <!-- ਫੋਟੋਆਂ ਬਦਲਣ ਵਾਲੀ ਸਕ੍ਰਿਪਟ (JavaScript) -->
 <script>
-    // ਇੱਥੇ ਆਪਣੀਆਂ ਫੋਟੋਆਂ ਦੇ ਨਾਮ ਲਿਖੋ ਜੋ ਤੁਸੀਂ GitHub 'ਤੇ ਅਪਲੋਡ ਕੀਤੇ ਹਨ
+    // ਇੱਥੇ ਆਪਣੀਆਂ ਫੋਟੋਆਂ ਦੇ ਨਾਮ ਲਿਖੋ
     const images = ["1.jpg", "2.jpg", "3.jpg"]; 
     let currentIndex = 0;
     
     setInterval(() => {
         currentIndex = (currentIndex + 1) % images.length;
         document.getElementById("poster-slideshow").src = images[currentIndex];
-    }, 5000); // 5000 ਦਾ ਮਤਲਬ ਹੈ ਹਰ 5 ਸੈਕਿੰਡ ਬਾਅਦ ਫੋਟੋ ਬਦਲੇਗੀ
+    }, 5000);
 </script>
                 <div class="poster-text">
                     <b style="color: white;">BE PART OF THE REVELATION.</b><br>
