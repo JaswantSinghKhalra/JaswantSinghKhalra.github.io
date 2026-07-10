@@ -110,9 +110,20 @@
                     <span>TOGETHER.</span>
                 </div>
                 <!-- ਇੱਥੇ ਤੁਸੀਂ ਕੋਈ ਵੀ ਇਨਸਾਫ਼ ਨੂੰ ਦਰਸਾਉਂਦੀ ਫੋਟੋ ਲਗਾ ਸਕਦੇ ਹੋ -->
-                <div style="height: 200px; background-color: #222; display: flex; align-items: center; justify-content: center; border-top: 1px solid #444; border-bottom: 1px solid #444; margin-bottom: 15px;">
-                    <span style="color: #666; font-style: italic;">[ Image Placeholder ]</span>
-                </div>
+                <!-- ਬਦਲਣ ਵਾਲੀਆਂ ਫੋਟੋਆਂ ਦੀ ਜਗ੍ਹਾ (ਸਹੀ ਸਾਈਜ਼ ਨਾਲ) -->
+<img id="poster-slideshow" src="1.jpg" style="width: 100%; height: auto; display: block; border-top: 2px solid #222; border-bottom: 2px solid #222; margin: 15px 0;" alt="Jaswant Singh Khalra">
+
+<!-- ਫੋਟੋਆਂ ਬਦਲਣ ਵਾਲੀ ਸਕ੍ਰਿਪਟ (JavaScript) -->
+<script>
+    // ਇੱਥੇ ਆਪਣੀਆਂ ਫੋਟੋਆਂ ਦੇ ਨਾਮ ਲਿਖੋ ਜੋ ਤੁਸੀਂ GitHub 'ਤੇ ਅਪਲੋਡ ਕੀਤੇ ਹਨ
+    const images = ["1.jpg", "2.jpg", "3.jpg"]; 
+    let currentIndex = 0;
+    
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        document.getElementById("poster-slideshow").src = images[currentIndex];
+    }, 5000); // 5000 ਦਾ ਮਤਲਬ ਹੈ ਹਰ 5 ਸੈਕਿੰਡ ਬਾਅਦ ਫੋਟੋ ਬਦਲੇਗੀ
+</script>
                 <div class="poster-text">
                     <b style="color: white;">BE PART OF THE REVELATION.</b><br>
                     ਸੱਚਾਈ ਕਦੇ ਛੁਪਦੀ ਨਹੀਂ। ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰੋ, ਬਿਨਾਂ ਕਿਸੇ ਡਰ ਤੋਂ।
