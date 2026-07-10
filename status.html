@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+    <meta charset="UTF-8">
+    <title>ਸ਼ਿਕਾਇਤ ਦਾ ਸਟੇਟਸ - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; padding: 40px; }
+        .container { max-width: 500px; margin: auto; border: 2px solid #111; padding: 40px; background: #fff; box-shadow: 6px 6px 0px #111; }
+        input { width: 100%; padding: 15px; margin: 15px 0; border: 1px solid #ccc; box-sizing: border-box; }
+        button { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .result-box { margin-top: 20px; padding: 15px; border: 1px solid #ddd; background: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ਸ਼ਿਕਾਇਤ ਦਾ ਸਟੇਟਸ ਦੇਖੋ</h2>
+        <input type="email" id="userEmail" placeholder="ਆਪਣੀ ਰਜਿਸਟਰਡ ਈਮੇਲ ਭਰੋ...">
+        <button onclick="checkStatus()">ਸਟੇਟਸ ਚੈੱਕ ਕਰੋ</button>
+        <div id="result" style="margin-top:20px;"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
+            databaseURL: "https://sachdiawaaz-376ee-default-rtdb.firebaseio.com",
+            projectId: "sachdiawaaz-376ee"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        function checkStatus() {
+            const email = document.getElementById('userEmail').value.toLowerCase();
+            const resDiv = document.getElementById('result');
+            resDiv.innerHTML = "ਖੋਜ ਰਿਹਾ ਹਾਂ...";
+
+            db.ref('complaints').orderByChild('email').equalTo(email).once('value').then(snapshot => {
+                if(snapshot.exists()) {
+                    resDiv.innerHTML = "";
+                    snapshot.forEach(child => {
+                        const data = child.val();
+                        resDiv.innerHTML += `<div class="result-box">
+                            <strong>ਦੋਸ਼ੀ:</strong> ${data.accused_name}<br>
+                            <strong>ਸਟੇਟਸ:</strong> <span style="color:green">${data.status}</span>
+                        </div>`;
+                    });
+                } else {
+                    resDiv.innerHTML = "ਇਸ ਈਮੇਲ 'ਤੇ ਕੋਈ ਸ਼ਿਕਾਇਤ ਨਹੀਂ ਮਿਲੀ।";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
