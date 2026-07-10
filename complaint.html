@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Complaint - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
     
+    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+    
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
@@ -17,6 +20,7 @@
             appId: "1:551243696190:web:d64b3600f26c227b08696f"
         };
         firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
         
         firebase.auth().onAuthStateChanged(user => {
             if (!user) window.location.href = "login.html";
@@ -30,19 +34,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; }
-        
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
         .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
         .progress-bar-container { width: 100%; height: 4px; background: #e0dcd2; }
         .progress-bar { width: 33%; height: 100%; background: #c04a2c; transition: width 0.3s; }
-
         .layout { display: flex; gap: 40px; padding: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
-        
         .sidebar { width: 280px; border: 2px solid #111; padding: 30px; background: #f4f1ea; height: fit-content; box-shadow: 4px 4px 0px #111; box-sizing: border-box; }
         .sidebar-top { color: #c04a2c; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
         .sidebar h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin: 0 0 30px; line-height: 1.1; }
-        
         .step-nav { list-style: none; padding: 0; margin: 0 0 40px 0; border-bottom: 2px solid #111; padding-bottom: 20px; }
         .step { display: flex; align-items: center; margin-bottom: 25px; color: #a09d96; transition: color 0.3s; }
         .step.active { color: #111; }
@@ -50,35 +50,24 @@
         .step.active .step-num { background: #c04a2c; color: white; border-color: #c04a2c; }
         .step-text { font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
         .step-sub { font-size: 10px; font-weight: normal; color: #888; text-transform: none; display: block; margin-top: 3px; }
-
         .btn-action { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; font-weight: bold; cursor: pointer; width: 100%; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 3px 3px 0px #111; transition: all 0.2s; }
         .btn-action:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #111; }
         .btn-action:disabled { background: #555; cursor: not-allowed; box-shadow: none; transform: none; }
-        
         .cancel-link { display: inline-block; margin-top: 15px; font-size: 10px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-bottom: 1px solid #555; }
-
         .main-panel { flex: 1; min-width: 300px; border: 2px solid #111; padding: 40px; background: #f4f1ea; box-shadow: 6px 6px 0px #111; box-sizing: border-box; position: relative; }
         .panel-header { font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #111; padding-bottom: 15px; margin-bottom: 30px; }
-        
         .form-group { margin-bottom: 25px; }
         label { display: block; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: #555; margin-bottom: 10px; }
         input, textarea { width: 100%; padding: 15px; border: 1px solid #ccc; background: #ece8df; color: #111; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box; transition: border 0.3s; }
         input[type="file"] { padding: 10px; background: #ece8df; cursor: pointer; border: 1px dashed #111; }
         input:focus, textarea:focus { outline: none; border: 1px solid #111; background: #fff; }
         textarea { height: 180px; resize: vertical; }
-
         #step2-panel, #step3-panel, #success-panel { display: none; }
-
-        /* Success Message Styling */
         .success-box { text-align: center; padding: 40px 20px; }
         .success-icon { font-size: 60px; color: #1a4331; margin-bottom: 20px; }
         .success-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #111; margin-bottom: 15px; }
         .success-text { font-size: 14px; color: #555; line-height: 1.6; }
-
-        @media(max-width: 768px) {
-            .layout { padding: 20px; flex-direction: column; }
-            .sidebar, .main-panel { width: 100%; }
-        }
+        @media(max-width: 768px) { .layout { padding: 20px; flex-direction: column; } .sidebar, .main-panel { width: 100%; } }
     </style>
 </head>
 <body>
@@ -117,7 +106,8 @@
         </aside>
 
         <section class="main-panel">
-            <form id="complaint-form" action="https://formspree.io/f/mvzjeqop" method="POST" enctype="multipart/form-data">
+            <!-- ਨੋਟ: enctype ਇੱਥੋਂ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ ਕਿਉਂਕਿ ਫਾਈਲ Formspree 'ਤੇ ਨਹੀਂ ਜਾਵੇਗੀ -->
+            <form id="complaint-form" action="https://formspree.io/f/mvzjeqop" method="POST">
                 
                 <div id="step1-panel">
                     <div class="panel-header">01. IDENTITY — ਆਪਣੀ ਪਛਾਣ ਦੱਸੋ</div>
@@ -140,15 +130,16 @@
                     <div class="panel-header">03. COMPLAINT & EVIDENCE — ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ</div>
                     <div class="form-group">
                         <label>UPLOAD PROOFS (ਸਬੂਤ ਅੱਪਲੋਡ ਕਰੋ) *</label>
-                        <input type="file" name="evidence" accept="audio/*,video/*,image/*,.pdf" multiple required>
-                        <span style="font-size: 10px; color: #888; display: block; margin-top: 5px;">(Formspree ਦੀ ਮੁਫ਼ਤ ਲਿਮਿਟ ਕਾਰਨ ਫਾਈਲ ਦਾ ਸਾਈਜ਼ 10MB ਤੋਂ ਘੱਟ ਰੱਖੋ)</span>
+                        <!-- ਨੋਟ: name attribute ਹਟਾ ਦਿੱਤਾ ਹੈ, ਤਾਂ ਜੋ Formspree ਫਾਈਲ ਮੰਗਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਨਾ ਕਰੇ -->
+                        <input type="file" id="evidence-file" accept="audio/*,video/*,image/*,.pdf" required>
+                        <!-- ਇਹ ਹਿਡਨ ਇਨਪੁਟ Formspree ਨੂੰ ਈਮੇਲ ਵਿੱਚ ਫਾਈਲ ਦਾ ਡਾਊਨਲੋਡ ਲਿੰਕ ਭੇਜੇਗਾ -->
+                        <input type="hidden" name="EVIDENCE_LINK" id="evidence-url">
                     </div>
                     <div class="form-group"><label>LOCATION OF INCIDENT (ਘਟਨਾ ਵਾਲੀ ਜਗ੍ਹਾ) *</label><input type="text" name="location" required></div>
                     <div class="form-group"><label>DETAILED DESCRIPTION (ਪੂਰਾ ਵੇਰਵਾ) *</label><textarea name="complaint_details" placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea></div>
                 </div>
             </form>
 
-            <!-- SUCCESS PANEL (ਇਹ ਸਿਰਫ ਸਬਮਿਟ ਹੋਣ ਤੋਂ ਬਾਅਦ ਦਿਖੇਗਾ) -->
             <div id="success-panel" class="success-box">
                 <div class="success-icon">✔</div>
                 <div class="success-title">ਸ਼ਿਕਾਇਤ ਦਰਜ ਹੋ ਗਈ ਹੈ।</div>
@@ -201,41 +192,56 @@
         }
 
         const form = document.getElementById('complaint-form');
-        form.addEventListener("submit", function(event) {
+        form.addEventListener("submit", async function(event) {
             event.preventDefault(); 
             
             const submitBtn = document.getElementById('submit-btn');
-            submitBtn.innerText = "UPLOADING... (ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ)";
+            submitBtn.innerText = "UPLOADING FILE... (ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ)";
             submitBtn.disabled = true; 
 
-            const data = new FormData(form);
-            
-            fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
+            try {
+                // 1. ਪਹਿਲਾਂ ਫਾਈਲ ਨੂੰ Firebase Storage ਵਿੱਚ ਅੱਪਲੋਡ ਕਰੋ
+                const fileInput = document.getElementById('evidence-file');
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const storageRef = storage.ref('evidence/' + Date.now() + '_' + file.name);
+                    const snapshot = await storageRef.put(file);
+                    const downloadURL = await snapshot.ref.getDownloadURL();
+                    
+                    // 2. ਅੱਪਲੋਡ ਹੋਈ ਫਾਈਲ ਦਾ ਲਿੰਕ Hidden ਇਨਪੁਟ ਵਿੱਚ ਪਾਓ
+                    document.getElementById('evidence-url').value = downloadURL;
+                }
+
+                // 3. ਬਾਕੀ ਟੈਕਸਟ ਡਾਟਾ Formspree ਨੂੰ ਭੇਜੋ
+                submitBtn.innerText = "SUBMITTING COMPLAINT... (ਜਮ੍ਹਾਂ ਹੋ ਰਿਹਾ ਹੈ)";
+                const data = new FormData(form);
+                
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
                 if (response.ok) {
                     document.getElementById('step3-panel').style.display = 'none';
                     document.getElementById('success-panel').style.display = 'block';
                     submitBtn.style.display = 'none';
                     document.getElementById('step-counter').innerText = 'COMPLETED';
                 } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            alert("ਐਰਰ: " + data["errors"].map(error => error["message"]).join(", "));
-                        } else {
-                            alert("ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।");
-                        }
-                        submitBtn.innerText = "SUBMIT COMPLAINT ➔";
-                        submitBtn.disabled = false;
-                    })
+                    const resData = await response.json();
+                    if (Object.hasOwn(resData, 'errors')) {
+                        alert("ਐਰਰ: " + resData["errors"].map(error => error["message"]).join(", "));
+                    } else {
+                        alert("ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।");
+                    }
+                    submitBtn.innerText = "SUBMIT COMPLAINT ➔";
+                    submitBtn.disabled = false;
                 }
-            }).catch(error => {
-                alert("ਨੈੱਟਵਰਕ ਐਰਰ! ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ। (ਫਾਈਲ ਸਾਈਜ਼ ਜ਼ਿਆਦਾ ਹੋ ਸਕਦਾ ਹੈ)");
+            } catch (error) {
+                alert("ਅੱਪਲੋਡ ਫੇਲ੍ਹ ਹੋਇਆ! " + error.message);
                 submitBtn.innerText = "SUBMIT COMPLAINT ➔";
                 submitBtn.disabled = false;
-            });
+            }
         });
     </script>
 </body>
