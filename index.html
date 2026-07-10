@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼ - ਮਨੁੱਖੀ ਅਧਿਕਾਰ</title>
-    <!-- Importing Fonts to match the screenshot -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; overflow-x: hidden; }
@@ -24,13 +23,13 @@
         .btn-solid-green { background-color: #1a4331; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; box-shadow: 2px 2px 0px #111; }
         .btn-solid-black { background-color: #111; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; box-shadow: 2px 2px 0px #c04a2c; }
 
-        /* Main Hero Section (Two Columns) */
+        /* Main Hero Section */
         .hero { display: flex; padding: 60px 40px; gap: 50px; align-items: center; flex-wrap: wrap; max-width: 1300px; margin: 0 auto; }
         .hero-left { flex: 1; min-width: 350px; }
         
         .badge { display: inline-block; border: 1px solid #c04a2c; color: #c04a2c; padding: 6px 15px; border-radius: 30px; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; margin-bottom: 25px; text-transform: uppercase; }
         
-        /* Huge Typography matching "Voice of the Lazy..." */
+        /* Huge Typography */
         .hero-title { font-family: 'Playfair Display', serif; font-size: 90px; font-weight: 900; line-height: 0.95; margin: 0 0 20px 0; letter-spacing: -2px; }
         .text-black { color: #1a1a1a; }
         .text-orange { color: #c04a2c; font-style: italic; }
@@ -53,6 +52,23 @@
         .poster-caption { display: flex; justify-content: space-between; width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; }
         .caption-red { color: #c04a2c; font-style: italic; }
 
+        /* Footer CSS */
+        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .footer-col { flex: 1; min-width: 200px; }
+        .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1.1; margin: 0; color: #fff; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #aaa; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.3s; }
+        .footer-links a:hover { color: #c04a2c; }
+        .footer-msg-small { font-size: 12px; color: #aaa; font-weight: bold; }
+        .footer-msg-big { font-family: 'Playfair Display', serif; font-size: 28px; color: #4CAF50; font-weight: 900; margin-top: 5px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; }
+        .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
+        .footer-bottom a:hover { color: #fff; }
+        .footer-warning { color: #c04a2c; letter-spacing: 1px; }
+
         @media(max-width: 900px) {
             .hero { flex-direction: column; text-align: center; }
             .hero-right { border-left: none; padding-left: 0; padding-top: 40px; border-top: 1px solid #e0dcd2; }
@@ -60,112 +76,10 @@
             header { flex-direction: column; gap: 20px; }
             nav { flex-wrap: wrap; justify-content: center; }
             .action-buttons { justify-content: center; flex-wrap: wrap; }
+            .footer-grid { flex-direction: column; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+            .bottom-left { margin-bottom: 10px; }
         }
-        <!-- ਨਵਾਂ ਡਾਰਕ ਫੁੱਟਰ ਸ਼ੁਰੂ -->
-<footer class="site-footer">
-    <div class="footer-grid">
-        <!-- ਕਾਲਮ 1: ਬ੍ਰਾਂਡ ਦਾ ਨਾਮ -->
-        <div class="footer-col">
-            <span class="footer-label">Since 2026</span>
-            <h2 class="footer-brand">ਸੱਚ ਦੀ<br>ਆਵਾਜ਼.</h2>
-        </div>
-        
-        <!-- ਕਾਲਮ 2: ਜ਼ਰੂਰੀ ਲਿੰਕ -->
-        <div class="footer-col">
-            <span class="footer-label">Legal & Contact</span>
-            <ul class="footer-links">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Security Guidelines</a></li>
-                <li><a href="vision.html">Our Vision</a></li>
-                <li><a href="submit.html">Secure Contact</a></li>
-            </ul>
-        </div>
-        
-        <!-- ਕਾਲਮ 3: ਸੋਸ਼ਲ ਮੀਡੀਆ (Insta/YouTube) -->
-        <div class="footer-col">
-            <span class="footer-label">Social Media</span>
-            <ul class="footer-links">
-                <li><a href="YOUR_INSTA_LINK" target="_blank">Instagram</a></li>
-                <li><a href="YOUR_YOUTUBE_LINK" target="_blank">YouTube</a></li>
-                <li><a href="#">Twitter (X)</a></li>
-            </ul>
-        </div>
-        
-        <!-- ਕਾਲਮ 4: ਖਾਸ ਮੈਸੇਜ (ਸਕ੍ਰੀਨਸ਼ਾਟ ਵਾਂਗ) -->
-        <div class="footer-col">
-            <span class="footer-label">The System</span>
-            <div class="footer-msg-small">Who's in charge now?</div>
-            <div class="footer-msg-big">YOU ARE.</div>
-        </div>
-    </div>
-    
-    <!-- ਸਭ ਤੋਂ ਹੇਠਲੀ ਲਾਈਨ -->
-    <div class="footer-bottom">
-        <div class="bottom-left">
-            <a href="YOUR_INSTA_LINK" target="_blank">INSTAGRAM</a>
-            <a href="YOUR_YOUTUBE_LINK" target="_blank">YOUTUBE</a>
-        </div>
-        <div class="bottom-center footer-warning">
-            A SECURE PLATFORM · VOICE OF PUNJAB
-        </div>
-        <div class="bottom-right">
-            © 2026 ਸੱਚ ਦੀ ਆਵਾਜ਼ · ALL RIGHTS RESERVED
-        </div>
-    </div>
-<!-- ਨਵਾਂ ਡਾਰਕ ਫੁੱਟਰ ਸ਼ੁਰੂ -->
-<footer class="site-footer">
-    <div class="footer-grid">
-        <!-- ਕਾਲਮ 1: ਬ੍ਰਾਂਡ ਦਾ ਨਾਮ -->
-        <div class="footer-col">
-            <span class="footer-label">Since 2026</span>
-            <h2 class="footer-brand">ਸੱਚ ਦੀ<br>ਆਵਾਜ਼.</h2>
-        </div>
-        
-        <!-- ਕਾਲਮ 2: ਜ਼ਰੂਰੀ ਲਿੰਕ -->
-        <div class="footer-col">
-            <span class="footer-label">Legal & Contact</span>
-            <ul class="footer-links">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Security Guidelines</a></li>
-                <li><a href="vision.html">Our Vision</a></li>
-                <li><a href="submit.html">Secure Contact</a></li>
-            </ul>
-        </div>
-        
-        <!-- ਕਾਲਮ 3: ਸੋਸ਼ਲ ਮੀਡੀਆ (Insta/YouTube) -->
-        <div class="footer-col">
-            <span class="footer-label">Social Media</span>
-            <ul class="footer-links">
-                <li><a href="YOUR_INSTA_LINK" target="_blank">Instagram</a></li>
-                <li><a href="YOUR_YOUTUBE_LINK" target="_blank">YouTube</a></li>
-                <li><a href="#">Twitter (X)</a></li>
-            </ul>
-        </div>
-        
-        <!-- ਕਾਲਮ 4: ਖਾਸ ਮੈਸੇਜ (ਸਕ੍ਰੀਨਸ਼ਾਟ ਵਾਂਗ) -->
-        <div class="footer-col">
-            <span class="footer-label">The System</span>
-            <div class="footer-msg-small">Who's in charge now?</div>
-            <div class="footer-msg-big">YOU ARE.</div>
-        </div>
-    </div>
-    
-    <!-- ਸਭ ਤੋਂ ਹੇਠਲੀ ਲਾਈਨ -->
-    <div class="footer-bottom">
-        <div class="bottom-left">
-            <a href="https://www.instagram.com/biebersarpanch?igsh=eGlnbnQwMzN5N3pl" target="_blank">INSTAGRAM</a>
-            <a href="https://youtube.com/@biebersarpanch?si=oLMq8ha_QMw74H2T" target="_blank">YOUTUBE</a>
-        </div>
-        <div class="bottom-center footer-warning">
-            A SECURE PLATFORM · VOICE OF PUNJAB
-        </div>
-        <div class="bottom-right">
-            © 2026 ਸੱਚ ਦੀ ਆਵਾਜ਼ · ALL RIGHTS RESERVED
-        </div>
-    </div>
-</footer>
-<!-- ਨਵਾਂ ਡਾਰਕ ਫੁੱਟਰ ਖਤਮ -->
-<!-- ਨਵਾਂ ਡਾਰਕ ਫੁੱਟਰ ਖਤਮ -->
     </style>
 </head>
 <body>
@@ -186,7 +100,7 @@
         </nav>
         <div class="header-buttons">
             <a href="submit.html" class="btn-large">SUBMIT EVIDENCE ➔</a>
-<a href="vision.html" class="btn-large btn-dark-rust">OUR VISION ➔</a>
+            <a href="vision.html" class="btn-large btn-dark-rust">OUR VISION ➔</a>
         </div>
     </header>
 
@@ -202,9 +116,9 @@
                 ਇਹ ਪਲੇਟਫਾਰਮ ਪੰਜਾਬ ਦੇ ਲੋਕਾਂ ਲਈ ਹੈ ਜਿਨ੍ਹਾਂ ਦੀ ਆਵਾਜ਼ ਸਿਸਟਮ ਨੇ ਦਬਾ ਦਿੱਤੀ। ਬਿਨਾਂ ਆਪਣੀ ਪਛਾਣ ਦੱਸੇ, ਪੁਲਿਸ ਦੀਆਂ ਵਧੀਕੀਆਂ ਅਤੇ ਝੂਠੇ ਪਰਚਿਆਂ ਦੇ ਸਬੂਤ ਸਾਂਝੇ ਕਰੋ। One large, stubborn movement.
             </p>
             <div class="action-buttons">
-                <!-- ਧਿਆਨ ਦਿਓ: ਹੇਠਾਂ ਆਪਣੀ ਅਸਲੀ Proton ਈਮੇਲ ਭਰੋ -->
                 <a href="mailto:BieberSarpanch@gmail.com" class="btn-large">SUBMIT EVIDENCE ➔</a>
-                <a href="#" class="btn-large btn-dark-rust">OUR VISION ➔</a> <a href="movie.html" class="btn-large" style="background-color: #1a4331; border-color: #111;">WATCH MOVIE (ਪੰਜਾਬ 95 ਸਤਲੁਜ) ➔</a>
+                <a href="#" class="btn-large btn-dark-rust">OUR VISION ➔</a> 
+                <a href="movie.html" class="btn-large" style="background-color: #1a4331; border-color: #111;">WATCH MOVIE (ਪੰਜਾਬ 95 ਸਤਲੁਜ) ➔</a>
             </div>
         </div>
 
@@ -213,23 +127,21 @@
                 <div class="poster-header">
                     STRONGER,
                     <span>TOGETHER.</span>
-                <!-- ਪੱਕੇ ਸਾਈਜ਼ ਵਾਲਾ ਫਰੇਮ ਜੋ ਬਿਲਕੁਲ ਨਹੀਂ ਹਿੱਲੇਗਾ -->
-<div style="width: 100%; height: 230px; background-color: #111; margin: 15px 0; border-top: 2px solid #333; border-bottom: 2px solid #333; overflow: hidden;">
-    <!-- ਬਦਲਣ ਵਾਲੀਆਂ ਫੋਟੋਆਂ ਦੀ ਜਗ੍ਹਾ -->
-    <img id="poster-slideshow" src="1.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Jaswant Singh Khalra">
-</div>
+                </div>
+                <div style="width: 100%; height: 230px; background-color: #111; margin: 15px 0; border-top: 2px solid #333; border-bottom: 2px solid #333; overflow: hidden;">
+                    <img id="poster-slideshow" src="1.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Jaswant Singh Khalra">
+                </div>
 
-<!-- ਫੋਟੋਆਂ ਬਦਲਣ ਵਾਲੀ ਸਕ੍ਰਿਪਟ (JavaScript) -->
-<script>
-    // ਇੱਥੇ ਆਪਣੀਆਂ ਫੋਟੋਆਂ ਦੇ ਨਾਮ ਲਿਖੋ
-    const images = ["1.jpg", "2.jpg", "3.jpg"]; 
-    let currentIndex = 0;
-    
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        document.getElementById("poster-slideshow").src = images[currentIndex];
-    }, 5000);
-</script>
+                <script>
+                    const images = ["1.jpg", "2.jpg", "3.jpg"]; 
+                    let currentIndex = 0;
+                    
+                    setInterval(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        document.getElementById("poster-slideshow").src = images[currentIndex];
+                    }, 5000);
+                </script>
+
                 <div class="poster-text">
                     <b style="color: white;">BE PART OF THE REVELATION.</b><br>
                     ਸੱਚਾਈ ਕਦੇ ਛੁਪਦੀ ਨਹੀਂ। ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰੋ, ਬਿਨਾਂ ਕਿਸੇ ਡਰ ਤੋਂ।
@@ -244,6 +156,53 @@
             </div>
         </div>
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <span class="footer-label">Since 2026</span>
+                <h2 class="footer-brand">ਸੱਚ ਦੀ<br>ਆਵਾਜ਼.</h2>
+            </div>
+            
+            <div class="footer-col">
+                <span class="footer-label">Legal & Contact</span>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Security Guidelines</a></li>
+                    <li><a href="vision.html">Our Vision</a></li>
+                    <li><a href="submit.html">Secure Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <span class="footer-label">Social Media</span>
+                <ul class="footer-links">
+                    <li><a href="https://www.instagram.com/biebersarpanch?igsh=eGlnbnQwMzN5N3pl" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com/@biebersarpanch?si=oLMq8ha_QMw74H2T" target="_blank">YouTube</a></li>
+                    <li><a href="#">Twitter (X)</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <span class="footer-label">The System</span>
+                <div class="footer-msg-small">Who's in charge now?</div>
+                <div class="footer-msg-big">YOU ARE.</div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="bottom-left">
+                <a href="https://www.instagram.com/biebersarpanch?igsh=eGlnbnQwMzN5N3pl" target="_blank">INSTAGRAM</a>
+                <a href="https://youtube.com/@biebersarpanch?si=oLMq8ha_QMw74H2T" target="_blank">YOUTUBE</a>
+            </div>
+            <div class="bottom-center footer-warning">
+                A SECURE PLATFORM · VOICE OF PUNJAB
+            </div>
+            <div class="bottom-right">
+                © 2026 ਸੱਚ ਦੀ ਆਵਾਜ਼ · ALL RIGHTS RESERVED
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
