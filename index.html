@@ -19,9 +19,9 @@
         nav { display: flex; gap: 30px; }
         nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
         .header-buttons { display: flex; gap: 15px; align-items: center; }
-        .btn-outline { border: 1px solid #c04a2c; color: #c04a2c; padding: 8px 15px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; }
-        .btn-solid-green { background-color: #1a4331; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; box-shadow: 2px 2px 0px #111; }
-        .btn-solid-black { background-color: #111; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; font-size: 12px; letter-spacing: 1px; box-shadow: 2px 2px 0px #c04a2c; }
+        .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; text-align: center; display: inline-block; }
+        .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
+        .btn-dark-rust { background-color: #8b331c; }
 
         /* Main Hero Section */
         .hero { display: flex; padding: 60px 40px; gap: 50px; align-items: center; flex-wrap: wrap; max-width: 1300px; margin: 0 auto; }
@@ -29,7 +29,6 @@
         
         .badge { display: inline-block; border: 1px solid #c04a2c; color: #c04a2c; padding: 6px 15px; border-radius: 30px; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; margin-bottom: 25px; text-transform: uppercase; }
         
-        /* Typography */
         .hero-title { font-family: 'Playfair Display', serif; font-size: 90px; font-weight: 900; line-height: 0.95; margin: 0 0 20px 0; letter-spacing: -2px; }
         .text-black { color: #1a1a1a; }
         .text-orange { color: #c04a2c; font-style: italic; }
@@ -37,14 +36,10 @@
 
         .hero-desc { font-size: 16px; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
 
-        /* Buttons */
         .action-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
-        .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
-        .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
-        .btn-dark-rust { background-color: #8b331c; }
 
         /* Right Column (Poster area) */
-        .hero-right { flex: 1; display: flex; justify-content: center; flex-direction: column; align-items: center; border-left: 1px solid #e0dcd2; padding-left: 50px; }
+        .hero-right { flex: 1; display: flex; justify-content: center; flex-direction: column; align-items: center; border-left: 1px solid #e0dcd2; padding-left: 50px; position: relative; }
         .poster-container { background-color: #111; padding: 10px; border: 2px solid #111; box-shadow: 8px 8px 0px rgba(0,0,0,0.8); width: 100%; max-width: 380px; box-sizing: border-box; text-align: center; color: white; }
         .poster-header { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: #4CAF50; line-height: 1; margin: 20px 0; letter-spacing: -1px; }
         .poster-header span { color: #fff; display: block; font-size: 42px; }
@@ -52,10 +47,65 @@
         .poster-caption { display: flex; justify-content: space-between; width: 100%; max-width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; box-sizing: border-box; }
         .caption-red { color: #c04a2c; font-style: italic; }
 
+        /* 📊 LIVE COUNTER STYLING (PC ਲਈ Right Side, ਮੋਬਾਈਲ ਲਈ ਥੱਲੇ) */
+        .live-count-box {
+            position: absolute;
+            top: 50%;
+            right: -60px;
+            transform: translateY(-50%);
+            background: #111;
+            border: 2px solid #c04a2c;
+            box-shadow: 4px 4px 0px #111;
+            padding: 15px 20px;
+            text-align: center;
+            z-index: 100;
+            min-width: 110px;
+        }
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 9px;
+            color: #888;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(255, 77, 77, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+        }
+        .live-count-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: #f4eee0;
+            line-height: 1;
+        }
+        .live-count-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            font-weight: bold;
+            color: #c04a2c;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            line-height: 1.2;
+        }
+
         /* Footer CSS */
         .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; }
         .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
-        .footer-col { flex: 1; min-width: 200px; }
+        .footer-grid .footer-col { flex: 1; min-width: 200px; }
         .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
         .footer-brand { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1.1; margin: 0; color: #fff; }
         .footer-links { list-style: none; padding: 0; margin: 0; }
@@ -70,6 +120,21 @@
         .footer-warning { color: #c04a2c; letter-spacing: 1px; }
 
         /* 📱 MOBILE RESPONSIVE FIXES */
+        @media(max-width: 1100px) {
+            /* Live Counter ਮੋਬਾਈਲ 'ਤੇ ਪੋਸਟਰ ਦੇ ਥੱਲੇ ਸੈਂਟਰ ਵਿੱਚ ਆਵੇਗਾ */
+            .live-count-box { 
+                position: relative; 
+                top: 0; 
+                right: 0; 
+                transform: none; 
+                margin-top: 30px; 
+                width: 100%; 
+                max-width: 380px; 
+                box-sizing: border-box; 
+                margin-left: auto; 
+                margin-right: auto;
+            }
+        }
         @media(max-width: 900px) {
             header { flex-direction: column; gap: 20px; padding: 15px 20px; }
             nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
@@ -79,14 +144,12 @@
             .hero { flex-direction: column; text-align: center; padding: 40px 20px; gap: 30px; }
             .hero-right { border-left: none; padding-left: 0; padding-top: 40px; border-top: 1px solid #e0dcd2; width: 100%; }
             
-            /* Smaller Fonts for Mobile */
             .hero-title { font-size: 55px; }
             .poster-header { font-size: 30px; }
             .poster-header span { font-size: 34px; }
             
-            /* Stack Buttons on Mobile */
-            .action-buttons { flex-direction: column; width: 100%; max-width: 350px; margin: 0 auto; }
-            .btn-large { width: 100%; box-sizing: border-box; }
+            .action-buttons { flex-direction: column; width: 100%; max-width: 380px; margin: 0 auto; }
+            .action-buttons .btn-large { width: 100%; box-sizing: border-box; }
             
             .site-footer { padding: 40px 20px 20px; }
             .footer-grid { flex-direction: column; text-align: center; }
@@ -102,9 +165,7 @@
     </div>
 
     <header>
-        <div class="logo">
-            ਸੱਚ ਦੀ ਆਵਾਜ਼.
-        </div>
+        <div class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</div>
         <nav>
             <a href="javascript:void(0);">Vision</a>
             <a href="javascript:void(0);">Manifesto</a>
@@ -112,7 +173,7 @@
             <a href="javascript:void(0);">About Us</a>
         </nav>
         <div class="header-buttons">
-            <a href="submit.html" class="btn-large">SUBMIT EVIDENCE ➔</a>
+            <a href="complaint.html" class="btn-large">SUBMIT EVIDENCE ➔</a>
             <a href="vision.html" class="btn-large btn-dark-rust">OUR VISION ➔</a>
         </div>
     </header>
@@ -130,7 +191,7 @@
             </p>
             <div class="action-buttons">
                 <a href="complaint.html" class="btn-large" style="background-color: #111;">FILE COMPLAINT ➔</a>
-                <a href="mailto:BieberSarpanch@gmail.com" class="btn-large">SUBMIT EVIDENCE ➔</a> 
+                <a href="complaint.html" class="btn-large">SUBMIT EVIDENCE ➔</a> 
                 <a href="movie.html" class="btn-large" style="background-color: #1a4331; border-color: #111;">WATCH MOVIE (ਪੰਜਾਬ 95 ਸਤਲੁਜ) ➔</a>
             </div>
         </div>
@@ -148,7 +209,6 @@
                 <script>
                     const images = ["1.jpg", "2.jpg", "3.jpg"]; 
                     let currentIndex = 0;
-                    
                     setInterval(() => {
                         currentIndex = (currentIndex + 1) % images.length;
                         document.getElementById("poster-slideshow").src = images[currentIndex];
@@ -163,9 +223,16 @@
                     SECURE REPORTING PORTAL
                 </div>
             </div>
+            
             <div class="poster-caption">
                 <span>OFFICIAL CAMPAIGN POSTER</span>
                 <span class="caption-red">Est. Today</span>
+            </div>
+
+            <div class="live-count-box">
+                <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
+                <div class="live-count-num" id="public-live-counter">0</div>
+                <div class="live-count-text">COMPLAINTS<br>FILED</div>
             </div>
         </div>
     </main>
@@ -183,7 +250,7 @@
                     <li><a href="javascript:void(0);">Privacy Policy</a></li>
                     <li><a href="javascript:void(0);">Security Guidelines</a></li>
                     <li><a href="vision.html">Our Vision</a></li>
-                    <li><a href="submit.html">Secure Contact</a></li>
+                    <li><a href="complaint.html">Secure Contact</a></li>
                 </ul>
             </div>
             
@@ -216,6 +283,34 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
+            authDomain: "sachdiawaaz-376ee.firebaseapp.com",
+            projectId: "sachdiawaaz-376ee",
+            databaseURL: "https://sachdiawaaz-376ee-default-rtdb.firebaseio.com",
+            storageBucket: "sachdiawaaz-376ee.firebasestorage.app",
+            messagingSenderId: "551243696190",
+            appId: "1:551243696190:web:d64b3600f26c227b08696f"
+        };
+        
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        const database = firebase.database();
+
+        database.ref('complaint_count').on('value', (snapshot) => {
+            const count = snapshot.val() || 0;
+            const counterElement = document.getElementById('public-live-counter');
+            if(counterElement) {
+                counterElement.innerText = count;
+            }
+        });
+    </script>
 
 </body>
 </html>
