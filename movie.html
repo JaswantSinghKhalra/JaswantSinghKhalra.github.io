@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch & Download Movie - ਪੰਜਾਬ 95 ਸਤਲੁਜ</title>
+    <title>Watch & Download - ਪੰਜਾਬ 95 ਸਤਲੁਜ</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { 
@@ -27,7 +27,7 @@
 
         /* Movie Section Styling */
         .movie-section {
-            max-width: 1000px; 
+            max-width: 1000px; /* PC 'ਤੇ ਵੱਡੀ ਸਕ੍ਰੀਨ ਲਈ */
             margin: 50px auto;
             padding: 0 20px;
         }
@@ -46,9 +46,13 @@
             letter-spacing: -0.5px;
         }
 
-        .movie-desc { font-size: 14px; color: #888; margin: 0; }
+        .movie-desc {
+            font-size: 14px;
+            color: #888;
+            margin: 0;
+        }
 
-        /* Video Player Wrapper (ਆਟੋ-ਸਾਈਜ਼) */
+        /* 📱 Video Player Wrapper (Responsive Auto-Size) */
         .video-wrapper {
             width: 100%;
             background-color: #000;
@@ -59,77 +63,58 @@
             position: relative;
         }
 
-        video { width: 100%; height: auto; display: block; }
+        video {
+            width: 100%;
+            height: auto; /* ਮੋਬਾਈਲ 'ਤੇ ਆਪੇ ਛੋਟਾ ਹੋ ਜਾਵੇਗਾ */
+            display: block; 
+            max-height: 600px;
+        }
 
-        /* Quality & Download Controls Bar */
+        /* Download Bar */
         .controls-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: #161210;
-            padding: 15px 25px;
+            padding: 20px 25px;
             border: 1px solid #222;
             border-top: none;
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
-            flex-wrap: wrap;
-            gap: 15px;
         }
 
         .controls-text {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             color: #aaa;
+        }
+
+        /* Download Button Styling */
+        .download-btn {
+            background-color: #c04a2c;
+            color: #fff;
+            padding: 12px 25px;
+            font-size: 14px;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .right-controls {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .quality-select {
-            background-color: #111;
-            color: #f4eee0;
-            border: 1px solid #c04a2c;
-            padding: 10px 15px;
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-        }
-        .quality-select:hover { background-color: #c04a2c; color: white; }
-
-        /* Download Button */
-        .btn-download {
-            background-color: #1a4331; /* ਡਾਰਕ ਗ੍ਰੀਨ ਰੰਗ */
-            color: white;
             text-decoration: none;
-            padding: 10px 20px;
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 4px;
-            border: 1px solid #1a4331;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            border: 2px solid #111;
+            box-shadow: 4px 4px 0px #111;
+            transition: all 0.2s ease;
+            display: inline-block;
         }
-        .btn-download:hover { background-color: #256649; border-color: #256649; }
+        .download-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #111;
+            background-color: #a33e25;
+        }
 
         /* Mobile Responsive */
         @media(max-width: 768px) {
             .movie-title { font-size: 30px; }
-            .controls-bar { flex-direction: column; text-align: center; }
-            .right-controls { flex-direction: column; width: 100%; }
-            .quality-select, .btn-download { width: 100%; text-align: center; box-sizing: border-box; }
+            .controls-bar { flex-direction: column; gap: 15px; text-align: center; }
+            .download-btn { width: 100%; box-sizing: border-box; text-align: center; }
         }
         @media(max-width: 600px) {
             header { padding: 15px 20px; flex-direction: column; gap: 15px; }
@@ -156,55 +141,26 @@
         </div>
 
         <div class="video-wrapper">
-            <!-- ਵੀਡੀਓ ਪਲੇਅਰ -->
-            <video id="moviePlayer" controls poster="https://via.placeholder.com/1000x560/111/c04a2c?text=PUNJAB+95+SATLUJ">
-                <!-- ਤੁਹਾਡਾ ਅਸਲੀ ਫਿਲਮ ਦਾ ਲਿੰਕ -->
+            <!-- ਤੁਹਾਡਾ ਅਸਲੀ ਮੂਵੀ ਲਿੰਕ ਇੱਥੇ ਪਾ ਦਿੱਤਾ ਗਿਆ ਹੈ -->
+            <video id="moviePlayer" controls preload="metadata">
                 <source src="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" type="video/mp4">
                 ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਵੀਡੀਓ ਸਪੋਰਟ ਨਹੀਂ ਕਰਦਾ।
             </video>
         </div>
 
-        <!-- Quality & Download ਬਟਨ -->
+        <!-- Download Section -->
         <div class="controls-bar">
             <div class="controls-text">
-                <span style="color: #c04a2c;">⚙</span> ਵੀਡੀਓ ਕੁਆਲਿਟੀ
+                ਪੂਰੀ ਫਿਲਮ ਆਨਲਾਈਨ ਦੇਖੋ ਜਾਂ ਆਪਣੇ ਫੋਨ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰੋ 
             </div>
             
-            <div class="right-controls">
-                <select id="qualitySelector" class="quality-select" onchange="changeQuality()">
-                    <!-- ਸਾਰੇ ਆਪਸ਼ਨਾਂ ਵਿੱਚ ਫਿਲਹਾਲ ਤੁਹਾਡਾ ਇੱਕੋ ਲਿੰਕ ਪਾਇਆ ਹੈ ਤਾਂ ਜੋ ਐਰਰ ਨਾ ਆਵੇ -->
-                    <option value="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" selected>Original Quality</option>
-                    <option value="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4">720p (HD)</option>
-                    <option value="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4">360p (Standard)</option>
-                    <option value="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4">240p (Data Saver)</option>
-                </select>
-
-                <!-- ⬇ ਡਾਊਨਲੋਡ ਬਟਨ (ਸਿੱਧਾ ਲਿੰਕ) -->
-                <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" download class="btn-download">
-                    ⬇ Download Movie
-                </a>
-            </div>
+            <!-- ਡਾਊਨਲੋਡ ਬਟਨ -->
+            <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn" download target="_blank">
+                DOWNLOAD MOVIE ⬇
+            </a>
         </div>
 
     </main>
-
-    <!-- JavaScript - ਕੁਆਲਿਟੀ ਬਦਲਣ 'ਤੇ ਟਾਈਮ ਸੇਵ ਰੱਖਣ ਲਈ -->
-    <script>
-        function changeQuality() {
-            const video = document.getElementById("moviePlayer");
-            const selector = document.getElementById("qualitySelector");
-            
-            const currentTime = video.currentTime;
-            const isPaused = video.paused;
-
-            video.src = selector.value;
-            video.currentTime = currentTime;
-            
-            if (!isPaused) {
-                video.play();
-            }
-        }
-    </script>
 
 </body>
 </html>
