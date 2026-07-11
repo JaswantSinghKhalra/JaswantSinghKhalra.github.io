@@ -3,166 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ਖੂਨਦਾਨ (Blood Donate) - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <title>Blood Donate - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Light Theme - Main Page ਵਾਲਾ */
+        /* Light Theme ਵਰਗਾ Main Page */
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #f4f1ea; /* ਕਰੀਮ ਰੰਗ ਦਾ ਬੈਕਗ੍ਰਾਊਂਡ */
-            color: #1a1a1a; /* ਕਾਲਾ ਟੈਕਸਟ */
+            background-color: #f4f1ea; /* ਲਾਈਟ ਕ੍ਰੀਮ ਰੰਗ */
+            color: #1a1a1a; /* ਡਾਰਕ ਟੈਕਸਟ */
             margin: 0; 
             padding: 0; 
             overflow-x: hidden; 
         }
-
-        /* Top Bar */
-        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
+        
+        /* Top Scrolling Marquee */
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #9b1c1c; }
         .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
-        
-        /* Header */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; background-color: #f4f1ea; }
+
+        /* Header Navbar */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; }
         .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; text-decoration: none; }
-        .btn-back { background-color: transparent; color: #111; border: 2px solid #111; padding: 10px 20px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s ease; box-shadow: 3px 3px 0px #111; }
-        .btn-back:hover { background-color: #9b1c1c; color: white; transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #111; }
+        .btn-back { background-color: transparent; color: #1a1a1a; border: 2px solid #111; padding: 10px 20px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; box-shadow: 2px 2px 0px #111; }
+        .btn-back:hover { background-color: #111; color: #f4eee0; }
 
         /* Main Section */
-        .donate-section { max-width: 1200px; margin: 60px auto; padding: 0 40px; }
-        
-        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 2px solid #e0dcd2; padding-bottom: 20px; }
-        .header-left .eyebrow { color: #9b1c1c; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .header-left .eyebrow::before { content: ""; display: block; width: 30px; height: 3px; background-color: #9b1c1c; }
-        .header-left h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; margin: 0; letter-spacing: -1px; color: #111; }
+        .donate-section { max-width: 1200px; margin: 50px auto; padding: 0 40px; }
 
-        /* Grid */
-        .donate-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        /* Important Message Banner */
+        .alert-banner {
+            background-color: #9b1c1c; /* Blood Red */
+            color: white;
+            padding: 25px 30px;
+            border: 2px solid #111;
+            box-shadow: 6px 6px 0px #111;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .alert-banner h2 { margin: 0 0 10px 0; font-family: 'Playfair Display', serif; font-size: 28px; }
+        .alert-banner p { font-size: 20px; font-weight: bold; margin: 0; line-height: 1.5; }
 
-        /* Donate Cards (Light Theme with solid borders) */
-        .donate-card {
-            background-color: #ffffff; /* ਚਿੱਟਾ ਬੈਕਗ੍ਰਾਊਂਡ */
-            border: 2px solid #111; 
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.9); /* ਮੇਨ ਪੇਜ ਵਾਲਾ ਸਟਾਈਲ */
+        /* Clubs Grid */
+        .clubs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+
+        /* Club Card */
+        .club-card {
+            background-color: white;
+            border: 2px solid #111;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 4px 4px 0px #111;
+            transition: 0.2s ease-in-out;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            justify-content: space-between;
         }
-        .donate-card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0px #9b1c1c; }
+        .club-card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0px #111; }
         
-        .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 2px solid #111; }
+        .blood-icon { font-size: 40px; margin-bottom: 15px; }
+        .club-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: #1a1a1a; margin: 0 0 10px 0; }
+        .club-area { font-size: 14px; color: #555; font-weight: bold; margin-bottom: 25px; }
         
-        .card-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin: 0 0 5px 0; color: #111; }
-        .card-location { font-size: 13px; font-weight: 700; color: #c04a2c; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 1px; }
-        .card-desc { font-size: 14px; color: #555; line-height: 1.6; margin: 0 0 20px 0; flex-grow: 1; }
-        
-        /* Mobile Number Box */
-        .phone-box {
-            background-color: #fbecec;
-            border: 2px dashed #9b1c1c;
-            padding: 15px;
-            text-align: center;
-            border-radius: 5px;
-            margin-bottom: 20px;
+        /* Phone Button */
+        .call-btn {
+            background-color: #111;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #111;
+            transition: 0.3s;
+            display: block;
         }
-        .phone-number { font-size: 22px; font-weight: 900; color: #9b1c1c; margin: 0; letter-spacing: 1px; }
-        .phone-number a { color: #9b1c1c; text-decoration: none; }
-        
-        /* Footer Call Button */
-        .card-footer { background-color: #111; padding: 15px; text-align: center; border-top: 2px solid #111; transition: background 0.3s; }
-        .card-footer a { color: #fff; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: block; width: 100%; }
-        .donate-card:hover .card-footer { background-color: #9b1c1c; }
+        .call-btn:hover { background-color: #9b1c1c; border-color: #9b1c1c; }
 
-        /* Responsive */
-        @media (max-width: 950px) {
-            .donate-grid { grid-template-columns: repeat(2, 1fr); }
-            .section-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+        /* Mobile Responsive */
+        @media(max-width: 900px) {
+            .clubs-grid { grid-template-columns: repeat(2, 1fr); }
+            .alert-banner p { font-size: 18px; }
         }
-        @media (max-width: 650px) {
-            .donate-grid { grid-template-columns: 1fr; }
-            header { padding: 15px 20px; }
-            .donate-section { padding: 0 20px; margin: 40px auto; }
-            .header-left h1 { font-size: 36px; }
+        @media(max-width: 600px) {
+            .clubs-grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; gap: 15px; }
+            .donate-section { padding: 0 20px; margin: 30px auto; }
+            .alert-banner { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        <span>✦ ਖੂਨਦਾਨ ਮਹਾਂਦਾਨ ✦ ਜ਼ਿੰਦਗੀ ਬਚਾਓ, ਖੂਨ ਦਾਨ ਕਰੋ ✦ ADV ਬੀਬਰ ਸਰਪੰਚ ✦</span>
+        <span>✦ ਖੂਨ ਦਾਨ, ਮਹਾਂ ਦਾਨ ✦ ਮਨੁੱਖਤਾ ਦੀ ਸੇਵਾ ✦ ਇੱਕ ਬੂੰਦ ਕਿਸੇ ਦੀ ਜਾਨ ਬਚਾ ਸਕਦੀ ਹੈ ✦</span>
     </div>
 
     <header>
         <a href="index.html" class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</a>
-        <a href="index.html" class="btn-back">⬅ Back to Home</a>
+        <a href="index.html" class="btn-back">⬅ ਵਾਪਸ ਮੁੱਖ ਪੰਨੇ 'ਤੇ</a>
     </header>
 
     <main class="donate-section">
-        <div class="section-header">
-            <div class="header-left">
-                <span class="eyebrow">Save a Life Today</span>
-                <h1>ਬਲੱਡ ਡੋਨੇਟ ਕਲੱਬਸ</h1>
-            </div>
+        
+        <!-- ਸੁਨੇਹਾ (Message Banner) -->
+        <div class="alert-banner">
+            <h2>🔴 ਖੂਨ ਦਾਨ, ਮਹਾਂ ਦਾਨ 🔴</h2>
+            <p>ਜੇ ਕਿਸੇ ਨੇ ਵੀ ਖੂਨ ਦਾਨ ਕਰਨਾ ਹੋਵੇ ਜਾਂ ਖੂਨ ਦੀ ਲੋੜ ਹੋਵੇ<br> ਤਾਂ ਹੇਠਾਂ ਦਿੱਤੇ ਕਲੱਬਾਂ ਦੇ ਨੰਬਰਾਂ ਤੇ ਸੰਪਰਕ ਕਰੋ।</p>
         </div>
 
-        <div class="donate-grid">
+        <div class="clubs-grid">
             
-            <!-- Blood Club Card 1 -->
-            <article class="donate-card">
-                <!-- Blood Donor Image (ਤੁਸੀਂ ਆਪਣੀ ਫੋਟੋ ਲਗਾ ਸਕਦੇ ਹੋ) -->
-                <img src="https://via.placeholder.com/400x200/9b1c1c/ffffff?text=Blood+Bank+1" alt="Blood Club" class="card-img">
-                <div class="card-content">
-                    <h2 class="card-title">ਸ਼ਹੀਦ ਭਗਤ ਸਿੰਘ ਬਲੱਡ ਕਲੱਬ</h2>
-                    <p class="card-location">📍 ਮੋਗਾ, ਪੰਜਾਬ</p>
-                    <p class="card-desc">ਐਮਰਜੈਂਸੀ ਵਿੱਚ ਕਿਸੇ ਵੀ ਬਲੱਡ ਗਰੁੱਪ ਦੀ ਲੋੜ ਹੋਵੇ, ਤਾਂ ਸਾਡੇ ਕਲੱਬ ਦੇ ਨੌਜਵਾਨ ਹਮੇਸ਼ਾ ਤਿਆਰ ਰਹਿੰਦੇ ਹਨ।</p>
-                    
-                    <div class="phone-box">
-                        <p style="margin: 0 0 5px 0; font-size: 11px; color: #555; text-transform: uppercase; font-weight: bold;">ਸੰਪਰਕ ਕਰੋ (Call 24/7)</p>
-                        <h3 class="phone-number"><a href="tel:+919876543210">📞 98765-43210</a></h3>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="tel:+919876543210">ਕਾਲ ਕਰੋ (CALL NOW) ➔</a>
-                </div>
-            </article>
+            <!-- Club 1 -->
+            <div class="club-card">
+                <div class="blood-icon">🩸</div>
+                <h3 class="club-name">ਸ਼ਹੀਦ ਭਗਤ ਸਿੰਘ ਬਲੱਡ ਕਲੱਬ</h3>
+                <div class="club-area">📍 ਲੁਧਿਆਣਾ ਅਤੇ ਆਲੇ-ਦੁਆਲੇ</div>
+                <a href="tel:+919876543210" class="call-btn">📞 98765-43210</a>
+            </div>
 
-            <!-- Blood Club Card 2 -->
-            <article class="donate-card">
-                <img src="https://via.placeholder.com/400x200/9b1c1c/ffffff?text=Blood+Bank+2" alt="Blood Club" class="card-img">
-                <div class="card-content">
-                    <h2 class="card-title">ਖਾਲਸਾ ਖੂਨਦਾਨ ਸੇਵਾ ਸੁਸਾਇਟੀ</h2>
-                    <p class="card-location">📍 ਲੁਧਿਆਣਾ, ਪੰਜਾਬ</p>
-                    <p class="card-desc">ਸਾਡੀ ਸੁਸਾਇਟੀ ਲੁਧਿਆਣਾ ਅਤੇ ਆਸ-ਪਾਸ ਦੇ ਇਲਾਕਿਆਂ ਵਿੱਚ ਲੋੜਵੰਦਾਂ ਨੂੰ ਮੁਫਤ ਖੂਨ ਮੁਹੱਈਆ ਕਰਵਾਉਂਦੀ ਹੈ।</p>
-                    
-                    <div class="phone-box">
-                        <p style="margin: 0 0 5px 0; font-size: 11px; color: #555; text-transform: uppercase; font-weight: bold;">ਸੰਪਰਕ ਕਰੋ (Call 24/7)</p>
-                        <h3 class="phone-number"><a href="tel:+919988776655">📞 99887-76655</a></h3>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="tel:+919988776655">ਕਾਲ ਕਰੋ (CALL NOW) ➔</a>
-                </div>
-            </article>
+            <!-- Club 2 -->
+            <div class="club-card">
+                <div class="blood-icon">🩸</div>
+                <h3 class="club-name">ਮਨੁੱਖਤਾ ਦੀ ਸੇਵਾ ਸੁਸਾਇਟੀ</h3>
+                <div class="club-area">📍 ਅੰਮ੍ਰਿਤਸਰ, ਮਾਝਾ ਏਰੀਆ</div>
+                <a href="tel:+919876543211" class="call-btn">📞 98765-43211</a>
+            </div>
 
-            <!-- Blood Club Card 3 -->
-            <article class="donate-card">
-                <img src="https://via.placeholder.com/400x200/9b1c1c/ffffff?text=Blood+Bank+3" alt="Blood Club" class="card-img">
-                <div class="card-content">
-                    <h2 class="card-title">ਜੀਵਨ ਰੱਖਿਅਕ ਬਲੱਡ ਡੋਨਰਸ</h2>
-                    <p class="card-location">📍 ਜਲੰਧਰ, ਪੰਜਾਬ</p>
-                    <p class="card-desc">ਅਸੀਂ ਪੂਰੇ ਜਲੰਧਰ ਵਿੱਚ ਖੂਨਦਾਨ ਕੈਂਪ ਲਗਾਉਂਦੇ ਹਾਂ ਅਤੇ ਹਸਪਤਾਲਾਂ ਵਿੱਚ ਸਿੱਧੀ ਮਦਦ ਕਰਦੇ ਹਾਂ।</p>
-                    
-                    <div class="phone-box">
-                        <p style="margin: 0 0 5px 0; font-size: 11px; color: #555; text-transform: uppercase; font-weight: bold;">ਸੰਪਰਕ ਕਰੋ (Call 24/7)</p>
-                        <h3 class="phone-number"><a href="tel:+919811122233">📞 98111-22233</a></h3>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="tel:+919811122233">ਕਾਲ ਕਰੋ (CALL NOW) ➔</a>
-                </div>
-            </article>
-            
-            <!-- ਹੋਰ ਕਾਰਡ ਤੁਸੀਂ ਇੱਥੇ ਕਾਪੀ-ਪੇਸਟ ਕਰਕੇ ਐਡ ਕਰ ਸਕਦੇ ਹੋ -->
+            <!-- Club 3 -->
+            <div class="club-card">
+                <div class="blood-icon">🩸</div>
+                <h3 class="club-name">ਖਾਲਸਾ ਬਲੱਡ ਡੋਨਰਜ਼</h3>
+                <div class="club-area">📍 ਜਲੰਧਰ ਕੈਂਟ</div>
+                <a href="tel:+919876543212" class="call-btn">📞 98765-43212</a>
+            </div>
+
+            <!-- Club 4 -->
+            <div class="club-card">
+                <div class="blood-icon">🩸</div>
+                <h3 class="club-name">ਜੀਵਨ ਰੱਖਿਅਕ ਕਲੱਬ</h3>
+                <div class="club-area">📍 ਬਠਿੰਡਾ, ਮਾਲਵਾ ਏਰੀਆ</div>
+                <a href="tel:+919876543213" class="call-btn">📞 98765-43213</a>
+            </div>
+
+            <!-- Club 5 -->
+            <div class="club-card">
+                <div class="blood-icon">🩸</div>
+                <h3 class="club-name">ਸੱਚ ਦੀ ਆਵਾਜ਼ ਵਲੰਟੀਅਰਜ਼</h3>
+                <div class="club-area">📍 ਮੋਹਾਲੀ / ਚੰਡੀਗੜ੍ਹ</div>
+                <a href="tel:+919876543214" class="call-btn">📞 98765-43214</a>
+            </div>
+
+            <!-- Club 6 -->
+            <div class="club-card">
+                <div class="blood-icon">🩸</div>
+                <h3 class="club-name">ਗੁਰੂ ਨਾਨਕ ਸੇਵਾ ਦਲ</h3>
+                <div class="club-area">📍 ਪਟਿਆਲਾ</div>
+                <a href="tel:+919876543215" class="call-btn">📞 98765-43215</a>
+            </div>
 
         </div>
     </main>
