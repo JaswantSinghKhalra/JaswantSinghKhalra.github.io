@@ -2,33 +2,216 @@
 <html lang="pa">
 <head>
     <meta charset="UTF-8">
-    <title>Punjab News - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
-    <!-- ਆਪਣੀ CSS ਫਾਈਲ ਇੱਥੇ ਲਿੰਕ ਕਰੋ -->
-    <link rel="stylesheet" href="style.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ਪੰਜਾਬ NEWS - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0c0908; /* ਡਾਰਕ ਬੈਕਗ੍ਰਾਊਂਡ */
+            color: #f4eee0; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+        }
+
+        /* Top Bar & Header (Same as index.html for consistency) */
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
+        .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
+        @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #333; background-color: #111; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #f4eee0; letter-spacing: 1px; text-decoration: none; }
+        .btn-back { background-color: transparent; color: #f4eee0; border: 1px solid #555; padding: 10px 20px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .btn-back:hover { background-color: #c04a2c; border-color: #c04a2c; }
+
+        /* News Section Styling */
+        .news-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 20px;
+        }
+        .header-left .eyebrow {
+            color: #c04a2c;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .header-left .eyebrow::before {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: #c04a2c;
+        }
+        .header-left h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+        .view-all {
+            color: #c04a2c;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        .view-all:hover { color: #f4eee0; }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* News Card */
+        .news-card {
+            background-color: #161210;
+            border: 1px solid #222;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: #c04a2c;
+        }
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #222;
+        }
+        .card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0 0 15px 0;
+            color: #f4eee0;
+        }
+        .card-desc {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.6;
+            margin: 0 0 25px 0;
+            flex-grow: 1;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #2a2523;
+            padding-top: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .card-date { color: #666; }
+        .card-read { color: #c04a2c; transition: color 0.3s; }
+        .news-card:hover .card-read { color: #f4eee0; }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+        }
+        @media (max-width: 600px) {
+            .news-grid { grid-template-columns: 1fr; }
+            header { padding: 15px 20px; }
+            .news-section { padding: 0 20px; margin: 40px auto; }
+            .header-left h1 { font-size: 32px; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ਹੈਡਰ / ਨੈਵੀਗੇਸ਼ਨ ਬਾਰ -->
+    <div class="top-bar">
+        <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ - Adv ਬੀਬਰ ਸਰਪੰਚ ✦</span>
+    </div>
+
     <header>
-        <a href="index.html">⬅ ਵਾਪਸ ਮੁੱਖ ਪੰਨੇ 'ਤੇ</a>
-        <h1>ਪੰਜਾਬ NEWS</h1>
+        <a href="index.html" class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</a>
+        <a href="index.html" class="btn-back">⬅ Back to Home</a>
     </header>
 
-    <!-- ਨਿਊਜ਼ ਸੈਕਸ਼ਨ -->
-    <main>
-        <section class="news-container">
-            <h2>ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ</h2>
-            
-            <div class="news-card">
-                <h3>ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ 1</h3>
-                <p>ਇੱਥੇ ਤੁਹਾਡੀ ਖ਼ਬਰ ਦੀ ਪੂਰੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ...</p>
+    <main class="news-section">
+        <div class="section-header">
+            <div class="header-left">
+                <span class="eyebrow">Punjab Latest News</span>
+                <h1>ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ (Latest Updates)</h1>
             </div>
+            <a href="#" class="view-all">View All Posts ➔</a>
+        </div>
 
-            <div class="news-card">
-                <h3>ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ 2</h3>
-                <p>ਇੱਥੇ ਦੂਜੀ ਖ਼ਬਰ ਆਵੇਗੀ...</p>
-            </div>
-        </section>
+        <div class="news-grid">
+            <!-- News Card 1 -->
+            <article class="news-card">
+                <!-- img src ਵਿੱਚ ਆਪਣੀ ਖ਼ਬਰ ਦੀ ਫੋਟੋ ਦਾ ਨਾਮ ਲਿਖੋ, ਜਿਵੇਂ news1.jpg -->
+                <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+1" alt="News 1" class="card-img">
+                <div class="card-content">
+                    <h2 class="card-title">ਪੰਜਾਬ ਵਿੱਚ ਨਵੇਂ ਪ੍ਰੋਜੈਕਟਾਂ ਦਾ ਐਲਾਨ, ਨੌਜਵਾਨਾਂ ਲਈ ਰੁਜ਼ਗਾਰ ਦੇ ਮੌਕੇ</h2>
+                    <p class="card-desc">ਸਰਕਾਰ ਵੱਲੋਂ ਪੰਜਾਬ ਦੇ ਵੱਖ-ਵੱਖ ਜ਼ਿਲ੍ਹਿਆਂ ਵਿੱਚ ਨਵੇਂ ਉਦਯੋਗਿਕ ਪ੍ਰੋਜੈਕਟ ਸ਼ੁਰੂ ਕਰਨ ਦਾ ਐਲਾਨ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਿਸ ਨਾਲ ਬੇਰੁਜ਼ਗਾਰੀ ਘਟਣ ਦੀ ਉਮੀਦ ਹੈ।</p>
+                    <div class="card-footer">
+                        <span class="card-date">11 Jul 2026</span>
+                        <span class="card-read">Read ➔</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 2 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+2" alt="News 2" class="card-img">
+                <div class="card-content">
+                    <h2 class="card-title">ਸਿੱਖਿਆ ਵਿਭਾਗ ਵੱਲੋਂ ਸਕੂਲਾਂ ਦੇ ਬੁਨਿਆਦੀ ਢਾਂਚੇ ਵਿੱਚ ਸੁਧਾਰ ਦੀ ਮੁਹਿੰਮ</h2>
+                    <p class="card-desc">ਪੰਜਾਬ ਦੇ ਸਰਕਾਰੀ ਸਕੂਲਾਂ ਨੂੰ ਸਮਾਰਟ ਸਕੂਲਾਂ ਵਿੱਚ ਬਦਲਣ ਦੀ ਪ੍ਰਕਿਰਿਆ ਤੇਜ਼ ਕਰ ਦਿੱਤੀ ਗਈ ਹੈ। ਨਵੇਂ ਕਮਰੇ ਅਤੇ ਡਿਜੀਟਲ ਬੋਰਡ ਲਗਾਏ ਜਾ ਰਹੇ ਹਨ।</p>
+                    <div class="card-footer">
+                        <span class="card-date">09 Jul 2026</span>
+                        <span class="card-read">Read ➔</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 3 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+3" alt="News 3" class="card-img">
+                <div class="card-content">
+                    <h2 class="card-title">ਕਿਸਾਨਾਂ ਲਈ ਖੁਸ਼ਖਬਰੀ: ਫਸਲਾਂ ਦੇ ਭਾਅ ਵਿੱਚ ਕੀਤਾ ਗਿਆ ਵਾਧਾ</h2>
+                    <p class="card-desc">ਕੇਂਦਰ ਸਰਕਾਰ ਅਤੇ ਸੂਬਾ ਸਰਕਾਰ ਦੀ ਮੀਟਿੰਗ ਤੋਂ ਬਾਅਦ ਕਣਕ ਅਤੇ ਝੋਨੇ ਦੇ ਘੱਟੋ-ਘੱਟ ਸਮਰਥਨ ਮੁੱਲ (MSP) ਵਿੱਚ ਵਾਧਾ ਕਰਨ ਦਾ ਫੈਸਲਾ ਲਿਆ ਗਿਆ ਹੈ।</p>
+                    <div class="card-footer">
+                        <span class="card-date">05 Jul 2026</span>
+                        <span class="card-read">Read ➔</span>
+                    </div>
+                </div>
+            </article>
+        </div>
     </main>
 
 </body>
