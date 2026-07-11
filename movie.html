@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch & Download - ਪੰਜਾਬ 95 ਸਤਲੁਜ</title>
+    <title>Watch Movie - ਪੰਜਾਬ 95 ਸਤਲੁਜ</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #0c0908; 
+            background-color: #0c0908; /* Dark Theme */
             color: #f4eee0; 
             margin: 0; 
             padding: 0; 
@@ -27,16 +27,12 @@
 
         /* Movie Section Styling */
         .movie-section {
-            max-width: 1000px; /* PC 'ਤੇ ਵੱਡੀ ਸਕ੍ਰੀਨ ਲਈ */
-            margin: 50px auto;
+            max-width: 1000px; /* PC ਲਈ ਵੱਧ ਤੋਂ ਵੱਧ ਚੌੜਾਈ */
+            margin: 40px auto;
             padding: 0 20px;
+            text-align: center;
         }
 
-        .movie-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
         .movie-title {
             font-family: 'Playfair Display', serif;
             font-size: 40px;
@@ -47,78 +43,62 @@
         }
 
         .movie-desc {
-            font-size: 14px;
-            color: #888;
-            margin: 0;
+            font-size: 15px;
+            color: #aaa;
+            margin: 0 0 30px 0;
         }
 
-        /* 📱 Video Player Wrapper (Responsive Auto-Size) */
-        .video-wrapper {
+        /* 📱 Responsive Video iframe (ਮੋਬਾਈਲ ਤੇ ਆਟੋ ਸਾਈਜ਼ ਲਈ) */
+        .iframe-container {
+            position: relative;
             width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
             background-color: #000;
             border: 2px solid #222;
             box-shadow: 0px 15px 40px rgba(0,0,0,0.8);
             border-radius: 8px;
             overflow: hidden;
-            position: relative;
         }
 
-        video {
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto; /* ਮੋਬਾਈਲ 'ਤੇ ਆਪੇ ਛੋਟਾ ਹੋ ਜਾਵੇਗਾ */
-            display: block; 
-            max-height: 600px;
-        }
-
-        /* Download Bar */
-        .controls-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #161210;
-            padding: 20px 25px;
-            border: 1px solid #222;
-            border-top: none;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-        }
-
-        .controls-text {
-            font-size: 14px;
-            font-weight: 700;
-            color: #aaa;
+            height: 100%;
+            border: 0;
         }
 
         /* Download Button Styling */
         .download-btn {
+            display: inline-block;
             background-color: #c04a2c;
             color: #fff;
-            padding: 12px 25px;
-            font-size: 14px;
+            padding: 15px 35px;
+            font-size: 16px;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             text-decoration: none;
+            text-transform: uppercase;
             border: 2px solid #111;
             box-shadow: 4px 4px 0px #111;
-            transition: all 0.2s ease;
-            display: inline-block;
+            border-radius: 5px;
+            margin-top: 35px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
         }
+        
         .download-btn:hover {
             transform: translate(-2px, -2px);
             box-shadow: 6px 6px 0px #111;
-            background-color: #a33e25;
+            background-color: #9b1c1c; /* ਥੋੜਾ ਗੂੜ੍ਹਾ ਲਾਲ */
         }
 
-        /* Mobile Responsive */
-        @media(max-width: 768px) {
-            .movie-title { font-size: 30px; }
-            .controls-bar { flex-direction: column; gap: 15px; text-align: center; }
-            .download-btn { width: 100%; box-sizing: border-box; text-align: center; }
-        }
+        /* Mobile Responsive adjustments */
         @media(max-width: 600px) {
             header { padding: 15px 20px; flex-direction: column; gap: 15px; }
-            .movie-section { margin: 30px auto; }
+            .movie-title { font-size: 28px; }
+            .download-btn { width: 100%; box-sizing: border-box; }
         }
     </style>
 </head>
@@ -135,30 +115,18 @@
 
     <main class="movie-section">
         
-        <div class="movie-header">
-            <h1 class="movie-title">ਪੰਜਾਬ 95 ਸਤਲੁਜ (Full Movie)</h1>
-            <p class="movie-desc">ਸੱਚਾਈ ਕਦੇ ਛੁਪਦੀ ਨਹੀਂ। ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰੋ।</p>
+        <h1 class="movie-title">ਪੰਜਾਬ 95 ਸਤਲੁਜ</h1>
+        <p class="movie-desc">Watch the full movie below or download it directly to your device.</p>
+
+        <!-- ਇਹ ਕੋਡ ਮੂਵੀ ਨੂੰ ਮੋਬਾਈਲ ਅਤੇ PC ਤੇ ਸਹੀ ਸਾਈਜ਼ ਵਿੱਚ ਦਿਖਾਵੇਗਾ -->
+        <div class="iframe-container">
+            <iframe src="https://archive.org/embed/jawant-singh-khalra-punjab-95-satluj" allowfullscreen></iframe>
         </div>
 
-        <div class="video-wrapper">
-            <!-- ਤੁਹਾਡਾ ਅਸਲੀ ਮੂਵੀ ਲਿੰਕ ਇੱਥੇ ਪਾ ਦਿੱਤਾ ਗਿਆ ਹੈ -->
-            <video id="moviePlayer" controls preload="metadata">
-                <source src="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" type="video/mp4">
-                ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਵੀਡੀਓ ਸਪੋਰਟ ਨਹੀਂ ਕਰਦਾ।
-            </video>
-        </div>
-
-        <!-- Download Section -->
-        <div class="controls-bar">
-            <div class="controls-text">
-                ਪੂਰੀ ਫਿਲਮ ਆਨਲਾਈਨ ਦੇਖੋ ਜਾਂ ਆਪਣੇ ਫੋਨ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰੋ 
-            </div>
-            
-            <!-- ਡਾਊਨਲੋਡ ਬਟਨ -->
-            <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn" download target="_blank">
-                DOWNLOAD MOVIE ⬇
-            </a>
-        </div>
+        <!-- ਡਾਊਨਲੋਡ ਬਟਨ -->
+        <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn" download>
+            ⬇ Download Movie (MP4)
+        </a>
 
     </main>
 
