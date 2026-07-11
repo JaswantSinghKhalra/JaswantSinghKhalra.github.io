@@ -3,36 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ - ਫਿਲਮ</title>
+    <title>Watch & Download Movie - ਪੰਜਾਬ 95 ਸਤਲੁਜ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Arial', sans-serif; background-color: #111; color: #fff; padding: 40px; text-align: center; }
-        h1 { color: #c04a2c; font-size: 35px; margin-bottom: 5px; }
-        p { color: #aaa; margin-bottom: 30px; }
-        .video-container { max-width: 800px; margin: 0 auto; background: #000; padding: 10px; border: 2px solid #333; box-shadow: 0 0 20px rgba(192, 74, 44, 0.3); }
-        /* Responsive iframe */
-        .video-container iframe { width: 100%; height: 450px; border: none; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0c0908; 
+            color: #f4eee0; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+        }
+
+        /* Top Bar & Header */
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
+        .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
+        @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
         
-        .download-btn { background-color: #1a4331; color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block; margin-top: 30px; border: 2px solid #fff; transition: 0.3s; }
-        .download-btn:hover { background-color: #2e7555; }
-        .back-btn { display: block; margin-top: 40px; color: #888; text-decoration: none; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #333; background-color: #111; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #f4eee0; letter-spacing: 1px; text-decoration: none; }
+        .btn-back { background-color: transparent; color: #f4eee0; border: 1px solid #555; padding: 10px 20px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .btn-back:hover { background-color: #c04a2c; border-color: #c04a2c; }
+
+        /* Movie Section Styling */
+        .movie-section {
+            max-width: 1000px; 
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .movie-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .movie-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 900;
+            color: #c04a2c;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .movie-desc { font-size: 14px; color: #888; margin: 0; }
+
+        /* Video Player Wrapper (ਆਟੋ-ਸਾਈਜ਼) */
+        .video-wrapper {
+            width: 100%;
+            background-color: #000;
+            border: 2px solid #222;
+            box-shadow: 0px 15px 40px rgba(0,0,0,0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        video { width: 100%; height: auto; display: block; }
+
+        /* Quality & Download Controls Bar */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #161210;
+            padding: 15px 25px;
+            border: 1px solid #222;
+            border-top: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .controls-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .right-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .quality-select {
+            background-color: #111;
+            color: #f4eee0;
+            border: 1px solid #c04a2c;
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .quality-select:hover { background-color: #c04a2c; color: white; }
+
+        /* Download Button */
+        .btn-download {
+            background-color: #1a4331; /* ਡਾਰਕ ਗ੍ਰੀਨ ਰੰਗ */
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 4px;
+            border: 1px solid #1a4331;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-download:hover { background-color: #256649; border-color: #256649; }
+
+        /* Mobile Responsive */
+        @media(max-width: 768px) {
+            .movie-title { font-size: 30px; }
+            .controls-bar { flex-direction: column; text-align: center; }
+            .right-controls { flex-direction: column; width: 100%; }
+            .quality-select, .btn-download { width: 100%; text-align: center; box-sizing: border-box; }
+        }
+        @media(max-width: 600px) {
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .movie-section { margin: 30px auto; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ (Documentary)</h1>
-    <p>ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼ - ਇਹ ਫਿਲਮ ਆਨਲਾਈਨ ਦੇਖੋ ਜਾਂ ਡਾਊਨਲੋਡ ਕਰੋ</p>
-
-    <!-- ਫਿਲਮ ਲਾਈਵ ਚਲਾਉਣ ਲਈ ਵੀਡੀਓ ਪਲੇਅਰ -->
-    <div class="video-container">
-        <!-- ਜਦੋਂ ਤੁਸੀਂ ਫਿਲਮ ਅਪਲੋਡ ਕਰ ਲਵੋਗੇ, ਤਾਂ Archive.org ਤੁਹਾਨੂੰ ਇੱਕ <iframe> ਕੋਡ ਦੇਵੇਗਾ, ਉਹ ਇੱਥੇ ਪਾਉਣਾ ਹੈ -->
-        <iframe src="https://archive.org/embed/jawant-singh-khalra-punjab-95-satluj" allowfullscreen></iframe>
+    <div class="top-bar">
+        <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ ✦</span>
     </div>
 
-    <!-- ਫਿਲਮ ਡਾਊਨਲੋਡ ਕਰਨ ਦਾ ਬਟਨ -->
-    <!-- YOUR_DOWNLOAD_LINK ਦੀ ਜਗ੍ਹਾ ਆਪਣਾ MP4 ਫਾਈਲ ਵਾਲਾ ਲਿੰਕ ਪਾਉਣਾ ਹੈ -->
-    <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn" download>📥 ਫਿਲਮ ਡਾਊਨਲੋਡ ਕਰੋ (Download Movie)</a>
+    <header>
+        <a href="index.html" class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</a>
+        <a href="index.html" class="btn-back">⬅ Back to Home</a>
+    </header>
 
-    <a href="index.html" class="back-btn">⬅ ਵਾਪਸ ਮੁੱਖ ਪੰਨੇ 'ਤੇ ਜਾਓ</a>
+    <main class="movie-section">
+        
+        <div class="movie-header">
+            <h1 class="movie-title">ਪੰਜਾਬ 95 ਸਤਲੁਜ (Full Movie)</h1>
+            <p class="movie-desc">ਸੱਚਾਈ ਕਦੇ ਛੁਪਦੀ ਨਹੀਂ। ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰੋ।</p>
+        </div>
+
+        <div class="video-wrapper">
+            <!-- ਵੀਡੀਓ ਪਲੇਅਰ -->
+            <video id="moviePlayer" controls poster="https://via.placeholder.com/1000x560/111/c04a2c?text=PUNJAB+95+SATLUJ">
+                <!-- ਤੁਹਾਡਾ ਅਸਲੀ ਫਿਲਮ ਦਾ ਲਿੰਕ -->
+                <source src="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" type="video/mp4">
+                ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਵੀਡੀਓ ਸਪੋਰਟ ਨਹੀਂ ਕਰਦਾ।
+            </video>
+        </div>
+
+        <!-- Quality & Download ਬਟਨ -->
+        <div class="controls-bar">
+            <div class="controls-text">
+                <span style="color: #c04a2c;">⚙</span> ਵੀਡੀਓ ਕੁਆਲਿਟੀ
+            </div>
+            
+            <div class="right-controls">
+                <select id="qualitySelector" class="quality-select" onchange="changeQuality()">
+                    <!-- ਸਾਰੇ ਆਪਸ਼ਨਾਂ ਵਿੱਚ ਫਿਲਹਾਲ ਤੁਹਾਡਾ ਇੱਕੋ ਲਿੰਕ ਪਾਇਆ ਹੈ ਤਾਂ ਜੋ ਐਰਰ ਨਾ ਆਵੇ -->
+                    <option value="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" selected>Original Quality</option>
+                    <option value="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4">720p (HD)</option>
+                    <option value="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4">360p (Standard)</option>
+                    <option value="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4">240p (Data Saver)</option>
+                </select>
+
+                <!-- ⬇ ਡਾਊਨਲੋਡ ਬਟਨ (ਸਿੱਧਾ ਲਿੰਕ) -->
+                <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" download class="btn-download">
+                    ⬇ Download Movie
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript - ਕੁਆਲਿਟੀ ਬਦਲਣ 'ਤੇ ਟਾਈਮ ਸੇਵ ਰੱਖਣ ਲਈ -->
+    <script>
+        function changeQuality() {
+            const video = document.getElementById("moviePlayer");
+            const selector = document.getElementById("qualitySelector");
+            
+            const currentTime = video.currentTime;
+            const isPaused = video.paused;
+
+            video.src = selector.value;
+            video.currentTime = currentTime;
+            
+            if (!isPaused) {
+                video.play();
+            }
+        }
+    </script>
 
 </body>
 </html>
