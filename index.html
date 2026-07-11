@@ -15,7 +15,34 @@
 
         /* Header Navbar */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
+        
+        /* 🔴 CJP ਵਰਗਾ ਗੋਲ ਲੋਗੋ ਡਿਜ਼ਾਈਨ */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* PC ਤੇ ਖੱਬੇ ਪਾਸੇ ਰੱਖਣ ਲਈ */
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #111;
+            object-fit: cover;
+            background-color: #f4f1ea;
+            box-shadow: 2px 2px 0px #111;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #692415;
+            letter-spacing: 1px;
+        }
+
         nav { display: flex; gap: 30px; }
         nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
         .header-buttons { display: flex; gap: 15px; align-items: center; }
@@ -127,6 +154,7 @@
         }
         @media(max-width: 900px) {
             header { flex-direction: column; gap: 20px; padding: 15px 20px; }
+            .logo-wrapper { justify-content: center; } /* ਮੋਬਾਈਲ 'ਤੇ ਲੋਗੋ ਵਿਚਕਾਰ ਰਹੇਗਾ */
             nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
             .header-buttons { flex-direction: column; width: 100%; }
             .header-buttons .btn-large { width: 100%; box-sizing: border-box; }
@@ -148,7 +176,13 @@
     </div>
 
     <header>
-        <div class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</div>
+        <!-- 🔴 ਇੱਥੇ ਨਵਾਂ ਲੋਗੋ ਲਗਾਇਆ ਗਿਆ ਹੈ -->
+        <a href="index.html" class="logo-wrapper">
+            <!-- hand.png ਦੀ ਜਗ੍ਹਾ ਆਪਣੀ ਅਪਲੋਡ ਕੀਤੀ ਫੋਟੋ ਦਾ ਨਾਮ ਲਿਖਿਓ -->
+            <img src="hand.png" alt="Logo" class="logo-img">
+            <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
+        </a>
+        
         <nav>
             <a href="javascript:void(0);">Vision</a>
             <a href="javascript:void(0);">Manifesto</a>
@@ -156,7 +190,6 @@
             <a href="javascript:void(0);">About Us</a>
         </nav>
         <div class="header-buttons">
-            <!-- ਇੱਥੇ ਲਿੰਕ ਬਦਲਿਆ ਗਿਆ ਹੈ 'news.html' ਨਾਲ -->
             <a href="news.html" class="btn-large">ਪੰਜਾਬ NEWS ➔</a>
             <a href="legends.html" class="btn-large btn-dark-rust">ਸੂਰਮੇ (Legends) ➔</a>
         </div>
