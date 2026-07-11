@@ -8,17 +8,18 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #0c0908; /* ਡਾਰਕ ਬੈਕਗ੍ਰਾਊਂਡ */
+            background-color: #0c0908; 
             color: #f4eee0; 
             margin: 0; 
             padding: 0; 
             overflow-x: hidden; 
         }
 
-        /* Top Bar & Header (Same as index.html for consistency) */
+        /* Top Bar & Header */
         .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
         .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+        
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #333; background-color: #111; }
         .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #f4eee0; letter-spacing: 1px; text-decoration: none; }
         .btn-back { background-color: transparent; color: #f4eee0; border: 1px solid #555; padding: 10px 20px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
@@ -31,7 +32,6 @@
             padding: 0 40px;
         }
 
-        /* Section Header */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -51,32 +51,12 @@
             gap: 10px;
             margin-bottom: 15px;
         }
-        .header-left .eyebrow::before {
-            content: "";
-            display: block;
-            width: 30px;
-            height: 2px;
-            background-color: #c04a2c;
-        }
-        .header-left h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            font-weight: 900;
-            margin: 0;
-            letter-spacing: -0.5px;
-        }
-        .view-all {
-            color: #c04a2c;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: color 0.3s;
-        }
+        .header-left .eyebrow::before { content: ""; display: block; width: 30px; height: 2px; background-color: #c04a2c; }
+        .header-left h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; margin: 0; letter-spacing: -0.5px; }
+        .view-all { color: #c04a2c; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; font-weight: 700; transition: color 0.3s; }
         .view-all:hover { color: #f4eee0; }
 
-        /* News Grid */
+        /* 3-Column News Grid */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -92,48 +72,12 @@
             flex-direction: column;
             cursor: pointer;
         }
-        .news-card:hover {
-            transform: translateY(-5px);
-            border-color: #c04a2c;
-        }
-        .card-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 1px solid #222;
-        }
-        .card-content {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 700;
-            line-height: 1.3;
-            margin: 0 0 15px 0;
-            color: #f4eee0;
-        }
-        .card-desc {
-            font-size: 13px;
-            color: #888;
-            line-height: 1.6;
-            margin: 0 0 25px 0;
-            flex-grow: 1;
-        }
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #2a2523;
-            padding-top: 15px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .news-card:hover { transform: translateY(-5px); border-color: #c04a2c; }
+        .card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #222; }
+        .card-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; line-height: 1.3; margin: 0 0 15px 0; color: #f4eee0; }
+        .card-desc { font-size: 13px; color: #888; line-height: 1.6; margin: 0 0 25px 0; flex-grow: 1; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #2a2523; padding-top: 15px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .card-date { color: #666; }
         .card-read { color: #c04a2c; transition: color 0.3s; }
         .news-card:hover .card-read { color: #f4eee0; }
@@ -165,23 +109,23 @@
     <main class="news-section">
         <div class="section-header">
             <div class="header-left">
-                <span class="eyebrow">Punjab Latest News</span>
+                <span class="eyebrow">From the News Desk</span>
                 <h1>ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ (Latest Updates)</h1>
             </div>
-            <a href="#" class="view-all">View All Posts ➔</a>
+            <a href="#" class="view-all">VIEW ALL POSTS ➔</a>
         </div>
 
         <div class="news-grid">
+            
             <!-- News Card 1 -->
             <article class="news-card">
-                <!-- img src ਵਿੱਚ ਆਪਣੀ ਖ਼ਬਰ ਦੀ ਫੋਟੋ ਦਾ ਨਾਮ ਲਿਖੋ, ਜਿਵੇਂ news1.jpg -->
                 <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+1" alt="News 1" class="card-img">
                 <div class="card-content">
-                    <h2 class="card-title">ਪੰਜਾਬ ਵਿੱਚ ਨਵੇਂ ਪ੍ਰੋਜੈਕਟਾਂ ਦਾ ਐਲਾਨ, ਨੌਜਵਾਨਾਂ ਲਈ ਰੁਜ਼ਗਾਰ ਦੇ ਮੌਕੇ</h2>
-                    <p class="card-desc">ਸਰਕਾਰ ਵੱਲੋਂ ਪੰਜਾਬ ਦੇ ਵੱਖ-ਵੱਖ ਜ਼ਿਲ੍ਹਿਆਂ ਵਿੱਚ ਨਵੇਂ ਉਦਯੋਗਿਕ ਪ੍ਰੋਜੈਕਟ ਸ਼ੁਰੂ ਕਰਨ ਦਾ ਐਲਾਨ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਿਸ ਨਾਲ ਬੇਰੁਜ਼ਗਾਰੀ ਘਟਣ ਦੀ ਉਮੀਦ ਹੈ।</p>
+                    <h2 class="card-title">ਪਹਿਲੀ ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ ਇੱਥੇ ਲਿਖੋ</h2>
+                    <p class="card-desc">ਇੱਥੇ ਪਹਿਲੀ ਖ਼ਬਰ ਬਾਰੇ ਥੋੜ੍ਹੀ ਜਿਹੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ। ਤੁਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ ਬਦਲ ਸਕਦੇ ਹੋ।</p>
                     <div class="card-footer">
                         <span class="card-date">11 Jul 2026</span>
-                        <span class="card-read">Read ➔</span>
+                        <span class="card-read">READ ➔</span>
                     </div>
                 </div>
             </article>
@@ -190,11 +134,11 @@
             <article class="news-card">
                 <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+2" alt="News 2" class="card-img">
                 <div class="card-content">
-                    <h2 class="card-title">ਸਿੱਖਿਆ ਵਿਭਾਗ ਵੱਲੋਂ ਸਕੂਲਾਂ ਦੇ ਬੁਨਿਆਦੀ ਢਾਂਚੇ ਵਿੱਚ ਸੁਧਾਰ ਦੀ ਮੁਹਿੰਮ</h2>
-                    <p class="card-desc">ਪੰਜਾਬ ਦੇ ਸਰਕਾਰੀ ਸਕੂਲਾਂ ਨੂੰ ਸਮਾਰਟ ਸਕੂਲਾਂ ਵਿੱਚ ਬਦਲਣ ਦੀ ਪ੍ਰਕਿਰਿਆ ਤੇਜ਼ ਕਰ ਦਿੱਤੀ ਗਈ ਹੈ। ਨਵੇਂ ਕਮਰੇ ਅਤੇ ਡਿਜੀਟਲ ਬੋਰਡ ਲਗਾਏ ਜਾ ਰਹੇ ਹਨ।</p>
+                    <h2 class="card-title">ਦੂਜੀ ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ ਇੱਥੇ ਲਿਖੋ</h2>
+                    <p class="card-desc">ਇੱਥੇ ਦੂਜੀ ਖ਼ਬਰ ਬਾਰੇ ਥੋੜ੍ਹੀ ਜਿਹੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ। ਲੋਕਾਂ ਨੂੰ ਪੂਰੀ ਖ਼ਬਰ ਪੜ੍ਹਨ ਲਈ ਪ੍ਰੇਰਿਤ ਕਰੋ।</p>
                     <div class="card-footer">
-                        <span class="card-date">09 Jul 2026</span>
-                        <span class="card-read">Read ➔</span>
+                        <span class="card-date">10 Jul 2026</span>
+                        <span class="card-read">READ ➔</span>
                     </div>
                 </div>
             </article>
@@ -203,14 +147,80 @@
             <article class="news-card">
                 <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+3" alt="News 3" class="card-img">
                 <div class="card-content">
-                    <h2 class="card-title">ਕਿਸਾਨਾਂ ਲਈ ਖੁਸ਼ਖਬਰੀ: ਫਸਲਾਂ ਦੇ ਭਾਅ ਵਿੱਚ ਕੀਤਾ ਗਿਆ ਵਾਧਾ</h2>
-                    <p class="card-desc">ਕੇਂਦਰ ਸਰਕਾਰ ਅਤੇ ਸੂਬਾ ਸਰਕਾਰ ਦੀ ਮੀਟਿੰਗ ਤੋਂ ਬਾਅਦ ਕਣਕ ਅਤੇ ਝੋਨੇ ਦੇ ਘੱਟੋ-ਘੱਟ ਸਮਰਥਨ ਮੁੱਲ (MSP) ਵਿੱਚ ਵਾਧਾ ਕਰਨ ਦਾ ਫੈਸਲਾ ਲਿਆ ਗਿਆ ਹੈ।</p>
+                    <h2 class="card-title">ਤੀਜੀ ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ ਇੱਥੇ ਲਿਖੋ</h2>
+                    <p class="card-desc">ਇੱਥੇ ਤੀਜੀ ਖ਼ਬਰ ਬਾਰੇ ਥੋੜ੍ਹੀ ਜਿਹੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ। ਤੁਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ ਬਦਲ ਸਕਦੇ ਹੋ।</p>
                     <div class="card-footer">
-                        <span class="card-date">05 Jul 2026</span>
-                        <span class="card-read">Read ➔</span>
+                        <span class="card-date">09 Jul 2026</span>
+                        <span class="card-read">READ ➔</span>
                     </div>
                 </div>
             </article>
+
+            <!-- News Card 4 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+4" alt="News 4" class="card-img">
+                <div class="card-content">
+                    <h2 class="card-title">ਚੌਥੀ ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ ਇੱਥੇ ਲਿਖੋ</h2>
+                    <p class="card-desc">ਇੱਥੇ ਚੌਥੀ ਖ਼ਬਰ ਬਾਰੇ ਥੋੜ੍ਹੀ ਜਿਹੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ। ਤੁਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ ਬਦਲ ਸਕਦੇ ਹੋ।</p>
+                    <div class="card-footer">
+                        <span class="card-date">08 Jul 2026</span>
+                        <span class="card-read">READ ➔</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 5 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+5" alt="News 5" class="card-img">
+                <div class="card-content">
+                    <h2 class="card-title">ਪੰਜਵੀਂ ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ ਇੱਥੇ ਲਿਖੋ</h2>
+                    <p class="card-desc">ਇੱਥੇ ਪੰਜਵੀਂ ਖ਼ਬਰ ਬਾਰੇ ਥੋੜ੍ਹੀ ਜਿਹੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ। ਤੁਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ ਬਦਲ ਸਕਦੇ ਹੋ।</p>
+                    <div class="card-footer">
+                        <span class="card-date">07 Jul 2026</span>
+                        <span class="card-read">READ ➔</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 6 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+6" alt="News 6" class="card-img">
+                <div class="card-content">
+                    <h2 class="card-title">ਛੇਵੀਂ ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ ਇੱਥੇ ਲਿਖੋ</h2>
+                    <p class="card-desc">ਇੱਥੇ ਛੇਵੀਂ ਖ਼ਬਰ ਬਾਰੇ ਥੋੜ੍ਹੀ ਜਿਹੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ। ਤੁਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ ਬਦਲ ਸਕਦੇ ਹੋ।</p>
+                    <div class="card-footer">
+                        <span class="card-date">06 Jul 2026</span>
+                        <span class="card-read">READ ➔</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 7 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+7" alt="News 7" class="card-img">
+                <div class="card-content">
+                    <h2 class="card-title">ਸੱਤਵੀਂ ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ ਇੱਥੇ ਲਿਖੋ</h2>
+                    <p class="card-desc">ਇੱਥੇ ਸੱਤਵੀਂ ਖ਼ਬਰ ਬਾਰੇ ਥੋੜ੍ਹੀ ਜਿਹੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ। ਤੁਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ ਬਦਲ ਸਕਦੇ ਹੋ।</p>
+                    <div class="card-footer">
+                        <span class="card-date">05 Jul 2026</span>
+                        <span class="card-read">READ ➔</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 8 -->
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x250/222/777?text=News+Image+8" alt="News 8" class="card-img">
+                <div class="card-content">
+                    <h2 class="card-title">ਅੱਠਵੀਂ ਖ਼ਬਰ ਦਾ ਸਿਰਲੇਖ ਇੱਥੇ ਲਿਖੋ</h2>
+                    <p class="card-desc">ਇੱਥੇ ਅੱਠਵੀਂ ਖ਼ਬਰ ਬਾਰੇ ਥੋੜ੍ਹੀ ਜਿਹੀ ਜਾਣਕਾਰੀ ਆਵੇਗੀ। ਤੁਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ ਬਦਲ ਸਕਦੇ ਹੋ।</p>
+                    <div class="card-footer">
+                        <span class="card-date">04 Jul 2026</span>
+                        <span class="card-read">READ ➔</span>
+                    </div>
+                </div>
+            </article>
+
         </div>
     </main>
 
