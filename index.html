@@ -22,7 +22,7 @@
             padding: 15px 40px; 
             border-bottom: 1px solid #e0dcd2; 
             position: sticky; 
-            top: 0;           
+            top: 0;            
             background-color: #f4f1ea; 
             z-index: 1000; 
         }
@@ -67,7 +67,7 @@
         .poster-caption { display: flex; justify-content: space-between; width: 100%; max-width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; box-sizing: border-box; }
         .caption-red { color: #c04a2c; font-style: italic; }
 
-        /* LIVE COUNTERS STYLING */
+        /* LIVE COUNTERS */
         .counters-container { position: absolute; top: 50%; right: -200px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 25px; z-index: 90; }
         .live-count-box { background: #111; border: 2px solid #c04a2c; box-shadow: 5px 5px 0px #111; padding: 20px 25px; text-align: center; min-width: 130px; }
         .death-box { border-color: #8b331c; }
@@ -77,7 +77,7 @@
         .live-count-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: #f4eee0; line-height: 1; }
         .live-count-text { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: bold; color: #c04a2c; letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; line-height: 1.3; }
 
-        /* 🔴 HOME PAGE MANIFESTO SECTION 🔴 */
+        /* 🔴 MANIFESTO SECTION 🔴 */
         .home-manifesto { background-color: #0c0908; color: #f4eee0; padding: 100px 20px; border-top: 2px solid #c04a2c; }
         .manifesto-inner { max-width: 900px; margin: 0 auto; }
         .m-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; text-align: center; margin-bottom: 15px; }
@@ -88,21 +88,44 @@
         .m-num { font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 900; color: #c04a2c; line-height: 1; min-width: 70px; text-align: right; }
         .m-text { font-size: 18px; color: #f4eee0; line-height: 1.6; font-weight: 600; }
 
-        /* 🔴 NEW: STORY SECTION (Under Manifesto) 🔴 */
-        .story-section { background-color: #f4f1ea; padding: 100px 20px; border-bottom: 1px solid #e0dcd2; }
+        /* 🔴 STORY SECTION 🔴 */
+        .story-section { background-color: #f4f1ea; padding: 100px 20px; }
         .story-grid { display: flex; max-width: 1100px; margin: 0 auto; gap: 60px; align-items: flex-start; }
         .story-left { flex: 1; }
         .story-right { flex: 1; border-left: 1px solid #e0dcd2; padding-left: 60px; }
-        
         .story-title { font-family: 'Playfair Display', serif; font-size: 55px; font-weight: 900; line-height: 1.05; color: #111; margin: 0 0 25px 0; letter-spacing: -1.5px; }
         .story-desc { font-size: 15px; color: #555; line-height: 1.8; }
-        
         .quote-icon { font-family: 'Playfair Display', serif; font-size: 80px; color: #d4ccb8; line-height: 0.5; margin-bottom: 20px; display: block; }
         .quote-text { font-family: 'Playfair Display', serif; font-size: 32px; font-style: italic; font-weight: 900; color: #111; line-height: 1.2; margin: 0 0 20px 0; letter-spacing: -0.5px; }
         .quote-author { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 2px; }
         .quote-divider { width: 50px; height: 2px; background-color: #c04a2c; margin: 25px 0; }
         .quote-subtext { font-size: 14px; color: #555; line-height: 1.7; }
         .quote-subtext b { color: #111; }
+
+        /* 🔴 NEW: ELIGIBILITY CRITERIA SECTION 🔴 */
+        .eligibility-section { background-color: #f4f1ea; padding: 60px 20px 100px; text-align: center; }
+        .elig-inner { max-width: 800px; margin: 0 auto; }
+        .elig-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 15px; }
+        .elig-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; margin: 0 0 15px 0; color: #111; letter-spacing: -1px; }
+        .elig-title span { color: #1a4331; font-style: italic; }
+        .elig-subtitle { font-size: 15px; color: #555; max-width: 550px; margin: 0 auto 50px; line-height: 1.6; }
+        
+        .elig-box { background-color: #f4f1ea; border: 2px solid #111; box-shadow: 7px 7px 0px #111; padding: 30px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; text-align: left; transition: transform 0.2s ease; }
+        .elig-box:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0px #111; }
+        .elig-left-wrap { display: flex; align-items: center; gap: 30px; }
+        
+        .elig-req { font-size: 11px; font-weight: 700; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; min-width: 70px; }
+        .elig-text h3 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #111; margin: 0 0 5px 0; letter-spacing: -0.5px; }
+        .elig-text p { font-size: 14px; color: #555; font-style: italic; margin: 0; }
+        
+        .elig-check { width: 35px; height: 35px; border-radius: 50%; border: 1.5px solid #111; display: flex; align-items: center; justify-content: center; }
+        .elig-check svg { width: 14px; height: 10px; }
+
+        .elig-btn-container { margin-top: 50px; }
+        .btn-elig { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 18px 45px; font-size: 13px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; box-shadow: 6px 6px 0px #111; display: inline-block; transition: all 0.2s ease; }
+        .btn-elig:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px #111; }
+        .elig-footer-text { font-size: 9px; color: #888; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; }
+
 
         /* Footer CSS */
         .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 0; font-family: 'Inter', sans-serif; }
@@ -119,14 +142,8 @@
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; }
         .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
         .footer-bottom a:hover { color: #fff; }
-        .footer-warning { color: #c04a2c; letter-spacing: 1px; }
 
-        /* 📱 MOBILE RESPONSIVE FIXES */
-        @media(max-width: 1100px) {
-            .counters-container { position: relative; top: 0; right: 0; transform: none; margin-top: 30px; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; }
-            .live-count-box { flex: 1; min-width: 140px; }
-        }
-
+        /* Mobile Adjustments */
         @media(max-width: 900px) {
             header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
             .logo-wrapper { justify-content: flex-start; } 
@@ -154,10 +171,16 @@
             .m-num { text-align: left; font-size: 40px; }
             .m-text { font-size: 16px; }
 
-            /* Mobile Fix for Story Section */
             .story-grid { flex-direction: column; gap: 40px; }
             .story-right { border-left: none; padding-left: 0; border-top: 1px solid #e0dcd2; padding-top: 40px; }
             .story-title { font-size: 45px; }
+
+            /* Mobile Eligibility */
+            .elig-title { font-size: 45px; }
+            .elig-box { flex-direction: column; align-items: flex-start; padding: 20px; gap: 15px; }
+            .elig-left-wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .elig-text h3 { font-size: 26px; }
+            .elig-check { align-self: flex-end; margin-top: -40px; } 
 
             .site-footer { padding: 40px 20px 20px; }
             .footer-grid { flex-direction: column; text-align: center; }
@@ -166,7 +189,6 @@
     </style>
 </head>
 <body>
-
     <div class="top-bar">
         <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ - Adv ਬੀਬਰ ਸਰਪੰਚ ✦</span>
     </div>
@@ -176,19 +198,17 @@
             <img src="hand.png" alt="Logo" class="logo-img">
             <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
         </a>
-        
         <div class="hamburger" id="hamburgerMenu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
-
         <div class="nav-container" id="navMenu">
             <nav>
                 <a href="vision.html">Vision</a>
                 <a href="manifesto.html">Manifesto</a>
                 <a href="security.html">Security</a>
-                <a href="aboutus.html">About Us</a>
+                <a href="about.html">About Us</a>
             </nav>
             <div class="header-buttons">
                 <a href="news.html" class="btn-large">ਪੰਜਾਬ NEWS ➔</a>
@@ -251,7 +271,6 @@
                     <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
                     <div class="live-count-num" id="public-live-counter">0</div>
                     <div class="live-count-text">COMPLAINTS<br>FILED</div>
-                    <span style="font-size: 10px; color: #f4eee0; margin-top: 5px; display: block;">(ਦਰਜ ਹੋਈਆ ਸ਼ਿਕਾਇਤਾਂ)</span>
                 </div>
 
                 <div class="live-count-box death-box">
@@ -259,68 +278,120 @@
                     <div class="live-count-num" id="death-counter">10,340</div>
                     <div class="live-count-text">
                         DRUG DEATHS<br>(PUNJAB)<br>
-                        <span style="font-size: 10px; color: #f4eee0; margin-top: 5px; display: block;">(ਨਸ਼ੇ ਕਾਰਨ ਹੋਣ ਵਾਲੀਆਂ ਮੌਤਾਂ)</span>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- 🔴 HOME PAGE MANIFESTO 🔴 -->
+    <!-- 🔴 MANIFESTO 🔴 -->
     <section class="home-manifesto">
         <div class="manifesto-inner">
             <div class="m-tag">THE OFFICIAL DOCUMENT</div>
             <h2 class="m-title">The Manifesto.</h2>
             <div class="m-subtitle">READ IT ONCE. READ IT TWICE. SHARE IT WITH PUNJAB.</div>
-            
             <div class="m-list">
-                <div class="m-item">
-                    <div class="m-num">01</div>
-                    <div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਪਾਏ ਗਏ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ 'ਤੇ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div>
-                </div>
-                
-                <div class="m-item">
-                    <div class="m-num">02</div>
-                    <div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ ਅਤੇ ਸਿਆਸੀ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਪੰਜਾਬ ਦੀ ਜਵਾਨੀ ਨੂੰ ਖਾਣ ਵਾਲੇ ਨਸ਼ਾ ਵੇਚਣ ਵਾਲਿਆਂ ਦੀਆਂ ਜਾਇਦਾਦਾਂ ਜ਼ਬਤ ਕਰਕੇ ਸਖਤ ਸਜ਼ਾਵਾਂ ਦਿੱਤੀਆਂ ਜਾਣ।</div>
-                </div>
-                
-                <div class="m-item">
-                    <div class="m-num">03</div>
-                    <div class="m-text">ਆਜ਼ਾਦ ਅਤੇ ਸਮਾਂ-ਬੱਧ ਇਨਸਾਫ਼। RTI ਜਾਂ ਸ਼ਿਕਾਇਤਾਂ ਦਾ ਜਵਾਬ ਤੈਅ ਸਮੇਂ ਵਿੱਚ ਮਿਲੇ। "ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਕਰਕੇ ਆਜ਼ਾਦ ਜਾਂਚ ਕਮੇਟੀ ਬਣਾਈ ਜਾਵੇ।</div>
-                </div>
-                
-                <div class="m-item">
-                    <div class="m-num">04</div>
-                    <div class="m-text">ਡਰ-ਮੁਕਤ ਸਮਾਜ। ਕੋਈ ਵੀ ਇਨਸਾਨ—ਚਾਹੇ ਉਹ ਪਿੰਡ ਦਾ ਆਮ ਮਜ਼ਦੂਰ ਹੋਵੇ ਜਾਂ ਕਿਸਾਨ—ਸਰਕਾਰੀ ਬਾਬੂਆਂ, ਅਫਸਰਾਂ ਜਾਂ ਲੀਡਰਾਂ ਅੱਗੇ ਸੱਚ ਬੋਲਣ ਤੋਂ ਨਾ ਡਰੇ। ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਹੀ ਅਸਲੀ ਤਾਕਤ ਹੈ।</div>
-                </div>
-
-                <div class="m-item">
-                    <div class="m-num">05</div>
-                    <div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ ੧ ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div>
-                </div>
+                <div class="m-item"><div class="m-num">01</div><div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਪਾਏ ਗਏ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ 'ਤੇ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div></div>
+                <div class="m-item"><div class="m-num">02</div><div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ ਅਤੇ ਸਿਆਸੀ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਪੰਜਾਬ ਦੀ ਜਵਾਨੀ ਨੂੰ ਖਾਣ ਵਾਲੇ ਨਸ਼ਾ ਵੇਚਣ ਵਾਲਿਆਂ ਦੀਆਂ ਜਾਇਦਾਦਾਂ ਜ਼ਬਤ ਕਰਕੇ ਸਖਤ ਸਜ਼ਾਵਾਂ ਦਿੱਤੀਆਂ ਜਾਣ।</div></div>
+                <div class="m-item"><div class="m-num">03</div><div class="m-text">ਆਜ਼ਾਦ ਅਤੇ ਸਮਾਂ-ਬੱਧ ਇਨਸਾਫ਼। RTI ਜਾਂ ਸ਼ਿਕਾਇਤਾਂ ਦਾ ਜਵਾਬ ਤੈਅ ਸਮੇਂ ਵਿੱਚ ਮਿਲੇ। "ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਕਰਕੇ ਆਜ਼ਾਦ ਜਾਂਚ ਕਮੇਟੀ ਬਣਾਈ ਜਾਵੇ।</div></div>
+                <div class="m-item"><div class="m-num">04</div><div class="m-text">ਡਰ-ਮੁਕਤ ਸਮਾਜ। ਕੋਈ ਵੀ ਇਨਸਾਨ—ਚਾਹੇ ਉਹ ਪਿੰਡ ਦਾ ਆਮ ਮਜ਼ਦੂਰ ਹੋਵੇ ਜਾਂ ਕਿਸਾਨ—ਸਰਕਾਰੀ ਬਾਬੂਆਂ, ਅਫਸਰਾਂ ਜਾਂ ਲੀਡਰਾਂ ਅੱਗੇ ਸੱਚ ਬੋਲਣ ਤੋਂ ਨਾ ਡਰੇ। ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਹੀ ਅਸਲੀ ਤਾਕਤ ਹੈ।</div></div>
+                <div class="m-item"><div class="m-num">05</div><div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ ੧ ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div></div>
             </div>
         </div>
     </section>
 
-    <!-- 🔴 NEW: STORY SECTION (Under Manifesto) 🔴 -->
+    <!-- 🔴 STORY SECTION 🔴 -->
     <section class="story-section">
         <div class="story-grid">
             <div class="story-left">
                 <h2 class="story-title">It started with a simple demand for justice.</h2>
-                <p class="story-desc">
-                    ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ।
-                </p>
+                <p class="story-desc">ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ।</p>
             </div>
             <div class="story-right">
                 <span class="quote-icon">“</span>
                 <p class="quote-text">ਸੱਚ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਗੋਲੀਆਂ ਅਤੇ ਝੂਠੇ ਪਰਚਿਆਂ ਨਾਲ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।</p>
-                <div class="quote-author">— THE VISION OF SHAHEED JASWANT SINGH KHALRA <br><span style="color: #aaa; font-weight: 400; font-size: 9px; margin-top: 3px; display: inline-block;">PUNJAB · HUMAN RIGHTS DEFENDER</span></div>
-                
+                <div class="quote-author">— THE VISION OF SHAHEED JASWANT SINGH KHALRA</div>
                 <div class="quote-divider"></div>
-                
-                <p class="quote-subtext">
-                    ਸਿਸਟਮ ਚਾਹੁੰਦਾ ਸੀ ਕਿ ਅਸੀਂ ਡਰ ਜਾਈਏ, ਪਰ ਅਸੀਂ ਇਸ ਡਰ ਨੂੰ ਇੱਕ ਲਹਿਰ ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ। ਅੱਜ ਪੰਜਾਬ ਦਾ ਹਰ ਉਹ ਇਨਸਾਨ ਜੋ ਧੱਕੇਸ਼ਾਹੀ ਖਿਲਾਫ ਖੜ੍ਹਾ ਹੈ, ਸਾਡੀ ਟੀਮ ਦਾ ਹਿੱਸਾ ਹੈ। <b>You cannot silence the truth. You cannot stop a movement.</b>
-                </p>
+                <p class="quote-subtext">ਸਿਸਟਮ ਚਾਹੁੰਦਾ ਸੀ ਕਿ ਅਸੀਂ ਡਰ ਜਾਈਏ, ਪਰ ਅਸੀਂ ਇਸ ਡਰ ਨੂੰ ਇੱਕ ਲਹਿਰ ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ। <b>You cannot silence the truth. You cannot stop a movement.</b></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔴 NEW: ELIGIBILITY CRITERIA SECTION 🔴 -->
+    <section class="eligibility-section">
+        <div class="elig-inner">
+            <div class="elig-tag">MEMBERSHIP CRITERIA</div>
+            <h2 class="elig-title">ਕੀ ਤੁਸੀਂ ਸ਼ਾਮਲ ਹੋਣ ਦੇ <span>ਯੋਗ ਹੋ?</span></h2>
+            <p class="elig-subtitle">ਅਸੀਂ ਕਿਸੇ ਜਾਤ, ਧਰਮ ਜਾਂ ਪਾਰਟੀ ਦੇ ਆਧਾਰ 'ਤੇ ਨਹੀਂ, ਸਗੋਂ ਸੱਚ ਲਈ ਲੜਨ ਦੀ ਇੱਛਾ ਦੇ ਆਧਾਰ 'ਤੇ ਮੈਂਬਰ ਬਣਾਉਂਦੇ ਹਾਂ। ਸਾਡੀਆਂ 4 ਮੁੱਖ ਸ਼ਰਤਾਂ:</p>
+
+            <!-- Box 1 -->
+            <div class="elig-box">
+                <div class="elig-left-wrap">
+                    <div class="elig-req">REQ / 01</div>
+                    <div class="elig-text">
+                        <h3>ਸਿਸਟਮ ਤੋਂ ਪੀੜਤ</h3>
+                        <p>ਝੂਠੇ ਪਰਚਿਆਂ ਜਾਂ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਦਾ ਸ਼ਿਕਾਰ ਹੋਏ ਹੋ?</p>
+                    </div>
+                </div>
+                <div class="elig-check">
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 5L5 9L13 1" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Box 2 -->
+            <div class="elig-box">
+                <div class="elig-left-wrap">
+                    <div class="elig-req">REQ / 02</div>
+                    <div class="elig-text">
+                        <h3>ਸੱਚ ਬੋਲਣ ਦੀ ਹਿੰਮਤ</h3>
+                        <p>ਜੇਕਰ ਤੁਸੀਂ ਡਰ ਦੇ ਮਾਹੌਲ ਵਿੱਚ ਵੀ ਸੱਚ ਬੋਲ ਸਕਦੇ ਹੋ।</p>
+                    </div>
+                </div>
+                <div class="elig-check">
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 5L5 9L13 1" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="elig-box">
+                <div class="elig-left-wrap">
+                    <div class="elig-req">REQ / 03</div>
+                    <div class="elig-text">
+                        <h3>ਸਮਾਜਿਕ ਜਾਗਰੂਕਤਾ</h3>
+                        <p>ਆਪਣੇ ਹੱਕਾਂ ਲਈ ਲੜਨ ਦੀ ਇੱਛਾ ਰੱਖਦੇ ਹੋ?</p>
+                    </div>
+                </div>
+                <div class="elig-check">
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 5L5 9L13 1" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Box 4 -->
+            <div class="elig-box">
+                <div class="elig-left-wrap">
+                    <div class="elig-req">REQ / 04</div>
+                    <div class="elig-text">
+                        <h3>ਭ੍ਰਿਸ਼ਟਾਚਾਰ ਵਿਰੋਧੀ</h3>
+                        <p>ਜੇਕਰ ਤੁਸੀਂ ਭ੍ਰਿਸ਼ਟਾਚਾਰ ਨੂੰ ਜੜ੍ਹੋਂ ਖਤਮ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ।</p>
+                    </div>
+                </div>
+                <div class="elig-check">
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 5L5 9L13 1" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="elig-btn-container">
+                <a href="contact.html" class="btn-elig">ENLIST YOURSELF ➔</a>
+                <div class="elig-footer-text">THE SYSTEM ALREADY KNOWS WHO YOU ARE.</div>
             </div>
         </div>
     </section>
@@ -358,7 +429,6 @@
                 <div class="footer-msg-small" style="font-size: 15px; margin-top: 5px;">ਬੀਬਰ ਸਰਪੰਚ</div>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <div class="bottom-left">
                 <a href="https://www.instagram.com/biebersarpanch" target="_blank">INSTAGRAM</a>
