@@ -100,19 +100,51 @@
         .elig-title span { color: #1a4331; font-style: italic; }
         .elig-subtitle { font-size: 15px; color: #555; max-width: 550px; margin: 0 auto 50px; line-height: 1.6; }
         
-        .elig-box { background-color: #f4f1ea; border: 2px solid #111; box-shadow: 7px 7px 0px #111; padding: 30px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; text-align: left; transition: all 0.3s ease; cursor: pointer; }
+        .elig-box { 
+            background-color: #f4f1ea; 
+            border: 2px solid #111; 
+            box-shadow: 7px 7px 0px #111; 
+            padding: 30px; 
+            margin-bottom: 25px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            text-align: left; 
+            transition: all 0.3s ease; /* Smooth transition */
+            cursor: pointer; /* Change cursor to hand */
+        }
+        
         .elig-left-wrap { display: flex; align-items: center; gap: 30px; }
         .elig-req { font-size: 11px; font-weight: 700; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; min-width: 70px; }
         .elig-text h3 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #111; margin: 0 0 5px 0; letter-spacing: -0.5px; }
         .elig-text p { font-size: 14px; color: #555; font-style: italic; margin: 0; }
         
-        .elig-check { width: 35px; height: 35px; border-radius: 50%; border: 1.5px solid #111; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-        .elig-check svg path { transition: stroke 0.3s ease; }
+        .elig-check { 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            border: 1.5px solid #111; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: all 0.3s ease; /* Smooth transition for circle */
+        }
+        .elig-check svg path {
+            transition: stroke 0.3s ease; /* Smooth transition for tick */
+        }
 
         /* 🔴 HOVER EFFECTS 🔴 */
-        .elig-box:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0px #111; }
-        .elig-box:hover .elig-check { background-color: #62825d; border-color: #62825d; }
-        .elig-box:hover .elig-check svg path { stroke: #ffffff; }
+        .elig-box:hover { 
+            transform: translate(-3px, -3px); 
+            box-shadow: 10px 10px 0px #111; 
+        }
+        .elig-box:hover .elig-check {
+            background-color: #62825d; /* CJP Style Green */
+            border-color: #62825d;
+        }
+        .elig-box:hover .elig-check svg path {
+            stroke: #ffffff; /* Turns tick white */
+        }
 
         .elig-btn-container { margin-top: 50px; }
         .btn-elig { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 18px 45px; font-size: 13px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; box-shadow: 6px 6px 0px #111; display: inline-block; transition: all 0.2s ease; }
@@ -276,38 +308,18 @@
         </div>
     </main>
 
-    <!-- 🔴 MANIFESTO (UPDATED) 🔴 -->
+    <!-- 🔴 MANIFESTO 🔴 -->
     <section class="home-manifesto">
         <div class="manifesto-inner">
             <div class="m-tag">THE OFFICIAL DOCUMENT</div>
             <h2 class="m-title">The Manifesto.</h2>
             <div class="m-subtitle">READ IT ONCE. READ IT TWICE. SHARE IT WITH PUNJAB.</div>
-            
             <div class="m-list">
-                <div class="m-item">
-                    <div class="m-num">01</div>
-                    <div class="m-text">ਸ਼੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਬੇਅਦਬੀ ਦੇ ਮਾਮਲਿਆਂ ਵਿੱਚ ਸਖ਼ਤ ਅਤੇ ਤੁਰੰਤ ਇਨਸਾਫ਼ ਹੋਵੇ। ਬੇਅਦਬੀ ਦੀਆਂ ਘਟਨਾਵਾਂ ਨੂੰ ਰੋਕਣ ਲਈ ਸਖ਼ਤ ਕਾਨੂੰਨ ਬਣੇ ਅਤੇ ਦੋਸ਼ੀਆਂ ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ ਸਿਆਸੀ ਬਚਾਅ ਦੇ ਸਖ਼ਤ ਸਜ਼ਾਵਾਂ ਮਿਲਣ।</div>
-                </div>
-                
-                <div class="m-item">
-                    <div class="m-num">02</div>
-                    <div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਆਮ ਲੋਕਾਂ 'ਤੇ ਪਾਏ ਗਏ ਝੂਠੇ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ ਖਿਲਾਫ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div>
-                </div>
-                
-                <div class="m-item">
-                    <div class="m-num">03</div>
-                    <div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ, ਭ੍ਰਿਸ਼ਟ ਪੁਲਿਸ ਅਤੇ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਜੋ ਪੁਲਿਸ ਵਾਲੇ ਪੈਸੇ ਲੈ ਕੇ ਤਸਕਰਾਂ ਨੂੰ ਛੱਡਦੇ ਹਨ ਅਤੇ ਜੋ ਲੀਡਰ ਨਸ਼ਾ ਵਿਕਵਾ ਰਹੇ ਹਨ, ਉਹਨਾਂ ਦਾ ਪਰਦਾਫਾਸ਼ ਕਰਕੇ ਜੇਲ੍ਹਾਂ ਵਿੱਚ ਡੱਕਿਆ ਜਾਵੇ।</div>
-                </div>
-                
-                <div class="m-item">
-                    <div class="m-num">04</div>
-                    <div class="m-text">"ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਹੋਵੇ। ਪੁਲਿਸ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਪੁਲਿਸ ਨੂੰ ਹੀ ਮਾਰਕ ਹੋਣ ਕਾਰਨ ਉਹ ਆਪਣੇ ਬੰਦਿਆਂ ਨੂੰ ਬਚਾਉਂਦੇ ਹਨ। ਨਾਲ ਹੀ RTI ਵਿੱਚ 80-90 ਦਿਨਾਂ ਦੀ ਦੇਰੀ ਬੰਦ ਹੋਵੇ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬਦੇਹੀ ਤੈਅ ਹੋਵੇ।</div>
-                </div>
-
-                <div class="m-item">
-                    <div class="m-num">05</div>
-                    <div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ ੧ ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div>
-                </div>
+                <div class="m-item"><div class="m-num">01</div><div class="m-text">ਸ਼੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਬੇਅਦਬੀ ਦੇ ਮਾਮਲਿਆਂ ਵਿੱਚ ਸਖ਼ਤ ਅਤੇ ਤੁਰੰਤ ਇਨਸਾਫ਼ ਹੋਵੇ। ਬੇਅਦਬੀ ਦੀਆਂ ਘਟਨਾਵਾਂ ਨੂੰ ਰੋਕਣ ਲਈ ਸਖ਼ਤ ਕਾਨੂੰਨ ਬਣੇ ਅਤੇ ਦੋਸ਼ੀਆਂ ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ ਸਿਆਸੀ ਬਚਾਅ ਦੇ ਸਖ਼ਤ ਸਜ਼ਾਵਾਂ ਮਿਲਣ।</div></div>
+                <div class="m-item"><div class="m-num">02</div><div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ ਅਤੇ ਸਿਆਸੀ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਪੰਜਾਬ ਦੀ ਜਵਾਨੀ ਨੂੰ ਖਾਣ ਵਾਲੇ ਨਸ਼ਾ ਵੇਚਣ ਵਾਲਿਆਂ ਦੀਆਂ ਜਾਇਦਾਦਾਂ ਜ਼ਬਤ ਕਰਕੇ ਸਖਤ ਸਜ਼ਾਵਾਂ ਦਿੱਤੀਆਂ ਜਾਣ।</div></div>
+                <div class="m-item"><div class="m-num">03</div><div class="m-text">"ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਹੋਵੇ। ਪੁਲਿਸ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਪੁਲਿਸ ਨੂੰ ਹੀ ਮਾਰਕ ਹੋਣ ਕਾਰਨ ਉਹ ਆਪਣੇ ਬੰਦਿਆਂ ਨੂੰ ਬਚਾਉਂਦੇ ਹਨ। ਨਾਲ ਹੀ RTI ਵਿੱਚ 80-90 ਦਿਨਾਂ ਦੀ ਦੇਰੀ ਬੰਦ ਹੋਵੇ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬਦੇਹੀ ਤੈਅ ਹੋਵੇ।</div></div>
+                <div class="m-item"><div class="m-num">04</div><div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਆਮ ਲੋਕਾਂ 'ਤੇ ਪਾਏ ਗਏ ਝੂਠੇ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ ਖਿਲਾਫ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div></div>
+                <div class="m-item"><div class="m-num">05</div><div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ 1 ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div></div>
             </div>
         </div>
     </section>
@@ -329,14 +341,15 @@
         </div>
     </section>
 
-    <!-- 🔴 ELIGIBILITY CRITERIA SECTION 🔴 -->
+    <!-- 🔴 NEW: ELIGIBILITY CRITERIA SECTION (WITH HOVER EFFECTS) 🔴 -->
     <section class="eligibility-section">
         <div class="elig-inner">
             <div class="elig-tag">MEMBERSHIP CRITERIA</div>
             <h2 class="elig-title">ਕੀ ਤੁਸੀਂ ਸ਼ਾਮਲ ਹੋਣ ਦੇ <span>ਯੋਗ ਹੋ?</span></h2>
             <p class="elig-subtitle">ਅਸੀਂ ਕਿਸੇ ਜਾਤ, ਧਰਮ ਜਾਂ ਪਾਰਟੀ ਦੇ ਆਧਾਰ 'ਤੇ ਨਹੀਂ, ਸਗੋਂ ਸੱਚ ਲਈ ਲੜਨ ਦੀ ਇੱਛਾ ਦੇ ਆਧਾਰ 'ਤੇ ਮੈਂਬਰ ਬਣਾਉਂਦੇ ਹਾਂ। ਸਾਡੀਆਂ 4 ਮੁੱਖ ਸ਼ਰਤਾਂ:</p>
 
-            <div class="elig-box" onclick="location.href=
+            <!-- Box 1 -->
+            <div class="elig-box" onclick="location.href='complaint.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 01</div>
                     <div class="elig-text">
@@ -351,7 +364,8 @@
                 </div>
             </div>
 
-            <div class="elig-box" onclick="location.href=
+            <!-- Box 2 -->
+            <div class="elig-box" onclick="location.href='complaint.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 02</div>
                     <div class="elig-text">
@@ -366,7 +380,8 @@
                 </div>
             </div>
 
-            <div class="elig-box" onclick="location.href=
+            <!-- Box 3 -->
+            <div class="elig-box" onclick="location.href='complaint.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 03</div>
                     <div class="elig-text">
@@ -381,7 +396,8 @@
                 </div>
             </div>
 
-            <div class="elig-box" onclick="location.href=
+            <!-- Box 4 -->
+            <div class="elig-box" onclick="location.href='complaint.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 04</div>
                     <div class="elig-text">
@@ -396,8 +412,9 @@
                 </div>
             </div>
 
+            <!-- Action Button -->
             <div class="elig-btn-container">
-                <a href="contact.html" class="btn-elig">ENLIST YOURSELF ➔</a>
+                <a href="complaint.html" class="btn-elig">ENLIST YOURSELF ➔</a>
                 <div class="elig-footer-text">THE SYSTEM ALREADY KNOWS WHO YOU ARE.</div>
             </div>
         </div>
