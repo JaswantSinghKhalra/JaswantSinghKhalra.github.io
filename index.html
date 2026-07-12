@@ -33,6 +33,10 @@
         .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; text-align: center; display: inline-block; cursor: pointer; }
         .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
         .btn-dark-rust { background-color: #8b331c; }
+        
+        /* 🔴 NEW: Transparent Outline Button Style 🔴 */
+        .btn-outline { background-color: transparent; color: #111; letter-spacing: 2px; }
+        .btn-outline:hover { background-color: #e0dcd2; color: #111; }
 
         /* Hamburger Icon */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
@@ -48,7 +52,6 @@
         .text-green { color: #1a4331; font-style: italic; }
         .hero-desc { font-size: 16px; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; position: relative; }
         
-        /* 🔴 HERO ACTION BUTTONS (2 Buttons Only) 🔴 */
         .action-buttons { display: flex; gap: 15px; width: 100%; max-width: 500px; }
         .action-buttons .btn-large { flex: 1; padding: 16px 10px; font-size: 13px; }
 
@@ -80,7 +83,6 @@
         .w-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; line-height: 1; color: #111; margin: 0 0 30px 0; letter-spacing: -1.5px; }
         .w-desc { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 25px; }
         
-        /* 🔴 WELCOME SECTION BUTTONS 🔴 */
         .welcome-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
         .welcome-buttons .btn-large { padding: 15px 20px; flex: 1; font-size: 13px; }
 
@@ -286,7 +288,7 @@
                 <span style="display: block; text-align: right; color: #555; font-size: 16px; margin-top: 10px;">- ਬੀਬਰ ਸਰਪੰਚ</span>
             </p>
             
-            <!-- 🔴 UPDATED HERO BUTTONS (COMPLAINT & STATUS ONLY) 🔴 -->
+            <!-- HERO BUTTONS -->
             <div class="action-buttons">
                 <a href="complaint.html" class="btn-large">FILE COMPLAINT (ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ) ➔</a>
                 <a href="status.html" class="btn-large">COMPLAINT STATUS (ਸਥਿਤੀ ਦੇਖੋ) ➔</a>
@@ -352,10 +354,10 @@
                     ਅਸੀਂ ਇਹ ਸਾਈਟ ਇਸ ਲਈ ਬਣਾਈ ਹੈ ਤਾਂ ਜੋ ਕੋਈ ਵੀ ਗਰੀਬ ਜਾਂ ਆਮ ਇਨਸਾਨ ਇਨਸਾਫ਼ ਤੋਂ ਵਾਂਝਾ ਨਾ ਰਹੇ। ਇਹ ਤੁਹਾਡੀ ਆਪਣੀ ਜਗ੍ਹਾ ਹੈ, ਜਿੱਥੇ ਤੁਹਾਡੀ ਪਛਾਣ ਪੂਰੀ ਤਰ੍ਹਾਂ ਗੁਪਤ (Anonymous) ਰੱਖੀ ਜਾਂਦੀ ਹੈ। ਕੋਈ ਫੀਸ ਨਹੀਂ, ਕੋਈ ਸਿਆਸੀ ਡਰਾਮਾ ਨਹੀਂ। ਬੱਸ ਉਹ ਲੋਕ ਜੋ ਅਣਗੌਲੇ ਕੀਤੇ ਜਾਣ ਤੋਂ ਅੱਕ ਚੁੱਕੇ ਹਨ, ਹੁਣ ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰ ਰਹੇ ਹਨ।
                 </p>
                 
-                <!-- 🔴 BLOOD DONATE BUTTON MOVED HERE 🔴 -->
+                <!-- 🔴 NEW OUTLINE BUTTONS HERE 🔴 -->
                 <div class="welcome-buttons">
-                    <a href="complaint.html" class="btn-large">ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ ➔</a>
-                    <a href="blood-donate.html" class="btn-large">BLOOD DONATE (ਖੂਨਦਾਨ) ➔</a>
+                    <a href="complaint.html" class="btn-large btn-outline">ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ ↗</a>
+                    <a href="blood-donate.html" class="btn-large btn-outline">BLOOD DONATE ↗</a>
                 </div>
             </div>
 
@@ -425,7 +427,6 @@
                 <h2 class="story-title">It started with a simple demand for justice.</h2>
                 <p class="story-desc">ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ।</p>
                 
-                <!-- 🔴 WATCH MOVIE BUTTON MOVED HERE 🔴 -->
                 <a href="movie.html" class="btn-large" style="margin-top: 10px; display: inline-block;">WATCH MOVIE (ਪੰਜਾਬ 95 ਸਤਲੁਜ) ➔</a>
             </div>
             <div class="story-right">
@@ -506,7 +507,7 @@
             </div>
 
             <div class="elig-btn-container">
-                <a href="contact.html" class="btn-elig">ENLIST YOURSELF ➔</a>
+                <a href="complaint.html" class="btn-elig">ENLIST YOURSELF ➔</a>
                 <div class="elig-footer-text">THE SYSTEM ALREADY KNOWS WHO YOU ARE.</div>
             </div>
         </div>
