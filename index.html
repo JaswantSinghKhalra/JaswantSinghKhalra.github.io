@@ -15,17 +15,7 @@
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
         /* 🔴 Header Navbar */
-        header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 15px 40px; 
-            border-bottom: 1px solid #e0dcd2; 
-            position: sticky; 
-            top: 0;            
-            background-color: #f4f1ea; 
-            z-index: 1000; 
-        }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         
         /* Logo Design */
         .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-decoration: none; }
@@ -89,7 +79,7 @@
         .m-text { font-size: 18px; color: #f4eee0; line-height: 1.6; font-weight: 600; }
 
         /* 🔴 STORY SECTION 🔴 */
-        .story-section { background-color: #f4f1ea; padding: 100px 20px; }
+        .story-section { background-color: #f4f1ea; padding: 100px 20px; border-bottom: 1px solid #e0dcd2; }
         .story-grid { display: flex; max-width: 1100px; margin: 0 auto; gap: 60px; align-items: flex-start; }
         .story-left { flex: 1; }
         .story-right { flex: 1; border-left: 1px solid #e0dcd2; padding-left: 60px; }
@@ -102,7 +92,7 @@
         .quote-subtext { font-size: 14px; color: #555; line-height: 1.7; }
         .quote-subtext b { color: #111; }
 
-        /* 🔴 NEW: ELIGIBILITY CRITERIA SECTION 🔴 */
+        /* 🔴 ELIGIBILITY CRITERIA SECTION (WITH HOVER EFFECTS) 🔴 */
         .eligibility-section { background-color: #f4f1ea; padding: 60px 20px 100px; text-align: center; }
         .elig-inner { max-width: 800px; margin: 0 auto; }
         .elig-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 15px; }
@@ -110,22 +100,56 @@
         .elig-title span { color: #1a4331; font-style: italic; }
         .elig-subtitle { font-size: 15px; color: #555; max-width: 550px; margin: 0 auto 50px; line-height: 1.6; }
         
-        .elig-box { background-color: #f4f1ea; border: 2px solid #111; box-shadow: 7px 7px 0px #111; padding: 30px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; text-align: left; transition: transform 0.2s ease; }
-        .elig-box:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0px #111; }
-        .elig-left-wrap { display: flex; align-items: center; gap: 30px; }
+        .elig-box { 
+            background-color: #f4f1ea; 
+            border: 2px solid #111; 
+            box-shadow: 7px 7px 0px #111; 
+            padding: 30px; 
+            margin-bottom: 25px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            text-align: left; 
+            transition: all 0.3s ease; /* Smooth transition */
+            cursor: pointer; /* Change cursor to hand */
+        }
         
+        .elig-left-wrap { display: flex; align-items: center; gap: 30px; }
         .elig-req { font-size: 11px; font-weight: 700; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; min-width: 70px; }
         .elig-text h3 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #111; margin: 0 0 5px 0; letter-spacing: -0.5px; }
         .elig-text p { font-size: 14px; color: #555; font-style: italic; margin: 0; }
         
-        .elig-check { width: 35px; height: 35px; border-radius: 50%; border: 1.5px solid #111; display: flex; align-items: center; justify-content: center; }
-        .elig-check svg { width: 14px; height: 10px; }
+        .elig-check { 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            border: 1.5px solid #111; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: all 0.3s ease; /* Smooth transition for circle */
+        }
+        .elig-check svg path {
+            transition: stroke 0.3s ease; /* Smooth transition for tick */
+        }
+
+        /* 🔴 HOVER EFFECTS 🔴 */
+        .elig-box:hover { 
+            transform: translate(-3px, -3px); 
+            box-shadow: 10px 10px 0px #111; 
+        }
+        .elig-box:hover .elig-check {
+            background-color: #62825d; /* CJP Style Green */
+            border-color: #62825d;
+        }
+        .elig-box:hover .elig-check svg path {
+            stroke: #ffffff; /* Turns tick white */
+        }
 
         .elig-btn-container { margin-top: 50px; }
         .btn-elig { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 18px 45px; font-size: 13px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; box-shadow: 6px 6px 0px #111; display: inline-block; transition: all 0.2s ease; }
         .btn-elig:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px #111; }
         .elig-footer-text { font-size: 9px; color: #888; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; }
-
 
         /* Footer CSS */
         .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 0; font-family: 'Inter', sans-serif; }
@@ -317,7 +341,7 @@
         </div>
     </section>
 
-    <!-- 🔴 NEW: ELIGIBILITY CRITERIA SECTION 🔴 -->
+    <!-- 🔴 NEW: ELIGIBILITY CRITERIA SECTION (WITH HOVER EFFECTS) 🔴 -->
     <section class="eligibility-section">
         <div class="elig-inner">
             <div class="elig-tag">MEMBERSHIP CRITERIA</div>
@@ -325,7 +349,7 @@
             <p class="elig-subtitle">ਅਸੀਂ ਕਿਸੇ ਜਾਤ, ਧਰਮ ਜਾਂ ਪਾਰਟੀ ਦੇ ਆਧਾਰ 'ਤੇ ਨਹੀਂ, ਸਗੋਂ ਸੱਚ ਲਈ ਲੜਨ ਦੀ ਇੱਛਾ ਦੇ ਆਧਾਰ 'ਤੇ ਮੈਂਬਰ ਬਣਾਉਂਦੇ ਹਾਂ। ਸਾਡੀਆਂ 4 ਮੁੱਖ ਸ਼ਰਤਾਂ:</p>
 
             <!-- Box 1 -->
-            <div class="elig-box">
+            <div class="elig-box" onclick="location.href='contact.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 01</div>
                     <div class="elig-text">
@@ -341,7 +365,7 @@
             </div>
 
             <!-- Box 2 -->
-            <div class="elig-box">
+            <div class="elig-box" onclick="location.href='contact.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 02</div>
                     <div class="elig-text">
@@ -357,7 +381,7 @@
             </div>
 
             <!-- Box 3 -->
-            <div class="elig-box">
+            <div class="elig-box" onclick="location.href='contact.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 03</div>
                     <div class="elig-text">
@@ -373,7 +397,7 @@
             </div>
 
             <!-- Box 4 -->
-            <div class="elig-box">
+            <div class="elig-box" onclick="location.href='contact.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 04</div>
                     <div class="elig-text">
@@ -390,7 +414,7 @@
 
             <!-- Action Button -->
             <div class="elig-btn-container">
-                <a href="contact.html" class="btn-elig">ENLIST YOURSELF ➔</a>
+                <a href="complaint.html" class="btn-elig">ENLIST YOURSELF ➔</a>
                 <div class="elig-footer-text">THE SYSTEM ALREADY KNOWS WHO YOU ARE.</div>
             </div>
         </div>
