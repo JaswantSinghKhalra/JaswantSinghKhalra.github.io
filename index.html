@@ -29,6 +29,7 @@
         nav a:hover { color: #c04a2c; }
         .header-buttons { display: flex; gap: 15px; align-items: center; }
         
+        /* Global Button Style */
         .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; text-align: center; display: inline-block; cursor: pointer; }
         .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
         .btn-dark-rust { background-color: #8b331c; }
@@ -46,7 +47,10 @@
         .text-orange { color: #c04a2c; font-style: italic; }
         .text-green { color: #1a4331; font-style: italic; }
         .hero-desc { font-size: 16px; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; position: relative; }
-        .action-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
+        
+        /* 🔴 HERO ACTION BUTTONS (2 Buttons Only) 🔴 */
+        .action-buttons { display: flex; gap: 15px; width: 100%; max-width: 500px; }
+        .action-buttons .btn-large { flex: 1; padding: 16px 10px; font-size: 13px; }
 
         /* Right Column (Poster area) */
         .hero-right { flex: 1; display: flex; justify-content: center; flex-direction: column; align-items: center; border-left: 1px solid #e0dcd2; padding-left: 50px; position: relative; }
@@ -75,6 +79,11 @@
         .w-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .w-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; line-height: 1; color: #111; margin: 0 0 30px 0; letter-spacing: -1.5px; }
         .w-desc { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 25px; }
+        
+        /* 🔴 WELCOME SECTION BUTTONS 🔴 */
+        .welcome-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+        .welcome-buttons .btn-large { padding: 15px 20px; flex: 1; font-size: 13px; }
+
         .w-feature { padding-bottom: 30px; border-bottom: 1px solid #e0dcd2; }
         .w-feature:last-child { border-bottom: none; padding-bottom: 0; }
         .w-feature-tag { color: #c04a2c; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; display: block; }
@@ -98,7 +107,7 @@
         .story-left { flex: 1; }
         .story-right { flex: 1; border-left: 1px solid #e0dcd2; padding-left: 60px; }
         .story-title { font-family: 'Playfair Display', serif; font-size: 55px; font-weight: 900; line-height: 1.05; color: #111; margin: 0 0 25px 0; letter-spacing: -1.5px; }
-        .story-desc { font-size: 15px; color: #555; line-height: 1.8; }
+        .story-desc { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 30px; }
         .quote-icon { font-family: 'Playfair Display', serif; font-size: 80px; color: #d4ccb8; line-height: 0.5; margin-bottom: 20px; display: block; }
         .quote-text { font-family: 'Playfair Display', serif; font-size: 32px; font-style: italic; font-weight: 900; color: #111; line-height: 1.2; margin: 0 0 20px 0; letter-spacing: -0.5px; }
         .quote-author { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 2px; }
@@ -148,7 +157,7 @@
         .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
         .footer-bottom a:hover { color: #fff; }
 
-        /* 📱 TABLET RESPONSIVE FIXES (Below 1100px & 900px) */
+        /* 📱 RESPONSIVE FIXES FOR TABLET & MOBILE 📱 */
         @media(max-width: 1100px) {
             .counters-container { position: relative; top: 0; right: 0; transform: none; margin-top: 30px; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; }
             .live-count-box { flex: 1; min-width: 140px; }
@@ -173,13 +182,15 @@
             .hero-right { border-left: none; padding-left: 0; padding-top: 40px; border-top: 1px solid #e0dcd2; width: 100%; }
             .hero-title { font-size: 55px; }
             .hero-desc { text-align: left; } 
-            .action-buttons { flex-direction: column; width: 100%; max-width: 380px; margin: 0 auto; }
-            .action-buttons .btn-large { width: 100%; box-sizing: border-box; }
+            .action-buttons { flex-direction: column; width: 100%; max-width: 400px; margin: 0 auto; }
+            .action-buttons .btn-large { width: 100%; box-sizing: border-box; margin-bottom: 0; }
             
             .welcome-section { padding: 60px 20px; }
             .welcome-grid { flex-direction: column; gap: 40px; }
-            .welcome-left { padding-right: 0; border-right: none; border-bottom: 1px solid #e0dcd2; padding-bottom: 40px; }
+            .welcome-left { padding-right: 0; border-right: none; border-bottom: 1px solid #e0dcd2; padding-bottom: 40px; text-align: left; }
             .w-title { font-size: 50px; }
+            .welcome-buttons { flex-direction: column; width: 100%; }
+            .welcome-buttons .btn-large { width: 100%; box-sizing: border-box; }
 
             .m-title { font-size: 45px; }
             .m-item { flex-direction: column; gap: 15px; padding: 30px 0; }
@@ -201,7 +212,7 @@
             .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
         }
 
-        /* 📱 EXTRA MOBILE RESPONSIVE FIXES FOR SMALL SCREENS (PHONES) 📱 */
+        /* 📱 EXTRA MOBILE FIXES FOR SMALL SCREENS 📱 */
         @media(max-width: 600px) {
             .hero-title { font-size: 42px; line-height: 1.1; }
             .hero-desc { font-size: 14px; }
@@ -218,14 +229,12 @@
             .poster-header span { font-size: 34px; }
             .live-count-num { font-size: 32px; }
             
-            /* Adjusting padding for smaller screens */
             .hero { padding: 40px 15px; }
             .welcome-section { padding: 50px 15px; }
             .home-manifesto { padding: 50px 15px; }
             .story-section { padding: 50px 15px; }
             .eligibility-section { padding: 50px 15px; }
             
-            /* Header sizing */
             header { padding: 15px; }
             .logo-img { width: 35px; height: 35px; }
             .logo-text { font-size: 20px; }
@@ -276,11 +285,11 @@
                 
                 <span style="display: block; text-align: right; color: #555; font-size: 16px; margin-top: 10px;">- ਬੀਬਰ ਸਰਪੰਚ</span>
             </p>
+            
+            <!-- 🔴 UPDATED HERO BUTTONS (COMPLAINT & STATUS ONLY) 🔴 -->
             <div class="action-buttons">
-                <a href="complaint.html" class="btn-large" style="background-color: #111;">FILE COMPLAINT (ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ) ➔</a>
-                <a href="status.html" class="btn-large">COMPLAINT STATUS (ਸ਼ਿਕਾਇਤ ਦੀ ਸਥਿਤੀ ਦੇਖੋ) ➔</a>
-                <a href="blood-donate.html" class="btn-large" style="background-color: #9b1c1c; border-color: #111;">BLOOD DONATE (ਖੂਨਦਾਨ ਕਰੋ) ➔</a>
-                <a href="movie.html" class="btn-large" style="background-color: #1a4331; border-color: #111;">WATCH MOVIE (ਪੰਜਾਬ 95 ਸਤਲੁਜ) ➔</a>
+                <a href="complaint.html" class="btn-large">FILE COMPLAINT (ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ) ➔</a>
+                <a href="status.html" class="btn-large">COMPLAINT STATUS (ਸਥਿਤੀ ਦੇਖੋ) ➔</a>
             </div>
         </div>
 
@@ -328,7 +337,7 @@
         </div>
     </main>
 
-    <!-- 🔴 NEW: WELCOME / ABOUT SECTION 🔴 -->
+    <!-- 🔴 WELCOME / ABOUT SECTION 🔴 -->
     <section class="welcome-section">
         <div class="welcome-grid">
             <!-- Left Side -->
@@ -343,7 +352,11 @@
                     ਅਸੀਂ ਇਹ ਸਾਈਟ ਇਸ ਲਈ ਬਣਾਈ ਹੈ ਤਾਂ ਜੋ ਕੋਈ ਵੀ ਗਰੀਬ ਜਾਂ ਆਮ ਇਨਸਾਨ ਇਨਸਾਫ਼ ਤੋਂ ਵਾਂਝਾ ਨਾ ਰਹੇ। ਇਹ ਤੁਹਾਡੀ ਆਪਣੀ ਜਗ੍ਹਾ ਹੈ, ਜਿੱਥੇ ਤੁਹਾਡੀ ਪਛਾਣ ਪੂਰੀ ਤਰ੍ਹਾਂ ਗੁਪਤ (Anonymous) ਰੱਖੀ ਜਾਂਦੀ ਹੈ। ਕੋਈ ਫੀਸ ਨਹੀਂ, ਕੋਈ ਸਿਆਸੀ ਡਰਾਮਾ ਨਹੀਂ। ਬੱਸ ਉਹ ਲੋਕ ਜੋ ਅਣਗੌਲੇ ਕੀਤੇ ਜਾਣ ਤੋਂ ਅੱਕ ਚੁੱਕੇ ਹਨ, ਹੁਣ ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰ ਰਹੇ ਹਨ।
                 </p>
                 
-                <a href="complaint.html" class="btn-large" style="margin-top: 15px;">ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ ➔</a>
+                <!-- 🔴 BLOOD DONATE BUTTON MOVED HERE 🔴 -->
+                <div class="welcome-buttons">
+                    <a href="complaint.html" class="btn-large">ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ ➔</a>
+                    <a href="blood-donate.html" class="btn-large">BLOOD DONATE (ਖੂਨਦਾਨ) ➔</a>
+                </div>
             </div>
 
             <!-- Right Side (3 Points) -->
@@ -375,12 +388,32 @@
             <div class="m-tag">THE OFFICIAL DOCUMENT</div>
             <h2 class="m-title">The Manifesto.</h2>
             <div class="m-subtitle">READ IT ONCE. READ IT TWICE. SHARE IT WITH PUNJAB.</div>
+            
             <div class="m-list">
-                <div class="m-item"><div class="m-num">01</div><div class="m-text">ਸ਼੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਬੇਅਦਬੀ ਦੇ ਮਾਮਲਿਆਂ ਵਿੱਚ ਸਖ਼ਤ ਅਤੇ ਤੁਰੰਤ ਇਨਸਾਫ਼ ਹੋਵੇ। ਬੇਅਦਬੀ ਦੀਆਂ ਘਟਨਾਵਾਂ ਨੂੰ ਰੋਕਣ ਲਈ ਸਖ਼ਤ ਕਾਨੂੰਨ ਬਣੇ ਅਤੇ ਦੋਸ਼ੀਆਂ ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ ਸਿਆਸੀ ਬਚਾਅ ਦੇ ਸਖ਼ਤ ਸਜ਼ਾਵਾਂ ਮਿਲਣ।</div></div>
-                <div class="m-item"><div class="m-num">02</div><div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਆਮ ਲੋਕਾਂ 'ਤੇ ਪਾਏ ਗਏ ਝੂਠੇ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ ਖਿਲਾਫ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div></div>
-                <div class="m-item"><div class="m-num">03</div><div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ, ਭ੍ਰਿਸ਼ਟ ਪੁਲਿਸ ਅਤੇ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਜੋ ਪੁਲਿਸ ਵਾਲੇ ਪੈਸੇ ਲੈ ਕੇ ਤਸਕਰਾਂ ਨੂੰ ਛੱਡਦੇ ਹਨ ਅਤੇ ਜੋ ਲੀਡਰ ਨਸ਼ਾ ਵਿਕਵਾ ਰਹੇ ਹਨ, ਉਹਨਾਂ ਦਾ ਪਰਦਾਫਾਸ਼ ਕਰਕੇ ਜੇਲ੍ਹਾਂ ਵਿੱਚ ਡੱਕਿਆ ਜਾਵੇ।</div></div>
-                <div class="m-item"><div class="m-num">04</div><div class="m-text">"ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਹੋਵੇ। ਪੁਲਿਸ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਪੁਲਿਸ ਨੂੰ ਹੀ ਮਾਰਕ ਹੋਣ ਕਾਰਨ ਉਹ ਆਪਣੇ ਬੰਦਿਆਂ ਨੂੰ ਬਚਾਉਂਦੇ ਹਨ। ਨਾਲ ਹੀ RTI ਵਿੱਚ 80-90 ਦਿਨਾਂ ਦੀ ਦੇਰੀ ਬੰਦ ਹੋਵੇ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬਦੇਹੀ ਤੈਅ ਹੋਵੇ।</div></div>
-                <div class="m-item"><div class="m-num">05</div><div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ 1 ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div></div>
+                <div class="m-item">
+                    <div class="m-num">01</div>
+                    <div class="m-text">ਸ਼੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਬੇਅਦਬੀ ਦੇ ਮਾਮਲਿਆਂ ਵਿੱਚ ਸਖ਼ਤ ਅਤੇ ਤੁਰੰਤ ਇਨਸਾਫ਼ ਹੋਵੇ। ਬੇਅਦਬੀ ਦੀਆਂ ਘਟਨਾਵਾਂ ਨੂੰ ਰੋਕਣ ਲਈ ਸਖ਼ਤ ਕਾਨੂੰਨ ਬਣੇ ਅਤੇ ਦੋਸ਼ੀਆਂ ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ ਸਿਆਸੀ ਬਚਾਅ ਦੇ ਸਖ਼ਤ ਸਜ਼ਾਵਾਂ ਮਿਲਣ।</div>
+                </div>
+                
+                <div class="m-item">
+                    <div class="m-num">02</div>
+                    <div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਆਮ ਲੋਕਾਂ 'ਤੇ ਪਾਏ ਗਏ ਝੂਠੇ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ ਖਿਲਾਫ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div>
+                </div>
+                
+                <div class="m-item">
+                    <div class="m-num">03</div>
+                    <div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ, ਭ੍ਰਿਸ਼ਟ ਪੁਲਿਸ ਅਤੇ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਜੋ ਪੁਲਿਸ ਵਾਲੇ ਪੈਸੇ ਲੈ ਕੇ ਤਸਕਰਾਂ ਨੂੰ ਛੱਡਦੇ ਹਨ ਅਤੇ ਜੋ ਲੀਡਰ ਨਸ਼ਾ ਵਿਕਵਾ ਰਹੇ ਹਨ, ਉਹਨਾਂ ਦਾ ਪਰਦਾਫਾਸ਼ ਕਰਕੇ ਜੇਲ੍ਹਾਂ ਵਿੱਚ ਡੱਕਿਆ ਜਾਵੇ।</div>
+                </div>
+                
+                <div class="m-item">
+                    <div class="m-num">04</div>
+                    <div class="m-text">"ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਹੋਵੇ। ਪੁਲਿਸ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਪੁਲਿਸ ਨੂੰ ਹੀ ਮਾਰਕ ਹੋਣ ਕਾਰਨ ਉਹ ਆਪਣੇ ਬੰਦਿਆਂ ਨੂੰ ਬਚਾਉਂਦੇ ਹਨ। ਨਾਲ ਹੀ RTI ਵਿੱਚ 80-90 ਦਿਨਾਂ ਦੀ ਦੇਰੀ ਬੰਦ ਹੋਵੇ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬਦੇਹੀ ਤੈਅ ਹੋਵੇ।</div>
+                </div>
+
+                <div class="m-item">
+                    <div class="m-num">05</div>
+                    <div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ ੧ ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div>
+                </div>
             </div>
         </div>
     </section>
@@ -391,6 +424,9 @@
             <div class="story-left">
                 <h2 class="story-title">It started with a simple demand for justice.</h2>
                 <p class="story-desc">ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ।</p>
+                
+                <!-- 🔴 WATCH MOVIE BUTTON MOVED HERE 🔴 -->
+                <a href="movie.html" class="btn-large" style="margin-top: 10px; display: inline-block;">WATCH MOVIE (ਪੰਜਾਬ 95 ਸਤਲੁਜ) ➔</a>
             </div>
             <div class="story-right">
                 <span class="quote-icon">“</span>
