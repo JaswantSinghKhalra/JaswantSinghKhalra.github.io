@@ -67,6 +67,20 @@
         .live-count-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: #f4eee0; line-height: 1; }
         .live-count-text { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: bold; color: #c04a2c; letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; line-height: 1.3; }
 
+        /* 🔴 WELCOME SECTION 🔴 */
+        .welcome-section { background-color: #f4f1ea; padding: 100px 40px; border-top: 1px solid #e0dcd2; }
+        .welcome-grid { display: flex; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: flex-start; }
+        .welcome-left { flex: 1; padding-right: 60px; border-right: 1px solid #e0dcd2; }
+        .welcome-right { flex: 1; display: flex; flex-direction: column; gap: 40px; }
+        .w-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .w-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; line-height: 1; color: #111; margin: 0 0 30px 0; letter-spacing: -1.5px; }
+        .w-desc { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 25px; }
+        .w-feature { padding-bottom: 30px; border-bottom: 1px solid #e0dcd2; }
+        .w-feature:last-child { border-bottom: none; padding-bottom: 0; }
+        .w-feature-tag { color: #c04a2c; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; display: block; }
+        .w-feature-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #111; margin: 0 0 10px 0; letter-spacing: -0.5px; line-height: 1.2; }
+        .w-feature-desc { font-size: 14px; color: #555; line-height: 1.6; margin: 0; }
+
         /* 🔴 MANIFESTO SECTION 🔴 */
         .home-manifesto { background-color: #0c0908; color: #f4eee0; padding: 100px 20px; border-top: 2px solid #c04a2c; }
         .manifesto-inner { max-width: 900px; margin: 0 auto; }
@@ -190,6 +204,12 @@
             .action-buttons { flex-direction: column; width: 100%; max-width: 380px; margin: 0 auto; }
             .action-buttons .btn-large { width: 100%; box-sizing: border-box; }
             
+            /* Mobile Welcome Section */
+            .welcome-section { padding: 60px 20px; }
+            .welcome-grid { flex-direction: column; gap: 40px; }
+            .welcome-left { padding-right: 0; border-right: none; border-bottom: 1px solid #e0dcd2; padding-bottom: 40px; }
+            .w-title { font-size: 50px; }
+
             .m-title { font-size: 45px; }
             .m-item { flex-direction: column; gap: 15px; padding: 30px 0; }
             .m-num { text-align: left; font-size: 40px; }
@@ -308,6 +328,47 @@
         </div>
     </main>
 
+    <!-- 🔴 NEW: WELCOME / ABOUT SECTION 🔴 -->
+    <section class="welcome-section">
+        <div class="welcome-grid">
+            <!-- Left Side -->
+            <div class="welcome-left">
+                <span class="w-tag">ABOUT US · OUR VISION</span>
+                <h2 class="w-title">Welcome to<br><span style="color: #c04a2c; font-style: italic;">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span></h2>
+                
+                <p class="w-desc">
+                    <b>ਸੱਚ ਦੀ ਆਵਾਜ਼</b> ਇੱਕ ਮੁਫਤ ਅਤੇ ਸੁਰੱਖਿਅਤ ਪਲੇਟਫਾਰਮ ਹੈ ਜੋ ਪੰਜਾਬ ਦੇ ਲੋਕਾਂ ਲਈ ਬਣਾਇਆ ਗਿਆ ਹੈ। ਇੱਥੇ ਤੁਸੀਂ ਬਿਨਾਂ ਡਰੇ ਸਿਸਟਮ ਦੀਆਂ ਵਧੀਕੀਆਂ, ਪੁਲਿਸ ਦੇ ਝੂਠੇ ਪਰਚਿਆਂ ਅਤੇ ਨਸ਼ਾ ਤਸਕਰਾਂ ਖਿਲਾਫ ਆਪਣੀ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰਵਾ ਸਕਦੇ ਹੋ।
+                </p>
+                <p class="w-desc">
+                    ਅਸੀਂ ਇਹ ਸਾਈਟ ਇਸ ਲਈ ਬਣਾਈ ਹੈ ਤਾਂ ਜੋ ਕੋਈ ਵੀ ਗਰੀਬ ਜਾਂ ਆਮ ਇਨਸਾਨ ਇਨਸਾਫ਼ ਤੋਂ ਵਾਂਝਾ ਨਾ ਰਹੇ। ਇਹ ਤੁਹਾਡੀ ਆਪਣੀ ਜਗ੍ਹਾ ਹੈ, ਜਿੱਥੇ ਤੁਹਾਡੀ ਪਛਾਣ ਪੂਰੀ ਤਰ੍ਹਾਂ ਗੁਪਤ (Anonymous) ਰੱਖੀ ਜਾਂਦੀ ਹੈ। ਕੋਈ ਫੀਸ ਨਹੀਂ, ਕੋਈ ਸਿਆਸੀ ਡਰਾਮਾ ਨਹੀਂ। ਬੱਸ ਉਹ ਲੋਕ ਜੋ ਅਣਗੌਲੇ ਕੀਤੇ ਜਾਣ ਤੋਂ ਅੱਕ ਚੁੱਕੇ ਹਨ, ਹੁਣ ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰ ਰਹੇ ਹਨ।
+                </p>
+                
+                <a href="complaint.html" class="btn-large" style="margin-top: 15px;">ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ ➔</a>
+            </div>
+
+            <!-- Right Side (3 Points) -->
+            <div class="welcome-right">
+                <div class="w-feature">
+                    <span class="w-feature-tag">WHAT YOU GET</span>
+                    <h3 class="w-feature-title">100% ਗੁਪਤ ਅਤੇ ਸੁਰੱਖਿਅਤ</h3>
+                    <p class="w-feature-desc">ਤੁਹਾਡੀ ਪਛਾਣ, ਨਾਮ ਅਤੇ ਆਧਾਰ ਕਾਰਡ ਪੂਰੀ ਤਰ੍ਹਾਂ ਇਨਕ੍ਰਿਪਟਡ (Encrypted) ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਵੀ ਪੁਲਿਸ ਵਾਲਾ ਜਾਂ ਲੀਡਰ ਤੁਹਾਨੂੰ ਟਰੈਕ ਨਹੀਂ ਕਰ ਸਕਦਾ। ਇਹ ਸਾਡਾ ਵਾਅਦਾ ਹੈ।</p>
+                </div>
+                
+                <div class="w-feature">
+                    <span class="w-feature-tag">WHO THIS IS FOR</span>
+                    <h3 class="w-feature-title">ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਲਈ</h3>
+                    <p class="w-feature-desc">ਜੇਕਰ ਤੁਹਾਡੇ 'ਤੇ ਝੂਠਾ ਪਰਚਾ ਹੋਇਆ ਹੈ, ਰਿਸ਼ਵਤ ਮੰਗੀ ਜਾ ਰਹੀ ਹੈ, ਜਾਂ ਨਸ਼ੇ ਖਿਲਾਫ ਬੋਲਣ 'ਤੇ ਧਮਕੀਆਂ ਮਿਲ ਰਹੀਆਂ ਹਨ—ਇਹ ਪਲੇਟਫਾਰਮ ਖਾਸ ਤੁਹਾਡੇ ਲਈ ਬਣਾਇਆ ਗਿਆ ਹੈ।</p>
+                </div>
+                
+                <div class="w-feature">
+                    <span class="w-feature-tag">OUR PROMISE</span>
+                    <h3 class="w-feature-title">ਬਿਨਾਂ ਡਰ, ਪੱਕਾ ਇਨਸਾਫ਼।</h3>
+                    <p class="w-feature-desc">ਕੋਈ ਫੀਸ ਨਹੀਂ। ਕੋਈ ਸਿਆਸੀ ਏਜੰਡਾ ਨਹੀਂ। ਸਾਡੀ ਟੀਮ ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਨੂੰ ਸਿੱਧਾ ਕਾਨੂੰਨੀ ਮਾਹਿਰਾਂ ਰਾਹੀਂ ਉੱਚ-ਅਧਿਕਾਰੀਆਂ ਤੱਕ ਪਹੁੰਚਾਏਗੀ।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 🔴 MANIFESTO 🔴 -->
     <section class="home-manifesto">
         <div class="manifesto-inner">
@@ -316,9 +377,9 @@
             <div class="m-subtitle">READ IT ONCE. READ IT TWICE. SHARE IT WITH PUNJAB.</div>
             <div class="m-list">
                 <div class="m-item"><div class="m-num">01</div><div class="m-text">ਸ਼੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਬੇਅਦਬੀ ਦੇ ਮਾਮਲਿਆਂ ਵਿੱਚ ਸਖ਼ਤ ਅਤੇ ਤੁਰੰਤ ਇਨਸਾਫ਼ ਹੋਵੇ। ਬੇਅਦਬੀ ਦੀਆਂ ਘਟਨਾਵਾਂ ਨੂੰ ਰੋਕਣ ਲਈ ਸਖ਼ਤ ਕਾਨੂੰਨ ਬਣੇ ਅਤੇ ਦੋਸ਼ੀਆਂ ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ ਸਿਆਸੀ ਬਚਾਅ ਦੇ ਸਖ਼ਤ ਸਜ਼ਾਵਾਂ ਮਿਲਣ।</div></div>
-                <div class="m-item"><div class="m-num">02</div><div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ ਅਤੇ ਸਿਆਸੀ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਪੰਜਾਬ ਦੀ ਜਵਾਨੀ ਨੂੰ ਖਾਣ ਵਾਲੇ ਨਸ਼ਾ ਵੇਚਣ ਵਾਲਿਆਂ ਦੀਆਂ ਜਾਇਦਾਦਾਂ ਜ਼ਬਤ ਕਰਕੇ ਸਖਤ ਸਜ਼ਾਵਾਂ ਦਿੱਤੀਆਂ ਜਾਣ।</div></div>
-                <div class="m-item"><div class="m-num">03</div><div class="m-text">"ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਹੋਵੇ। ਪੁਲਿਸ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਪੁਲਿਸ ਨੂੰ ਹੀ ਮਾਰਕ ਹੋਣ ਕਾਰਨ ਉਹ ਆਪਣੇ ਬੰਦਿਆਂ ਨੂੰ ਬਚਾਉਂਦੇ ਹਨ। ਨਾਲ ਹੀ RTI ਵਿੱਚ 80-90 ਦਿਨਾਂ ਦੀ ਦੇਰੀ ਬੰਦ ਹੋਵੇ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬਦੇਹੀ ਤੈਅ ਹੋਵੇ।</div></div>
-                <div class="m-item"><div class="m-num">04</div><div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਆਮ ਲੋਕਾਂ 'ਤੇ ਪਾਏ ਗਏ ਝੂਠੇ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ ਖਿਲਾਫ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div></div>
+                <div class="m-item"><div class="m-num">02</div><div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਆਮ ਲੋਕਾਂ 'ਤੇ ਪਾਏ ਗਏ ਝੂਠੇ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ ਖਿਲਾਫ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div></div>
+                <div class="m-item"><div class="m-num">03</div><div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ, ਭ੍ਰਿਸ਼ਟ ਪੁਲਿਸ ਅਤੇ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਜੋ ਪੁਲਿਸ ਵਾਲੇ ਪੈਸੇ ਲੈ ਕੇ ਤਸਕਰਾਂ ਨੂੰ ਛੱਡਦੇ ਹਨ ਅਤੇ ਜੋ ਲੀਡਰ ਨਸ਼ਾ ਵਿਕਵਾ ਰਹੇ ਹਨ, ਉਹਨਾਂ ਦਾ ਪਰਦਾਫਾਸ਼ ਕਰਕੇ ਜੇਲ੍ਹਾਂ ਵਿੱਚ ਡੱਕਿਆ ਜਾਵੇ।</div></div>
+                <div class="m-item"><div class="m-num">04</div><div class="m-text">"ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਹੋਵੇ। ਪੁਲਿਸ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਪੁਲਿਸ ਨੂੰ ਹੀ ਮਾਰਕ ਹੋਣ ਕਾਰਨ ਉਹ ਆਪਣੇ ਬੰਦਿਆਂ ਨੂੰ ਬਚਾਉਂਦੇ ਹਨ। ਨਾਲ ਹੀ RTI ਵਿੱਚ 80-90 ਦਿਨਾਂ ਦੀ ਦੇਰੀ ਬੰਦ ਹੋਵੇ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬਦੇਹੀ ਤੈਅ ਹੋਵੇ।</div></div>
                 <div class="m-item"><div class="m-num">05</div><div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ 1 ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div></div>
             </div>
         </div>
@@ -329,7 +390,7 @@
         <div class="story-grid">
             <div class="story-left">
                 <h2 class="story-title">It started with a simple demand for justice.</h2>
-                <p class="story-desc">ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ।</p>
+                <p class="story-desc">ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ。</p>
             </div>
             <div class="story-right">
                 <span class="quote-icon">“</span>
@@ -341,14 +402,13 @@
         </div>
     </section>
 
-    <!-- 🔴 NEW: ELIGIBILITY CRITERIA SECTION (WITH HOVER EFFECTS) 🔴 -->
+    <!-- 🔴 ELIGIBILITY CRITERIA SECTION 🔴 -->
     <section class="eligibility-section">
         <div class="elig-inner">
             <div class="elig-tag">MEMBERSHIP CRITERIA</div>
             <h2 class="elig-title">ਕੀ ਤੁਸੀਂ ਸ਼ਾਮਲ ਹੋਣ ਦੇ <span>ਯੋਗ ਹੋ?</span></h2>
             <p class="elig-subtitle">ਅਸੀਂ ਕਿਸੇ ਜਾਤ, ਧਰਮ ਜਾਂ ਪਾਰਟੀ ਦੇ ਆਧਾਰ 'ਤੇ ਨਹੀਂ, ਸਗੋਂ ਸੱਚ ਲਈ ਲੜਨ ਦੀ ਇੱਛਾ ਦੇ ਆਧਾਰ 'ਤੇ ਮੈਂਬਰ ਬਣਾਉਂਦੇ ਹਾਂ। ਸਾਡੀਆਂ 4 ਮੁੱਖ ਸ਼ਰਤਾਂ:</p>
 
-            <!-- Box 1 -->
             <div class="elig-box" onclick="location.href='complaint.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 01</div>
@@ -364,7 +424,6 @@
                 </div>
             </div>
 
-            <!-- Box 2 -->
             <div class="elig-box" onclick="location.href='complaint.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 02</div>
@@ -380,7 +439,6 @@
                 </div>
             </div>
 
-            <!-- Box 3 -->
             <div class="elig-box" onclick="location.href='complaint.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 03</div>
@@ -396,7 +454,6 @@
                 </div>
             </div>
 
-            <!-- Box 4 -->
             <div class="elig-box" onclick="location.href='complaint.html'">
                 <div class="elig-left-wrap">
                     <div class="elig-req">REQ / 04</div>
@@ -412,9 +469,8 @@
                 </div>
             </div>
 
-            <!-- Action Button -->
             <div class="elig-btn-container">
-                <a href="complaint.html" class="btn-elig">ENLIST YOURSELF ➔</a>
+                <a href="contact.html" class="btn-elig">ENLIST YOURSELF ➔</a>
                 <div class="elig-footer-text">THE SYSTEM ALREADY KNOWS WHO YOU ARE.</div>
             </div>
         </div>
