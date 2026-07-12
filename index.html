@@ -18,9 +18,29 @@
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; }
         
         /* CJP ਵਰਗਾ ਗੋਲ ਲੋਗੋ ਡਿਜ਼ਾਈਨ */
-        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-decoration: none; }
-        .logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #111; object-fit: cover; background-color: #f4f1ea; box-shadow: 2px 2px 0px #111; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #111;
+            object-fit: cover;
+            background-color: #f4f1ea;
+            box-shadow: 2px 2px 0px #111;
+        }
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #692415;
+            letter-spacing: 1px;
+        }
 
         nav { display: flex; gap: 30px; }
         nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
@@ -42,41 +62,32 @@
 
         /* Right Column (Poster area) */
         .hero-right { flex: 1; display: flex; justify-content: center; flex-direction: column; align-items: center; border-left: 1px solid #e0dcd2; padding-left: 50px; position: relative; }
-        
-        /* ਪੋਸਟਰ ਦੇ ਕੰਟੇਨਰ ਨੂੰ relative ਬਣਾਇਆ ਤਾਂ ਜੋ ਬਾਕਸ ਇਸਦੇ ਸੱਜੇ ਪਾਸੇ ਟਿਕੇ ਰਹਿਣ */
-        .poster-wrapper { position: relative; width: 100%; max-width: 380px; }
-        
-        .poster-container { background-color: #111; padding: 10px; border: 2px solid #111; box-shadow: 8px 8px 0px rgba(0,0,0,0.8); width: 100%; box-sizing: border-box; text-align: center; color: white; }
+        .poster-container { background-color: #111; padding: 10px; border: 2px solid #111; box-shadow: 8px 8px 0px rgba(0,0,0,0.8); width: 100%; max-width: 380px; box-sizing: border-box; text-align: center; color: white; }
         .poster-header { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: #4CAF50; line-height: 1; margin: 20px 0; letter-spacing: -1px; }
         .poster-header span { color: #fff; display: block; font-size: 42px; }
         .poster-text { font-size: 14px; color: #aaa; padding: 0 20px 20px; line-height: 1.5; }
-        .poster-caption { display: flex; justify-content: space-between; width: 100%; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; box-sizing: border-box; }
+        .poster-caption { display: flex; justify-content: space-between; width: 100%; max-width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; box-sizing: border-box; }
         .caption-red { color: #c04a2c; font-style: italic; }
 
-        /* 🔴 📊 LIVE COUNTERS STYLING (PERFECT SPACING) */
+        /* 🔴 📊 LIVE COUNTERS STYLING (UPDATE: Stacked & Spaced) */
         .counters-container {
             position: absolute;
             top: 50%;
-            left: 100%; /* ਪੋਸਟਰ ਦੇ ਬਿਲਕੁਲ ਸੱਜੇ (Right) ਪਾਸੇ */
-            margin-left: 35px; /* ਪੋਸਟਰ ਅਤੇ ਬਾਕਸਾਂ ਵਿਚਕਾਰ ਦੂਰੀ */
+            right: -200px; /* 🔴 ਪੋਸਟਰ ਤੋਂ ਦੂਰੀ ਹੋਰ ਵਧਾ ਦਿੱਤੀ ਹੈ ਤਾਂ ਜੋ ਓਵਰਲੈਪ ਨਾ ਹੋਵੇ */
             transform: translateY(-50%);
             display: flex;
-            flex-direction: row; /* ਦੋਵੇਂ ਬਾਕਸ ਨਾਲ-ਨਾਲ (Side by side) */
-            gap: 30px; /* 🔴 ਬਾਕਸਾਂ ਦੇ ਵਿਚਕਾਰ ਵੱਡਾ ਗੈਪ ਤਾਂ ਜੋ ਟਕਰਾਉਣ ਨਾ */
+            flex-direction: column; /* 🔴 ਵਾਪਸ ਉੱਪਰ-ਹੇਠਾਂ ਕਰ ਦਿੱਤਾ ਹੈ */
+            gap: 25px; /* 🔴 ਦੋਵਾਂ ਬਾਕਸਾਂ ਵਿਚਕਾਰਲੀ ਖਾਲੀ ਜਗ੍ਹਾ ਵਧਾ ਦਿੱਤੀ ਹੈ */
             z-index: 100;
-            white-space: nowrap; /* ਅੱਖਰਾਂ ਨੂੰ ਟੁੱਟਣ ਤੋਂ ਰੋਕਣ ਲਈ */
         }
 
         .live-count-box {
             background: #111;
             border: 2px solid #c04a2c;
-            box-shadow: 6px 6px 0px #111;
-            padding: 20px 25px; /* ਅੰਦਰਲੀ ਜਗ੍ਹਾ ਵਧਾਈ */
+            box-shadow: 5px 5px 0px #111;
+            padding: 20px 25px; /* 🔴 ਬਾਕਸ ਅੰਦਰ ਥੋੜ੍ਹੀ ਖੁੱਲ੍ਹੀ ਜਗ੍ਹਾ ਦਿੱਤੀ ਹੈ */
             text-align: center;
-            min-width: 140px; /* ਚੌੜਾਈ ਵਧਾਈ ਤਾਂ ਜੋ ਵੱਡਾ ਨੰਬਰ ਆਰਾਮ ਨਾਲ ਫਿੱਟ ਹੋ ਸਕੇ */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            min-width: 130px;
         }
 
         .death-box {
@@ -106,16 +117,13 @@
             70% { box-shadow: 0 0 0 6px rgba(255, 77, 77, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
         }
-        
         .live-count-num {
             font-family: 'Playfair Display', serif;
-            font-size: 45px; /* ਨੰਬਰ ਦਾ ਸਾਈਜ਼ ਥੋੜਾ ਵੱਡਾ ਕੀਤਾ */
+            font-size: 42px;
             font-weight: 900;
             color: #f4eee0;
             line-height: 1;
-            margin: 5px 0 10px 0;
         }
-        
         .live-count-text {
             font-family: 'Inter', sans-serif;
             font-size: 10px;
@@ -123,6 +131,7 @@
             color: #c04a2c;
             letter-spacing: 1px;
             text-transform: uppercase;
+            margin-top: 8px;
             line-height: 1.3;
         }
 
@@ -144,13 +153,15 @@
         .footer-warning { color: #c04a2c; letter-spacing: 1px; }
 
         /* 📱 MOBILE RESPONSIVE FIXES */
-        @media(max-width: 1200px) {
+        @media(max-width: 1100px) {
             .counters-container { 
-                position: relative; top: 0; left: 0; transform: none; margin-top: 40px; margin-left: 0;
-                flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 20px;
-                width: 100%; 
+                position: relative; top: 0; right: 0; transform: none; margin-top: 30px; 
+                flex-direction: row; /* ਮੋਬਾਈਲ ਤੇ ਜਗ੍ਹਾ ਬਚਾਉਣ ਲਈ ਨਾਲ-ਨਾਲ ਰਹਿਣਗੇ */
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%; max-width: 400px; margin-left: auto; margin-right: auto;
             }
-            .live-count-box { flex: 1; min-width: 130px; }
+            .live-count-box { flex: 1; min-width: 140px; }
         }
         @media(max-width: 900px) {
             header { flex-direction: column; gap: 20px; padding: 15px 20px; }
@@ -213,46 +224,46 @@
         </div>
 
         <div class="hero-right">
-            <!-- 🔴 ਨਵਾਂ Wrapper ਬਣਾਇਆ ਹੈ ਤਾਂ ਜੋ ਲੇਆਊਟ ਖਰਾਬ ਨਾ ਹੋਵੇ -->
-            <div class="poster-wrapper">
-                <div class="poster-container">
-                    <div class="poster-header">STRONGER, <span>TOGETHER.</span></div>
-                    <div style="width: 100%; height: 230px; background-color: #111; margin: 15px 0; border-top: 2px solid #333; border-bottom: 2px solid #333; overflow: hidden;">
-                        <img id="poster-slideshow" src="1.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Jaswant Singh Khalra">
-                    </div>
-                    <script>
-                        const images = ["1.jpg", "2.jpg", "3.jpg"]; 
-                        let currentIndex = 0;
-                        setInterval(() => {
-                            currentIndex = (currentIndex + 1) % images.length;
-                            document.getElementById("poster-slideshow").src = images[currentIndex];
-                        }, 5000);
-                    </script>
-                    <div class="poster-text">
-                        <b style="color: white;">BE PART OF THE REVELATION.</b><br>
-                        ਸੱਚਾਈ ਕਦੇ ਛੁਪਦੀ ਨਹੀਂ। ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰੋ, ਬਿਨਾਂ ਕਿਸੇ ਡਰ ਤੋਂ।
-                    </div>
-                    <div style="background-color: #c04a2c; padding: 10px; font-weight: bold; font-size: 14px;">SECURE REPORTING PORTAL</div>
+            <div class="poster-container">
+                <div class="poster-header">STRONGER, <span>TOGETHER.</span></div>
+                <div style="width: 100%; height: 230px; background-color: #111; margin: 15px 0; border-top: 2px solid #333; border-bottom: 2px solid #333; overflow: hidden;">
+                    <img id="poster-slideshow" src="1.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Jaswant Singh Khalra">
                 </div>
-                
-                <div class="poster-caption">
-                    <span>OFFICIAL CAMPAIGN POSTER</span>
-                    <span class="caption-red">Est. Today</span>
+                <script>
+                    const images = ["1.jpg", "2.jpg", "3.jpg"]; 
+                    let currentIndex = 0;
+                    setInterval(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        document.getElementById("poster-slideshow").src = images[currentIndex];
+                    }, 5000);
+                </script>
+                <div class="poster-text">
+                    <b style="color: white;">BE PART OF THE REVELATION.</b><br>
+                    ਸੱਚਾਈ ਕਦੇ ਛੁਪਦੀ ਨਹੀਂ। ਆਪਣੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰੋ, ਬਿਨਾਂ ਕਿਸੇ ਡਰ ਤੋਂ।
+                </div>
+                <div style="background-color: #c04a2c; padding: 10px; font-weight: bold; font-size: 14px;">SECURE REPORTING PORTAL</div>
+            </div>
+            
+            <div class="poster-caption">
+                <span>OFFICIAL CAMPAIGN POSTER</span>
+                <span class="caption-red">Est. Today</span>
+            </div>
+
+            <!-- 🔴 LIVE COUNTERS (Stacked and Spaced out) -->
+            <div class="counters-container">
+                <!-- 1. Complaints Counter -->
+                <div class="live-count-box">
+                    <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
+                    <!-- 'toLocaleString()' allows formatted numbers with commas (e.g. 10,340) if applied via JS -->
+                    <div class="live-count-num" id="public-live-counter">0</div>
+                    <div class="live-count-text">COMPLAINTS<br>FILED</div>
                 </div>
 
-                <!-- 🔴 LIVE COUNTERS -->
-                <div class="counters-container">
-                    <div class="live-count-box">
-                        <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
-                        <div class="live-count-num" id="public-live-counter">0</div>
-                        <div class="live-count-text">COMPLAINTS<br>FILED</div>
-                    </div>
-
-                    <div class="live-count-box death-box">
-                        <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
-                        <div class="live-count-num" id="death-counter">0</div>
-                        <div class="live-count-text">DRUG DEATHS<br>(PUNJAB)</div>
-                    </div>
+                <!-- 2. Drug Deaths Counter -->
+                <div class="live-count-box death-box">
+                    <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
+                    <div class="live-count-num" id="death-counter">0</div>
+                    <div class="live-count-text">DRUG DEATHS<br>(PUNJAB)</div>
                 </div>
             </div>
         </div>
@@ -315,15 +326,19 @@
         
         const db = firebase.database();
 
+        // 1. Complaints Update (with formatting for commas e.g., 10,340)
         db.ref('complaint_count').on('value', (s) => {
             if(document.getElementById('public-live-counter')) {
-                document.getElementById('public-live-counter').innerText = s.val() || 0;
+                let val = s.val() || 0;
+                document.getElementById('public-live-counter').innerText = Number(val).toLocaleString('en-IN');
             }
         });
 
+        // 2. Drug Deaths Update (with formatting for commas)
         db.ref('drug_death_count').on('value', (s) => {
             if(document.getElementById('death-counter')) {
-                document.getElementById('death-counter').innerText = s.val() || 0;
+                let val = s.val() || 0;
+                document.getElementById('death-counter').innerText = Number(val).toLocaleString('en-IN');
             }
         });
     </script>
