@@ -14,10 +14,20 @@
         .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        /* Header Navbar */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: relative; background-color: #f4f1ea; z-index: 1000; }
+        /* 🔴 Header Navbar (Make it Sticky) */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 40px; 
+            border-bottom: 1px solid #e0dcd2; 
+            position: sticky; /* 🔴 Yeh line isko upar fix rakhegi */
+            top: 0;           /* 🔴 Bilkul top par lock karne ke liye */
+            background-color: #f4f1ea; 
+            z-index: 1000; 
+        }
         
-        /* CJP ਵਰਗਾ ਗੋਲ ਲੋਗੋ ਡਿਜ਼ਾਈਨ */
+        /* Logo Design */
         .logo-wrapper {
             display: flex;
             align-items: center;
@@ -42,7 +52,7 @@
             letter-spacing: 1px;
         }
 
-        /* 🔴 Navigation Container (PC Layout) */
+        /* Navigation Container (PC Layout) */
         .nav-container { display: flex; align-items: center; gap: 30px; }
         nav { display: flex; gap: 30px; }
         nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
@@ -53,7 +63,7 @@
         .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
         .btn-dark-rust { background-color: #8b331c; }
 
-        /* 🔴 Hamburger Icon (Hidden on PC) */
+        /* Hamburger Icon (Hidden on PC) */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -97,7 +107,7 @@
             display: flex;
             flex-direction: column; 
             gap: 25px; 
-            z-index: 100;
+            z-index: 90;
         }
 
         .live-count-box { background: #111; border: 2px solid #c04a2c; box-shadow: 5px 5px 0px #111; padding: 20px 25px; text-align: center; min-width: 130px; }
@@ -141,10 +151,10 @@
             header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
             .logo-wrapper { justify-content: flex-start; } 
             
-            /* 🔴 Show Hamburger */
+            /* Show Hamburger */
             .hamburger { display: flex; }
             
-            /* 🔴 Mobile Dropdown Navigation */
+            /* Mobile Dropdown Navigation */
             .nav-container {
                 position: absolute;
                 top: 100%;
@@ -156,9 +166,9 @@
                 padding: 0;
                 box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
                 border-bottom: 2px solid #111;
-                display: none; /* Hidden by default */
+                display: none; 
             }
-            .nav-container.active { display: flex; } /* Shown when toggled */
+            .nav-container.active { display: flex; } 
 
             nav { flex-direction: column; width: 100%; padding: 10px 20px; box-sizing: border-box; gap: 0; }
             nav a { padding: 15px 0; border-bottom: 1px solid #e0dcd2; width: 100%; display: block; }
@@ -167,7 +177,7 @@
             .header-buttons { flex-direction: column; width: 100%; padding: 20px; box-sizing: border-box; gap: 15px; }
             .header-buttons .btn-large { width: 100%; box-sizing: border-box; }
 
-            /* 🔴 Hamburger 'X' Animation */
+            /* Hamburger 'X' Animation */
             .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
             .hamburger.active .bar:nth-child(2) { opacity: 0; }
             .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
@@ -176,7 +186,7 @@
             .hero { flex-direction: column; text-align: center; padding: 40px 20px; gap: 30px; }
             .hero-right { border-left: none; padding-left: 0; padding-top: 40px; border-top: 1px solid #e0dcd2; width: 100%; }
             .hero-title { font-size: 55px; }
-            .hero-desc { text-align: left; } /* Keep paragraph readable */
+            .hero-desc { text-align: left; } 
             .action-buttons { flex-direction: column; width: 100%; max-width: 380px; margin: 0 auto; }
             .action-buttons .btn-large { width: 100%; box-sizing: border-box; }
             
@@ -193,21 +203,18 @@
         <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ - Adv ਬੀਬਰ ਸਰਪੰਚ ✦</span>
     </div>
 
-    <!-- 🔴 Header with Hamburger Menu -->
     <header>
         <a href="index.html" class="logo-wrapper">
             <img src="hand.png" alt="Logo" class="logo-img">
             <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
         </a>
         
-        <!-- Hamburger Icon (Mobile Only) -->
         <div class="hamburger" id="hamburgerMenu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
 
-        <!-- Navigation & Buttons -->
         <div class="nav-container" id="navMenu">
             <nav>
                 <a href="javascript:void(0);">Vision</a>
@@ -272,14 +279,12 @@
             </div>
 
             <div class="counters-container">
-                <!-- 1. Complaints Counter -->
                 <div class="live-count-box">
                     <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
                     <div class="live-count-num" id="public-live-counter">0</div>
                     <div class="live-count-text">COMPLAINTS<br>FILED</div>
                 </div>
 
-                <!-- 2. Drug Deaths Counter -->
                 <div class="live-count-box death-box">
                     <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
                     <div class="live-count-num" id="death-counter">0</div>
@@ -336,7 +341,6 @@
         </div>
     </footer>
 
-    <!-- 🔴 Javascript For Hamburger Menu -->
     <script>
         const hamburger = document.getElementById('hamburgerMenu');
         const navMenu = document.getElementById('navMenu');
@@ -347,7 +351,6 @@
         });
     </script>
 
-    <!-- FIREBASE LIVE COUNTER SCRIPT -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script>
