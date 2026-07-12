@@ -112,7 +112,16 @@
                     <div class="form-group"><label>FULL NAME (ਪੂਰਾ ਨਾਮ) *</label><input type="text" name="name" required></div>
                     <div class="form-group"><label>EMAIL ADDRESS (ਈਮੇਲ) *</label><input type="email" name="email" required></div>
                     <div class="form-group"><label>FATHER'S NAME (ਪਿਤਾ ਦਾ ਨਾਮ) *</label><input type="text" name="father_name" required></div>
-                    <div class="form-group"><label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ) *</label><input type="text" name="aadhaar" pattern="[0-9]{12}" placeholder="12-digit number" required></div>
+                    
+                    <!-- 🔴 ਇੱਥੇ ਆਧਾਰ ਕਾਰਡ ਦੀ ਵੈਲੀਡੇਸ਼ਨ ਲਗਾਈ ਗਈ ਹੈ -->
+                    <div class="form-group">
+                        <label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ) *</label>
+                        <input type="text" id="aadhaarNumber" name="aadhaar" placeholder="12-digit number" maxlength="12" required oninput="checkAadhaar()">
+                        <div id="aadhaarError" style="color: #c04a2c; font-size: 12px; font-weight: bold; display: none; margin-top: 5px;">
+                            ❌ ਇਹ ਆਧਾਰ ਨੰਬਰ ਗਲਤ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਅਸਲੀ ਨੰਬਰ ਭਰੋ।
+                        </div>
+                    </div>
+                    
                     <div class="form-group"><label>MOBILE NUMBER (ਮੋਬਾਈਲ ਨੰਬਰ) *</label><input type="tel" name="mobile" required></div>
                     <div class="form-group"><label>DATE OF BIRTH (ਜਨਮ ਤਰੀਕ) *</label><input type="date" name="dob" required></div>
                 </div>
@@ -145,6 +154,70 @@
         </section>
     </div>
 
+    <!-- 🔴 ਆਧਾਰ ਕਾਰਡ ਚੈੱਕ ਕਰਨ ਵਾਲਾ JavaScript (Verhoeff Algorithm) -->
+    <script>
+        const d = [
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            [1, 2, 3, 4, 0, 6, 7, 8, 9, 5],
+            [2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
+            [3, 4, 0, 1, 2, 8, 9, 5, 6, 7],
+            [4, 0, 1, 2, 3, 9, 5, 6, 7, 8],
+            [5, 9, 8, 7, 6, 0, 4, 3, 2, 1],
+            [6, 5, 9, 8, 7, 1, 0, 4, 3, 2],
+            [7, 6, 5, 9, 8, 2, 1, 0, 4, 3],
+            [8, 7, 6, 5, 9, 3, 2, 1, 0, 4],
+            [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+        ];
+        const p = [
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            [1, 5, 7, 6, 2, 8, 3, 0, 9, 4],
+            [5, 8, 0, 3, 7, 9, 6, 1, 4, 2],
+            [8, 9, 1, 6, 0, 4, 3, 5, 2, 7],
+            [9, 4, 5, 3, 1, 2, 6, 8, 7, 0],
+            [4, 2, 8, 6, 5, 7, 3, 9, 0, 1],
+            [2, 7, 9, 3, 8, 0, 6, 4, 1, 5],
+            [7, 0, 4, 6, 9, 1, 3, 2, 5, 8]
+        ];
+
+        function validateAadhaar(aadhaarNumber) {
+            if (aadhaarNumber.length !== 12 || !/^\d{12}$/.test(aadhaarNumber)) return false;
+            let c = 0;
+            let array = aadhaarNumber.split('').map(Number).reverse();
+            for (let i = 0; i < array.length; i++) {
+                c = d[c][p[i % 8][array[i]]];
+            }
+            return c === 0;
+        }
+
+        function checkAadhaar() {
+            let inputField = document.getElementById("aadhaarNumber");
+            let errorMsg = document.getElementById("aadhaarError");
+
+            // ਸਿਰਫ਼ ਨੰਬਰ ਲਿਖਣ ਦੀ ਇਜਾਜ਼ਤ (text ਹਟਾ ਦਵੇਗਾ)
+            inputField.value = inputField.value.replace(/\D/g, ''); 
+
+            if (inputField.value.length === 12) {
+                if (validateAadhaar(inputField.value)) {
+                    // ਸਹੀ ਹੋਣ 'ਤੇ
+                    errorMsg.style.display = "none";
+                    inputField.style.borderColor = "green";
+                    inputField.setCustomValidity(""); // ਫਾਰਮ ਨੂੰ ਦੱਸਦਾ ਹੈ ਕਿ ਇਹ ਸਹੀ ਹੈ
+                } else {
+                    // ਗਲਤ ਹੋਣ 'ਤੇ
+                    errorMsg.style.display = "block";
+                    inputField.style.borderColor = "red";
+                    inputField.setCustomValidity("Invalid Aadhaar"); // ਫਾਰਮ ਨੂੰ ਰੋਕਦਾ ਹੈ
+                }
+            } else {
+                // ਜਦੋਂ ਤੱਕ 12 ਅੱਖਰ ਪੂਰੇ ਨਹੀਂ ਹੁੰਦੇ
+                errorMsg.style.display = "none";
+                inputField.style.borderColor = "#ccc";
+                inputField.setCustomValidity("Please enter 12 digits"); // ਫਾਰਮ ਨੂੰ ਰੋਕਦਾ ਹੈ
+            }
+        }
+    </script>
+
+    <!-- ਤੁਹਾਡਾ ਪੁਰਾਣਾ Navigation ਅਤੇ Form Submission ਵਾਲਾ JavaScript -->
     <script>
         let currentStep = 1;
         function validatePanel(panelId) {
