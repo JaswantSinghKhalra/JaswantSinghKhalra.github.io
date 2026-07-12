@@ -14,7 +14,7 @@
         .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        /* 🔴 Header Navbar (Make it Sticky) */
+        /* 🔴 Header Navbar */
         header { 
             display: flex; 
             justify-content: space-between; 
@@ -28,31 +28,11 @@
         }
         
         /* Logo Design */
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 12px;
-            text-decoration: none;
-        }
-        .logo-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid #111;
-            object-fit: cover;
-            background-color: #f4f1ea;
-            box-shadow: 2px 2px 0px #111;
-        }
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            font-weight: 900;
-            color: #692415;
-            letter-spacing: 1px;
-        }
+        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-decoration: none; }
+        .logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #111; object-fit: cover; background-color: #f4f1ea; box-shadow: 2px 2px 0px #111; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
 
-        /* Navigation Container (PC Layout) */
+        /* Navigation Container */
         .nav-container { display: flex; align-items: center; gap: 30px; }
         nav { display: flex; gap: 30px; }
         nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
@@ -63,20 +43,9 @@
         .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
         .btn-dark-rust { background-color: #8b331c; }
 
-        /* Hamburger Icon (Hidden on PC) */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .hamburger .bar {
-            width: 30px;
-            height: 3px;
-            background-color: #111;
-            transition: all 0.3s ease-in-out;
-            border-radius: 2px;
-        }
+        /* Hamburger Icon */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .hamburger .bar { width: 30px; height: 3px; background-color: #111; transition: all 0.3s ease-in-out; border-radius: 2px; }
 
         /* Main Hero Section */
         .hero { display: flex; padding: 60px 40px; gap: 50px; align-items: center; flex-wrap: wrap; max-width: 1300px; margin: 0 auto; }
@@ -99,17 +68,7 @@
         .caption-red { color: #c04a2c; font-style: italic; }
 
         /* LIVE COUNTERS STYLING */
-        .counters-container {
-            position: absolute;
-            top: 50%;
-            right: -200px; 
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column; 
-            gap: 25px; 
-            z-index: 90;
-        }
-
+        .counters-container { position: absolute; top: 50%; right: -200px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 25px; z-index: 90; }
         .live-count-box { background: #111; border: 2px solid #c04a2c; box-shadow: 5px 5px 0px #111; padding: 20px 25px; text-align: center; min-width: 130px; }
         .death-box { border-color: #8b331c; }
         .live-indicator { display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 9px; color: #888; margin-bottom: 8px; letter-spacing: 1px; font-weight: bold; }
@@ -118,8 +77,35 @@
         .live-count-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: #f4eee0; line-height: 1; }
         .live-count-text { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: bold; color: #c04a2c; letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; line-height: 1.3; }
 
+        /* 🔴 HOME PAGE MANIFESTO SECTION 🔴 */
+        .home-manifesto { background-color: #0c0908; color: #f4eee0; padding: 100px 20px; border-top: 2px solid #c04a2c; }
+        .manifesto-inner { max-width: 900px; margin: 0 auto; }
+        .m-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; text-align: center; margin-bottom: 15px; }
+        .m-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; text-align: center; margin: 0 0 15px 0; letter-spacing: -1px; }
+        .m-subtitle { font-size: 11px; color: #aaa; text-align: center; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 60px; }
+        .m-list { border-top: 1px solid #333; }
+        .m-item { display: flex; gap: 40px; padding: 40px 0; border-bottom: 1px solid #333; align-items: flex-start; }
+        .m-num { font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 900; color: #c04a2c; line-height: 1; min-width: 70px; text-align: right; }
+        .m-text { font-size: 18px; color: #f4eee0; line-height: 1.6; font-weight: 600; }
+
+        /* 🔴 NEW: STORY SECTION (Under Manifesto) 🔴 */
+        .story-section { background-color: #f4f1ea; padding: 100px 20px; border-bottom: 1px solid #e0dcd2; }
+        .story-grid { display: flex; max-width: 1100px; margin: 0 auto; gap: 60px; align-items: flex-start; }
+        .story-left { flex: 1; }
+        .story-right { flex: 1; border-left: 1px solid #e0dcd2; padding-left: 60px; }
+        
+        .story-title { font-family: 'Playfair Display', serif; font-size: 55px; font-weight: 900; line-height: 1.05; color: #111; margin: 0 0 25px 0; letter-spacing: -1.5px; }
+        .story-desc { font-size: 15px; color: #555; line-height: 1.8; }
+        
+        .quote-icon { font-family: 'Playfair Display', serif; font-size: 80px; color: #d4ccb8; line-height: 0.5; margin-bottom: 20px; display: block; }
+        .quote-text { font-family: 'Playfair Display', serif; font-size: 32px; font-style: italic; font-weight: 900; color: #111; line-height: 1.2; margin: 0 0 20px 0; letter-spacing: -0.5px; }
+        .quote-author { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 2px; }
+        .quote-divider { width: 50px; height: 2px; background-color: #c04a2c; margin: 25px 0; }
+        .quote-subtext { font-size: 14px; color: #555; line-height: 1.7; }
+        .quote-subtext b { color: #111; }
+
         /* Footer CSS */
-        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; }
+        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 0; font-family: 'Inter', sans-serif; }
         .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
         .footer-grid .footer-col { flex: 1; min-width: 150px; }
         .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
@@ -135,66 +121,27 @@
         .footer-bottom a:hover { color: #fff; }
         .footer-warning { color: #c04a2c; letter-spacing: 1px; }
 
-        /* 🔴 HOME PAGE MANIFESTO SECTION 🔴 */
-        .home-manifesto { background-color: #0c0908; color: #f4eee0; padding: 100px 20px; border-top: 2px solid #c04a2c; }
-        .manifesto-inner { max-width: 900px; margin: 0 auto; }
-        .m-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; text-align: center; margin-bottom: 15px; }
-        .m-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; text-align: center; margin: 0 0 15px 0; letter-spacing: -1px; }
-        .m-subtitle { font-size: 11px; color: #aaa; text-align: center; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 60px; }
-        
-        .m-list { border-top: 1px solid #333; }
-        .m-item { display: flex; gap: 40px; padding: 40px 0; border-bottom: 1px solid #333; align-items: flex-start; }
-        .m-num { font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 900; color: #c04a2c; line-height: 1; min-width: 70px; text-align: right; }
-        .m-text { font-size: 18px; color: #f4eee0; line-height: 1.6; font-weight: 600; }
-
         /* 📱 MOBILE RESPONSIVE FIXES */
         @media(max-width: 1100px) {
-            .counters-container { 
-                position: relative; top: 0; right: 0; transform: none; margin-top: 30px; 
-                flex-direction: row; 
-                flex-wrap: wrap;
-                justify-content: center;
-                width: 100%; max-width: 400px; margin-left: auto; margin-right: auto;
-            }
+            .counters-container { position: relative; top: 0; right: 0; transform: none; margin-top: 30px; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; }
             .live-count-box { flex: 1; min-width: 140px; }
         }
 
         @media(max-width: 900px) {
             header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
             .logo-wrapper { justify-content: flex-start; } 
-            
-            /* Show Hamburger */
             .hamburger { display: flex; }
-            
-            /* Mobile Dropdown Navigation */
-            .nav-container {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: #f4f1ea;
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0;
-                box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
-                border-bottom: 2px solid #111;
-                display: none; 
-            }
+            .nav-container { position: absolute; top: 100%; left: 0; width: 100%; background-color: #f4f1ea; flex-direction: column; align-items: flex-start; padding: 0; box-shadow: 0px 10px 15px rgba(0,0,0,0.1); border-bottom: 2px solid #111; display: none; }
             .nav-container.active { display: flex; } 
-
             nav { flex-direction: column; width: 100%; padding: 10px 20px; box-sizing: border-box; gap: 0; }
             nav a { padding: 15px 0; border-bottom: 1px solid #e0dcd2; width: 100%; display: block; }
             nav a:last-child { border-bottom: none; }
-            
             .header-buttons { flex-direction: column; width: 100%; padding: 20px; box-sizing: border-box; gap: 15px; }
             .header-buttons .btn-large { width: 100%; box-sizing: border-box; }
-
-            /* Hamburger 'X' Animation */
             .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
             .hamburger.active .bar:nth-child(2) { opacity: 0; }
             .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-            /* Hero Fixes */
             .hero { flex-direction: column; text-align: center; padding: 40px 20px; gap: 30px; }
             .hero-right { border-left: none; padding-left: 0; padding-top: 40px; border-top: 1px solid #e0dcd2; width: 100%; }
             .hero-title { font-size: 55px; }
@@ -202,13 +149,16 @@
             .action-buttons { flex-direction: column; width: 100%; max-width: 380px; margin: 0 auto; }
             .action-buttons .btn-large { width: 100%; box-sizing: border-box; }
             
-            /* Manifesto Mobile */
             .m-title { font-size: 45px; }
             .m-item { flex-direction: column; gap: 15px; padding: 30px 0; }
             .m-num { text-align: left; font-size: 40px; }
             .m-text { font-size: 16px; }
 
-            /* Footer Fixes */
+            /* Mobile Fix for Story Section */
+            .story-grid { flex-direction: column; gap: 40px; }
+            .story-right { border-left: none; padding-left: 0; border-top: 1px solid #e0dcd2; padding-top: 40px; }
+            .story-title { font-size: 45px; }
+
             .site-footer { padding: 40px 20px 20px; }
             .footer-grid { flex-direction: column; text-align: center; }
             .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
@@ -324,35 +274,53 @@
             <div class="m-subtitle">READ IT ONCE. READ IT TWICE. SHARE IT WITH PUNJAB.</div>
             
             <div class="m-list">
-                <!-- Point 01 -->
                 <div class="m-item">
                     <div class="m-num">01</div>
                     <div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਪਾਏ ਗਏ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ 'ਤੇ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div>
                 </div>
                 
-                <!-- Point 02 -->
                 <div class="m-item">
                     <div class="m-num">02</div>
                     <div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ ਅਤੇ ਸਿਆਸੀ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਪੰਜਾਬ ਦੀ ਜਵਾਨੀ ਨੂੰ ਖਾਣ ਵਾਲੇ ਨਸ਼ਾ ਵੇਚਣ ਵਾਲਿਆਂ ਦੀਆਂ ਜਾਇਦਾਦਾਂ ਜ਼ਬਤ ਕਰਕੇ ਸਖਤ ਸਜ਼ਾਵਾਂ ਦਿੱਤੀਆਂ ਜਾਣ।</div>
                 </div>
                 
-                <!-- Point 03 -->
                 <div class="m-item">
                     <div class="m-num">03</div>
                     <div class="m-text">ਆਜ਼ਾਦ ਅਤੇ ਸਮਾਂ-ਬੱਧ ਇਨਸਾਫ਼। RTI ਜਾਂ ਸ਼ਿਕਾਇਤਾਂ ਦਾ ਜਵਾਬ ਤੈਅ ਸਮੇਂ ਵਿੱਚ ਮਿਲੇ। "ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਕਰਕੇ ਆਜ਼ਾਦ ਜਾਂਚ ਕਮੇਟੀ ਬਣਾਈ ਜਾਵੇ।</div>
                 </div>
                 
-                <!-- Point 04 -->
                 <div class="m-item">
                     <div class="m-num">04</div>
                     <div class="m-text">ਡਰ-ਮੁਕਤ ਸਮਾਜ। ਕੋਈ ਵੀ ਇਨਸਾਨ—ਚਾਹੇ ਉਹ ਪਿੰਡ ਦਾ ਆਮ ਮਜ਼ਦੂਰ ਹੋਵੇ ਜਾਂ ਕਿਸਾਨ—ਸਰਕਾਰੀ ਬਾਬੂਆਂ, ਅਫਸਰਾਂ ਜਾਂ ਲੀਡਰਾਂ ਅੱਗੇ ਸੱਚ ਬੋਲਣ ਤੋਂ ਨਾ ਡਰੇ। ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਹੀ ਅਸਲੀ ਤਾਕਤ ਹੈ।</div>
                 </div>
 
-                <!-- 🔴 Point 05 ਐਡ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ -->
                 <div class="m-item">
                     <div class="m-num">05</div>
                     <div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ ੧ ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔴 NEW: STORY SECTION (Under Manifesto) 🔴 -->
+    <section class="story-section">
+        <div class="story-grid">
+            <div class="story-left">
+                <h2 class="story-title">It started with a simple demand for justice.</h2>
+                <p class="story-desc">
+                    ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ।
+                </p>
+            </div>
+            <div class="story-right">
+                <span class="quote-icon">“</span>
+                <p class="quote-text">ਸੱਚ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਗੋਲੀਆਂ ਅਤੇ ਝੂਠੇ ਪਰਚਿਆਂ ਨਾਲ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।</p>
+                <div class="quote-author">— THE VISION OF SHAHEED JASWANT SINGH KHALRA <br><span style="color: #aaa; font-weight: 400; font-size: 9px; margin-top: 3px; display: inline-block;">PUNJAB · HUMAN RIGHTS DEFENDER</span></div>
+                
+                <div class="quote-divider"></div>
+                
+                <p class="quote-subtext">
+                    ਸਿਸਟਮ ਚਾਹੁੰਦਾ ਸੀ ਕਿ ਅਸੀਂ ਡਰ ਜਾਈਏ, ਪਰ ਅਸੀਂ ਇਸ ਡਰ ਨੂੰ ਇੱਕ ਲਹਿਰ ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ। ਅੱਜ ਪੰਜਾਬ ਦਾ ਹਰ ਉਹ ਇਨਸਾਨ ਜੋ ਧੱਕੇਸ਼ਾਹੀ ਖਿਲਾਫ ਖੜ੍ਹਾ ਹੈ, ਸਾਡੀ ਟੀਮ ਦਾ ਹਿੱਸਾ ਹੈ। <b>You cannot silence the truth. You cannot stop a movement.</b>
+                </p>
             </div>
         </div>
     </section>
