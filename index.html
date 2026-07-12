@@ -15,7 +15,7 @@
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
         /* Header Navbar */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: relative; background-color: #f4f1ea; z-index: 1000; }
         
         /* CJP ਵਰਗਾ ਗੋਲ ਲੋਗੋ ਡਿਜ਼ਾਈਨ */
         .logo-wrapper {
@@ -42,12 +42,31 @@
             letter-spacing: 1px;
         }
 
+        /* 🔴 Navigation Container (PC Layout) */
+        .nav-container { display: flex; align-items: center; gap: 30px; }
         nav { display: flex; gap: 30px; }
-        nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+        nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: #c04a2c; }
         .header-buttons { display: flex; gap: 15px; align-items: center; }
+        
         .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; text-align: center; display: inline-block; }
         .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
         .btn-dark-rust { background-color: #8b331c; }
+
+        /* 🔴 Hamburger Icon (Hidden on PC) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #111;
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
 
         /* Main Hero Section */
         .hero { display: flex; padding: 60px 40px; gap: 50px; align-items: center; flex-wrap: wrap; max-width: 1300px; margin: 0 auto; }
@@ -57,7 +76,7 @@
         .text-black { color: #1a1a1a; }
         .text-orange { color: #c04a2c; font-style: italic; }
         .text-green { color: #1a4331; font-style: italic; }
-        .hero-desc { font-size: 16px; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
+        .hero-desc { font-size: 16px; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; position: relative; }
         .action-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
 
         /* Right Column (Poster area) */
@@ -69,71 +88,25 @@
         .poster-caption { display: flex; justify-content: space-between; width: 100%; max-width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; box-sizing: border-box; }
         .caption-red { color: #c04a2c; font-style: italic; }
 
-        /* 🔴 📊 LIVE COUNTERS STYLING (UPDATE: Stacked & Spaced) */
+        /* LIVE COUNTERS STYLING */
         .counters-container {
             position: absolute;
             top: 50%;
-            right: -200px; /* 🔴 ਪੋਸਟਰ ਤੋਂ ਦੂਰੀ ਹੋਰ ਵਧਾ ਦਿੱਤੀ ਹੈ ਤਾਂ ਜੋ ਓਵਰਲੈਪ ਨਾ ਹੋਵੇ */
+            right: -200px; 
             transform: translateY(-50%);
             display: flex;
-            flex-direction: column; /* 🔴 ਵਾਪਸ ਉੱਪਰ-ਹੇਠਾਂ ਕਰ ਦਿੱਤਾ ਹੈ */
-            gap: 25px; /* 🔴 ਦੋਵਾਂ ਬਾਕਸਾਂ ਵਿਚਕਾਰਲੀ ਖਾਲੀ ਜਗ੍ਹਾ ਵਧਾ ਦਿੱਤੀ ਹੈ */
+            flex-direction: column; 
+            gap: 25px; 
             z-index: 100;
         }
 
-        .live-count-box {
-            background: #111;
-            border: 2px solid #c04a2c;
-            box-shadow: 5px 5px 0px #111;
-            padding: 20px 25px; /* 🔴 ਬਾਕਸ ਅੰਦਰ ਥੋੜ੍ਹੀ ਖੁੱਲ੍ਹੀ ਜਗ੍ਹਾ ਦਿੱਤੀ ਹੈ */
-            text-align: center;
-            min-width: 130px;
-        }
-
-        .death-box {
-            border-color: #8b331c; 
-        }
-
-        .live-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            font-size: 9px;
-            color: #888;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-            font-weight: bold;
-        }
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #ff4d4d;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
-            70% { box-shadow: 0 0 0 6px rgba(255, 77, 77, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
-        }
-        .live-count-num {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            font-weight: 900;
-            color: #f4eee0;
-            line-height: 1;
-        }
-        .live-count-text {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: bold;
-            color: #c04a2c;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 8px;
-            line-height: 1.3;
-        }
+        .live-count-box { background: #111; border: 2px solid #c04a2c; box-shadow: 5px 5px 0px #111; padding: 20px 25px; text-align: center; min-width: 130px; }
+        .death-box { border-color: #8b331c; }
+        .live-indicator { display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 9px; color: #888; margin-bottom: 8px; letter-spacing: 1px; font-weight: bold; }
+        .pulse-dot { width: 6px; height: 6px; background-color: #ff4d4d; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(255, 77, 77, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); } }
+        .live-count-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: #f4eee0; line-height: 1; }
+        .live-count-text { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: bold; color: #c04a2c; letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; line-height: 1.3; }
 
         /* Footer CSS */
         .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; }
@@ -156,24 +129,58 @@
         @media(max-width: 1100px) {
             .counters-container { 
                 position: relative; top: 0; right: 0; transform: none; margin-top: 30px; 
-                flex-direction: row; /* ਮੋਬਾਈਲ ਤੇ ਜਗ੍ਹਾ ਬਚਾਉਣ ਲਈ ਨਾਲ-ਨਾਲ ਰਹਿਣਗੇ */
+                flex-direction: row; 
                 flex-wrap: wrap;
                 justify-content: center;
                 width: 100%; max-width: 400px; margin-left: auto; margin-right: auto;
             }
             .live-count-box { flex: 1; min-width: 140px; }
         }
+
         @media(max-width: 900px) {
-            header { flex-direction: column; gap: 20px; padding: 15px 20px; }
-            .logo-wrapper { justify-content: center; } 
-            nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .header-buttons { flex-direction: column; width: 100%; }
+            header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
+            .logo-wrapper { justify-content: flex-start; } 
+            
+            /* 🔴 Show Hamburger */
+            .hamburger { display: flex; }
+            
+            /* 🔴 Mobile Dropdown Navigation */
+            .nav-container {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #f4f1ea;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0;
+                box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+                border-bottom: 2px solid #111;
+                display: none; /* Hidden by default */
+            }
+            .nav-container.active { display: flex; } /* Shown when toggled */
+
+            nav { flex-direction: column; width: 100%; padding: 10px 20px; box-sizing: border-box; gap: 0; }
+            nav a { padding: 15px 0; border-bottom: 1px solid #e0dcd2; width: 100%; display: block; }
+            nav a:last-child { border-bottom: none; }
+            
+            .header-buttons { flex-direction: column; width: 100%; padding: 20px; box-sizing: border-box; gap: 15px; }
             .header-buttons .btn-large { width: 100%; box-sizing: border-box; }
+
+            /* 🔴 Hamburger 'X' Animation */
+            .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+            /* Hero Fixes */
             .hero { flex-direction: column; text-align: center; padding: 40px 20px; gap: 30px; }
             .hero-right { border-left: none; padding-left: 0; padding-top: 40px; border-top: 1px solid #e0dcd2; width: 100%; }
             .hero-title { font-size: 55px; }
+            .hero-desc { text-align: left; } /* Keep paragraph readable */
             .action-buttons { flex-direction: column; width: 100%; max-width: 380px; margin: 0 auto; }
             .action-buttons .btn-large { width: 100%; box-sizing: border-box; }
+            
+            /* Footer Fixes */
             .site-footer { padding: 40px 20px 20px; }
             .footer-grid { flex-direction: column; text-align: center; }
             .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
@@ -186,21 +193,32 @@
         <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ - Adv ਬੀਬਰ ਸਰਪੰਚ ✦</span>
     </div>
 
+    <!-- 🔴 Header with Hamburger Menu -->
     <header>
         <a href="index.html" class="logo-wrapper">
             <img src="hand.png" alt="Logo" class="logo-img">
             <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
         </a>
         
-        <nav>
-            <a href="javascript:void(0);">Vision</a>
-            <a href="javascript:void(0);">Manifesto</a>
-            <a href="javascript:void(0);">Security</a>
-            <a href="javascript:void(0);">About Us</a>
-        </nav>
-        <div class="header-buttons">
-            <a href="news.html" class="btn-large">ਪੰਜਾਬ NEWS ➔</a>
-            <a href="legends.html" class="btn-large btn-dark-rust">ਸੂਰਮੇ (Legends) ➔</a>
+        <!-- Hamburger Icon (Mobile Only) -->
+        <div class="hamburger" id="hamburgerMenu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <!-- Navigation & Buttons -->
+        <div class="nav-container" id="navMenu">
+            <nav>
+                <a href="javascript:void(0);">Vision</a>
+                <a href="javascript:void(0);">Manifesto</a>
+                <a href="javascript:void(0);">Security</a>
+                <a href="javascript:void(0);">About Us</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="news.html" class="btn-large">ਪੰਜਾਬ NEWS ➔</a>
+                <a href="legends.html" class="btn-large btn-dark-rust">ਸੂਰਮੇ (Legends) ➔</a>
+            </div>
         </div>
     </header>
 
@@ -213,11 +231,11 @@
                 <span class="text-green">Justice.</span>
             </h1>
             <p class="hero-desc">
-    ਇਹ ਪਲੇਟਫਾਰਮ ਪੰਜਾਬ ਦੇ ਉਨ੍ਹਾਂ ਲੋਕਾਂ ਲਈ ਹੈ ਜਿਨ੍ਹਾਂ ਦੀ ਆਵਾਜ਼ ਸਿਸਟਮ ਨੇ ਦਬਾ ਦਿੱਤੀ ਹੈ। ਜੇਕਰ ਪੁਲਿਸ ਤੁਹਾਡੇ ਨਾਲ ਧੱਕਾ ਕਰਦੀ ਹੈ, ਸ਼ਿਕਾਇਤ ਲਿਖਣ ਤੋਂ ਮਨ੍ਹਾ ਕਰਦੀ ਹੈ ਜਾਂ ਬਣਦੀ ਕਾਰਵਾਈ ਨਹੀਂ ਕਰਦੀ, ਤਾਂ ਇਹ ਪਲੇਟਫਾਰਮ ਤੁਹਾਡੇ ਲਈ ਹੈ। ਬਿਨਾਂ ਆਪਣੀ ਪਛਾਣ ਦੱਸੇ ਝੂਠੇ ਪਰਚਿਆਂ, ਪੁਲਿਸ ਦੀਆਂ ਵਧੀਕੀਆਂ ਅਤੇ ਨਸ਼ਾ ਤਸਕਰਾਂ ਖਿਲਾਫ ਸਿੱਧੇ ਸਬੂਤ ਸਾਂਝੇ ਕਰੋ।<br><br>
-    ਚਾਹੇ ਕੋਈ ਭ੍ਰਿਸ਼ਟ ਸਰਕਾਰੀ ਜਾਂ ਪ੍ਰਾਈਵੇਟ ਅਫਸਰ ਹੋਵੇ, ਜਾਂ ਕੋਈ ਲੀਡਰ (ਪੰਚ, ਸਰਪੰਚ, ਕੌਂਸਲਰ, MLA, MP ਜਾਂ CM)—ਬਿਨਾਂ ਡਰੇ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ। ਅਸੀਂ ਤੁਹਾਡੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰਨ ਦੀ ਪੂਰੀ ਕੋਸ਼ਿਸ਼ ਕਰਾਂਗੇ।<br>
-    <b>One large, stubborn movement.</b>
-    <span style="display: block; text-align: right; color: #555; font-size: 16px; margin-top: 10px;">-ਬੀਬਰ ਸਰਪੰਚ</span>
-</p>
+                ਇਹ ਪਲੇਟਫਾਰਮ ਪੰਜਾਬ ਦੇ ਉਨ੍ਹਾਂ ਲੋਕਾਂ ਲਈ ਹੈ ਜਿਨ੍ਹਾਂ ਦੀ ਆਵਾਜ਼ ਸਿਸਟਮ ਨੇ ਦਬਾ ਦਿੱਤੀ ਹੈ। ਜੇਕਰ ਪੁਲਿਸ ਤੁਹਾਡੇ ਨਾਲ ਧੱਕਾ ਕਰਦੀ ਹੈ, ਸ਼ਿਕਾਇਤ ਲਿਖਣ ਤੋਂ ਮਨ੍ਹਾ ਕਰਦੀ ਹੈ ਜਾਂ ਬਣਦੀ ਕਾਰਵਾਈ ਨਹੀਂ ਕਰਦੀ, ਤਾਂ ਇਹ ਪਲੇਟਫਾਰਮ ਤੁਹਾਡੇ ਲਈ ਹੈ। ਬਿਨਾਂ ਆਪਣੀ ਪਛਾਣ ਦੱਸੇ ਝੂਠੇ ਪਰਚਿਆਂ, ਪੁਲਿਸ ਦੀਆਂ ਵਧੀਕੀਆਂ ਅਤੇ ਨਸ਼ਾ ਤਸਕਰਾਂ ਖਿਲਾਫ ਸਿੱਧੇ ਸਬੂਤ ਸਾਂਝੇ ਕਰੋ।<br><br>
+                ਚਾਹੇ ਕੋਈ ਭ੍ਰਿਸ਼ਟ ਸਰਕਾਰੀ ਜਾਂ ਪ੍ਰਾਈਵੇਟ ਅਫਸਰ ਹੋਵੇ, ਜਾਂ ਕੋਈ ਲੀਡਰ (ਪੰਚ, ਸਰਪੰਚ, ਕੌਂਸਲਰ, MLA, MP ਜਾਂ CM)—ਬਿਨਾਂ ਡਰੇ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ। ਅਸੀਂ ਤੁਹਾਡੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕਰਨ ਦੀ ਪੂਰੀ ਕੋਸ਼ਿਸ਼ ਕਰਾਂਗੇ।<br>
+                <b>One large, stubborn movement.</b>
+                
+                <span style="display: block; text-align: right; color: #555; font-size: 16px; margin-top: 10px;">.ਬੀਬਰ ਸਰਪੰਚ</span>
             </p>
             <div class="action-buttons">
                 <a href="complaint.html" class="btn-large" style="background-color: #111;">FILE COMPLAINT (ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ) ➔</a>
@@ -253,23 +271,22 @@
                 <span class="caption-red">Est. Today</span>
             </div>
 
-            <!-- 🔴 LIVE COUNTERS (Stacked and Spaced out) -->
             <div class="counters-container">
                 <!-- 1. Complaints Counter -->
                 <div class="live-count-box">
                     <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
-                    <!-- 'toLocaleString()' allows formatted numbers with commas (e.g. 10,340) if applied via JS -->
                     <div class="live-count-num" id="public-live-counter">0</div>
                     <div class="live-count-text">COMPLAINTS<br>FILED</div>
-                    <span style="font-size: 10px; color: #f4eee0; margin-top: 5px; display: block;">(ਦਰਜ ਹੋਈਆ ਸ਼ਿਕਾਇਤਾਂ)</span>
                 </div>
 
                 <!-- 2. Drug Deaths Counter -->
                 <div class="live-count-box death-box">
                     <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
-                    <div class="live-count-num" id="death-counter">10,340</div>
-                    <div class="live-count-text">DRUG DEATHS<br>(PUNJAB)</div>
-                    <span style="font-size: 10px; color: #f4eee0; margin-top: 5px; display: block;">(ਨਸ਼ੇ ਕਾਰਨ ਹੋਣ ਵਾਲੀਆਂ ਮੌਤਾਂ)</span>
+                    <div class="live-count-num" id="death-counter">0</div>
+                    <div class="live-count-text">
+                        DRUG DEATHS<br>(PUNJAB)<br>
+                        <span style="font-size: 8px; color: #888; font-weight: normal; margin-top: 5px; display: block;">(ਨਸ਼ੇ ਕਾਰਨ ਹੋਣ ਵਾਲੀਆਂ ਮੌਤਾਂ)</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -319,6 +336,17 @@
         </div>
     </footer>
 
+    <!-- 🔴 Javascript For Hamburger Menu -->
+    <script>
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+
     <!-- FIREBASE LIVE COUNTER SCRIPT -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
@@ -332,7 +360,6 @@
         
         const db = firebase.database();
 
-        // 1. Complaints Update (with formatting for commas e.g., 10,340)
         db.ref('complaint_count').on('value', (s) => {
             if(document.getElementById('public-live-counter')) {
                 let val = s.val() || 0;
@@ -340,7 +367,6 @@
             }
         });
 
-        // 2. Drug Deaths Update (with formatting for commas)
         db.ref('drug_death_count').on('value', (s) => {
             if(document.getElementById('death-counter')) {
                 let val = s.val() || 0;
