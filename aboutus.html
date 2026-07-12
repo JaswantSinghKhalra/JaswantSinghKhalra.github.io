@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    <link rel="icon" type="image/png" href="hand.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* Top Scrolling Marquee */
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
+        .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
+        @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
+        /* Sticky Header */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
+        
+        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-decoration: none; }
+        .logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #111; object-fit: cover; background-color: #f4f1ea; box-shadow: 2px 2px 0px #111; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
+
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+        nav { display: flex; gap: 30px; }
+        nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: #c04a2c; }
+        .header-buttons { display: flex; gap: 15px; align-items: center; }
+        
+        .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; text-align: center; display: inline-block; }
+        .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
+
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .hamburger .bar { width: 30px; height: 3px; background-color: #111; transition: all 0.3s ease-in-out; border-radius: 2px; }
+
+        /* 🔴 ABOUT PAGE STYLES 🔴 */
+        .about-hero {
+            background-color: #0c0908;
+            color: #f4eee0;
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 2px solid #c04a2c;
+        }
+        .about-tag {
+            color: #c04a2c;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .about-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 65px;
+            font-weight: 900;
+            margin: 0 0 20px 0;
+            letter-spacing: -1px;
+        }
+        .about-subtitle {
+            font-size: 16px;
+            color: #aaa;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .about-body {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 30px;
+        }
+        
+        .section-block { margin-bottom: 60px; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #111;
+            margin-bottom: 25px;
+        }
+        .section-header .line {
+            flex: 1;
+            height: 1px;
+            background-color: #d4ccb8;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: #111;
+            margin: 0 0 15px 0;
+        }
+        .section-text {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .quote-box {
+            background-color: #111;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+            border: 2px solid #c04a2c;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.8);
+        }
+        .quote-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #4CAF50;
+            margin: 0 0 15px 0;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        .quote-box p {
+            color: #f4eee0;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Footer */
+        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .footer-grid .footer-col { flex: 1; min-width: 150px; }
+        .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1.1; margin: 0; color: #fff; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #aaa; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.3s; }
+        .footer-links a:hover { color: #c04a2c; }
+        .footer-msg-small { font-size: 12px; color: #aaa; font-weight: bold; }
+        .footer-msg-big { font-family: 'Playfair Display', serif; font-size: 28px; color: #4CAF50; font-weight: 900; margin-top: 5px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; }
+        .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
+        .footer-bottom a:hover { color: #fff; }
+
+        /* Mobile Adjustments */
+        @media(max-width: 900px) {
+            header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
+            .logo-wrapper { justify-content: flex-start; } 
+            .hamburger { display: flex; }
+            .nav-container { position: absolute; top: 100%; left: 0; width: 100%; background-color: #f4f1ea; flex-direction: column; align-items: flex-start; padding: 0; box-shadow: 0px 10px 15px rgba(0,0,0,0.1); border-bottom: 2px solid #111; display: none; }
+            .nav-container.active { display: flex; } 
+            nav { flex-direction: column; width: 100%; padding: 10px 20px; box-sizing: border-box; gap: 0; }
+            nav a { padding: 15px 0; border-bottom: 1px solid #e0dcd2; width: 100%; display: block; }
+            nav a:last-child { border-bottom: none; }
+            .header-buttons { flex-direction: column; width: 100%; padding: 20px; box-sizing: border-box; gap: 15px; }
+            .header-buttons .btn-large { width: 100%; box-sizing: border-box; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            
+            .about-title { font-size: 45px; }
+            .about-hero { padding: 60px 20px; }
+            .about-body { padding: 0 20px; margin: 40px auto; }
+            .quote-box { padding: 25px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ - Adv ਬੀਬਰ ਸਰਪੰਚ ✦</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo-wrapper">
+            <img src="hand.png" alt="Logo" class="logo-img">
+            <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
+        </a>
+        <div class="hamburger" id="hamburgerMenu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div class="nav-container" id="navMenu">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="manifesto.html">Manifesto</a>
+                <a href="security.html">Security</a>
+                <a href="about.html" style="color: #c04a2c;">About Us</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="complaint.html" class="btn-large">File Complaint ➔</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 🔴 About Hero Section 🔴 -->
+    <section class="about-hero">
+        <div class="about-tag">WHO WE ARE & WHY WE EXIST</div>
+        <h1 class="about-title">About Us.</h1>
+        <p class="about-subtitle">
+            ਅਸੀਂ ਕੋਈ ਸਿਆਸੀ ਪਾਰਟੀ ਜਾਂ ਸਰਕਾਰੀ ਏਜੰਸੀ ਨਹੀਂ ਹਾਂ। ਅਸੀਂ ਪੰਜਾਬ ਦੇ ਉਹ ਆਮ ਲੋਕ ਹਾਂ, ਜਿਨ੍ਹਾਂ ਨੇ ਸਿਸਟਮ ਦੀ ਧੱਕੇਸ਼ਾਹੀ ਅੱਗੇ ਝੁਕਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਹੈ।
+        </p>
+    </section>
+
+    <!-- 🔴 About Body Section 🔴 -->
+    <section class="about-body">
+
+        <!-- 01 THE INITIATIVE -->
+        <div class="section-block">
+            <div class="section-header">
+                01 — THE INITIATIVE <div class="line"></div>
+            </div>
+            <h2 class="section-title">ਇਹ ਪਲੇਟਫਾਰਮ ਕਿਉਂ ਬਣਾਇਆ ਗਿਆ?</h2>
+            <p class="section-text">
+                ਪੰਜਾਬ ਵਿੱਚ ਹਰ ਰੋਜ਼ ਕਿਸੇ ਨਾ ਕਿਸੇ ਗਰੀਬ ਜਾਂ ਆਮ ਇਨਸਾਨ ਨਾਲ ਧੱਕਾ ਹੁੰਦਾ ਹੈ। ਝੂਠੇ ਪਰਚੇ ਪਾਏ ਜਾਂਦੇ ਹਨ, ਨਸ਼ਾ ਤਸਕਰਾਂ ਨੂੰ ਬਚਾਇਆ ਜਾਂਦਾ ਹੈ ਅਤੇ ਜਦੋਂ ਕੋਈ ਆਵਾਜ਼ ਚੁੱਕਦਾ ਹੈ ਤਾਂ ਉਸਨੂੰ ਸਿਸਟਮ ਦੁਆਰਾ ਦਬਾ ਦਿੱਤਾ ਜਾਂਦਾ ਹੈ। 
+            </p>
+            <p class="section-text">
+                ਇਸ ਡਰ ਨੂੰ ਖਤਮ ਕਰਨ ਲਈ ਅਤੇ <b>ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ</b>, ਐਡਵੋਕੇਟ ਬੀਬਰ ਸਰਪੰਚ (Adv. Bieber Sarpanch) ਵੱਲੋਂ "ਸੱਚ ਦੀ ਆਵਾਜ਼" ਦੀ ਸ਼ੁਰੂਆਤ ਕੀਤੀ ਗਈ ਹੈ। ਸਾਡਾ ਮਕਸਦ ਲੋਕਾਂ ਨੂੰ ਇੱਕ ਅਜਿਹਾ ਸੁਰੱਖਿਅਤ ਪਲੇਟਫਾਰਮ ਦੇਣਾ ਹੈ ਜਿੱਥੇ ਉਹ ਬਿਨਾਂ ਆਪਣੀ ਪਛਾਣ ਦੱਸੇ ਸੱਚਾਈ ਸਾਹਮਣੇ ਲਿਆ ਸਕਣ।
+            </p>
+        </div>
+
+        <!-- 02 NO POLITICS -->
+        <div class="section-block">
+            <div class="section-header">
+                02 — NO POLITICS <div class="line"></div>
+            </div>
+            <h2 class="section-title">ਸਾਡਾ ਕੋਈ ਸਿਆਸੀ ਏਜੰਡਾ ਨਹੀਂ</h2>
+            <p class="section-text">
+                ਅਸੀਂ ਸਪੱਸ਼ਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹਾਂ ਕਿ ਸਾਡਾ ਪਲੇਟਫਾਰਮ ਕਿਸੇ ਵੀ ਸਿਆਸੀ ਪਾਰਟੀ (Political Party) ਜਾਂ ਸਰਕਾਰ ਦੇ ਅਧੀਨ ਕੰਮ ਨਹੀਂ ਕਰਦਾ। ਨਾ ਅਸੀਂ ਵੋਟਾਂ ਮੰਗਦੇ ਹਾਂ ਅਤੇ ਨਾ ਹੀ ਸਾਡਾ ਕਿਸੇ ਲੀਡਰ ਨਾਲ ਕੋਈ ਗੱਠਜੋੜ ਹੈ। 
+            </p>
+            <p class="section-text">
+                ਸਾਡੀ ਇੱਕੋ-ਇੱਕ ਪਾਰਟੀ "ਸੱਚ" ਹੈ, ਅਤੇ ਸਾਡਾ ਇੱਕੋ-ਇੱਕ ਏਜੰਡਾ "ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ" ਕਰਨਾ ਹੈ।
+            </p>
+        </div>
+
+        <!-- Special Quote Box -->
+        <div class="quote-box">
+            <h3>"ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ"</h3>
+            <p>ਸਿਸਟਮ ਜਿੰਨਾ ਮਰਜ਼ੀ ਤਾਕਤਵਰ ਕਿਉਂ ਨਾ ਹੋਵੇ, ਜਦੋਂ ਆਮ ਲੋਕ ਬਿਨਾਂ ਡਰੇ ਇਕੱਠੇ ਹੋ ਜਾਂਦੇ ਹਨ ਤਾਂ ਵੱਡੀਆਂ-ਵੱਡੀਆਂ ਕੁਰਸੀਆਂ ਹਿੱਲ ਜਾਂਦੀਆਂ ਹਨ। ਅਸੀਂ ਪੰਜਾਬ ਦੇ ਲੋਕਾਂ ਨੂੰ ਉਹੀ ਤਾਕਤ ਵਾਪਸ ਦੇਣ ਆਏ ਹਾਂ।</p>
+        </div>
+
+        <!-- 03 THE MOVEMENT -->
+        <div class="section-block">
+            <div class="section-header">
+                03 — THE MOVEMENT <div class="line"></div>
+            </div>
+            <h2 class="section-title">ਇਹ ਲੜਾਈ ਸਾਡੇ ਸਾਰਿਆਂ ਦੀ ਹੈ</h2>
+            <p class="section-text">
+                ਇਸ ਟੀਮ ਵਿੱਚ ਸਿਰਫ਼ ਮੈਂ ਇਕੱਲਾ ਨਹੀਂ, ਬਲਕਿ ਪੰਜਾਬ ਦਾ ਹਰ ਉਹ ਇਨਸਾਨ ਸ਼ਾਮਲ ਹੈ ਜੋ ਸੱਚ ਨਾਲ ਖੜ੍ਹਾ ਹੈ। ਚਾਹੇ ਤੁਸੀਂ ਇੱਕ ਵਿਦਿਆਰਥੀ ਹੋ, ਕਿਸਾਨ ਹੋ, ਜਾਂ ਕੋਈ ਦੁਕਾਨਦਾਰ—ਜੇਕਰ ਤੁਸੀਂ ਧੱਕੇਸ਼ਾਹੀ ਦੇ ਖਿਲਾਫ ਬੋਲਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ "ਸੱਚ ਦੀ ਆਵਾਜ਼" ਦਾ ਹਿੱਸਾ ਹੋ।
+            </p>
+            
+            <!-- Sign off -->
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #e0dcd2;">
+                <b style="font-size: 18px; color: #111;">One large, stubborn movement.</b>
+                <span style="display: block; text-align: right; color: #555; font-size: 16px; margin-top: 10px;">.ਬੀਬਰ ਸਰਪੰਚ</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <span class="footer-label">Since 2026</span>
+                <h2 class="footer-brand">ਸੱਚ ਦੀ<br>ਆਵਾਜ਼.</h2>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Legal & Contact</span>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="security.html">Security Guidelines</a></li>
+                    <li><a href="vision.html">Our Vision</a></li>
+                    <li><a href="contact.html">Secure Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Social Media</span>
+                <ul class="footer-links">
+                    <li><a href="https://www.instagram.com/biebersarpanch" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com/@biebersarpanch" target="_blank">YouTube</a></li>
+                    <li><a href="https://x.com/BieberOP22" target="_blank">Twitter (X)</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">The System</span>
+                <div class="footer-msg-small">Who's in charge now?</div>
+                <div class="footer-msg-big">YOU ARE.</div>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">OWNER</span>
+                <div class="footer-msg-small" style="font-size: 15px; margin-top: 5px;">ਬੀਬਰ ਸਰਪੰਚ</div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="bottom-left">
+                <a href="https://www.instagram.com/biebersarpanch" target="_blank">INSTAGRAM</a>
+                <a href="https://youtube.com/@biebersarpanch" target="_blank">YOUTUBE</a>
+            </div>
+            <div class="bottom-center" style="color: #c04a2c; letter-spacing: 1px;">A SECURE PLATFORM · VOICE OF PUNJAB</div>
+            <div class="bottom-right">© 2026 ਸੱਚ ਦੀ ਆਵਾਜ਼ · ALL RIGHTS RESERVED</div>
+        </div>
+    </footer>
+
+    <!-- Javascript For Hamburger Menu -->
+    <script>
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
