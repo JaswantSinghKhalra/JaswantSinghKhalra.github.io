@@ -69,14 +69,14 @@
         .poster-caption { display: flex; justify-content: space-between; width: 100%; max-width: 380px; margin-top: 15px; font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; box-sizing: border-box; }
         .caption-red { color: #c04a2c; font-style: italic; }
 
-        /* 🔴 📊 LIVE COUNTERS STYLING (UPDATE: Side by Side) */
+        /* 🔴 📊 LIVE COUNTERS STYLING (UPDATE) */
         .counters-container {
             position: absolute;
             top: 50%;
-            right: -160px; /* ਦੋਵਾਂ ਬਾਕਸਾਂ ਨੂੰ ਫਿੱਟ ਕਰਨ ਲਈ ਜਗ੍ਹਾ ਸੈੱਟ ਕੀਤੀ ਹੈ */
+            right: -70px;
             transform: translateY(-50%);
             display: flex;
-            flex-direction: row; /* 🔴 ਇੱਥੇ column ਦੀ ਜਗ੍ਹਾ row ਕਰ ਦਿੱਤਾ ਹੈ, ਜਿਸ ਨਾਲ ਇਹ ਨਾਲ-ਨਾਲ ਆਉਣਗੇ */
+            flex-direction: column;
             gap: 15px;
             z-index: 100;
         }
@@ -91,7 +91,7 @@
         }
 
         .death-box {
-            border-color: #8b331c; 
+            border-color: #8b331c; /* Drug Deaths ਲਈ ਥੋੜ੍ਹਾ ਡਾਰਕ ਬਾਰਡਰ */
         }
 
         .live-indicator {
@@ -156,7 +156,7 @@
         @media(max-width: 1100px) {
             .counters-container { 
                 position: relative; top: 0; right: 0; transform: none; margin-top: 30px; 
-                flex-direction: row; 
+                flex-direction: row; /* ਮੋਬਾਈਲ ਤੇ ਨਾਲ-ਨਾਲ */
                 justify-content: center;
                 width: 100%; max-width: 380px; margin-left: auto; margin-right: auto;
             }
@@ -248,7 +248,7 @@
                 <span class="caption-red">Est. Today</span>
             </div>
 
-            <!-- 🔴 LIVE COUNTERS (Side by Side) -->
+            <!-- 🔴 LIVE COUNTERS (Both) -->
             <div class="counters-container">
                 <!-- 1. Complaints Counter -->
                 <div class="live-count-box">
@@ -260,7 +260,7 @@
                 <!-- 2. Drug Deaths Counter -->
                 <div class="live-count-box death-box">
                     <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
-                    <div class="live-count-num" id="death-counter">10,339</div>
+                    <div class="live-count-num" id="death-counter">10,440</div>
                     <div class="live-count-text">DRUG DEATHS<br>(PUNJAB)</div>
                 </div>
             </div>
@@ -311,7 +311,7 @@
         </div>
     </footer>
 
-    <!-- 🔴 FIREBASE LIVE COUNTER SCRIPT -->
+    <!-- 🔴 FIREBASE LIVE COUNTER SCRIPT (Updated) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script>
