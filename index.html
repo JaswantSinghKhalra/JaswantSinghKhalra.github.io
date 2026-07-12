@@ -165,22 +165,28 @@
             .live-count-box { flex: 1; min-width: 140px; }
         }
 
+        /* 🔴 MOBILE HEADER STYLES UPDATED HERE 🔴 */
         @media(max-width: 900px) {
-            /* 🔴 HEADER CENTER FIX FOR MOBILE 🔴 */
-            header { flex-direction: row; justify-content: space-between; padding: 15px 20px; position: relative; }
-            .logo-wrapper { justify-content: flex-start; } 
+            header { position: relative; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; }
             
-            /* THIS CENTERS THE TEXT ON MOBILE */
-            .logo-text { 
-                position: absolute; 
-                left: 50%; 
-                transform: translateX(-50%); 
-                font-size: 32px; /* Thoda wadda size */
-                white-space: nowrap; 
+            /* Make logo wrapper static so absolute text works relative to header */
+            .logo-wrapper { position: static; } 
+            
+            /* Logo Image larger on mobile */
+            .logo-img { width: 55px; height: 55px; position: relative; z-index: 10; pointer-events: auto; }
+            
+            /* Absolute centering the text on mobile */
+            .logo-text {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 28px; 
+                white-space: nowrap;
+                z-index: 5;
+                pointer-events: auto; /* Ensure it stays clickable */
             }
-            .logo-img { width: 55px; height: 55px; } /* Logo thoda wadda */
 
-            .hamburger { display: flex; }
+            .hamburger { display: flex; position: relative; z-index: 10; }
             .nav-container { position: absolute; top: 100%; left: 0; width: 100%; background-color: #f4f1ea; flex-direction: column; align-items: flex-start; padding: 0; box-shadow: 0px 10px 15px rgba(0,0,0,0.1); border-bottom: 2px solid #111; display: none; }
             .nav-container.active { display: flex; } 
             nav { flex-direction: column; width: 100%; padding: 10px 20px; box-sizing: border-box; gap: 0; }
@@ -228,10 +234,6 @@
 
         /* 📱 EXTRA MOBILE FIXES FOR SMALL SCREENS 📱 */
         @media(max-width: 600px) {
-            header { padding: 15px 15px; }
-            .logo-img { width: 50px; height: 50px; } /* Ensures it doesn't shrink back to 35px */
-            .logo-text { font-size: 28px; } /* Adjusted for smallest screens but still big */
-
             .hero-title { font-size: 42px; line-height: 1.1; }
             .hero-desc { font-size: 14px; }
             .w-title { font-size: 38px; line-height: 1.1; }
@@ -252,6 +254,11 @@
             .home-manifesto { padding: 50px 15px; }
             .story-section { padding: 50px 15px; }
             .eligibility-section { padding: 50px 15px; }
+            
+            /* 🔴 PERFECT MOBILE HEADER 🔴 */
+            header { padding: 15px; }
+            .logo-img { width: 50px; height: 50px; } /* Increased size for mobile */
+            .logo-text { font-size: 24px; } /* Centered perfectly */
         }
     </style>
 </head>
@@ -300,6 +307,7 @@
                 <span style="display: block; text-align: right; color: #555; font-size: 16px; margin-top: 10px;">- ਬੀਬਰ ਸਰਪੰਚ</span>
             </p>
             
+            <!-- HERO BUTTONS -->
             <div class="action-buttons">
                 <a href="complaint.html" class="btn-large">FILE COMPLAINT (ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ) ➔</a>
                 <a href="status.html" class="btn-large">COMPLAINT STATUS (ਸਥਿਤੀ ਦੇਖੋ) ➔</a>
@@ -353,6 +361,7 @@
     <!-- 🔴 WELCOME / ABOUT SECTION 🔴 -->
     <section class="welcome-section">
         <div class="welcome-grid">
+            <!-- Left Side -->
             <div class="welcome-left">
                 <span class="w-tag">ABOUT US · OUR VISION</span>
                 <h2 class="w-title">Welcome to<br><span style="color: #c04a2c; font-style: italic;">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span></h2>
@@ -370,6 +379,7 @@
                 </div>
             </div>
 
+            <!-- Right Side (3 Points) -->
             <div class="welcome-right">
                 <div class="w-feature">
                     <span class="w-feature-tag">WHAT YOU GET</span>
@@ -404,18 +414,22 @@
                     <div class="m-num">01</div>
                     <div class="m-text">ਸ਼੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਬੇਅਦਬੀ ਦੇ ਮਾਮਲਿਆਂ ਵਿੱਚ ਸਖ਼ਤ ਅਤੇ ਤੁਰੰਤ ਇਨਸਾਫ਼ ਹੋਵੇ। ਬੇਅਦਬੀ ਦੀਆਂ ਘਟਨਾਵਾਂ ਨੂੰ ਰੋਕਣ ਲਈ ਸਖ਼ਤ ਕਾਨੂੰਨ ਬਣੇ ਅਤੇ ਦੋਸ਼ੀਆਂ ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ ਸਿਆਸੀ ਬਚਾਅ ਦੇ ਸਖ਼ਤ ਸਜ਼ਾਵਾਂ ਮਿਲਣ।</div>
                 </div>
+                
                 <div class="m-item">
                     <div class="m-num">02</div>
                     <div class="m-text">ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ। ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਆਮ ਲੋਕਾਂ 'ਤੇ ਪਾਏ ਗਏ ਝੂਠੇ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ ਅਤੇ ਧੱਕਾ ਕਰਨ ਵਾਲੇ ਅਫਸਰਾਂ ਖਿਲਾਫ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਵੇ।</div>
                 </div>
+                
                 <div class="m-item">
                     <div class="m-num">03</div>
                     <div class="m-text">ਨਸ਼ਾ ਤਸਕਰਾਂ, ਭ੍ਰਿਸ਼ਟ ਪੁਲਿਸ ਅਤੇ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ। ਜੋ ਪੁਲਿਸ ਵਾਲੇ ਪੈਸੇ ਲੈ ਕੇ ਤਸਕਰਾਂ ਨੂੰ ਛੱਡਦੇ ਹਨ ਅਤੇ ਜੋ ਲੀਡਰ ਨਸ਼ਾ ਵਿਕਵਾ ਰਹੇ ਹਨ, ਉਹਨਾਂ ਦਾ ਪਰਦਾਫਾਸ਼ ਕਰਕੇ ਜੇਲ੍ਹਾਂ ਵਿੱਚ ਡੱਕਿਆ ਜਾਵੇ।</div>
                 </div>
+                
                 <div class="m-item">
                     <div class="m-num">04</div>
                     <div class="m-text">"ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਹੋਵੇ। ਪੁਲਿਸ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਪੁਲਿਸ ਨੂੰ ਹੀ ਮਾਰਕ ਹੋਣ ਕਾਰਨ ਉਹ ਆਪਣੇ ਬੰਦਿਆਂ ਨੂੰ ਬਚਾਉਂਦੇ ਹਨ। ਨਾਲ ਹੀ RTI ਵਿੱਚ 80-90 ਦਿਨਾਂ ਦੀ ਦੇਰੀ ਬੰਦ ਹੋਵੇ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬਦੇਹੀ ਤੈਅ ਹੋਵੇ।</div>
                 </div>
+
                 <div class="m-item">
                     <div class="m-num">05</div>
                     <div class="m-text">ਇੱਕ ਅਜਿਹੀ ਆਜ਼ਾਦ ਅਤੇ ਤਾਕਤਵਰ ਟੀਮ (Independent Team) ਬਣਾਈ ਜਾਵੇ, ਜੋ ਸਿੱਧੇ ਤੌਰ 'ਤੇ ਇਹਨਾਂ ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ ਮੁੱਦਿਆਂ ਨੂੰ ਹੈਂਡਲ ਕਰੇ। ਇੱਕ ਅਜਿਹੀ ਫੋਰਸ ਜਿਸ ਵਿੱਚ ਕਾਨੂੰਨੀ ਮਾਹਿਰ ਹੋਣ, ਜੋ ਪੁਲਿਸ ਜਾਂ ਸਿਆਸਤਦਾਨਾਂ ਦੇ ਦਬਾਅ ਹੇਠ ਕੰਮ ਨਾ ਕਰੇ, ਅਤੇ ਜਿਸਦਾ ਕੰਮ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਲੋਕਾਂ ਨੂੰ ੧ ਮਹੀਨੇ (1 Month) ਦੇ ਅੰਦਰ ਇਨਸਾਫ਼ ਦਿਵਾਉਣਾ ਹੋਵੇ।</div>
@@ -430,6 +444,7 @@
             <div class="story-left">
                 <h2 class="story-title">It started with a simple demand for justice.</h2>
                 <p class="story-desc">ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ。</p>
+                
                 <a href="movie.html" class="btn-large" style="margin-top: 10px; display: inline-block;">WATCH MOVIE (ਪੰਜਾਬ 95 ਸਤਲੁਜ) ➔</a>
             </div>
             <div class="story-right">
