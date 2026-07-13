@@ -56,6 +56,7 @@
         .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
         .btn-dark-rust { background-color: #8b331c; }
         
+        /* Transparent Outline Button Style */
         .btn-outline { background-color: transparent; color: #111; letter-spacing: 2px; }
         .btn-outline:hover { background-color: #e0dcd2; color: #111; }
 
@@ -180,7 +181,7 @@
         .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
         .footer-bottom a:hover { color: #fff; }
 
-        /* 🔴 VIDEO POP-UP MODAL CSS (Fully Responsive & 16:9 Aspect Ratio) 🔴 */
+        /* 🔴 NEW REELS VIDEO POP-UP CSS 🔴 */
         .video-modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -189,25 +190,32 @@
             display: none;
             align-items: center; justify-content: center;
             opacity: 0; transition: opacity 0.4s ease;
+            backdrop-filter: blur(5px);
         }
         .video-modal-overlay.show {
             display: flex;
             opacity: 1;
         }
+        
         .video-modal-content {
             background-color: #f4f1ea;
             border: 3px solid #111;
             box-shadow: 10px 10px 0px #111;
-            padding: 25px;
+            padding: 20px;
             width: 90%;
-            max-width: 750px; /* Made slightly wider for PC cinematic look */
+            /* Strict max-width so 9:16 aspect ratio doesn't overflow screen height */
+            max-width: 380px; 
+            max-height: 95vh;
+            overflow-y: auto;
             position: relative;
             transform: translateY(30px);
             transition: transform 0.4s ease;
+            text-align: center;
         }
         .video-modal-overlay.show .video-modal-content {
             transform: translateY(0);
         }
+        
         .video-modal-close {
             position: absolute;
             top: -15px; right: -15px;
@@ -224,34 +232,50 @@
             z-index: 10;
         }
         .video-modal-close:hover { transform: scale(1.1); }
+        
         .video-modal-header h3 {
             font-family: 'Playfair Display', serif; 
-            font-size: 28px; 
-            margin: 5px 0 0; 
+            font-size: 26px; 
+            margin: 5px 0 15px; 
             color: #111; 
             line-height: 1.1;
+            letter-spacing: -0.5px;
         }
-        
-        /* 1920x1080 (16:9) Professional Video Wrapper */
+
+        /* Enforce 9:16 vertical size */
         .video-wrapper {
             border: 2px solid #111;
             background: #000;
-            margin-top: 15px;
             width: 100%;
-            aspect-ratio: 16 / 9; /* Strictly enforces 1920x1080 ratio on all screens */
-            position: relative;
+            aspect-ratio: 9 / 16;
             overflow: hidden;
             box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+            position: relative;
         }
         
+        /* Removes all controls and sets object-fit */
         .video-wrapper video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none; /* Prevents users from clicking the video to show default controls */
+            /* Prevents users from clicking to pause/play and showing default UI */
+            pointer-events: none; 
+        }
+
+        .video-btn-group {
+            display: flex; 
+            justify-content: center; 
+            margin-top: 15px; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 15px;
+        }
+        .video-btn-group .btn-large {
+            padding: 12px 20px; 
+            font-size: 12px; 
+            margin: 0; 
+            flex: 1;
+            min-width: 120px;
         }
 
         /* 📱 RESPONSIVE FIXES FOR TABLET & MOBILE 📱 */
@@ -360,14 +384,15 @@
             .logo-circle { width: 50px; height: 50px; } 
             .logo-text { font-size: 24px; } 
             
-            .video-modal-content { padding: 20px; width: 95%; }
-            .video-modal-header h3 { font-size: 20px; }
+            /* Responsive Video Modal on Mobile */
+            .video-modal-content { padding: 15px; width: 95%; max-width: 340px; }
+            .video-modal-header h3 { font-size: 22px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🔴 NEW VIDEO POP-UP MODAL (Strictly Cinematic without controls) 🔴 -->
+    <!-- 🔴 NEW REELS POP-UP MODAL (9:16 Aspect Ratio / No Controls) 🔴 -->
     <div id="videoModal" class="video-modal-overlay">
         <div class="video-modal-content">
             <button class="video-modal-close" onclick="closeVideoModal()">✖</button>
@@ -376,18 +401,18 @@
                 <h3>ਅਸੀਂ ਇਹ ਪਲੇਟਫਾਰਮ ਕਿਉਂ ਬਣਾਇਆ?</h3>
             </div>
             
-            <!-- Strict 16:9 Aspect Ratio Container -->
+            <!-- 9:16 Vertical Video Wrapper -->
             <div class="video-wrapper">
-                <!-- Removed 'controls' attribute. Added 'pointer-events: none' in CSS -->
+                <!-- Removed 'controls', added 'pointer-events: none' to completely disable default UI -->
                 <video id="promoVideo" playsinline loop autoplay muted>
                     <source src="your-video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
             
-            <div style="display: flex; justify-content: space-between; margin-top: 15px; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <button id="muteToggleBtn" class="btn-large btn-outline" style="padding: 10px 15px; font-size: 12px; margin: 0;" onclick="toggleMute()">🔊 UNMUTE (ਆਵਾਜ਼ ਖੋਲ੍ਹੋ)</button>
-                <button class="btn-large" style="padding: 10px 15px; font-size: 12px; margin: 0;" onclick="closeVideoModal()">SKIP VIDEO ➔</button>
+            <div class="video-btn-group">
+                <button id="muteToggleBtn" class="btn-large btn-outline" onclick="toggleMute()">🔊 UNMUTE (ਆਵਾਜ਼ ਖੋਲ੍ਹੋ)</button>
+                <button class="btn-large" onclick="closeVideoModal()">SKIP VIDEO ➔</button>
             </div>
         </div>
     </div>
@@ -725,8 +750,8 @@
             const video = document.getElementById('promoVideo');
             
             modal.classList.remove('show');
-            setTimeout(() => { modal.style.display = 'none'; }, 400); // Wait for transition
-            video.pause(); // Stop video
+            setTimeout(() => { modal.style.display = 'none'; }, 400); 
+            video.pause(); 
         }
 
         function toggleMute() {
