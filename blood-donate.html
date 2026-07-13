@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Donate - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
     <link rel="icon" type="image/png" href="hand.png">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 🔴 Dark Theme (Like News Page) 🔴 */
+        /* 🔴 Dark Theme 🔴 */
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #0c0908; 
@@ -53,55 +53,70 @@
         .btn-back:hover { background-color: #c04a2c; border-color: #c04a2c; transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #000; }
 
         /* Main Section */
-        .donate-section { max-width: 1200px; margin: 50px auto; padding: 0 40px; }
+        .donate-section { max-width: 1200px; margin: 60px auto; padding: 0 40px; }
 
-        /* Important Message Banner */
+        /* 🔴 Professional Alert Banner 🔴 */
         .alert-banner {
-            background-color: #9b1c1c; 
-            color: white;
-            padding: 25px 30px;
-            border: 2px solid #222;
-            box-shadow: 6px 6px 0px #000;
-            text-align: center;
+            background-color: #111;
+            padding: 30px;
+            border-left: 4px solid #c04a2c;
             margin-bottom: 50px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .alert-banner h2 { margin: 0 0 10px 0; font-family: 'Playfair Display', serif; font-size: 28px; }
-        .alert-banner p { font-size: 20px; font-weight: bold; margin: 0; line-height: 1.5; color: #f4eee0;}
+        .alert-banner h2 { 
+            color: #c04a2c; 
+            font-family: 'Playfair Display', serif; 
+            font-size: 32px; 
+            margin: 0 0 10px 0; 
+            font-weight: 900;
+        }
+        .alert-banner p { 
+            color: #aaa; 
+            font-size: 16px; 
+            line-height: 1.6; 
+            margin: 0; 
+        }
 
         /* Clubs Grid */
         .clubs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
-        /* Club Card (Dark Theme) */
+        /* 🔴 Professional Club Card 🔴 */
         .club-card {
-            background-color: #161210;
-            border: 1px solid #333;
-            padding: 30px 20px;
+            background-color: #111;
+            border: 1px solid #222;
+            padding: 35px 25px;
             text-align: center;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: space-between;
         }
-        .club-card:hover { transform: translateY(-5px); border-color: #c04a2c; box-shadow: 8px 8px 0px rgba(0,0,0,0.5); }
+        .club-card:hover { transform: translateY(-5px); border-color: #c04a2c; box-shadow: 8px 8px 0px rgba(0,0,0,0.8); }
         
-        .blood-icon { font-size: 40px; margin-bottom: 15px; }
-        .club-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: #f4eee0; margin: 0 0 10px 0; }
-        .club-area { font-size: 14px; color: #aaa; font-weight: bold; margin-bottom: 25px; }
+        .blood-icon { font-size: 30px; margin-bottom: 15px; opacity: 0.9; }
+        .club-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: #f4eee0; margin: 0 0 10px 0; line-height: 1.3; }
+        .club-area { font-size: 13px; color: #888; font-weight: bold; margin-bottom: 30px; letter-spacing: 1px; }
         
-        /* Phone Button */
+        /* 🔴 Clean Outline Phone Button 🔴 */
         .call-btn {
-            background-color: #c04a2c;
-            color: white;
+            background-color: transparent;
+            color: #c04a2c;
             text-decoration: none;
-            padding: 12px 20px;
-            font-size: 18px;
+            padding: 12px 25px;
+            font-size: 13px;
             font-weight: bold;
-            border: 2px solid #111;
+            border: 1px solid #c04a2c;
             transition: 0.3s;
-            display: block;
-            box-shadow: 3px 3px 0px #000;
+            display: inline-block;
+            letter-spacing: 1.5px;
+            width: 100%;
+            box-sizing: border-box;
         }
-        .call-btn:hover { background-color: #9b1c1c; transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #000; }
+        .call-btn:hover { background-color: #c04a2c; color: #fff; }
 
         /* 🔴 FOOTER STYLES 🔴 */
         .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; border-top: 2px solid #c04a2c; }
@@ -144,7 +159,6 @@
             .logo-circle { width: 50px; height: 50px; }
             .logo-text { font-size: 24px; }
             .clubs-grid { grid-template-columns: repeat(2, 1fr); }
-            .alert-banner p { font-size: 18px; }
             .footer-grid { flex-direction: column; text-align: center; }
             .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
         }
@@ -153,6 +167,8 @@
             .clubs-grid { grid-template-columns: 1fr; }
             .donate-section { padding: 0 20px; margin: 30px auto; }
             .alert-banner { padding: 20px; }
+            .alert-banner h2 { font-size: 26px; }
+            
             .video-modal-card { width: 92%; padding: 20px; }
             .video-modal-header h3 { font-size: 26px; }
             .video-wrapper-sleek { max-height: 65vh; }
@@ -196,7 +212,7 @@
     <main class="donate-section">
         
         <div class="alert-banner">
-            <h2>🔴 ਖੂਨ ਦਾਨ, ਮਹਾਂ ਦਾਨ 🔴</h2>
+            <h2>ਖੂਨ ਦਾਨ, ਮਹਾਂ ਦਾਨ</h2>
             <p>ਜੇ ਕਿਸੇ ਨੇ ਵੀ ਖੂਨ ਦਾਨ ਕਰਨਾ ਹੋਵੇ ਜਾਂ ਖੂਨ ਦੀ ਲੋੜ ਹੋਵੇ<br> ਤਾਂ ਹੇਠਾਂ ਦਿੱਤੇ ਕਲੱਬਾਂ ਦੇ ਨੰਬਰਾਂ ਤੇ ਸੰਪਰਕ ਕਰੋ।</p>
         </div>
 
@@ -204,42 +220,42 @@
             
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">ਪ੍ਰਵੀਨ ਕੁਮਾਰ (PYC ਕਲੱਬ)</h3>
+                <h3 class="club-name">ਪ੍ਰਵੀਨ ਕੁਮਾਰ<br><span style="font-size: 16px; color: #aaa;">(PYC ਕਲੱਬ)</span></h3>
                 <div class="club-area">📍 ਸਾਹਨੇਵਾਲ, ਲੁਧਿਆਣਾ</div>
                 <a href="tel:+919914000590" class="call-btn">📞 99140-00590</a>
             </div>
 
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">ਰੁਪਿੰਦਰ ਸਿੰਘ (PYC ਕਲੱਬ)</h3>
+                <h3 class="club-name">ਰੁਪਿੰਦਰ ਸਿੰਘ<br><span style="font-size: 16px; color: #aaa;">(PYC ਕਲੱਬ)</span></h3>
                 <div class="club-area">📍 ਸਾਹਨੇਵਾਲ, ਲੁਧਿਆਣਾ</div>
                 <a href="tel:+919878550901" class="call-btn">📞 98785-50901</a>
             </div>
 
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">ਭਿੰਦਰ ਸਿੰਘ (PYC ਕਲੱਬ)</h3>
+                <h3 class="club-name">ਭਿੰਦਰ ਸਿੰਘ<br><span style="font-size: 16px; color: #aaa;">(PYC ਕਲੱਬ)</span></h3>
                 <div class="club-area">📍 ਸਾਹਨੇਵਾਲ, ਲੁਧਿਆਣਾ</div>
                 <a href="tel:+918437588301" class="call-btn">📞 84375-88301</a>
             </div>
 
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">ਜੀਵਨ ਰੱਖਿਅਕ ਕਲੱਬ</h3>
+                <h3 class="club-name">ਜੀਵਨ ਰੱਖਿਅਕ<br><span style="font-size: 16px; color: #aaa;">ਕਲੱਬ</span></h3>
                 <div class="club-area">📍 ਬਠਿੰਡਾ, ਮਾਲਵਾ ਏਰੀਆ</div>
                 <a href="tel:+919876543213" class="call-btn">📞 98765-43213</a>
             </div>
 
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">ਸੱਚ ਦੀ ਆਵਾਜ਼ ਵਲੰਟੀਅਰਜ਼</h3>
+                <h3 class="club-name">ਸੱਚ ਦੀ ਆਵਾਜ਼<br><span style="font-size: 16px; color: #aaa;">ਵਲੰਟੀਅਰਜ਼</span></h3>
                 <div class="club-area">📍 ਮੋਹਾਲੀ / ਚੰਡੀਗੜ੍ਹ</div>
                 <a href="tel:+919876543214" class="call-btn">📞 98765-43214</a>
             </div>
 
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">ਗੁਰੂ ਨਾਨਕ ਸੇਵਾ ਦਲ</h3>
+                <h3 class="club-name">ਗੁਰੂ ਨਾਨਕ<br><span style="font-size: 16px; color: #aaa;">ਸੇਵਾ ਦਲ</span></h3>
                 <div class="club-area">📍 ਪਟਿਆਲਾ</div>
                 <a href="tel:+919876543215" class="call-btn">📞 98765-43215</a>
             </div>
