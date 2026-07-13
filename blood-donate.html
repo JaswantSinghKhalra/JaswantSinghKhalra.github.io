@@ -4,69 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Donate - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    <link rel="icon" type="image/png" href="hand.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Light Theme ਵਰਗਾ Main Page */
+        /* 🔴 Dark Theme (Like News Page) 🔴 */
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #f4f1ea; /* ਲਾਈਟ ਕ੍ਰੀਮ ਰੰਗ */
-            color: #1a1a1a; /* ਡਾਰਕ ਟੈਕਸਟ */
+            background-color: #0c0908; 
+            color: #f4eee0; 
             margin: 0; 
             padding: 0; 
             overflow-x: hidden; 
         }
         
         /* Top Scrolling Marquee */
-        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #9b1c1c; }
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
         .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        /* Header Navbar */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; text-decoration: none; }
-        .btn-back { background-color: transparent; color: #1a1a1a; border: 2px solid #111; padding: 10px 20px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; box-shadow: 2px 2px 0px #111; }
-        .btn-back:hover { background-color: #111; color: #f4eee0; }
+        /* 🔴 Header Navbar 🔴 */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #333; position: sticky; top: 0; background-color: #111; z-index: 1000; }
+        
+        /* 3D Logo Design */
+        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 15px; text-decoration: none; }
+        .logo-circle {
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            border: 2.5px solid #555; 
+            background-color: #111; 
+            box-shadow: 4px 4px 0px #000; 
+            overflow: hidden; 
+            display: flex;
+            align-items: flex-end; 
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .logo-inner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center bottom;
+            transform: scale(1.35) translateY(12%); 
+        }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #f4eee0; letter-spacing: 1px; }
+
+        .btn-back { background-color: transparent; color: #f4eee0; border: 1px solid #555; padding: 12px 25px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; box-shadow: 3px 3px 0px #000; }
+        .btn-back:hover { background-color: #c04a2c; border-color: #c04a2c; transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #000; }
 
         /* Main Section */
         .donate-section { max-width: 1200px; margin: 50px auto; padding: 0 40px; }
 
         /* Important Message Banner */
         .alert-banner {
-            background-color: #9b1c1c; /* Blood Red */
+            background-color: #9b1c1c; 
             color: white;
             padding: 25px 30px;
-            border: 2px solid #111;
-            box-shadow: 6px 6px 0px #111;
+            border: 2px solid #222;
+            box-shadow: 6px 6px 0px #000;
             text-align: center;
             margin-bottom: 50px;
         }
         .alert-banner h2 { margin: 0 0 10px 0; font-family: 'Playfair Display', serif; font-size: 28px; }
-        .alert-banner p { font-size: 20px; font-weight: bold; margin: 0; line-height: 1.5; }
+        .alert-banner p { font-size: 20px; font-weight: bold; margin: 0; line-height: 1.5; color: #f4eee0;}
 
         /* Clubs Grid */
         .clubs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
-        /* Club Card */
+        /* Club Card (Dark Theme) */
         .club-card {
-            background-color: white;
-            border: 2px solid #111;
+            background-color: #161210;
+            border: 1px solid #333;
             padding: 30px 20px;
             text-align: center;
-            box-shadow: 4px 4px 0px #111;
-            transition: 0.2s ease-in-out;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        .club-card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0px #111; }
+        .club-card:hover { transform: translateY(-5px); border-color: #c04a2c; box-shadow: 8px 8px 0px rgba(0,0,0,0.5); }
         
         .blood-icon { font-size: 40px; margin-bottom: 15px; }
-        .club-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: #1a1a1a; margin: 0 0 10px 0; }
-        .club-area { font-size: 14px; color: #555; font-weight: bold; margin-bottom: 25px; }
+        .club-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: #f4eee0; margin: 0 0 10px 0; }
+        .club-area { font-size: 14px; color: #aaa; font-weight: bold; margin-bottom: 25px; }
         
         /* Phone Button */
         .call-btn {
-            background-color: #111;
+            background-color: #c04a2c;
             color: white;
             text-decoration: none;
             padding: 12px 20px;
@@ -75,36 +99,102 @@
             border: 2px solid #111;
             transition: 0.3s;
             display: block;
+            box-shadow: 3px 3px 0px #000;
         }
-        .call-btn:hover { background-color: #9b1c1c; border-color: #9b1c1c; }
+        .call-btn:hover { background-color: #9b1c1c; transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #000; }
+
+        /* 🔴 FOOTER STYLES 🔴 */
+        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; border-top: 2px solid #c04a2c; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .footer-grid .footer-col { flex: 1; min-width: 150px; }
+        .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1.1; margin: 0; color: #fff; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #aaa; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.3s; }
+        .footer-links a:hover { color: #c04a2c; }
+        .footer-msg-small { font-size: 12px; color: #aaa; font-weight: bold; }
+        .footer-msg-big { font-family: 'Playfair Display', serif; font-size: 28px; color: #4CAF50; font-weight: 900; margin-top: 5px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; }
+        .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
+        .footer-bottom a:hover { color: #fff; }
+
+        /* Footer Owner Click Style */
+        .footer-owner-click { font-size: 15px; margin-top: 5px; color: #aaa; cursor: pointer; display: inline-block; transition: color 0.3s ease; }
+        .footer-owner-click:hover { color: #c04a2c; }
+
+        /* 🔴 VIDEO POP-UP MODAL CSS 🔴 */
+        .video-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 9999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; padding: 20px; box-sizing: border-box; }
+        .video-modal-overlay.show { display: flex; opacity: 1; }
+        .video-modal-card { background-color: #f4f1ea; padding: 25px; border: 2px solid #111; box-shadow: 10px 10px 0px #111; width: 100%; max-width: 480px; display: flex; flex-direction: column; position: relative; transform: translateY(30px); transition: transform 0.4s ease; box-sizing: border-box; }
+        .video-modal-overlay.show .video-modal-card { transform: translateY(0); }
+        .video-modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #888; font-size: 22px; font-weight: bold; line-height: 1; cursor: pointer; transition: color 0.2s ease; z-index: 20; padding: 5px; }
+        .video-modal-close:hover { color: #111; }
+        .video-modal-header { margin-bottom: 15px; border-bottom: 2px solid #111; padding-bottom: 15px; padding-right: 25px; }
+        .video-modal-header h3 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: #111; line-height: 1.2; margin: 0; letter-spacing: -0.5px; }
+        .video-author-signature { text-align: right; font-size: 15px; color: #555; font-style: italic; margin-top: 10px; font-weight: 600; }
+        .video-wrapper-sleek { width: 100%; aspect-ratio: 9 / 16; max-height: 55vh; background-color: #000; border: 2px solid #111; position: relative; overflow: hidden; margin: 0 auto; }
+        .video-wrapper-sleek video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .mute-mini-btn { position: absolute; bottom: 12px; left: 12px; background: rgba(0, 0, 0, 0.6); color: white; border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 16px; font-size: 12px; font-weight: bold; border-radius: 20px; cursor: pointer; backdrop-filter: blur(4px); z-index: 10; display: flex; align-items: center; gap: 6px; letter-spacing: 1px; transition: all 0.3s ease; }
+        .mute-mini-btn:hover { background: rgba(0, 0, 0, 0.9); border-color: #fff; }
 
         /* Mobile Responsive */
         @media(max-width: 900px) {
+            header { padding: 15px 20px; }
+            .logo-circle { width: 50px; height: 50px; }
+            .logo-text { font-size: 24px; }
             .clubs-grid { grid-template-columns: repeat(2, 1fr); }
             .alert-banner p { font-size: 18px; }
+            .footer-grid { flex-direction: column; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
         }
         @media(max-width: 600px) {
+            .btn-back { padding: 10px 15px; font-size: 10px; }
             .clubs-grid { grid-template-columns: 1fr; }
-            header { flex-direction: column; gap: 15px; }
             .donate-section { padding: 0 20px; margin: 30px auto; }
             .alert-banner { padding: 20px; }
+            .video-modal-card { width: 92%; padding: 20px; }
+            .video-modal-header h3 { font-size: 26px; }
+            .video-wrapper-sleek { max-height: 65vh; }
         }
     </style>
 </head>
 <body>
+
+    <div id="videoModal" class="video-modal-overlay">
+        <div class="video-modal-card">
+            <button class="video-modal-close" onclick="closeVideoModal()">✖</button>
+            <div class="video-modal-header">
+                <h3>ਅਸੀਂ ਇਹ ਪਲੇਟਫਾਰਮ<br><span style="color: #1a4331;">ਕਿਉਂ ਬਣਾਇਆ?</span></h3>
+                <div class="video-author-signature">- ਬੀਬਰ ਸਰਪੰਚ</div>
+            </div>
+            <div class="video-wrapper-sleek">
+                <video id="promoVideo" playsinline loop autoplay muted>
+                    <source src="your-video.mp4" type="video/mp4">
+                </video>
+                <button id="muteToggleBtn" class="mute-mini-btn" onclick="toggleMute()">
+                    <span id="muteIcon">🔇</span> <span id="muteText">UNMUTE</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <div class="top-bar">
         <span>✦ ਖੂਨ ਦਾਨ, ਮਹਾਂ ਦਾਨ ✦ ਮਨੁੱਖਤਾ ਦੀ ਸੇਵਾ ✦ ਇੱਕ ਬੂੰਦ ਕਿਸੇ ਦੀ ਜਾਨ ਬਚਾ ਸਕਦੀ ਹੈ ✦</span>
     </div>
 
     <header>
-        <a href="index.html" class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</a>
+        <a href="index.html" class="logo-wrapper">
+            <div class="logo-circle">
+                <img src="hand.png" alt="Logo" class="logo-inner-img">
+            </div>
+            <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
+        </a>
         <a href="index.html" class="btn-back">⬅ ਵਾਪਸ ਮੁੱਖ ਪੰਨੇ 'ਤੇ</a>
     </header>
 
     <main class="donate-section">
         
-        <!-- ਸੁਨੇਹਾ (Message Banner) -->
         <div class="alert-banner">
             <h2>🔴 ਖੂਨ ਦਾਨ, ਮਹਾਂ ਦਾਨ 🔴</h2>
             <p>ਜੇ ਕਿਸੇ ਨੇ ਵੀ ਖੂਨ ਦਾਨ ਕਰਨਾ ਹੋਵੇ ਜਾਂ ਖੂਨ ਦੀ ਲੋੜ ਹੋਵੇ<br> ਤਾਂ ਹੇਠਾਂ ਦਿੱਤੇ ਕਲੱਬਾਂ ਦੇ ਨੰਬਰਾਂ ਤੇ ਸੰਪਰਕ ਕਰੋ।</p>
@@ -112,31 +202,27 @@
 
         <div class="clubs-grid">
             
-            <!-- Club 1 -->
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">PARVEEN KUMAR (PYC ਕਲੱਬ)</h3>
-                <div class="club-area">📍ਸਾਹਨੇਵਾਲ ਲੁਧਿਆਣਾ </div>
-                <a href="tel:+9199140 00590" class="call-btn">📞 99140 00590</a>
+                <h3 class="club-name">ਪ੍ਰਵੀਨ ਕੁਮਾਰ (PYC ਕਲੱਬ)</h3>
+                <div class="club-area">📍 ਸਾਹਨੇਵਾਲ, ਲੁਧਿਆਣਾ</div>
+                <a href="tel:+919914000590" class="call-btn">📞 99140-00590</a>
             </div>
 
-            <!-- Club 2 -->
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">RUPINDER SINGH (PYC ਕਲੱਬ)</h3>
-                <div class="club-area">📍 ਸਾਹਨੇਵਾਲ ਲੁਧਿਆਣਾ</div>
-                <a href="tel:+919878550901" class="call-btn">📞 9878550901</a>
+                <h3 class="club-name">ਰੁਪਿੰਦਰ ਸਿੰਘ (PYC ਕਲੱਬ)</h3>
+                <div class="club-area">📍 ਸਾਹਨੇਵਾਲ, ਲੁਧਿਆਣਾ</div>
+                <a href="tel:+919878550901" class="call-btn">📞 98785-50901</a>
             </div>
 
-            <!-- Club 3 -->
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
-                <h3 class="club-name">BHINDER SINGH (PYC ਕਲੱਬ)</h3>
-                <div class="club-area">📍 ਸਾਹਨੇਵਾਲ ਲੁਧਿਆਣ</div>
-                <a href="tel:+918437588301" class="call-btn">📞 8437588301</a>
+                <h3 class="club-name">ਭਿੰਦਰ ਸਿੰਘ (PYC ਕਲੱਬ)</h3>
+                <div class="club-area">📍 ਸਾਹਨੇਵਾਲ, ਲੁਧਿਆਣਾ</div>
+                <a href="tel:+918437588301" class="call-btn">📞 84375-88301</a>
             </div>
 
-            <!-- Club 4 -->
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
                 <h3 class="club-name">ਜੀਵਨ ਰੱਖਿਅਕ ਕਲੱਬ</h3>
@@ -144,7 +230,6 @@
                 <a href="tel:+919876543213" class="call-btn">📞 98765-43213</a>
             </div>
 
-            <!-- Club 5 -->
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
                 <h3 class="club-name">ਸੱਚ ਦੀ ਆਵਾਜ਼ ਵਲੰਟੀਅਰਜ਼</h3>
@@ -152,7 +237,6 @@
                 <a href="tel:+919876543214" class="call-btn">📞 98765-43214</a>
             </div>
 
-            <!-- Club 6 -->
             <div class="club-card">
                 <div class="blood-icon">🩸</div>
                 <h3 class="club-name">ਗੁਰੂ ਨਾਨਕ ਸੇਵਾ ਦਲ</h3>
@@ -163,5 +247,87 @@
         </div>
     </main>
 
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <span class="footer-label">Since 2026</span>
+                <h2 class="footer-brand">ਸੱਚ ਦੀ<br>ਆਵਾਜ਼.</h2>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Legal & Contact</span>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="security.html">Security Guidelines</a></li>
+                    <li><a href="vision.html">Our Vision</a></li>
+                    <li><a href="contact.html">Secure Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Social Media</span>
+                <ul class="footer-links">
+                    <li><a href="https://www.instagram.com/biebersarpanch" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com/@biebersarpanch" target="_blank">YouTube</a></li>
+                    <li><a href="https://x.com/BieberOP22" target="_blank">Twitter (X)</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">The System</span>
+                <div class="footer-msg-small">Who's in charge now?</div>
+                <div class="footer-msg-big">YOU ARE.</div>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">OWNER</span>
+                <div class="footer-owner-click" onclick="openVideoModal()">ਬੀਬਰ ਸਰਪੰਚ</div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="bottom-left">
+                <a href="https://www.instagram.com/biebersarpanch" target="_blank">INSTAGRAM</a>
+                <a href="https://youtube.com/@biebersarpanch" target="_blank">YOUTUBE</a>
+            </div>
+            <div class="bottom-center" style="color: #c04a2c; letter-spacing: 1px;">A SECURE PLATFORM · VOICE OF PUNJAB</div>
+            <div class="bottom-right">© 2026 ਸੱਚ ਦੀ ਆਵਾਜ਼ · ALL RIGHTS RESERVED</div>
+        </div>
+    </footer>
+
+    <script>
+        // 🔴 NO AUTO-POPUP HERE (Only manual trigger) 🔴
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('promoVideo');
+            
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+            
+            video.currentTime = 0; 
+            video.play().catch(e => console.log(e)); 
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('promoVideo');
+            
+            modal.classList.remove('show');
+            setTimeout(() => { modal.style.display = 'none'; }, 400); 
+            video.pause(); 
+        }
+
+        function toggleMute() {
+            const video = document.getElementById('promoVideo');
+            const icon = document.getElementById('muteIcon');
+            const text = document.getElementById('muteText');
+            
+            if(video.muted) {
+                video.muted = false;
+                icon.innerText = '🔊';
+                text.innerText = 'MUTE';
+            } else {
+                video.muted = true;
+                icon.innerText = '🔇';
+                text.innerText = 'UNMUTE';
+            }
+        }
+    </script>
 </body>
 </html>
