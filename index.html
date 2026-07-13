@@ -56,7 +56,6 @@
         .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
         .btn-dark-rust { background-color: #8b331c; }
         
-        /* Transparent Outline Button Style */
         .btn-outline { background-color: transparent; color: #111; letter-spacing: 2px; }
         .btn-outline:hover { background-color: #e0dcd2; color: #111; }
 
@@ -181,7 +180,7 @@
         .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
         .footer-bottom a:hover { color: #fff; }
 
-        /* 🔴 NEW VIDEO POP-UP MODAL (LIGHT CARD STYLE, NO CONTROLS) 🔴 */
+        /* 🔴 NEW VIDEO POP-UP MODAL (CLEAN CARD STYLE, FIXED PC HEIGHT) 🔴 */
         .video-modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -190,46 +189,68 @@
             display: none;
             align-items: center; justify-content: center;
             opacity: 0; transition: opacity 0.4s ease;
+            padding: 20px; /* Safe padding from edges */
+            box-sizing: border-box;
         }
         .video-modal-overlay.show { display: flex; opacity: 1; }
         
         .video-modal-card {
-            background-color: #f4f1ea; /* Light background */
-            padding: 30px; 
+            background-color: #f4f1ea; /* Light cream background */
+            padding: 25px; 
             border: 2px solid #111; 
             box-shadow: 10px 10px 0px #111; 
-            width: 90%; 
-            max-width: 400px; /* Perfect size for vertical video layout */
-            max-height: 95vh;
-            overflow-y: auto;
+            width: 100%; 
+            max-width: 360px; /* Ensures it's a slim vertical card on PC */
+            display: flex;
+            flex-direction: column;
             position: relative;
             transform: translateY(30px);
             transition: transform 0.4s ease;
+            box-sizing: border-box;
         }
         .video-modal-overlay.show .video-modal-card { transform: translateY(0); }
         
-        /* Sleek Cross Button inside the padding (like the 3rd screenshot) */
+        /* Simple Gray Cross Button inside the box */
         .video-modal-close {
             position: absolute;
             top: 15px; right: 15px; 
             background: none;
             border: none;
             color: #888;
-            font-size: 24px;
+            font-size: 22px;
+            font-weight: bold;
             line-height: 1;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: color 0.2s ease;
             z-index: 20;
             padding: 5px;
         }
-        .video-modal-close:hover { color: #111; transform: scale(1.1); }
+        .video-modal-close:hover { color: #111; }
         
-        /* 1080x1920 (9:16) Video Wrapper without native controls */
+        /* Clean Heading */
+        .video-modal-header {
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #111; 
+            padding-bottom: 12px;
+            padding-right: 25px; /* Prevent text overlapping 'X' */
+        }
+        .video-modal-header h3 {
+            font-family: 'Playfair Display', serif; 
+            font-size: 30px; 
+            font-weight: 900; 
+            color: #111; 
+            line-height: 1.1; 
+            margin: 0; 
+            letter-spacing: -1px;
+        }
+
+        /* 1080x1920 (9:16) Video Wrapper - Controlled Height for PC */
         .video-wrapper-sleek {
             width: 100%; 
-            aspect-ratio: 9 / 16; 
+            aspect-ratio: 9 / 16; /* Vertical format */
+            max-height: 60vh; /* 🔴 Prevents vertical stretch/scrollbar on PC */
             background-color: #000; 
-            border: 2px solid #111; /* Sharp border around video */
+            border: 2px solid #111; 
             position: relative; 
             overflow: hidden;
             margin: 0 auto;
@@ -237,13 +258,13 @@
         .video-wrapper-sleek video {
             width: 100%; height: 100%; 
             object-fit: cover; 
-            pointer-events: none; /* Disables right click and native controls */
+            pointer-events: none; /* Disables native UI */
         }
         
         /* Minimal Mute Button floating on Video */
         .mute-mini-btn {
             position: absolute; 
-            bottom: 15px; left: 15px;
+            bottom: 12px; left: 12px;
             background: rgba(0, 0, 0, 0.6); 
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -347,26 +368,27 @@
             .logo-text { font-size: 24px; } 
             
             /* Responsive modal sizing for very small phones */
-            .video-modal-card { width: 85%; padding: 20px; }
+            .video-modal-card { padding: 20px; max-width: 100%; }
+            .video-modal-header h3 { font-size: 28px; }
+            .video-wrapper-sleek { max-height: 65vh; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🔴 NEW LIGHT CARD VIDEO POP-UP MODAL (No Controls, 9:16 Vertical) 🔴 -->
+    <!-- 🔴 NEW LIGHT CARD VIDEO POP-UP MODAL (Clean Design & Responsive PC fix) 🔴 -->
     <div id="videoModal" class="video-modal-overlay">
         <div class="video-modal-card">
-            <!-- Simple Close Button in Top Right Corner -->
+            <!-- Simple Gray Close Button -->
             <button class="video-modal-close" onclick="closeVideoModal()">✖</button>
             
-            <!-- Clean Heading (No extra text) -->
-            <div style="margin-bottom: 20px; border-bottom: 2px solid #111; padding-bottom: 15px;">
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: #111; line-height: 1.1; margin: 0; letter-spacing: -1px;">MESSAGE FROM<br><span style="color: #1a4331;">THE FOUNDER.</span></h3>
+            <!-- Clean Header -->
+            <div class="video-modal-header">
+                <h3>MESSAGE FROM<br><span style="color: #1a4331;">THE FOUNDER.</span></h3>
             </div>
             
             <!-- Clean Vertical Video Area (1080x1920 / 9:16 Aspect Ratio) -->
             <div class="video-wrapper-sleek">
-                <!-- Video plays automatically, muted, looping, without UI controls -->
                 <video id="promoVideo" playsinline loop autoplay muted>
                     <source src="your-video.mp4" type="video/mp4">
                 </video>
@@ -498,7 +520,7 @@
                 <div class="w-feature">
                     <span class="w-feature-tag">WHAT YOU GET</span>
                     <h3 class="w-feature-title">100% ਗੁਪਤ ਅਤੇ ਸੁਰੱਖਿਅਤ</h3>
-                    <p class="w-feature-desc">ਤੁਹਾਡੀ ਪਛਾਣ, ਨਾਮ ਅਤੇ ਆਧਾਰ ਕਾਰਡ ਪੂਰੀ ਤਰ੍ਹਾਂ ਇਨਕ੍ਰਿਪਟਡ (Encrypted) ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਵੀ ਪੁਲਿਸ ਵਾਲਾ ਜਾਂ ਲੀਡਰ ਤੁਹਾਨੂੰ ਟਰੈਕ ਨਹੀਂ ਕਰ ਸਕਦਾ। ਇਹ ਸਾਡਾ ਵਾਅਦਾ ਹੈ।</p>
+                    <p class="w-feature-desc">ਤੁਹਾਡੀ ਪਛਾਣ, ਨਾਮ ਅਤੇ ਆਧਾਰ ਕਾਰਡ ਪੂਰੀ ਤਰ੍ਹਾਂ ਇਨਕ੍ਰਿਪਟਡ (Encrypted) ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਵੀ ਪੁਲਿਸ ਵਾਲਾ ਜਾਂ ਲੀਡਰ ਤੁਹਾਨੂੰ ਟਰੈਕ ਨਹੀਂ ਕਰ ਸਕਦਾ। ਇਹ ਸਾਡਾ ਵਾਅਦਾ ਹੈ。</p>
                 </div>
                 
                 <div class="w-feature">
