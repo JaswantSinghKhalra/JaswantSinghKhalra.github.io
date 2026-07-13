@@ -17,6 +17,7 @@
         /* 🔴 Header Navbar */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         
+        /* 🔴 PERFECT 3D LOGO DESIGN 🔴 */
         .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 15px; text-decoration: none; }
         
         .logo-circle {
@@ -180,20 +181,7 @@
         .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
         .footer-bottom a:hover { color: #fff; }
 
-        /* 🔴 NEW FOOTER LINK STYLE (CLICKABLE BIEBER SARPANCH) 🔴 */
-        .footer-owner-link {
-            font-size: 15px; 
-            margin-top: 5px; 
-            cursor: pointer; 
-            color: #aaa; 
-            transition: color 0.3s ease;
-            display: inline-block;
-        }
-        .footer-owner-link:hover {
-            color: #fff;
-        }
-
-        /* 🔴 VIDEO POP-UP MODAL (CLEAN CARD STYLE, FIXED PC HEIGHT 55VH) 🔴 */
+        /* 🔴 NEW VIDEO POP-UP MODAL (CLEAN CARD STYLE, FIXED PC HEIGHT/WIDTH) 🔴 */
         .video-modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -213,7 +201,7 @@
             border: 2px solid #111; 
             box-shadow: 10px 10px 0px #111; 
             width: 100%; 
-            max-width: 360px; /* Slim vertical card on PC */
+            max-width: 480px; /* 🔴 MATCHED THE WIDTH OF YOUR WHITE BOX */
             display: flex;
             flex-direction: column;
             position: relative;
@@ -239,16 +227,15 @@
         }
         .video-modal-close:hover { color: #111; }
         
-        /* 🔴 Punjabi Header & Signature in Popup 🔴 */
         .video-modal-header {
             margin-bottom: 15px; 
             border-bottom: 2px solid #111; 
-            padding-bottom: 12px;
+            padding-bottom: 15px;
             padding-right: 25px; 
         }
         .video-modal-header h3 {
             font-family: 'Playfair Display', serif; 
-            font-size: 30px; 
+            font-size: 34px; 
             font-weight: 900; 
             color: #111; 
             line-height: 1.2; 
@@ -264,11 +251,10 @@
             font-weight: 600;
         }
 
-        /* 🔴 55vh HEIGHT SETTING FOR PC 🔴 */
         .video-wrapper-sleek {
             width: 100%; 
             aspect-ratio: 9 / 16; 
-            max-height: 55vh; /* 🔴 Perfect 55vh height for PC 🔴 */
+            max-height: 55vh; /* 🔴 SET HEIGHT TO 55vh AS REQUESTED FOR PC */
             background-color: #000; 
             border: 2px solid #111; 
             position: relative; 
@@ -287,8 +273,8 @@
             background: rgba(0, 0, 0, 0.6); 
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 6px 14px; 
-            font-size: 11px; 
+            padding: 8px 16px; 
+            font-size: 12px; 
             font-weight: bold;
             border-radius: 20px; 
             cursor: pointer;
@@ -387,8 +373,21 @@
             .logo-text { font-size: 24px; } 
             
             .video-modal-card { padding: 20px; max-width: 100%; }
-            .video-modal-header h3 { font-size: 26px; }
-            .video-wrapper-sleek { max-height: 65vh; } /* Taller on mobile for better view */
+            .video-modal-header h3 { font-size: 28px; }
+            .video-wrapper-sleek { max-height: 65vh; }
+        }
+        
+        /* Footer hover effect for Owner Click */
+        .footer-owner-click {
+            font-size: 15px; 
+            margin-top: 5px; 
+            color: #aaa;
+            cursor: pointer; 
+            display: inline-block; 
+            transition: color 0.3s ease;
+        }
+        .footer-owner-click:hover {
+            color: #c04a2c;
         }
     </style>
 </head>
@@ -707,7 +706,7 @@
             </div>
             <div class="footer-col">
                 <span class="footer-label">OWNER</span>
-                <div class="footer-owner-link" onclick="openVideoModal()">ਬੀਬਰ ਸਰਪੰਚ</div>
+                <div class="footer-owner-click" onclick="openVideoModal()">ਬੀਬਰ ਸਰਪੰਚ</div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -729,42 +728,44 @@
             navMenu.classList.toggle('active');
         });
 
-        // 🔴 REFINED VIDEO MODAL JAVASCRIPT WITH SESSION STORAGE 🔴
+        // 🔴 VIDEO MODAL JAVASCRIPT (One-time auto show + Manual click from footer) 🔴
         document.addEventListener('DOMContentLoaded', () => {
-            // Check if popup has already been shown in this browser session
-            if (!sessionStorage.getItem('videoPopupShown')) {
+            const modal = document.getElementById('videoModal');
+            
+            // Check if modal has been shown in this session
+            if (!sessionStorage.getItem('videoModalShown')) {
+                // Show modal after 4.5 seconds ONLY if it's their first time on the site
                 setTimeout(() => {
-                    openVideoModal();
-                    // Set flag so it doesn't show again on refresh or navigating back
-                    sessionStorage.setItem('videoPopupShown', 'true');
+                    modal.style.display = 'flex'; // Reset display if needed
+                    setTimeout(() => { modal.classList.add('show'); }, 10);
+                    sessionStorage.setItem('videoModalShown', 'true');
                 }, 4500); 
             }
         });
 
+        // Open modal manually (when footer text is clicked)
         function openVideoModal() {
             const modal = document.getElementById('videoModal');
             const video = document.getElementById('promoVideo');
             
-            // Set display to flex first, then add 'show' class for smooth transition
             modal.style.display = 'flex';
-            setTimeout(() => {
-                modal.classList.add('show');
-                video.play();
-            }, 10);
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+            
+            video.currentTime = 0; // Restart video
+            video.play().catch(e => console.log(e)); // Play automatically
         }
 
+        // Close modal
         function closeVideoModal() {
             const modal = document.getElementById('videoModal');
             const video = document.getElementById('promoVideo');
             
             modal.classList.remove('show');
-            // Wait for transition to finish before hiding
-            setTimeout(() => { 
-                modal.style.display = 'none'; 
-            }, 400); 
+            setTimeout(() => { modal.style.display = 'none'; }, 400); 
             video.pause(); 
         }
 
+        // Custom Mute/Unmute Function
         function toggleMute() {
             const video = document.getElementById('promoVideo');
             const icon = document.getElementById('muteIcon');
