@@ -75,26 +75,21 @@
             margin: 0 0 30px 0;
         }
 
-        /* 📱 Responsive Video iframe (Archive.org) */
-        .iframe-container {
-            position: relative;
+        /* 📱 Responsive Native Video Player */
+        .video-container {
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
             background-color: #000;
             border: 2px solid #333;
             box-shadow: 0px 15px 40px rgba(0,0,0,0.8);
             border-radius: 8px;
             overflow: hidden;
+            display: flex;
         }
 
-        .iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .video-container video {
             width: 100%;
-            height: 100%;
-            border: 0;
+            max-height: 75vh;
+            outline: none;
         }
 
         /* 🔴 Download Quality Buttons 🔴 */
@@ -192,7 +187,6 @@
 </head>
 <body>
 
-    <!-- 🔴 VIDEO POP-UP MODAL (Only opens via footer click on this page) 🔴 -->
     <div id="videoModal" class="video-modal-overlay">
         <div class="video-modal-card">
             <button class="video-modal-close" onclick="closeVideoModal()">✖</button>
@@ -230,12 +224,13 @@
         <h1 class="movie-title">ਪੰਜਾਬ 95 ਸਤਲੁਜ</h1>
         <p class="movie-desc">ਡਾਟਾ ਬਚਾਉਣ ਲਈ ਤੁਸੀਂ ਹੇਠਾਂ ਦਿੱਤੇ ਬਟਨਾਂ ਤੋਂ ਮੂਵੀ ਨੂੰ Low Quality (Data Saver) ਜਾਂ HD ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ।</p>
 
-        <!-- 🔴 ARCHIVE.ORG VIDEO PLAYER (RESTORED) 🔴 -->
-        <div class="iframe-container">
-            <iframe src="https://archive.org/embed/jawant-singh-khalra-punjab-95-satluj" allowfullscreen></iframe>
+        <div class="video-container">
+            <video controls controlsList="nodownload" disablePictureInPicture>
+                <source src="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" type="video/mp4">
+                ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਵੀਡੀਓ ਪਲੇਅਰ ਨੂੰ ਸਪੋਰਟ ਨਹੀਂ ਕਰਦਾ।
+            </video>
         </div>
 
-        <!-- 🔴 QUALITY / DATA SAVER BUTTONS 🔴 -->
         <div class="button-group">
             <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn btn-outline" download>
                 ⬇ Data Saver (Low Quality)
@@ -247,7 +242,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
@@ -278,7 +272,6 @@
             </div>
             <div class="footer-col">
                 <span class="footer-label">OWNER</span>
-                <!-- 🔴 CLICKABLE BIEBER SARPANCH FOOTER LINK 🔴 -->
                 <div class="footer-owner-click" onclick="openVideoModal()">ਬੀਬਰ ਸਰਪੰਚ</div>
             </div>
         </div>
@@ -293,7 +286,6 @@
         </div>
     </footer>
 
-    <!-- Video Modal Scripts -->
     <script>
         // 🔴 NO AUTO-POPUP HERE (Only manual trigger) 🔴
         function openVideoModal() {
