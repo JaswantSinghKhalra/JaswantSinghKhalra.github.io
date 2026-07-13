@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ਸਿਸਟਮ ਲੌਗਿਨ - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
     
-    <!-- 🔴 Google reCAPTCHA Script -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
-    <!-- 🔴 Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -218,19 +215,16 @@
         <div class="divider">LOGIN WITH EMAIL</div>
 
         <form id="loginForm">
-            <!-- Email Field -->
             <div class="form-group">
                 <label>EMAIL ADDRESS (ਈਮੇਲ)</label>
                 <input type="email" id="email" placeholder="name@example.com" required>
             </div>
 
-            <!-- Password Field with Windows Style Eye Icon -->
             <div class="form-group">
                 <label>PASSWORD (ਪਾਸਵਰਡ)</label>
                 <div class="password-wrapper">
                     <input type="password" id="password" placeholder="••••••••••••" required>
                     
-                    <!-- 🔴 Windows Style Arc & Dot SVG -->
                     <span class="eye-icon" id="togglePassword" onclick="showHidePassword()">
                         <svg viewBox="0 0 24 24" width="22" height="22">
                             <path d="M6 12 C 6 6, 18 6, 18 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -240,25 +234,21 @@
                 </div>
             </div>
 
-            <!-- 🔴 Google reCAPTCHA Widget (Updated with your real Site Key) -->
             <div class="recaptcha-container">
-                <div class="g-recaptcha" data-sitekey="6LfyF1ItAAAAANTqeN5uKWnuMLo05Jd1ZnmyixcH" data-theme="dark"></div>
+                <div class="g-recaptcha" data-sitekey="6LfeGlItAAAAAFwhHDppckgFUwjbKFCbnFWVQjFe" data-theme="dark"></div>
             </div>
 
             <div id="error-msg"></div>
 
-            <!-- Submit Button -->
             <button type="submit" class="login-btn" id="loginBtn">LOGIN ➔</button>
         </form>
 
-        <!-- Bottom Links -->
         <div class="links">
             <a href="#" class="forgot-pwd">ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?</a><br>
             Don't have an account? <a href="register.html" class="register-link">Register</a>
         </div>
     </div>
 
-    <!-- 🔴 JavaScript Logic 🔴 -->
     <script>
         // 1. Firebase Config Setup (ਆਪਣੀ ਅਸਲੀ Config ਪਾਓ)
         const firebaseConfig = {
