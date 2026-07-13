@@ -4,30 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Movie - ਪੰਜਾਬ 95 ਸਤਲੁਜ</title>
+    <link rel="icon" type="image/png" href="hand.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* 🔴 Dark Theme 🔴 */
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #0c0908; /* Dark Theme */
+            background-color: #0c0908; 
             color: #f4eee0; 
             margin: 0; 
             padding: 0; 
             overflow-x: hidden; 
         }
 
-        /* Top Bar & Header */
+        /* Top Bar */
         .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
         .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
         @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
         
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #333; background-color: #111; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #f4eee0; letter-spacing: 1px; text-decoration: none; }
-        .btn-back { background-color: transparent; color: #f4eee0; border: 1px solid #555; padding: 10px 20px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .btn-back:hover { background-color: #c04a2c; border-color: #c04a2c; }
+        /* 🔴 Header Navbar 🔴 */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #333; position: sticky; top: 0; background-color: #111; z-index: 1000; }
+        
+        /* 3D Logo Design */
+        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 15px; text-decoration: none; }
+        .logo-circle {
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            border: 2.5px solid #555; 
+            background-color: #111; 
+            box-shadow: 4px 4px 0px #000; 
+            overflow: hidden; 
+            display: flex;
+            align-items: flex-end; 
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .logo-inner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center bottom;
+            transform: scale(1.35) translateY(12%); 
+        }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #f4eee0; letter-spacing: 1px; }
+
+        .btn-back { background-color: transparent; color: #f4eee0; border: 1px solid #555; padding: 12px 25px; font-size: 12px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; box-shadow: 3px 3px 0px #000; }
+        .btn-back:hover { background-color: #c04a2c; border-color: #c04a2c; transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #000; }
 
         /* Movie Section Styling */
         .movie-section {
-            max-width: 1000px; /* PC ਲਈ ਵੱਧ ਤੋਂ ਵੱਧ ਚੌੜਾਈ */
+            max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
             text-align: center;
@@ -48,14 +75,14 @@
             margin: 0 0 30px 0;
         }
 
-        /* 📱 Responsive Video iframe (ਮੋਬਾਈਲ ਤੇ ਆਟੋ ਸਾਈਜ਼ ਲਈ) */
+        /* 📱 Responsive Video iframe */
         .iframe-container {
             position: relative;
             width: 100%;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             background-color: #000;
-            border: 2px solid #222;
+            border: 2px solid #333;
             box-shadow: 0px 15px 40px rgba(0,0,0,0.8);
             border-radius: 8px;
             overflow: hidden;
@@ -81,7 +108,7 @@
             text-decoration: none;
             text-transform: uppercase;
             border: 2px solid #111;
-            box-shadow: 4px 4px 0px #111;
+            box-shadow: 4px 4px 0px #000;
             border-radius: 5px;
             margin-top: 35px;
             transition: all 0.3s;
@@ -90,45 +117,195 @@
         
         .download-btn:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #111;
-            background-color: #9b1c1c; /* ਥੋੜਾ ਗੂੜ੍ਹਾ ਲਾਲ */
+            box-shadow: 6px 6px 0px #000;
+            background-color: #9b1c1c; 
         }
 
-        /* Mobile Responsive adjustments */
+        /* 🔴 FOOTER STYLES 🔴 */
+        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; border-top: 2px solid #c04a2c; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .footer-grid .footer-col { flex: 1; min-width: 150px; }
+        .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1.1; margin: 0; color: #fff; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #aaa; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.3s; }
+        .footer-links a:hover { color: #c04a2c; }
+        .footer-msg-small { font-size: 12px; color: #aaa; font-weight: bold; }
+        .footer-msg-big { font-family: 'Playfair Display', serif; font-size: 28px; color: #4CAF50; font-weight: 900; margin-top: 5px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; }
+        .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
+        .footer-bottom a:hover { color: #fff; }
+
+        /* Footer Owner Click Style */
+        .footer-owner-click { font-size: 15px; margin-top: 5px; color: #aaa; cursor: pointer; display: inline-block; transition: color 0.3s ease; }
+        .footer-owner-click:hover { color: #c04a2c; }
+
+        /* 🔴 VIDEO POP-UP MODAL CSS 🔴 */
+        .video-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 9999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; padding: 20px; box-sizing: border-box; }
+        .video-modal-overlay.show { display: flex; opacity: 1; }
+        .video-modal-card { background-color: #f4f1ea; padding: 25px; border: 2px solid #111; box-shadow: 10px 10px 0px #111; width: 100%; max-width: 480px; display: flex; flex-direction: column; position: relative; transform: translateY(30px); transition: transform 0.4s ease; box-sizing: border-box; }
+        .video-modal-overlay.show .video-modal-card { transform: translateY(0); }
+        .video-modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #888; font-size: 22px; font-weight: bold; line-height: 1; cursor: pointer; transition: color 0.2s ease; z-index: 20; padding: 5px; }
+        .video-modal-close:hover { color: #111; }
+        .video-modal-header { margin-bottom: 15px; border-bottom: 2px solid #111; padding-bottom: 15px; padding-right: 25px; }
+        .video-modal-header h3 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: #111; line-height: 1.2; margin: 0; letter-spacing: -0.5px; }
+        .video-author-signature { text-align: right; font-size: 15px; color: #555; font-style: italic; margin-top: 10px; font-weight: 600; }
+        .video-wrapper-sleek { width: 100%; aspect-ratio: 9 / 16; max-height: 55vh; background-color: #000; border: 2px solid #111; position: relative; overflow: hidden; margin: 0 auto; }
+        .video-wrapper-sleek video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .mute-mini-btn { position: absolute; bottom: 12px; left: 12px; background: rgba(0, 0, 0, 0.6); color: white; border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 16px; font-size: 12px; font-weight: bold; border-radius: 20px; cursor: pointer; backdrop-filter: blur(4px); z-index: 10; display: flex; align-items: center; gap: 6px; letter-spacing: 1px; transition: all 0.3s ease; }
+        .mute-mini-btn:hover { background: rgba(0, 0, 0, 0.9); border-color: #fff; }
+
+        /* Mobile Responsive */
+        @media(max-width: 900px) {
+            header { padding: 15px 20px; }
+            .logo-circle { width: 50px; height: 50px; }
+            .logo-text { font-size: 24px; }
+            .footer-grid { flex-direction: column; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        }
         @media(max-width: 600px) {
-            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            header { flex-direction: column; gap: 15px; }
+            .btn-back { padding: 10px 15px; font-size: 10px; width: 100%; box-sizing: border-box; text-align: center; }
             .movie-title { font-size: 28px; }
             .download-btn { width: 100%; box-sizing: border-box; }
+            
+            .video-modal-card { width: 92%; padding: 20px; }
+            .video-modal-header h3 { font-size: 26px; }
+            .video-wrapper-sleek { max-height: 65vh; }
         }
     </style>
 </head>
 <body>
+
+    <div id="videoModal" class="video-modal-overlay">
+        <div class="video-modal-card">
+            <button class="video-modal-close" onclick="closeVideoModal()">✖</button>
+            <div class="video-modal-header">
+                <h3>ਅਸੀਂ ਇਹ ਪਲੇਟਫਾਰਮ<br><span style="color: #1a4331;">ਕਿਉਂ ਬਣਾਇਆ?</span></h3>
+                <div class="video-author-signature">- ਬੀਬਰ ਸਰਪੰਚ</div>
+            </div>
+            <div class="video-wrapper-sleek">
+                <video id="promoVideo" playsinline loop autoplay muted>
+                    <source src="your-video.mp4" type="video/mp4">
+                </video>
+                <button id="muteToggleBtn" class="mute-mini-btn" onclick="toggleMute()">
+                    <span id="muteIcon">🔇</span> <span id="muteText">UNMUTE</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <div class="top-bar">
         <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ ✦</span>
     </div>
 
     <header>
-        <a href="index.html" class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</a>
+        <a href="index.html" class="logo-wrapper">
+            <div class="logo-circle">
+                <img src="hand.png" alt="Logo" class="logo-inner-img">
+            </div>
+            <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
+        </a>
         <a href="index.html" class="btn-back">⬅ Back to Home</a>
     </header>
 
     <main class="movie-section">
         
         <h1 class="movie-title">ਪੰਜਾਬ 95 ਸਤਲੁਜ</h1>
-        <p class="movie-desc">Watch the full movie below or download it directly to your device.</p>
+        <p class="movie-desc">Watch the full movie below or download it directly to your device. Choose your preferred quality (144p to 1080p) inside the player.</p>
 
-        <!-- ਇਹ ਕੋਡ ਮੂਵੀ ਨੂੰ ਮੋਬਾਈਲ ਅਤੇ PC ਤੇ ਸਹੀ ਸਾਈਜ਼ ਵਿੱਚ ਦਿਖਾਵੇਗਾ -->
         <div class="iframe-container">
-            <iframe src="https://archive.org/embed/jawant-singh-khalra-punjab-95-satluj" allowfullscreen></iframe>
+            <iframe src="https://player.vimeo.com/video/986968038?h=d682025f16" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <!-- ਡਾਊਨਲੋਡ ਬਟਨ -->
         <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn" download>
             ⬇ Download Movie (MP4)
         </a>
 
     </main>
 
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <span class="footer-label">Since 2026</span>
+                <h2 class="footer-brand">ਸੱਚ ਦੀ<br>ਆਵਾਜ਼.</h2>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Legal & Contact</span>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="security.html">Security Guidelines</a></li>
+                    <li><a href="vision.html">Our Vision</a></li>
+                    <li><a href="contact.html">Secure Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Social Media</span>
+                <ul class="footer-links">
+                    <li><a href="https://www.instagram.com/biebersarpanch" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com/@biebersarpanch" target="_blank">YouTube</a></li>
+                    <li><a href="https://x.com/BieberOP22" target="_blank">Twitter (X)</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">The System</span>
+                <div class="footer-msg-small">Who's in charge now?</div>
+                <div class="footer-msg-big">YOU ARE.</div>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">OWNER</span>
+                <div class="footer-owner-click" onclick="openVideoModal()">ਬੀਬਰ ਸਰਪੰਚ</div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="bottom-left">
+                <a href="https://www.instagram.com/biebersarpanch" target="_blank">INSTAGRAM</a>
+                <a href="https://youtube.com/@biebersarpanch" target="_blank">YOUTUBE</a>
+            </div>
+            <div class="bottom-center" style="color: #c04a2c; letter-spacing: 1px;">A SECURE PLATFORM · VOICE OF PUNJAB</div>
+            <div class="bottom-right">© 2026 ਸੱਚ ਦੀ ਆਵਾਜ਼ · ALL RIGHTS RESERVED</div>
+        </div>
+    </footer>
+
+    <script>
+        // 🔴 NO AUTO-POPUP HERE (Only manual trigger) 🔴
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('promoVideo');
+            
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+            
+            video.currentTime = 0; 
+            video.play().catch(e => console.log(e)); 
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('promoVideo');
+            
+            modal.classList.remove('show');
+            setTimeout(() => { modal.style.display = 'none'; }, 400); 
+            video.pause(); 
+        }
+
+        function toggleMute() {
+            const video = document.getElementById('promoVideo');
+            const icon = document.getElementById('muteIcon');
+            const text = document.getElementById('muteText');
+            
+            if(video.muted) {
+                video.muted = false;
+                icon.innerText = '🔊';
+                text.innerText = 'MUTE';
+            } else {
+                video.muted = true;
+                icon.innerText = '🔇';
+                text.innerText = 'UNMUTE';
+            }
+        }
+    </script>
 </body>
 </html>
