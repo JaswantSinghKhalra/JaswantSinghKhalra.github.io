@@ -17,9 +17,29 @@
         /* Sticky Header */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         
-        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-decoration: none; }
-        .logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #111; object-fit: cover; background-color: #f4f1ea; box-shadow: 2px 2px 0px #111; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
+        /* 🔴 PERFECT 3D LOGO DESIGN 🔴 */
+        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 15px; text-decoration: none; }
+        .logo-circle {
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            border: 2.5px solid #111; 
+            background-color: #f4f1ea; 
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.35); 
+            overflow: hidden; 
+            display: flex;
+            align-items: flex-end; 
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .logo-inner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center bottom;
+            transform: scale(1.35) translateY(12%); 
+        }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #692415; letter-spacing: 1px; }
 
         .nav-container { display: flex; align-items: center; gap: 30px; }
         nav { display: flex; gap: 30px; }
@@ -143,16 +163,36 @@
         .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
         .footer-bottom a:hover { color: #fff; }
 
+        /* 🔴 FOOTER OWNER CLICK STYLE 🔴 */
+        .footer-owner-click { font-size: 15px; margin-top: 5px; color: #aaa; cursor: pointer; display: inline-block; transition: color 0.3s ease; }
+        .footer-owner-click:hover { color: #c04a2c; }
+
+        /* 🔴 VIDEO POP-UP MODAL 🔴 */
+        .video-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 9999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; padding: 20px; box-sizing: border-box; }
+        .video-modal-overlay.show { display: flex; opacity: 1; }
+        .video-modal-card { background-color: #f4f1ea; padding: 25px; border: 2px solid #111; box-shadow: 10px 10px 0px #111; width: 100%; max-width: 480px; display: flex; flex-direction: column; position: relative; transform: translateY(30px); transition: transform 0.4s ease; box-sizing: border-box; }
+        .video-modal-overlay.show .video-modal-card { transform: translateY(0); }
+        .video-modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #888; font-size: 22px; font-weight: bold; line-height: 1; cursor: pointer; transition: color 0.2s ease; z-index: 20; padding: 5px; }
+        .video-modal-close:hover { color: #111; }
+        .video-modal-header { margin-bottom: 15px; border-bottom: 2px solid #111; padding-bottom: 15px; padding-right: 25px; }
+        .video-modal-header h3 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: #111; line-height: 1.2; margin: 0; letter-spacing: -0.5px; }
+        .video-author-signature { text-align: right; font-size: 15px; color: #555; font-style: italic; margin-top: 10px; font-weight: 600; }
+        .video-wrapper-sleek { width: 100%; aspect-ratio: 9 / 16; max-height: 55vh; background-color: #000; border: 2px solid #111; position: relative; overflow: hidden; margin: 0 auto; }
+        .video-wrapper-sleek video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .mute-mini-btn { position: absolute; bottom: 12px; left: 12px; background: rgba(0, 0, 0, 0.6); color: white; border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 16px; font-size: 12px; font-weight: bold; border-radius: 20px; cursor: pointer; backdrop-filter: blur(4px); z-index: 10; display: flex; align-items: center; gap: 6px; letter-spacing: 1px; transition: all 0.3s ease; }
+        .mute-mini-btn:hover { background: rgba(0, 0, 0, 0.9); border-color: #fff; }
+
         /* Mobile Adjustments */
         @media(max-width: 900px) {
-            header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
-            .logo-wrapper { justify-content: flex-start; } 
-            .hamburger { display: flex; }
+            header { position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0dcd2; }
+            .logo-wrapper { position: static; } 
+            .logo-circle { width: 55px; height: 55px; position: relative; z-index: 10; pointer-events: auto; border: 2.5px solid #111; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.35); }
+            .logo-text { position: absolute; left: 50%; transform: translateX(-50%); font-size: 28px; white-space: nowrap; z-index: 5; pointer-events: auto; }
+            .hamburger { display: flex; position: relative; z-index: 10; }
             .nav-container { position: absolute; top: 100%; left: 0; width: 100%; background-color: #f4f1ea; flex-direction: column; align-items: flex-start; padding: 0; box-shadow: 0px 10px 15px rgba(0,0,0,0.1); border-bottom: 2px solid #111; display: none; }
             .nav-container.active { display: flex; } 
             nav { flex-direction: column; width: 100%; padding: 10px 20px; box-sizing: border-box; gap: 0; }
             nav a { padding: 15px 0; border-bottom: 1px solid #e0dcd2; width: 100%; display: block; }
-            nav a:last-child { border-bottom: none; }
             .header-buttons { flex-direction: column; width: 100%; padding: 20px; box-sizing: border-box; gap: 15px; }
             .header-buttons .btn-large { width: 100%; box-sizing: border-box; }
             .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
@@ -163,19 +203,49 @@
             .manifesto-hero { padding: 60px 20px; }
             .manifesto-body { padding: 0 20px; margin: 40px auto; }
             .point-box { padding: 20px; }
+            .footer-grid { flex-direction: column; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        }
+
+        @media(max-width: 600px) {
+            header { padding: 15px; }
+            .logo-circle { width: 50px; height: 50px; } 
+            .logo-text { font-size: 24px; } 
+            .video-modal-card { width: 92%; padding: 20px; }
+            .video-modal-header h3 { font-size: 26px; }
+            .video-wrapper-sleek { max-height: 65vh; }
         }
     </style>
 </head>
 <body>
 
+    <div id="videoModal" class="video-modal-overlay">
+        <div class="video-modal-card">
+            <button class="video-modal-close" onclick="closeVideoModal()">✖</button>
+            <div class="video-modal-header">
+                <h3>ਅਸੀਂ ਇਹ ਪਲੇਟਫਾਰਮ<br><span style="color: #1a4331;">ਕਿਉਂ ਬਣਾਇਆ?</span></h3>
+                <div class="video-author-signature">- ਬੀਬਰ ਸਰਪੰਚ</div>
+            </div>
+            <div class="video-wrapper-sleek">
+                <video id="promoVideo" playsinline loop autoplay muted>
+                    <source src="your-video.mp4" type="video/mp4">
+                </video>
+                <button id="muteToggleBtn" class="mute-mini-btn" onclick="toggleMute()">
+                    <span id="muteIcon">🔇</span> <span id="muteText">UNMUTE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="top-bar">
         <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ - Adv ਬੀਬਰ ਸਰਪੰਚ ✦</span>
     </div>
 
-    <!-- Header -->
     <header>
         <a href="index.html" class="logo-wrapper">
-            <img src="hand.png" alt="Logo" class="logo-img">
+            <div class="logo-circle">
+                <img src="hand.png" alt="Logo" class="logo-inner-img">
+            </div>
             <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
         </a>
         <div class="hamburger" id="hamburgerMenu">
@@ -196,7 +266,6 @@
         </div>
     </header>
 
-    <!-- 🔴 Manifesto Hero Section 🔴 -->
     <section class="manifesto-hero">
         <div class="manifesto-tag">OUR DEMANDS & DECLARATION</div>
         <h1 class="manifesto-title">Manifesto.</h1>
@@ -205,7 +274,6 @@
         </p>
     </section>
 
-    <!-- 🔴 Manifesto Body Section 🔴 -->
     <section class="manifesto-body">
 
         <div class="section-block">
@@ -214,35 +282,35 @@
             </div>
             <h2 class="section-title">ਅਸੀਂ ਕੀ ਚਾਹੁੰਦੇ ਹਾਂ?</h2>
             <p class="section-text">
-                ਪੰਜਾਬ ਦਾ ਸਿਸਟਮ ਅੱਜ ਭ੍ਰਿਸ਼ਟਾਚਾਰ, ਨਸ਼ੇ ਅਤੇ ਪੁਲਿਸ ਦੀਆਂ ਵਧੀਕੀਆਂ ਹੇਠ ਦੱਬਿਆ ਹੋਇਆ ਹੈ। "ਸੱਚ ਦੀ ਆਵਾਜ਼" ਦੀਆਂ ਮੰਗਾਂ ਸਪੱਸ਼ਟ ਹਨ। ਅਸੀਂ ਹੇਠ ਲਿਖੇ 4 ਮੁੱਦਿਆਂ 'ਤੇ ਜ਼ੀਰੋ ਟਾਲਰੈਂਸ (Zero Tolerance) ਨੀਤੀ ਰੱਖਦੇ ਹਾਂ:
+                ਪੰਜਾਬ ਦਾ ਸਿਸਟਮ ਅੱਜ ਭ੍ਰਿਸ਼ਟਾਚਾਰ, ਨਸ਼ੇ ਅਤੇ ਪੁਲਿਸ ਦੀਆਂ ਵਧੀਕੀਆਂ ਹੇਠ ਦੱਬਿਆ ਹੋਇਆ ਹੈ। "ਸੱਚ ਦੀ ਆਵਾਜ਼" ਦੀਆਂ ਮੰਗਾਂ ਸਪੱਸ਼ਟ ਹਨ। ਅਸੀਂ ਹੇਠ ਲਿਖੇ 5 ਮੁੱਦਿਆਂ 'ਤੇ ਜ਼ੀਰੋ ਟਾਲਰੈਂਸ (Zero Tolerance) ਨੀਤੀ ਰੱਖਦੇ ਹਾਂ:
             </p>
         </div>
 
-        <!-- Point 1 -->
         <div class="point-box">
-            <h3>1. ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ</h3>
+            <h3>1. ਸ਼੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਬੇਅਦਬੀ</h3>
+            <p>ਸ਼੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦੀ ਬੇਅਦਬੀ ਦੇ ਮਾਮਲਿਆਂ ਵਿੱਚ ਸਖ਼ਤ ਅਤੇ ਤੁਰੰਤ ਇਨਸਾਫ਼ ਹੋਵੇ। ਬੇਅਦਬੀ ਦੀਆਂ ਘਟਨਾਵਾਂ ਨੂੰ ਰੋਕਣ ਲਈ ਸਖ਼ਤ ਕਾਨੂੰਨ ਬਣੇ ਅਤੇ ਦੋਸ਼ੀਆਂ ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ ਸਿਆਸੀ ਬਚਾਅ ਦੇ ਸਖ਼ਤ ਸਜ਼ਾਵਾਂ ਮਿਲਣ।</p>
+        </div>
+
+        <div class="point-box">
+            <h3>2. ਝੂਠੇ ਪਰਚੇ ਅਤੇ ਪੁਲਿਸ ਧੱਕੇਸ਼ਾਹੀ ਬੰਦ ਹੋਵੇ</h3>
             <p>ਅਸੀਂ ਮੰਗ ਕਰਦੇ ਹਾਂ ਕਿ ਬਿਨਾਂ ਪੁਖਤਾ ਸਬੂਤਾਂ ਤੋਂ ਪਾਏ ਗਏ ਝੂਠੇ ਪਰਚੇ ਤੁਰੰਤ ਰੱਦ ਹੋਣ। ਪੁਲਿਸ ਦੀ ਜਵਾਬਦੇਹੀ ਤੈਅ ਹੋਵੇ। ਜਿਹੜਾ ਅਫਸਰ ਆਪਣੀ ਵਰਦੀ ਦਾ ਰੋਅਬ ਦਿਖਾ ਕੇ ਕਿਸੇ ਗਰੀਬ ਨਾਲ ਧੱਕਾ ਕਰਦਾ ਹੈ, ਉਸ 'ਤੇ ਸਿੱਧੀ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।</p>
         </div>
 
-        <!-- Point 2 -->
         <div class="point-box">
-            <h3>2. ਨਸ਼ਾ ਤਸਕਰਾਂ ਅਤੇ ਸਿਆਸੀ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ</h3>
+            <h3>3. ਨਸ਼ਾ ਤਸਕਰਾਂ ਅਤੇ ਸਿਆਸੀ ਗੱਠਜੋੜ ਦਾ ਖਾਤਮਾ</h3>
             <p>ਪੰਜਾਬ ਦੀ ਜਵਾਨੀ ਨੂੰ ਖਾਣ ਵਾਲੇ ਨਸ਼ਾ ਤਸਕਰਾਂ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਪੁਲਿਸ/ਸਿਆਸੀ ਸੁਰੱਖਿਆ ਦੇਣ ਵਾਲੇ ਭ੍ਰਿਸ਼ਟ ਲੀਡਰਾਂ ਦਾ ਪਰਦਾਫਾਸ਼ ਕਰਨਾ ਸਾਡੀ ਸਭ ਤੋਂ ਵੱਡੀ ਤਰਜੀਹ ਹੈ। ਅਸੀਂ ਮੰਗ ਕਰਦੇ ਹਾਂ ਕਿ ਨਸ਼ਾ ਵੇਚਣ ਵਾਲਿਆਂ ਦੀਆਂ ਜਾਇਦਾਦਾਂ ਜ਼ਬਤ ਕਰਕੇ ਸਖਤ ਸਜ਼ਾਵਾਂ ਦਿੱਤੀਆਂ ਜਾਣ।</p>
         </div>
 
-        <!-- Point 3 -->
         <div class="point-box">
-            <h3>3. ਆਜ਼ਾਦ ਅਤੇ ਸਮਾਂ-ਬੱਧ ਇਨਸਾਫ਼ (No Delayed Justice)</h3>
+            <h3>4. ਆਜ਼ਾਦ ਅਤੇ ਸਮਾਂ-ਬੱਧ ਇਨਸਾਫ਼ (No Delayed Justice)</h3>
             <p>RTI ਜਾਂ ਸ਼ਿਕਾਇਤਾਂ ਦਾ ਜਵਾਬ 90-100 ਦਿਨਾਂ ਵਿੱਚ ਨਹੀਂ, ਬਲਕਿ ਇੱਕ ਤੈਅ ਸਮੇਂ ਵਿੱਚ ਮਿਲਣਾ ਚਾਹੀਦਾ ਹੈ। "ਪੁਲਿਸ ਦੀ ਜਾਂਚ ਪੁਲਿਸ ਵੱਲੋਂ" ਵਾਲਾ ਸਿਸਟਮ ਖਤਮ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ, ਅਤੇ ਇਸਦੀ ਜਗ੍ਹਾ ਇੱਕ ਆਜ਼ਾਦ ਜਾਂਚ ਕਮੇਟੀ ਬਣਾਈ ਜਾਵੇ।</p>
         </div>
 
-        <!-- Point 4 -->
         <div class="point-box">
-            <h3>4. ਡਰ-ਮੁਕਤ ਸਮਾਜ (Power to the People)</h3>
+            <h3>5. ਡਰ-ਮੁਕਤ ਸਮਾਜ (Power to the People)</h3>
             <p>ਸਾਡਾ ਮਕਸਦ ਇੱਕ ਅਜਿਹਾ ਪੰਜਾਬ ਸਿਰਜਣਾ ਹੈ ਜਿੱਥੇ ਕੋਈ ਵੀ ਇਨਸਾਨ—ਚਾਹੇ ਉਹ ਪਿੰਡ ਦਾ ਆਮ ਮਜ਼ਦੂਰ ਹੋਵੇ ਜਾਂ ਕਿਸਾਨ—ਸਰਕਾਰੀ ਬਾਬੂਆਂ, ਅਫਸਰਾਂ ਜਾਂ ਲੀਡਰਾਂ ਅੱਗੇ ਸੱਚ ਬੋਲਣ ਤੋਂ ਨਾ ਡਰੇ। ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਹੀ ਅਸਲੀ ਤਾਕਤ ਹੈ।</p>
         </div>
 
-        <!-- Sign off -->
         <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #e0dcd2;">
             <b style="font-size: 18px; color: #111;">One large, stubborn movement.</b>
             <span style="display: block; text-align: right; color: #555; font-size: 16px; margin-top: 10px;">.ਬੀਬਰ ਸਰਪੰਚ</span>
@@ -250,7 +318,6 @@
 
     </section>
 
-    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
@@ -281,7 +348,7 @@
             </div>
             <div class="footer-col">
                 <span class="footer-label">OWNER</span>
-                <div class="footer-msg-small" style="font-size: 15px; margin-top: 5px;">ਬੀਬਰ ਸਰਪੰਚ</div>
+                <div class="footer-owner-click" onclick="openVideoModal()">ਬੀਬਰ ਸਰਪੰਚ</div>
             </div>
         </div>
         
@@ -295,7 +362,6 @@
         </div>
     </footer>
 
-    <!-- Javascript For Hamburger Menu -->
     <script>
         const hamburger = document.getElementById('hamburgerMenu');
         const navMenu = document.getElementById('navMenu');
@@ -304,6 +370,43 @@
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
+
+        // 🔴 NO AUTO-POPUP HERE (Only manual trigger) 🔴
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('promoVideo');
+            
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+            
+            video.currentTime = 0; 
+            video.play().catch(e => console.log(e)); 
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('promoVideo');
+            
+            modal.classList.remove('show');
+            setTimeout(() => { modal.style.display = 'none'; }, 400); 
+            video.pause(); 
+        }
+
+        function toggleMute() {
+            const video = document.getElementById('promoVideo');
+            const icon = document.getElementById('muteIcon');
+            const text = document.getElementById('muteText');
+            
+            if(video.muted) {
+                video.muted = false;
+                icon.innerText = '🔊';
+                text.innerText = 'MUTE';
+            } else {
+                video.muted = true;
+                icon.innerText = '🔇';
+                text.innerText = 'UNMUTE';
+            }
+        }
     </script>
 </body>
 </html>
