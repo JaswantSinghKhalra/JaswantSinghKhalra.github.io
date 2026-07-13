@@ -17,10 +17,10 @@
         /* 🔴 Header Navbar */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         
-        /* Logo Design */
+        /* 🔴 Logo Design (Size Increased for PC) 🔴 */
         .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-decoration: none; }
-        .logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #111; object-fit: cover; background-color: #f4f1ea; box-shadow: 2px 2px 0px #111; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
+        .logo-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #111; object-fit: cover; background-color: #f4f1ea; box-shadow: 2px 2px 0px #111; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #692415; letter-spacing: 1px; }
 
         /* Navigation Container */
         .nav-container { display: flex; align-items: center; gap: 30px; }
@@ -80,7 +80,10 @@
         .welcome-left { flex: 1; padding-right: 60px; border-right: 1px solid #e0dcd2; }
         .welcome-right { flex: 1; display: flex; flex-direction: column; gap: 40px; }
         .w-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: block; }
-        .w-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; line-height: 1; color: #111; margin: 0 0 30px 0; letter-spacing: -1.5px; }
+        
+        /* 🔴 Overlap Issue Fixed Here (Line-height adjusted) 🔴 */
+        .w-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; line-height: 1.3; color: #111; margin: 0 0 30px 0; letter-spacing: -1.5px; }
+        
         .w-desc { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 25px; }
         
         .welcome-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
@@ -165,17 +168,12 @@
             .live-count-box { flex: 1; min-width: 140px; }
         }
 
-        /* 🔴 MOBILE HEADER STYLES UPDATED HERE 🔴 */
+        /* 🔴 MOBILE HEADER STYLES UPDATED HERE (Sticky Fixed) 🔴 */
         @media(max-width: 900px) {
-            header { position: relative; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; }
+            header { position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0dcd2; }
             
-            /* Make logo wrapper static so absolute text works relative to header */
             .logo-wrapper { position: static; } 
-            
-            /* Logo Image larger on mobile */
             .logo-img { width: 55px; height: 55px; position: relative; z-index: 10; pointer-events: auto; }
-            
-            /* Absolute centering the text on mobile */
             .logo-text {
                 position: absolute;
                 left: 50%;
@@ -183,7 +181,7 @@
                 font-size: 28px; 
                 white-space: nowrap;
                 z-index: 5;
-                pointer-events: auto; /* Ensure it stays clickable */
+                pointer-events: auto; 
             }
 
             .hamburger { display: flex; position: relative; z-index: 10; }
@@ -236,7 +234,10 @@
         @media(max-width: 600px) {
             .hero-title { font-size: 42px; line-height: 1.1; }
             .hero-desc { font-size: 14px; }
-            .w-title { font-size: 38px; line-height: 1.1; }
+            
+            /* overlap fix inside mobile view too */
+            .w-title { font-size: 38px; line-height: 1.3; } 
+            
             .w-feature-title { font-size: 24px; }
             .m-title { font-size: 38px; }
             .m-num { font-size: 35px; }
@@ -257,8 +258,8 @@
             
             /* 🔴 PERFECT MOBILE HEADER 🔴 */
             header { padding: 15px; }
-            .logo-img { width: 50px; height: 50px; } /* Increased size for mobile */
-            .logo-text { font-size: 24px; } /* Centered perfectly */
+            .logo-img { width: 50px; height: 50px; } 
+            .logo-text { font-size: 24px; } 
         }
     </style>
 </head>
@@ -443,7 +444,7 @@
         <div class="story-grid">
             <div class="story-left">
                 <h2 class="story-title">It started with a simple demand for justice.</h2>
-                <p class="story-desc">ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ。</p>
+                <p class="story-desc">ਜਦੋਂ ਸਿਸਟਮ ਨੇ ਪੰਜਾਬ ਦੇ ਆਮ ਲੋਕਾਂ ਦੀ ਆਵਾਜ਼ ਨੂੰ ਦਬਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ, ਤਾਂ ਅਸੀਂ ਚੁੱਪ ਰਹਿਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ 'ਤੇ ਪਹਿਰਾ ਦਿੰਦੇ ਹੋਏ, ਇਹ ਪਲੇਟਫਾਰਮ ਹੋਂਦ ਵਿੱਚ ਆਇਆ ਤਾਂ ਜੋ ਹਰ ਪੀੜਤ ਦੀ ਆਵਾਜ਼ ਬੁਲੰਦ ਕੀਤੀ ਜਾ ਸਕੇ।</p>
                 
                 <a href="movie.html" class="btn-large" style="margin-top: 10px; display: inline-block;">WATCH MOVIE (ਪੰਜਾਬ 95 ਸਤਲੁਜ) ➔</a>
             </div>
