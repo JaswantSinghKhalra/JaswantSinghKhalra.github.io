@@ -97,28 +97,42 @@
             border: 0;
         }
 
-        /* Download Button Styling */
+        /* 🔴 Download Quality Buttons 🔴 */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+        }
         .download-btn {
             display: inline-block;
             background-color: #c04a2c;
             color: #fff;
-            padding: 15px 35px;
-            font-size: 16px;
+            padding: 15px 30px;
+            font-size: 14px;
             font-weight: bold;
             text-decoration: none;
             text-transform: uppercase;
             border: 2px solid #111;
             box-shadow: 4px 4px 0px #000;
             border-radius: 5px;
-            margin-top: 35px;
             transition: all 0.3s;
             letter-spacing: 1px;
         }
-        
         .download-btn:hover {
             transform: translate(-2px, -2px);
             box-shadow: 6px 6px 0px #000;
             background-color: #9b1c1c; 
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: #c04a2c;
+            border-color: #c04a2c;
+        }
+        .btn-outline:hover {
+            background-color: #c04a2c;
+            color: #fff;
         }
 
         /* 🔴 FOOTER STYLES 🔴 */
@@ -168,7 +182,7 @@
             header { flex-direction: column; gap: 15px; }
             .btn-back { padding: 10px 15px; font-size: 10px; width: 100%; box-sizing: border-box; text-align: center; }
             .movie-title { font-size: 28px; }
-            .download-btn { width: 100%; box-sizing: border-box; }
+            .download-btn { width: 100%; box-sizing: border-box; margin-top: 15px; }
             
             .video-modal-card { width: 92%; padding: 20px; }
             .video-modal-header h3 { font-size: 26px; }
@@ -214,16 +228,22 @@
     <main class="movie-section">
         
         <h1 class="movie-title">ਪੰਜਾਬ 95 ਸਤਲੁਜ</h1>
-        <p class="movie-desc">Watch the full movie below or download it directly to your device.</p>
+        <p class="movie-desc">ਡਾਟਾ ਬਚਾਉਣ ਲਈ ਤੁਸੀਂ ਹੇਠਾਂ ਦਿੱਤੇ ਬਟਨਾਂ ਤੋਂ ਮੂਵੀ ਨੂੰ Low Quality (Data Saver) ਜਾਂ HD ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ।</p>
 
-        <!-- 🔴 ARCHIVE.ORG PLAYER (As requested) 🔴 -->
+        <!-- 🔴 ARCHIVE.ORG VIDEO PLAYER (RESTORED) 🔴 -->
         <div class="iframe-container">
             <iframe src="https://archive.org/embed/jawant-singh-khalra-punjab-95-satluj" allowfullscreen></iframe>
         </div>
 
-        <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn" download>
-            ⬇ Download Movie (MP4)
-        </a>
+        <!-- 🔴 QUALITY / DATA SAVER BUTTONS 🔴 -->
+        <div class="button-group">
+            <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn btn-outline" download>
+                ⬇ Data Saver (Low Quality)
+            </a>
+            <a href="https://archive.org/download/jawant-singh-khalra-punjab-95-satluj/Jawant%20Singh%20khalra%20Punjab%2095%20%28Satluj%29.mp4" class="download-btn" download>
+                ⬇ HD Quality (1080p)
+            </a>
+        </div>
 
     </main>
 
