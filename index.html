@@ -17,9 +17,18 @@
         /* 🔴 Header Navbar */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         
-        /* 🔴 Logo Design (Size Increased for PC) 🔴 */
-        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-decoration: none; }
-        .logo-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #111; object-fit: cover; background-color: #f4f1ea; box-shadow: 2px 2px 0px #111; }
+        /* 🔴 Logo Design (3D Effect & Bottom Align Fixed) 🔴 */
+        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 15px; text-decoration: none; }
+        .logo-img { 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            border: 2.5px solid #111; 
+            object-fit: cover; 
+            object-position: center bottom; /* 🔴 Ensures the hand touches the bottom of the circle */
+            background-color: #f4f1ea; 
+            box-shadow: 4px 4px 0px #111; /* 3D Shadow */
+        }
         .logo-text { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #692415; letter-spacing: 1px; }
 
         /* Navigation Container */
@@ -80,10 +89,7 @@
         .welcome-left { flex: 1; padding-right: 60px; border-right: 1px solid #e0dcd2; }
         .welcome-right { flex: 1; display: flex; flex-direction: column; gap: 40px; }
         .w-tag { color: #c04a2c; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: block; }
-        
-        /* 🔴 Overlap Issue Fixed Here (Line-height adjusted) 🔴 */
         .w-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; line-height: 1.3; color: #111; margin: 0 0 30px 0; letter-spacing: -1.5px; }
-        
         .w-desc { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 25px; }
         
         .welcome-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
@@ -168,12 +174,24 @@
             .live-count-box { flex: 1; min-width: 140px; }
         }
 
-        /* 🔴 MOBILE HEADER STYLES UPDATED HERE (Sticky Fixed) 🔴 */
+        /* 🔴 MOBILE HEADER STYLES UPDATED HERE (Sticky Fixed & Logo Object-Position Added) 🔴 */
         @media(max-width: 900px) {
             header { position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0dcd2; }
             
             .logo-wrapper { position: static; } 
-            .logo-img { width: 55px; height: 55px; position: relative; z-index: 10; pointer-events: auto; }
+            
+            .logo-img { 
+                width: 55px; 
+                height: 55px; 
+                position: relative; 
+                z-index: 10; 
+                pointer-events: auto; 
+                border: 2.5px solid #111; 
+                box-shadow: 4px 4px 0px #111; 
+                object-fit: cover;
+                object-position: center bottom; /* 🔴 Mobile bottom align */
+            }
+            
             .logo-text {
                 position: absolute;
                 left: 50%;
@@ -220,10 +238,11 @@
             .story-title { font-size: 45px; }
 
             .elig-title { font-size: 45px; }
-            .elig-box { flex-direction: column; align-items: flex-start; padding: 20px; gap: 15px; }
-            .elig-left-wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .elig-text h3 { font-size: 26px; }
-            .elig-check { align-self: flex-end; margin-top: -40px; } 
+            .elig-box { display: block; position: relative; padding: 25px 20px; } 
+            .elig-left-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-right: 45px; } 
+            .elig-text h3 { font-size: 26px; margin-bottom: 5px; }
+            .elig-text p { font-size: 14px; line-height: 1.5; margin: 0; }
+            .elig-check { position: absolute; right: 20px; bottom: 25px; margin-top: 0; } 
 
             .site-footer { padding: 40px 20px 20px; }
             .footer-grid { flex-direction: column; text-align: center; }
@@ -234,10 +253,7 @@
         @media(max-width: 600px) {
             .hero-title { font-size: 42px; line-height: 1.1; }
             .hero-desc { font-size: 14px; }
-            
-            /* overlap fix inside mobile view too */
             .w-title { font-size: 38px; line-height: 1.3; } 
-            
             .w-feature-title { font-size: 24px; }
             .m-title { font-size: 38px; }
             .m-num { font-size: 35px; }
@@ -256,7 +272,6 @@
             .story-section { padding: 50px 15px; }
             .eligibility-section { padding: 50px 15px; }
             
-            /* 🔴 PERFECT MOBILE HEADER 🔴 */
             header { padding: 15px; }
             .logo-img { width: 50px; height: 50px; } 
             .logo-text { font-size: 24px; } 
@@ -341,6 +356,7 @@
                 <span class="caption-red">Est. Today</span>
             </div>
 
+            <!-- LIVE COUNTERS -->
             <div class="counters-container">
                 <div class="live-count-box">
                     <div class="live-indicator"><div class="pulse-dot"></div> LIVE</div>
@@ -385,7 +401,7 @@
                 <div class="w-feature">
                     <span class="w-feature-tag">WHAT YOU GET</span>
                     <h3 class="w-feature-title">100% ਗੁਪਤ ਅਤੇ ਸੁਰੱਖਿਅਤ</h3>
-                    <p class="w-feature-desc">ਤੁਹਾਡੀ ਪਛਾਣ, ਨਾਮ ਅਤੇ ਆਧਾਰ ਕਾਰਡ ਪੂਰੀ ਤਰ੍ਹਾਂ ਇਨਕ੍ਰਿਪਟਡ (Encrypted) ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਵੀ ਪੁਲਿਸ ਵਾਲਾ ਜਾਂ ਲੀਡਰ ਤੁਹਾਨੂੰ ਟਰੈਕ ਨਹੀਂ ਕਰ ਸਕਦਾ। ਇਹ ਸਾਡਾ ਵਾਅਦਾ ਹੈ।</p>
+                    <p class="w-feature-desc">ਤੁਹਾਡੀ ਪਛਾਣ, ਨਾਮ ਅਤੇ ਆਧਾਰ ਕਾਰਡ ਪੂਰੀ ਤਰ੍ਹਾਂ ਇਨਕ੍ਰਿਪਟਡ (Encrypted) ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਵੀ ਪੁਲਿਸ ਵਾਲਾ ਜਾਂ ਲੀਡਰ ਤੁਹਾਨੂੰ ਟਰੈਕ ਨਹੀਂ ਕਰ ਸਕਦਾ। ਇਹ ਸਾਡਾ ਵਾਅਦਾ ਹੈ。</p>
                 </div>
                 
                 <div class="w-feature">
@@ -526,7 +542,7 @@
             </div>
 
             <div class="elig-btn-container">
-                <a href="complaint.html" class="btn-elig">ENLIST YOURSELF ➔</a>
+                <a href="contact.html" class="btn-elig">ENLIST YOURSELF ➔</a>
                 <div class="elig-footer-text">THE SYSTEM ALREADY KNOWS WHO YOU ARE.</div>
             </div>
         </div>
