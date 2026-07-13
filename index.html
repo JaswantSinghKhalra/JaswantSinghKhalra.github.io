@@ -17,7 +17,7 @@
         /* 🔴 Header Navbar */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         
-        /* 🔴 PERFECT 3D LOGO DESIGN 🔴 */
+        /* 🔴 PERFECT 3D LOGO DESIGN (Image attached to bottom + Light Shadow) 🔴 */
         .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 15px; text-decoration: none; }
         
         .logo-circle {
@@ -26,10 +26,11 @@
             border-radius: 50%; 
             border: 2.5px solid #111; 
             background-color: #f4f1ea; 
-            box-shadow: 4px 4px 0px #111; /* 3D Shadow */
-            overflow: hidden; /* Clips the image perfectly inside the circle */
+            /* Light Black (Professional) 3D Shadow */
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.35); 
+            overflow: hidden; 
             display: flex;
-            align-items: flex-end; /* Aligns to bottom */
+            align-items: flex-end; 
             justify-content: center;
             flex-shrink: 0;
         }
@@ -39,8 +40,8 @@
             height: 100%;
             object-fit: cover;
             object-position: center bottom;
-            /* 🔴 MAGIC FIX: Pushes the hand down to touch the black line exactly 🔴 */
-            transform: scale(1.15) translateY(5%); 
+            /* MAGIC FIX 2.0: Pushed further down to ensure it touches the bottom line */
+            transform: scale(1.35) translateY(12%); 
         }
 
         .logo-text { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #692415; letter-spacing: 1px; }
@@ -188,7 +189,7 @@
             .live-count-box { flex: 1; min-width: 140px; }
         }
 
-        /* 🔴 MOBILE HEADER STYLES UPDATED HERE (Sticky Fixed & Logo Object-Position Added) 🔴 */
+        /* 🔴 MOBILE HEADER STYLES UPDATED HERE (Sticky Fixed & Light Shadow Applied) 🔴 */
         @media(max-width: 900px) {
             header { position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0dcd2; }
             
@@ -201,7 +202,7 @@
                 z-index: 10; 
                 pointer-events: auto; 
                 border: 2.5px solid #111; 
-                box-shadow: 4px 4px 0px #111; 
+                box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.35); /* Light Black (Professional) */
             }
             
             .logo-text {
@@ -249,7 +250,6 @@
             .story-right { border-left: none; padding-left: 0; border-top: 1px solid #e0dcd2; padding-top: 40px; }
             .story-title { font-size: 45px; }
 
-            /* 🔴 MOBILE ELIGIBILITY OVERLAP FIXED HERE 🔴 */
             .elig-title { font-size: 45px; }
             .elig-box { display: block; position: relative; padding: 25px 20px; } 
             .elig-left-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-right: 45px; } 
@@ -285,7 +285,6 @@
             .story-section { padding: 50px 15px; }
             .eligibility-section { padding: 50px 15px; }
             
-            /* 🔴 PERFECT MOBILE HEADER 🔴 */
             header { padding: 15px; }
             .logo-circle { width: 50px; height: 50px; } 
             .logo-text { font-size: 24px; } 
@@ -299,7 +298,6 @@
 
     <header>
         <a href="index.html" class="logo-wrapper">
-            <!-- 🔴 NEW WRAPPER FOR LOGO 🔴 -->
             <div class="logo-circle">
                 <img src="hand.png" alt="Logo" class="logo-inner-img">
             </div>
@@ -340,7 +338,6 @@
                 <span style="display: block; text-align: right; color: #555; font-size: 16px; margin-top: 10px;">- ਬੀਬਰ ਸਰਪੰਚ</span>
             </p>
             
-            <!-- HERO BUTTONS -->
             <div class="action-buttons">
                 <a href="complaint.html" class="btn-large">FILE COMPLAINT (ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ) ➔</a>
                 <a href="status.html" class="btn-large">COMPLAINT STATUS (ਸਥਿਤੀ ਦੇਖੋ) ➔</a>
@@ -394,7 +391,6 @@
     <!-- 🔴 WELCOME / ABOUT SECTION 🔴 -->
     <section class="welcome-section">
         <div class="welcome-grid">
-            <!-- Left Side -->
             <div class="welcome-left">
                 <span class="w-tag">ABOUT US · OUR VISION</span>
                 <h2 class="w-title">Welcome to<br><span style="color: #c04a2c; font-style: italic;">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span></h2>
@@ -412,7 +408,6 @@
                 </div>
             </div>
 
-            <!-- Right Side (3 Points) -->
             <div class="welcome-right">
                 <div class="w-feature">
                     <span class="w-feature-tag">WHAT YOU GET</span>
