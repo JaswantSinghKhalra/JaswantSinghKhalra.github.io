@@ -3,57 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
+    <title>ਸਿਸਟਮ ਨਾਲ ਜੁੜੋ - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background: url('bg.jpg') center/cover no-repeat; background-color: #0a0a0a; color: #fff; }
-        .overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(20,10,0,0.85) 100%); z-index: 1; }
-        .auth-box { position: relative; z-index: 2; background: rgba(20, 15, 12, 0.95); padding: 40px; width: 100%; max-width: 380px; box-sizing: border-box; border: 1px solid #3a2218; box-shadow: 0 15px 35px rgba(0,0,0,0.9); }
-        .top-label { color: #c04a2c; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 5px; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; margin: 0 0 30px; text-align: center; color: #f4eee0; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0c0908; /* Dark Background */
+            color: #f4eee0; 
+            margin: 0; 
+            padding: 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Box Styling */
+        .login-box {
+            background-color: #161210;
+            border: 1px solid #2a2523;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0px 15px 40px rgba(0,0,0,0.8);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .secure-tag {
+            color: #c04a2c;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .login-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: #f4eee0;
+            margin: 0 0 30px 0;
+            letter-spacing: -0.5px;
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #555;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #333;
+        }
+        .divider:not(:empty)::before { margin-right: 15px; }
+        .divider:not(:empty)::after { margin-left: 15px; }
+
+        /* Form Styling */
+        .form-group {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            color: #aaa;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background-color: #ece8df;
+            border: 1px solid #ccc;
+            color: #111;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus {
+            background-color: #fff;
+            border-color: #c04a2c;
+        }
+
+        /* 🔴 Password Field & Eye Icon Setup */
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
         
-        .divider { display: flex; align-items: center; color: #666; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin: 25px 0; }
-        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #333; }
-        .divider::before { margin-right: 10px; } .divider::after { margin-left: 10px; }
-        
-        label { display: block; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: #888; margin-bottom: 8px; }
-        input { width: 100%; padding: 14px; margin-bottom: 20px; box-sizing: border-box; border: 1px solid #2a2420; background: #1a1614; color: white; font-family: inherit; font-size: 14px; transition: border 0.3s; }
-        input:focus { outline: none; border-color: #c04a2c; }
-        
-        .btn-primary { background: #c04a2c; color: white; padding: 15px; border: none; font-weight: bold; cursor: pointer; width: 100%; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; transition: background 0.3s; }
-        .btn-primary:hover { background: #a33b20; }
-        
-        .footer-link { text-align: center; margin-top: 25px; font-size: 12px; color: #888; }
-        .footer-link a { color: #fff; text-decoration: none; border-bottom: 1px solid #fff; padding-bottom: 2px; }
-        .footer-link a:hover { color: #c04a2c; border-color: #c04a2c; }
-        #error-msg { color: #ff4d4d; font-size: 12px; font-weight: bold; margin-bottom: 15px; text-align: center; }
+        .password-wrapper input {
+            background-color: #1e1a18;
+            color: #fff;
+            border: 1px solid #333;
+            padding-right: 45px; 
+        }
+        .password-wrapper input:focus {
+            border-color: #c04a2c;
+            background-color: #111;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            color: #888;
+        }
+        .eye-icon:hover {
+            color: #c04a2c;
+        }
+
+        /* Button Styling */
+        .login-btn {
+            background-color: #c04a2c;
+            color: white;
+            padding: 15px;
+            border: none;
+            font-weight: bold;
+            font-size: 14px;
+            width: 100%;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .login-btn:hover {
+            background-color: #9b1c1c;
+        }
+        .login-btn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        /* Status Messages */
+        #status-msg {
+            font-size: 12px;
+            text-align: left;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: none;
+            padding: 15px;
+            border-radius: 4px;
+            line-height: 1.5;
+        }
+        .msg-error { background-color: rgba(255, 77, 77, 0.1); color: #ff4d4d; border: 1px solid #ff4d4d; }
+        .msg-success { background-color: rgba(76, 175, 80, 0.1); color: #4CAF50; border: 1px solid #4CAF50; }
+
+        /* Links */
+        .links {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #888;
+        }
+        .links a {
+            color: #f4eee0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border-bottom: 1px solid #f4eee0;
+            padding-bottom: 2px;
+        }
+        .links a:hover {
+            color: #c04a2c;
+            border-color: #c04a2c;
+        }
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="auth-box">
-        <div class="top-label">ENLIST YOURSELF</div>
-        <h2>ਸਿਸਟਮ ਨਾਲ ਜੁੜੋ.</h2>
+
+    <div class="login-box">
+        <div class="secure-tag">ENLIST YOURSELF</div>
+        <h1 class="login-title">ਸਿਸਟਮ ਨਾਲ ਜੁੜੋ.</h1>
 
         <div class="divider">REGISTER WITH EMAIL</div>
 
-        <label>EMAIL ADDRESS (ਈਮੇਲ)</label>
-        <input type="email" id="email" placeholder="you@example.com">
+        <form id="registerForm">
+            <div class="form-group">
+                <label>EMAIL ADDRESS (ਈਮੇਲ)</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
 
-        <label>PASSWORD (ਪਾਸਵਰਡ)</label>
-        <input type="password" id="password" placeholder="Min. 6 characters">
+            <div class="form-group">
+                <label>PASSWORD (ਪਾਸਵਰਡ)</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Min. 6 characters" required>
+                    
+                    <span class="eye-icon" id="togglePassword" onclick="showHidePassword()">
+                        <svg viewBox="0 0 24 24" width="22" height="22">
+                            <path d="M6 12 C 6 6, 18 6, 18 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="12" cy="16" r="2" fill="currentColor" stroke="none"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
 
-        <p id="error-msg"></p>
-        <button class="btn-primary" onclick="registerUser()">REGISTER ➔</button>
+            <div id="status-msg"></div>
 
-        <div class="footer-link">
+            <button type="submit" class="login-btn" id="registerBtn">REGISTER ➔</button>
+        </form>
+
+        <div class="links">
             Already registered? <a href="login.html">Sign in</a>
         </div>
     </div>
 
     <script>
+        // Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
             authDomain: "sachdiawaaz-376ee.firebaseapp.com",
@@ -65,26 +245,77 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        function registerUser() {
-            let e = document.getElementById("email").value;
-            let p = document.getElementById("password").value;
+        // Password Show/Hide Function
+        function showHidePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('togglePassword');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.style.color = '#c04a2c';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.style.color = '#888';
+            }
+        }
+
+        // Form Registration Logic
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            if(p.length < 6) {
-                document.getElementById("error-msg").innerText = "ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।";
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const statusMsg = document.getElementById('status-msg');
+            const btn = document.getElementById('registerBtn');
+
+            // Password length validation
+            if(password.length < 6) {
+                statusMsg.className = 'msg-error';
+                statusMsg.innerText = "❌ ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।";
+                statusMsg.style.display = 'block';
                 return;
             }
 
-            auth.createUserWithEmailAndPassword(e, p)
+            // Loading State
+            statusMsg.style.display = 'none';
+            statusMsg.className = '';
+            btn.innerText = "REGISTERING...";
+            btn.disabled = true;
+
+            // Create Firebase User
+            auth.createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
+                // Send Verification Email
                 userCredential.user.sendEmailVerification().then(() => {
+                    // Sign out immediately so they have to verify first
                     auth.signOut().then(() => {
-                        alert("ਖਾਤਾ ਬਣ ਗਿਆ ਹੈ! ਅਸੀਂ ਤੁਹਾਡੀ ਈਮੇਲ 'ਤੇ ਇੱਕ ਲਿੰਕ ਭੇਜਿਆ ਹੈ। ਲੌਗਿਨ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੀ ਈਮੇਲ ਖੋਲ੍ਹ ਕੇ ਉਸ ਲਿੰਕ 'ਤੇ ਕਲਿੱਕ ਕਰੋ। (Spam ਫੋਲਡਰ ਵੀ ਚੈੱਕ ਕਰ ਲਿਓ)");
-                        window.location.href = "login.html";
+                        btn.innerText = "REGISTER ➔";
+                        
+                        statusMsg.className = 'msg-success';
+                        statusMsg.innerHTML = "✔ <b>ਖਾਤਾ ਬਣ ਗਿਆ ਹੈ!</b><br>ਅਸੀਂ ਤੁਹਾਡੀ ਈਮੇਲ 'ਤੇ ਇੱਕ ਲਿੰਕ ਭੇਜਿਆ ਹੈ। ਲੌਗਿਨ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੀ ਈਮੇਲ ਖੋਲ੍ਹ ਕੇ ਉਸ ਲਿੰਕ 'ਤੇ ਕਲਿੱਕ ਕਰੋ। (Spam ਫੋਲਡਰ ਵੀ ਚੈੱਕ ਕਰ ਲਿਓ)";
+                        statusMsg.style.display = 'block';
+                        
+                        document.getElementById('registerForm').reset();
                     });
                 });
             })
-            .catch(err => document.getElementById("error-msg").innerText = err.message);
-        }
+            .catch(err => {
+                btn.innerText = "REGISTER ➔";
+                btn.disabled = false;
+                statusMsg.className = 'msg-error';
+                
+                // Translate Common Errors
+                if (err.code === 'auth/email-already-in-use') {
+                    statusMsg.innerText = "❌ ਇਹ ਈਮੇਲ ਪਹਿਲਾਂ ਹੀ ਰਜਿਸਟਰਡ ਹੈ।";
+                } else if (err.code === 'auth/invalid-email') {
+                    statusMsg.innerText = "❌ ਕਿਰਪਾ ਕਰਕੇ ਸਹੀ ਈਮੇਲ ਭਰੋ।";
+                } else {
+                    statusMsg.innerText = "❌ " + err.message;
+                }
+                
+                statusMsg.style.display = 'block';
+            });
+        });
     </script>
 </body>
 </html>
