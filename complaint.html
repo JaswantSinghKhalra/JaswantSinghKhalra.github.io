@@ -247,6 +247,10 @@
                 document.getElementById('step-counter').innerText = 'STEP 02 / 03';
                 document.getElementById('progress-bar').style.width = '66%';
                 currentStep = 2;
+                
+                // 🔴 Smooth Scroll Added Here 🔴
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
             } else if(currentStep === 2 && validatePanel('step2-panel')) {
                 document.getElementById('step2-panel').style.display = 'none';
                 document.getElementById('step3-panel').style.display = 'block';
@@ -257,6 +261,9 @@
                 document.getElementById('next-btn').style.display = 'none';
                 document.getElementById('submit-btn').style.display = 'block';
                 currentStep = 3;
+                
+                // 🔴 Smooth Scroll Added Here 🔴
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
