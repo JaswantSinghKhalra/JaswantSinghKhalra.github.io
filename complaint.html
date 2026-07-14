@@ -9,7 +9,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     
-    <!-- 🔴 CryptoJS Library Added Here 🔴 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
     <script>
@@ -27,10 +26,8 @@
         
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                // ਜੇਕਰ ਲੌਗਿਨ ਹੈ, ਤਾਂ ਪੇਜ ਨੂੰ show ਕਰੋ
                 document.body.classList.add('auth-ready');
             } else {
-                // ਜੇਕਰ ਲੌਗਿਨ ਨਹੀਂ ਹੈ, ਤਾਂ ਤੁਰੰਤ login ਪੇਜ 'ਤੇ ਭੇਜੋ (ਬਿਨਾਂ history ਸੇਵ ਕੀਤੇ)
                 window.location.replace("login.html");
             }
         });
@@ -42,10 +39,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 🔴 ਪੇਜ ਨੂੰ ਡਿਫੌਲਟ 0 opacity ਨਾਲ hide ਰੱਖੋ 🔴 */
         body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; opacity: 0; transition: opacity 0.3s ease-in; }
-        
-        /* 🔴 ਜਦੋਂ ਯੂਜ਼ਰ ਲੌਗਿਨ ਹੋਵੇਗਾ ਤਾਂ ਇਹ ਕਲਾਸ ਐਡ ਹੋਵੇਗੀ 🔴 */
         body.auth-ready { opacity: 1; }
 
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; }
@@ -54,20 +48,20 @@
         .progress-bar-container { width: 100%; height: 4px; background: #e0dcd2; }
         .progress-bar { width: 33%; height: 100%; background: #c04a2c; transition: width 0.3s; }
         .layout { display: flex; gap: 40px; padding: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
+        
+        /* Sidebar Styling */
         .sidebar { width: 280px; border: 2px solid #111; padding: 30px; background: #f4f1ea; height: fit-content; box-shadow: 4px 4px 0px #111; box-sizing: border-box; }
         .sidebar-top { color: #c04a2c; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
         .sidebar h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin: 0 0 30px; line-height: 1.1; }
-        .step-nav { list-style: none; padding: 0; margin: 0 0 40px 0; border-bottom: 2px solid #111; padding-bottom: 20px; }
+        .step-nav { list-style: none; padding: 0; margin: 0 0 20px 0; border-bottom: 2px solid #111; padding-bottom: 20px; }
         .step { display: flex; align-items: center; margin-bottom: 25px; color: #a09d96; transition: color 0.3s; }
         .step.active { color: #111; }
         .step-num { width: 26px; height: 26px; border: 1px solid #a09d96; display: flex; justify-content: center; align-items: center; font-size: 10px; font-weight: bold; margin-right: 15px; }
         .step.active .step-num { background: #c04a2c; color: white; border-color: #c04a2c; }
         .step-text { font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
         .step-sub { font-size: 10px; font-weight: normal; color: #888; text-transform: none; display: block; margin-top: 3px; }
-        .btn-action { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; font-weight: bold; cursor: pointer; width: 100%; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 3px 3px 0px #111; transition: all 0.2s; }
-        .btn-action:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #111; }
-        .btn-action:disabled { background: #555; cursor: not-allowed; box-shadow: none; transform: none; }
-        .cancel-link { display: inline-block; margin-top: 15px; font-size: 10px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-bottom: 1px solid #555; }
+        
+        /* Main Panel Styling */
         .main-panel { flex: 1; min-width: 300px; border: 2px solid #111; padding: 40px; background: #f4f1ea; box-shadow: 6px 6px 0px #111; box-sizing: border-box; position: relative; }
         .panel-header { font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #111; padding-bottom: 15px; margin-bottom: 30px; }
         .form-group { margin-bottom: 25px; }
@@ -75,11 +69,19 @@
         input, textarea { width: 100%; padding: 15px; border: 1px solid #ccc; background: #ece8df; color: #111; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box; transition: border 0.3s; }
         input:focus, textarea:focus { outline: none; border: 1px solid #111; background: #fff; }
         textarea { height: 180px; resize: vertical; }
+        
+        /* Buttons moved to bottom */
+        .btn-action { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; font-weight: bold; cursor: pointer; width: 100%; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 3px 3px 0px #111; transition: all 0.2s; }
+        .btn-action:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #111; }
+        .btn-action:disabled { background: #555; cursor: not-allowed; box-shadow: none; transform: none; }
+        .cancel-link { display: inline-block; font-size: 10px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-bottom: 1px solid #555; }
+        
         #step2-panel, #step3-panel, #success-panel { display: none; }
         .success-box { text-align: center; padding: 40px 20px; }
         .success-icon { font-size: 60px; color: #1a4331; margin-bottom: 20px; }
         .success-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #111; margin-bottom: 15px; }
         .success-text { font-size: 14px; color: #555; line-height: 1.6; }
+        
         @media(max-width: 768px) { .layout { padding: 20px; flex-direction: column; } .sidebar, .main-panel { width: 100%; } }
     </style>
 </head>
@@ -113,8 +115,6 @@
                 </li>
             </ul>
 
-            <button type="button" class="btn-action" id="next-btn" onclick="nextStep()">NEXT ➔</button>
-            <button type="submit" form="complaint-form" class="btn-action" id="submit-btn" style="display:none; background: #1a4331;">SUBMIT COMPLAINT ➔</button>
             <a href="#" class="cancel-link" onclick="logout()">LOGOUT (ਬਾਹਰ ਜਾਓ)</a>
         </aside>
 
@@ -156,6 +156,12 @@
                     <div class="form-group"><label>LOCATION OF INCIDENT (ਘਟਨਾ ਵਾਲੀ ਜਗ੍ਹਾ) *</label><input type="text" name="location" required></div>
                     <div class="form-group"><label>DETAILED DESCRIPTION (ਪੂਰਾ ਵੇਰਵਾ) *</label><textarea name="complaint_details" placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea></div>
                 </div>
+
+                <div style="margin-top: 35px;">
+                    <button type="button" class="btn-action" id="next-btn" onclick="nextStep()">NEXT ➔</button>
+                    <button type="submit" class="btn-action" id="submit-btn" style="display:none; background: #1a4331;">SUBMIT COMPLAINT ➔</button>
+                </div>
+
             </form>
 
             <div id="success-panel" class="success-box">
@@ -205,26 +211,22 @@
             let inputField = document.getElementById("aadhaarNumber");
             let errorMsg = document.getElementById("aadhaarError");
 
-            // ਸਿਰਫ਼ ਨੰਬਰ ਲਿਖਣ ਦੀ ਇਜਾਜ਼ਤ (text ਹਟਾ ਦਵੇਗਾ)
             inputField.value = inputField.value.replace(/\D/g, ''); 
 
             if (inputField.value.length === 12) {
                 if (validateAadhaar(inputField.value)) {
-                    // ਸਹੀ ਹੋਣ 'ਤੇ
                     errorMsg.style.display = "none";
                     inputField.style.borderColor = "green";
-                    inputField.setCustomValidity(""); // ਫਾਰਮ ਨੂੰ ਦੱਸਦਾ ਹੈ ਕਿ ਇਹ ਸਹੀ ਹੈ
+                    inputField.setCustomValidity(""); 
                 } else {
-                    // ਗਲਤ ਹੋਣ 'ਤੇ
                     errorMsg.style.display = "block";
                     inputField.style.borderColor = "red";
-                    inputField.setCustomValidity("Invalid Aadhaar"); // ਫਾਰਮ ਨੂੰ ਰੋਕਦਾ ਹੈ
+                    inputField.setCustomValidity("Invalid Aadhaar"); 
                 }
             } else {
-                // ਜਦੋਂ ਤੱਕ 12 ਅੱਖਰ ਪੂਰੇ ਨਹੀਂ ਹੁੰਦੇ
                 errorMsg.style.display = "none";
                 inputField.style.borderColor = "#ccc";
-                inputField.setCustomValidity("Please enter 12 digits"); // ਫਾਰਮ ਨੂੰ ਰੋਕਦਾ ਹੈ
+                inputField.setCustomValidity("Please enter 12 digits"); 
             }
         }
     </script>
@@ -278,10 +280,9 @@
                 // 1. Save to Firebase Database
                 const data = new FormData(form);
                 
-                // 🔴 CryptoJS Encryption Code Added Here 🔴
-                const SECRET_KEY = "Mera_Khatarnak_Password_@2026!"; // ਆਪਣਾ ਗੁਪਤ ਪਾਸਵਰਡ (Secret Key) ਇੱਥੇ ਰੱਖੋ
+                // 🔴 CryptoJS Encryption Code 🔴
+                const SECRET_KEY = "Mera_Khatarnak_Password_@2026!"; 
                 
-                // ਡਾਟਾ ਨੂੰ ਐਨਕ੍ਰਿਪਟ ਕਰਨਾ
                 const encryptedEmail = CryptoJS.AES.encrypt(data.get('email').toLowerCase(), SECRET_KEY).toString();
                 const encryptedAccusedName = CryptoJS.AES.encrypt(data.get('accused_name'), SECRET_KEY).toString();
                 
@@ -291,7 +292,6 @@
                     status: "Pending",
                     timestamp: Date.now()
                 };
-                // 🔴 --------------------------------- 🔴
 
                 database.ref('complaints').push(dbData);
                 database.ref('complaint_count').transaction((current) => (current || 0) + 1);
@@ -321,3 +321,4 @@
     </script>
 </body>
 </html>
+
