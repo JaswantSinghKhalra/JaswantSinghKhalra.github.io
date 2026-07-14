@@ -15,7 +15,7 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #0c0908; /* Dark Background */
+            background-color: #0c0908; 
             color: #f4eee0; 
             margin: 0; 
             padding: 0; 
@@ -25,7 +25,6 @@
             min-height: 100vh;
         }
 
-        /* Login Box Styling */
         .login-box {
             background-color: #161210;
             border: 1px solid #2a2523;
@@ -54,7 +53,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* Divider (LOGIN WITH EMAIL) */
         .divider {
             display: flex;
             align-items: center;
@@ -73,7 +71,6 @@
         .divider:not(:empty)::before { margin-right: 15px; }
         .divider:not(:empty)::after { margin-left: 15px; }
 
-        /* Form Styling */
         .form-group {
             text-align: left;
             margin-bottom: 25px;
@@ -107,7 +104,6 @@
             border-color: #c04a2c;
         }
 
-        /* Password Field Setup */
         .password-wrapper {
             position: relative;
             display: flex;
@@ -125,7 +121,6 @@
             background-color: #111;
         }
 
-        /* 🔴 NEW WINDOWS STYLE EYE ICON CSS 🔴 */
         .eye-icon {
             position: absolute;
             right: 15px;
@@ -140,14 +135,12 @@
             color: #c04a2c;
         }
 
-        /* reCAPTCHA Styling */
         .recaptcha-container {
             display: flex;
             justify-content: center;
             margin-bottom: 25px;
         }
 
-        /* Button Styling */
         .login-btn {
             background-color: #c04a2c;
             color: white;
@@ -169,7 +162,6 @@
             cursor: not-allowed;
         }
 
-        /* Error Message */
         #error-msg {
             color: #ff4d4d;
             font-size: 12px;
@@ -179,7 +171,6 @@
             display: none;
         }
 
-        /* Links */
         .links {
             margin-top: 25px;
             font-size: 12px;
@@ -203,7 +194,6 @@
             color: #f4eee0 !important;
             border-bottom: 1px solid #f4eee0;
         }
-
     </style>
 </head>
 <body>
@@ -235,7 +225,7 @@
             </div>
 
             <div class="recaptcha-container">
-                <div class="g-recaptcha" data-sitekey="6LfeGlltAAAAAFwhHDppckgFUwjbkFCbnFWVQjFe" data-theme="dark"></div>
+                <div class="g-recaptcha" data-sitekey="6LfeGlItAAAAAFwhHDppckgFUwjbKFCbnFWVQjFe" data-theme="dark"></div>
             </div>
 
             <div id="error-msg"></div>
@@ -244,13 +234,12 @@
         </form>
 
         <div class="links">
-            <a href="#" class="forgot-pwd">ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?</a><br>
-            Don't have an account? <a href="register.html" class="register-link">Register</a>
+            <a href="forgot-password.html" class="forgot-pwd">ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?</a><br>
+            Don't have an account? <a href="signup.html" class="register-link">Register</a>
         </div>
     </div>
 
     <script>
-        // 1. Firebase Config Setup (ਆਪਣੀ ਅਸਲੀ Config ਪਾਓ)
         const firebaseConfig = {
             apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
             authDomain: "sachdiawaaz-376ee.firebaseapp.com",
@@ -262,7 +251,6 @@
         };
         firebase.initializeApp(firebaseConfig);
 
-        // 2. Windows Style Password Show/Hide Toggle
         function showHidePassword() {
             const passwordInput = document.getElementById('password');
             const eyeIcon = document.getElementById('togglePassword');
@@ -276,7 +264,6 @@
             }
         }
 
-        // 3. Login Authentication & reCAPTCHA Verification
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -285,7 +272,6 @@
             const errorMsg = document.getElementById('error-msg');
             const btn = document.getElementById('loginBtn');
             
-            // Check reCAPTCHA status
             const recaptchaResponse = grecaptcha.getResponse();
             if(recaptchaResponse.length === 0) {
                 errorMsg.style.display = 'block';
@@ -293,12 +279,10 @@
                 return;
             }
 
-            // UI Loading state
             errorMsg.style.display = 'none';
             btn.innerText = "LOGGING IN...";
             btn.disabled = true;
 
-            // Execute Firebase Login
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
                     window.location.replace("complaint.html");
@@ -314,11 +298,9 @@
                         errorMsg.innerText = "❌ " + error.message;
                     }
                     
-                    // Reset reCAPTCHA on failure
                     grecaptcha.reset();
                 });
         });
     </script>
-
 </body>
 </html>
