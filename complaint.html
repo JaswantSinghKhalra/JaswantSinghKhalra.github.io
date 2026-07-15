@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Complaint - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
     
+    <!-- Firebase & Security Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
@@ -12,6 +13,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
@@ -25,13 +30,12 @@
         firebase.initializeApp(firebaseConfig);
         
         window.addEventListener('DOMContentLoaded', (event) => {
-            // 🔴 18 ਸਾਲ ਦੀ ਉਮਰ ਦਾ ਲੌਕ ਲਗਾਉਣਾ 🔴
             const dobInput = document.querySelector('input[name="dob"]');
             const today = new Date();
             let maxYear = today.getFullYear() - 18;
             let month = (today.getMonth() + 1).toString().padStart(2, '0');
             let day = today.getDate().toString().padStart(2, '0');
-            dobInput.setAttribute('max', `${maxYear}-${month}-${day}`); // ਇਸ ਤੋਂ ਅੱਗੇ ਦੀ ਤਰੀਕ ਸਿਲੈਕਟ ਨਹੀਂ ਹੋਵੇਗੀ
+            dobInput.setAttribute('max', `${maxYear}-${month}-${day}`); 
 
             try {
                 if (typeof firebase.appCheck === 'function') {
@@ -53,15 +57,33 @@
         function logout() { firebase.auth().signOut().then(() => window.location.href = "login.html"); }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; opacity: 0; transition: opacity 0.3s ease-in; }
         body.auth-ready { opacity: 1; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
-        .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
-        .progress-bar-container { width: 100%; height: 4px; background: #e0dcd2; }
+
+        /* 🔴 NEW HEADER CSS (From index.html) 🔴 */
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
+        .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
+        @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 2px solid #111; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        
+        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-decoration: none; }
+        .logo-circle { width: 50px; height: 50px; border-radius: 50%; border: 2.5px solid #111; background-color: #f4f1ea; box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.35); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; flex-shrink: 0; }
+        .logo-inner-img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; transform: scale(1.35) translateY(12%); }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #692415; letter-spacing: 1px; }
+
+        .btn-header-black { position: relative; background-color: #111; color: #fff; border: 2px solid #111; padding: 10px 15px; font-size: 12px; font-weight: bold; text-decoration: none; box-shadow: 3px 3px 0px #c04a2c; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; overflow: hidden; z-index: 1; transition: color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+        .btn-header-black::before { content: ""; position: absolute; top: 0; left: 0; width: 0; height: 100%; background-color: #f4f1ea; z-index: -1; transition: width 0.3s ease; }
+        .btn-header-black:hover { color: #111; transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #c04a2c; }
+        .btn-header-black:hover::before { width: 100%; }
+
+        .step-counter { font-size: 13px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; border: 2px solid #c04a2c; padding: 8px 15px; background: #fff; }
+        .progress-bar-container { width: 100%; height: 4px; background: #e0dcd2; position: sticky; top: 82px; z-index: 999; }
         .progress-bar { width: 33%; height: 100%; background: #c04a2c; transition: width 0.3s; }
+
+        /* 🔴 FORM CSS 🔴 */
         .layout { display: flex; gap: 40px; padding: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
         .sidebar { width: 280px; border: 2px solid #111; padding: 30px; background: #f4f1ea; height: fit-content; box-shadow: 4px 4px 0px #111; box-sizing: border-box; }
         .sidebar-top { color: #c04a2c; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
@@ -73,6 +95,7 @@
         .step.active .step-num { background: #c04a2c; color: white; border-color: #c04a2c; }
         .step-text { font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
         .step-sub { font-size: 10px; font-weight: normal; color: #888; text-transform: none; display: block; margin-top: 3px; }
+        
         .main-panel { flex: 1; min-width: 300px; border: 2px solid #111; padding: 40px; background: #f4f1ea; box-shadow: 6px 6px 0px #111; box-sizing: border-box; position: relative; }
         .panel-header { font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #111; padding-bottom: 15px; margin-bottom: 30px; }
         .form-group { margin-bottom: 25px; }
@@ -81,26 +104,74 @@
         input[type="file"] { padding: 10px; background: #fff; cursor: pointer; }
         input:focus, textarea:focus { outline: none; border: 1px solid #111; background: #fff; }
         textarea { height: 180px; resize: vertical; }
+        
         .btn-action { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; font-weight: bold; cursor: pointer; width: 100%; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 3px 3px 0px #111; transition: all 0.2s; }
         .btn-action:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #111; }
         .btn-action:disabled { background: #555; cursor: not-allowed; box-shadow: none; transform: none; }
         .cancel-link { display: inline-block; font-size: 10px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-bottom: 1px solid #555; }
+        
         #step2-panel, #step3-panel, #success-panel { display: none; }
         .success-box { text-align: center; padding: 40px 20px; }
         .success-icon { font-size: 60px; color: #1a4331; margin-bottom: 20px; }
         .success-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #111; margin-bottom: 15px; }
         .success-text { font-size: 14px; color: #555; line-height: 1.6; }
-        @media(max-width: 768px) { .layout { padding: 20px; flex-direction: column; } .sidebar, .main-panel { width: 100%; } }
+
+        /* 🔴 NEW FOOTER CSS (From index.html) 🔴 */
+        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 40px; font-family: 'Inter', sans-serif; border-top: 4px solid #c04a2c; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .footer-grid .footer-col { flex: 1; min-width: 150px; }
+        .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1.1; margin: 0; color: #fff; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #aaa; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.3s; }
+        .footer-links a:hover { color: #c04a2c; }
+        .footer-msg-small { font-size: 12px; color: #aaa; font-weight: bold; }
+        .footer-msg-big { font-family: 'Playfair Display', serif; font-size: 28px; color: #4CAF50; font-weight: 900; margin-top: 5px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; }
+        .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
+        .footer-bottom a:hover { color: #fff; }
+
+        @media(max-width: 768px) { 
+            header { flex-direction: column; gap: 15px; padding: 15px 20px; }
+            .header-left { width: 100%; justify-content: space-between; }
+            .progress-bar-container { top: 125px; }
+            .layout { padding: 20px; flex-direction: column; } 
+            .sidebar, .main-panel { width: 100%; } 
+            .footer-grid { flex-direction: column; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        }
+        @media(max-width: 450px) {
+            .logo-text { font-size: 18px; }
+            .logo-circle { width: 40px; height: 40px; }
+            .btn-header-black { padding: 8px 10px; font-size: 10px; }
+            .step-counter { width: 100%; box-sizing: border-box; text-align: center; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ - Adv ਬੀਬਰ ਸਰਪੰਚ ✦</span>
+    </div>
+
+    <!-- STICKY HEADER WITH LOGO & BACK BUTTON -->
     <header>
-        <div class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</div>
+        <div class="header-left">
+            <a href="index.html" class="btn-header-black"><i class="fas fa-arrow-left"></i> BACK</a>
+            <a href="index.html" class="logo-wrapper">
+                <div class="logo-circle">
+                    <img src="hand.png" alt="Logo" class="logo-inner-img">
+                </div>
+                <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼</span>
+            </a>
+        </div>
         <div class="step-counter" id="step-counter">STEP 01 / 03</div>
     </header>
     <div class="progress-bar-container"><div class="progress-bar" id="progress-bar"></div></div>
 
+    <!-- FORM LAYOUT -->
     <div class="layout">
         <aside class="sidebar">
             <div class="sidebar-top">SECURE PORTAL</div>
@@ -115,6 +186,8 @@
 
         <section class="main-panel">
             <form id="complaint-form" action="https://formspree.io/f/mvzjeqop" method="POST">
+                
+                <!-- STEP 1 -->
                 <div id="step1-panel">
                     <div class="panel-header">01. IDENTITY — ਆਪਣੀ ਪਛਾਣ ਦੱਸੋ</div>
                     <div class="form-group"><label>FULL NAME (ਪੂਰਾ ਨਾਮ) *</label><input type="text" name="name" required></div>
@@ -129,15 +202,16 @@
                         <div id="aadhaarError" style="color: #c04a2c; font-size: 12px; font-weight: bold; display: none; margin-top: 5px;">❌ ਇਹ ਆਧਾਰ ਨੰਬਰ ਗਲਤ ਹੈ।</div>
                     </div>
                     
-                    <!-- 🔴 ਨਵਾਂ ਫੋਟੋ ਅੱਪਲੋਡ ਬਟਨ 🔴 -->
                     <div class="form-group">
                         <label>UPLOAD AADHAAR PHOTO (ਆਧਾਰ ਕਾਰਡ ਦੀ ਫੋਟੋ ਅੱਪਲੋਡ ਕਰੋ) *</label>
-                        <input type="file" id="aadhaar_photo" accept="image/*" required>
+                        <input type="file" id="aadhaar_photo" name="aadhaar_photo" accept="image/*" required>
+                        <div id="photoError" style="color: #c04a2c; font-size: 12px; font-weight: bold; display: none; margin-top: 5px;">❌ ਫੋਟੋ ਅੱਪਲੋਡ ਕਰਨੀ ਲਾਜ਼ਮੀ ਹੈ, ਨਹੀਂ ਤਾਂ ਫਾਰਮ ਅੱਗੇ ਨਹੀਂ ਜਾਵੇਗਾ।</div>
                     </div>
 
                     <div class="form-group"><label>MOBILE NUMBER (ਮੋਬਾਈਲ ਨੰਬਰ) *</label><input type="tel" name="mobile" required></div>
                 </div>
 
+                <!-- STEP 2 -->
                 <div id="step2-panel">
                     <div class="panel-header">02. ACCUSED DETAILS — ਕਿਸਦੇ ਖਿਲਾਫ ਸ਼ਿਕਾਇਤ ਹੈ?</div>
                     <div class="form-group"><label>NAME OF ACCUSED (ਦੋਸ਼ੀ ਦਾ ਨਾਮ) *</label><input type="text" name="accused_name" required></div>
@@ -146,6 +220,7 @@
                     <div class="form-group"><label>MOBILE NUMBER (ਦੋਸ਼ੀ ਦਾ ਮੋਬਾਈਲ - ਜੇਕਰ ਹੈ)</label><input type="tel" name="accused_mobile" placeholder="Optional"></div>
                 </div>
 
+                <!-- STEP 3 -->
                 <div id="step3-panel">
                     <div class="panel-header">03. COMPLAINT & EVIDENCE — ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ</div>
                     <div class="form-group"><label>EVIDENCE LINK (ਸਬੂਤ ਦਾ ਗੂਗਲ ਡਰਾਈਵ ਲਿੰਕ) *</label><input type="url" name="evidence_link" placeholder="https://drive.google.com/..." required></div>
@@ -168,6 +243,47 @@
         </section>
     </div>
 
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <span class="footer-label">Since 2026</span>
+                <h2 class="footer-brand">ਸੱਚ ਦੀ<br>ਆਵਾਜ਼.</h2>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Legal & Contact</span>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="security.html">Security Guidelines</a></li>
+                    <li><a href="vision.html">Our Vision</a></li>
+                    <li><a href="contact.html">Secure Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Social Media</span>
+                <ul class="footer-links">
+                    <li><a href="https://www.instagram.com/biebersarpanch" target="_blank">Instagram <i class="fab fa-instagram" style="margin-left: 8px;"></i></a></li>
+                    <li><a href="https://youtube.com/@biebersarpanch" target="_blank">YouTube <i class="fab fa-youtube" style="margin-left: 8px;"></i></a></li>
+                    <li><a href="https://x.com/BieberOP22" target="_blank">Twitter (X) <i class="fa-brands fa-x-twitter" style="margin-left: 8px;"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">The System</span>
+                <div class="footer-msg-small">Who's in charge now?</div>
+                <div class="footer-msg-big">YOU ARE.</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-left">
+                <a href="https://www.instagram.com/biebersarpanch" target="_blank">INSTAGRAM <i class="fab fa-instagram" style="margin-left: 8px;"></i></a>
+                <a href="https://youtube.com/@biebersarpanch" target="_blank">YOUTUBE <i class="fab fa-youtube" style="margin-left: 8px;"></i></a>
+            </div>
+            <div class="bottom-center footer-warning">A SECURE PLATFORM · VOICE OF PUNJAB</div>
+            <div class="bottom-right">© 2026 ਸੱਚ ਦੀ ਆਵਾਜ਼ · ALL RIGHTS RESERVED</div>
+        </div>
+    </footer>
+
+    <!-- LOGIC SCRIPTS -->
     <script>
         const d = [[0,1,2,3,4,5,6,7,8,9],[1,2,3,4,0,6,7,8,9,5],[2,3,4,0,1,7,8,9,5,6],[3,4,0,1,2,8,9,5,6,7],[4,0,1,2,3,9,5,6,7,8],[5,9,8,7,6,0,4,3,2,1],[6,5,9,8,7,1,0,4,3,2],[7,6,5,9,8,2,1,0,4,3],[8,7,6,5,9,3,2,1,0,4],[9,8,7,6,5,4,3,2,1,0]];
         const p = [[0,1,2,3,4,5,6,7,8,9],[1,5,7,6,2,8,3,0,9,4],[5,8,0,3,7,9,6,1,4,2],[8,9,1,6,0,4,3,5,2,7],[9,4,5,3,1,2,6,8,7,0],[4,2,8,6,5,7,3,9,0,1],[2,7,9,3,8,0,6,4,1,5],[7,0,4,6,9,1,3,2,5,8]];
@@ -196,19 +312,42 @@
         }
 
         let currentStep = 1;
+        
         function validatePanel(panelId) {
             let inputs = document.querySelectorAll('#' + panelId + ' input, #' + panelId + ' textarea');
             let valid = true;
-            inputs.forEach(input => { if(!input.checkValidity()) { input.reportValidity(); valid = false; } });
+            inputs.forEach(input => { 
+                if(!input.checkValidity()) { 
+                    input.reportValidity(); 
+                    valid = false; 
+                } 
+            });
             return valid;
         }
 
         function nextStep() {
-            if(currentStep === 1 && validatePanel('step1-panel')) {
-                document.getElementById('step1-panel').style.display = 'none'; document.getElementById('step2-panel').style.display = 'block';
-                document.getElementById('nav-step1').classList.remove('active'); document.getElementById('nav-step2').classList.add('active');
-                document.getElementById('step-counter').innerText = 'STEP 02 / 03'; document.getElementById('progress-bar').style.width = '66%';
-                currentStep = 2; window.scrollTo({ top: 0, behavior: 'smooth' });
+            if(currentStep === 1) {
+                let isValid = validatePanel('step1-panel');
+                
+                // 🔴 ਫੋਟੋ ਦੀ ਸਖ਼ਤ ਚੈਕਿੰਗ 🔴
+                const fileInput = document.getElementById('aadhaar_photo');
+                const photoError = document.getElementById('photoError');
+                
+                if (fileInput.files.length === 0) {
+                    photoError.style.display = 'block';
+                    fileInput.style.borderColor = "red";
+                    isValid = false;
+                } else {
+                    photoError.style.display = 'none';
+                    fileInput.style.borderColor = "#ccc";
+                }
+
+                if(isValid) {
+                    document.getElementById('step1-panel').style.display = 'none'; document.getElementById('step2-panel').style.display = 'block';
+                    document.getElementById('nav-step1').classList.remove('active'); document.getElementById('nav-step2').classList.add('active');
+                    document.getElementById('step-counter').innerText = 'STEP 02 / 03'; document.getElementById('progress-bar').style.width = '66%';
+                    currentStep = 2; window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             } else if(currentStep === 2 && validatePanel('step2-panel')) {
                 document.getElementById('step2-panel').style.display = 'none'; document.getElementById('step3-panel').style.display = 'block';
                 document.getElementById('nav-step2').classList.remove('active'); document.getElementById('nav-step3').classList.add('active');
@@ -221,21 +360,25 @@
         const form = document.getElementById('complaint-form');
         form.addEventListener("submit", async function(event) {
             event.preventDefault(); 
+            
+            // 🔴 ਸਬਮਿਟ ਕਰਨ ਵੇਲੇ ਵੀ ਡਬਲ ਚੈਕਿੰਗ 🔴
+            const fileInput = document.getElementById('aadhaar_photo');
+            if (fileInput.files.length === 0) {
+                alert("❌ ਫੋਟੋ ਅੱਪਲੋਡ ਕਰਨੀ ਲਾਜ਼ਮੀ ਹੈ!");
+                return;
+            }
+
             const submitBtn = document.getElementById('submit-btn');
             
             try {
-                // 🔴 ਫੋਟੋ ਅੱਪਲੋਡ ਕਰਨ ਵਾਲਾ ਹਿੱਸਾ 🔴
-                const fileInput = document.getElementById('aadhaar_photo');
                 const file = fileInput.files[0];
                 let photoURL = "";
 
-                if (file) {
-                    submitBtn.innerText = "UPLOADING PHOTO... ⏳";
-                    submitBtn.disabled = true;
-                    const storageRef = firebase.storage().ref('aadhaar_cards/' + Date.now() + '_' + file.name);
-                    await storageRef.put(file);
-                    photoURL = await storageRef.getDownloadURL();
-                }
+                submitBtn.innerText = "UPLOADING PHOTO... ⏳";
+                submitBtn.disabled = true;
+                const storageRef = firebase.storage().ref('aadhaar_cards/' + Date.now() + '_' + file.name);
+                await storageRef.put(file);
+                photoURL = await storageRef.getDownloadURL();
 
                 submitBtn.innerText = "SUBMITTING COMPLAINT... ⏳";
 
@@ -243,7 +386,7 @@
                 const SECRET_KEY = "Mera_Khatarnak_Password_@2026!"; 
                 
                 const allFormData = Object.fromEntries(data.entries());
-                allFormData.aadhaar_photo = photoURL; // ਫੋਟੋ ਦਾ ਲਿੰਕ ਡਾਟਾ ਵਿੱਚ ਜੋੜਿਆ
+                allFormData.aadhaar_photo = photoURL; 
                 
                 const encryptedEmail = CryptoJS.AES.encrypt(allFormData.email.toLowerCase(), SECRET_KEY).toString();
                 const encryptedAccusedName = CryptoJS.AES.encrypt(allFormData.accused_name, SECRET_KEY).toString();
