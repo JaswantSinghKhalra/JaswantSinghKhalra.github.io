@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
+    
+    <!-- Firebase & CryptoJS -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; margin: 0; padding: 40px; color: #111; }
+        .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 3px solid #111; margin-bottom: 30px; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; }
+        .btn-logout { background: #111; color: #fff; padding: 12px 25px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 3px 3px 0px #c04a2c; }
+        
+        table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 6px 6px 0px #111; border: 2px solid #111; }
+        th, td { padding: 18px; text-align: left; border-bottom: 1px solid #ccc; font-size: 14px; }
+        th { background-color: #111; color: #fff; text-transform: uppercase; letter-spacing: 1.5px; font-size: 12px; }
+        tr:hover { background-color: #f9f9f9; }
+        
+        .badge { background: #c04a2c; color: white; padding: 6px 12px; font-size: 11px; font-weight: bold; text-transform: uppercase; border-radius: 4px; }
+        .accused-text { color: #c04a2c; font-weight: bold; font-size: 16px; }
+        .loader { font-weight: bold; font-size: 16px; color: #555; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">ADMIN PANEL - ਗੁਪਤ ਡੈਸ਼ਬੋਰਡ</div>
+        <button class="btn-logout" onclick="logout()">LOGOUT (ਬਾਹਰ ਜਾਓ)</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ਮਿਤੀ (Date)</th>
+                <th>ਸ਼ਿਕਾਇਤਕਰਤਾ ਦੀ ਈਮੇਲ (Email)</th>
+                <th>ਦੋਸ਼ੀ ਦਾ ਨਾਮ (Accused)</th>
+                <th>ਸਟੇਟਸ (Status)</th>
+            </tr>
+        </thead>
+        <tbody id="complaint-list">
+            <tr><td colspan="4" class="loader">⏳ ਡਾਟਾ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ... (Loading Complaints...)</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
+            authDomain: "sachdiawaaz-376ee.firebaseapp.com",
+            projectId: "sachdiawaaz-376ee",
+            databaseURL: "https://sachdiawaaz-376ee-default-rtdb.firebaseio.com",
+            storageBucket: "sachdiawaaz-376ee.firebasestorage.app",
+            messagingSenderId: "551243696190",
+            appId: "1:551243696190:web:d64b3600f26c227b08696f"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        
+        // 🔴 ਤੁਹਾਡਾ ਖਤਰਨਾਕ ਪਾਸਵਰਡ ਜੋ ਡਾਟਾ Decrypt ਕਰੇਗਾ 🔴
+        const SECRET_KEY = "Mera_Khatarnak_Password_@2026!";
+
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                window.location.replace("login.html");
+            } else {
+                fetchComplaints();
+            }
+        });
+
+        function logout() {
+            firebase.auth().signOut().then(() => window.location.href = "login.html");
+        }
+
+        // ਡਾਟਾ ਨੂੰ ਅਸਲੀ ਭਾਸ਼ਾ ਵਿੱਚ ਬਦਲਣ ਵਾਲਾ ਫੰਕਸ਼ਨ
+        function decryptData(encryptedText) {
+            try {
+                if(!encryptedText) return "N/A";
+                const bytes = CryptoJS.AES.decrypt(encryptedText, SECRET_KEY);
+                return bytes.toString(CryptoJS.enc.Utf8) || encryptedText;
+            } catch(e) {
+                return encryptedText; // ਜੇਕਰ ਪਹਿਲਾਂ ਦਾ ਬਿਨਾਂ ਲੌਕ ਵਾਲਾ ਡਾਟਾ ਹੋਵੇ
+            }
+        }
+
+        function fetchComplaints() {
+            database.ref('complaints').on('value', (snapshot) => {
+                const list = document.getElementById('complaint-list');
+                list.innerHTML = ""; 
+                const data = snapshot.val();
+
+                if (!data) {
+                    list.innerHTML = "<tr><td colspan='4'>ਹਾਲੇ ਤੱਕ ਕੋਈ ਸ਼ਿਕਾਇਤ ਦਰਜ ਨਹੀਂ ਹੋਈ।</td></tr>";
+                    return;
+                }
+
+                // ਨਵੀਆਂ ਸ਼ਿਕਾਇਤਾਂ ਸਭ ਤੋਂ ਉੱਪਰ ਦਿਖਾਉਣ ਲਈ Reverse ਕੀਤਾ
+                const complaintsArray = Object.keys(data).map(key => data[key]).reverse();
+
+                complaintsArray.forEach(item => {
+                    const date = new Date(item.timestamp).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+                    const realEmail = decryptData(item.email);
+                    const realAccused = decryptData(item.accused_name);
+
+                    list.innerHTML += `
+                        <tr>
+                            <td>${date}</td>
+                            <td><strong>${realEmail}</strong></td>
+                            <td class="accused-text">${realAccused}</td>
+                            <td><span class="badge">${item.status || 'Pending'}</span></td>
+                        </tr>
+                    `;
+                });
+            }, (error) => {
+                list.innerHTML = `<tr><td colspan='4' style="color:red; font-weight:bold;">❌ Error: ਤੁਹਾਨੂੰ ਇਹ ਡਾਟਾ ਪੜ੍ਹਨ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ Firebase Rules ਅੱਪਡੇਟ ਕਰੋ।</td></tr>`;
+            });
+        }
+    </script>
+</body>
+</html>
