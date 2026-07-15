@@ -322,9 +322,8 @@
             const newsContainer = document.getElementById("news-container");
             const newsLoader = document.getElementById("news-loader");
 
-            // BBC Punjabi RSS Feed URL
-            const rssFeedUrl = "https://www.bbc.com/punjabi/index.xml";
-            // RSS-to-JSON Free API Converter
+            // 🔴 ਨਵਾਂ ਅਤੇ ਸਹੀ ਲਿੰਕ (ABP Sanjha News Punjab) 🔴
+            const rssFeedUrl = "https://punjabi.abplive.com/home/feed"; 
             const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
 
             try {
@@ -332,29 +331,30 @@
                 const data = await response.json();
 
                 if (data.status === "ok" && data.items && data.items.length > 0) {
-                    newsLoader.style.display = "none"; // Spinner ਹਟਾਓ
+                    newsLoader.style.display = "none"; 
                     
-                    // ਸਿਰਫ਼ ਪਹਿਲੀਆਂ 8 ਖ਼ਬਰਾਂ ਦਿਖਾਉਣ ਲਈ (ਤੁਹਾਡੀ ਮੰਗ ਅਨੁਸਾਰ)
                     const newsItems = data.items.slice(0, 8); 
 
                     newsItems.forEach(item => {
-                        // ਤਰੀਕ ਨੂੰ ਸਹੀ ਫਾਰਮੈਟ ਵਿੱਚ ਬਦਲੋ
                         const pubDate = new Date(item.pubDate).toLocaleDateString('pa-IN', {
                             day: 'numeric',
                             month: 'short',
                             year: 'numeric'
                         });
 
-                        // ਜੇ ਖ਼ਬਰ ਵਿੱਚ ਫੋਟੋ ਨਹੀਂ ਹੈ, ਤਾਂ ਇੱਕ ਡਿਫਾਲਟ ਬੈਕਗਰਾਊਂਡ ਇਮੇਜ ਲਗਾਓ
-                        const thumbnail = item.thumbnail || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80";
-                        
-                        // ਖ਼ਬਰ ਦਾ ਛੋਟਾ ਵੇਰਵਾ (ਸਿਰਫ਼ 120 ਅੱਖਰ)
-                        let cleanDesc = item.description.replace(/<[^>]*>/g, ''); // HTML tags ਹਟਾਉਣ ਲਈ
+                        // 🔴 ਫੋਟੋ ਲੱਭਣ ਦਾ ਨਵਾਂ ਤਰੀਕਾ 🔴
+                        let thumbnail = "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80";
+                        if (item.enclosure && item.enclosure.link) {
+                            thumbnail = item.enclosure.link; // ABP Sanjha ਇੱਥੇ ਫੋਟੋ ਭੇਜਦਾ ਹੈ
+                        } else if (item.thumbnail) {
+                            thumbnail = item.thumbnail;
+                        }
+
+                        let cleanDesc = item.description.replace(/<[^>]*>/g, ''); 
                         if(cleanDesc.length > 120) {
                             cleanDesc = cleanDesc.substring(0, 120) + "...";
                         }
 
-                        // ਕਾਰਡ ਦਾ HTML (ਤੁਹਾਡੇ ਕਾਲੇ/ਡਾਰਕ ਡਿਜ਼ਾਈਨ ਮੁਤਾਬਕ)
                         const cardHtml = `
                             <a href="${item.link}" target="_blank" class="news-card">
                                 <img src="${thumbnail}" alt="News Image" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80'">
