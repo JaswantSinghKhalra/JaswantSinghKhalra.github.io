@@ -9,7 +9,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
-    
+    <!-- App Check/reCAPTCHA ਲਿੰਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
     <script>
@@ -23,6 +24,14 @@
             appId: "1:551243696190:web:d64b3600f26c227b08696f"
         };
         firebase.initializeApp(firebaseConfig);
+        
+        // --- 🔴 API SECURITY & BOT PROTECTION ---
+        const appCheck = firebase.appCheck();
+        appCheck.activate(
+            new firebase.appCheck.ReCaptchaV3Provider('6LcoAlUtAAAAADB1TLvzs243UBY_fo8mdF_5Q5_3'),
+            true 
+        );
+
         const database = firebase.database();
         
         firebase.auth().onAuthStateChanged(user => {
@@ -159,7 +168,7 @@
             <div id="success-panel" class="success-box">
                 <div class="success-icon">✔</div>
                 <div class="success-title">ਸ਼ਿਕਾਇਤ ਦਰਜ ਹੋ ਗਈ ਹੈ।</div>
-                <div class="success-text">ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ ਸਿਸਟਮ ਵਿੱਚ ਆ ਗਏ ਹਨ।<br>ਅਸੀਂ ਜਲਦੀ ਹੀ ਇਸਦੀ ਜਾਂਚ ਕਰਾਂਗੇ।</div>
+                <div class="success-text">ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਸਾਡੇ ਸਿਸਟਮ ਵਿੱਚ ਆ ਗਏ ਹਨ。<br>ਅਸੀਂ ਜਲਦੀ ਹੀ ਇਸਦੀ ਜਾਂਚ ਕਰਾਂਗੇ।</div>
                 <button type="button" class="btn-action" style="background: #111; margin-top: 30px; width: auto; padding: 15px 30px;" onclick="window.location.reload()">ਨਵੀਂ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ</button>
             </div>
         </section>
@@ -262,17 +271,21 @@
             try {
                 const data = new FormData(form);
                 
-                // 1. Firebase Secure Server (100% ਸੁਰੱਖਿਅਤ ਅਤੇ ਐਨਕ੍ਰਿਪਟਡ)
+                // 1. Firebase Secure Server (App Check + Encryption)
                 const secureSubmitComplaint = firebase.functions().httpsCallable('secureSubmitComplaint');
                 await secureSubmitComplaint({
                     email: data.get('email'),
                     accused_name: data.get('accused_name')
                 });
 
-                // 2. Formspree (ਈਮੇਲ ਲਈ - ਡਾਟਾ ਪਲੇਨ ਟੈਕਸਟ ਵਿੱਚ ਜਾਵੇਗਾ)
+                // 2. Formspree (ਸੁਰੱਖਿਅਤ ਪੇਲੋਡ - ਸਿਰਫ਼ ਅਲਰਟ ਜਾਵੇਗਾ, ਨਿੱਜੀ ਡਾਟਾ ਨਹੀਂ)
+                const safeData = new FormData();
+                safeData.append("Alert", "⚠️ ਨਵੀਂ ਸ਼ਿਕਾਇਤ ਆਈ ਹੈ!");
+                safeData.append("Message", "ਕਿਰਪਾ ਕਰਕੇ ਸ਼ਿਕਾਇਤ ਪੜ੍ਹਨ ਲਈ ਆਪਣਾ ਸੁਰੱਖਿਅਤ Firebase ਡਾਟਾਬੇਸ ਖੋਲ੍ਹੋ। Formspree 'ਤੇ ਨਿੱਜੀ ਡਾਟਾ ਆਉਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।");
+
                 const response = await fetch(form.action, {
                     method: form.method,
-                    body: data,
+                    body: safeData,
                     headers: { 'Accept': 'application/json' }
                 });
 
@@ -286,7 +299,7 @@
                     submitBtn.disabled = false;
                 }
             } catch (error) {
-                alert("Error: " + error.message);
+                alert("ਸੁਰੱਖਿਆ ਜਾਂ ਸਰਵਰ ਐਰਰ: " + error.message);
                 submitBtn.innerText = "SUBMIT COMPLAINT ➔";
                 submitBtn.disabled = false;
             }
