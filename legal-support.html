@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Support - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f4f1ea; 
+            color: #1a1a1a; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        /* Header Styling matches your theme */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 40px; 
+            border-bottom: 2px solid #111; 
+            background-color: #f4f1ea;
+        }
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 22px; 
+            font-weight: 900; 
+            letter-spacing: 1px; 
+            color: #111; 
+            text-decoration: none;
+        }
+        .btn-back {
+            background: #111;
+            color: #fff;
+            padding: 10px 20px;
+            border: 2px solid #111;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            box-shadow: 4px 4px 0px #c04a2c;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #c04a2c;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+        .page-subtitle {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* Advocate Grid */
+        .advocate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Advocate Card */
+        .adv-card {
+            background: #ece8df;
+            border: 2px solid #111;
+            padding: 30px;
+            box-shadow: 6px 6px 0px #111;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .adv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0px #c04a2c;
+        }
+        .adv-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0 0 15px 0;
+            color: #111;
+            border-bottom: 2px solid #111;
+            padding-bottom: 10px;
+        }
+        .adv-detail {
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .adv-detail strong {
+            min-width: 80px;
+            color: #c04a2c;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+        .adv-detail span {
+            color: #333;
+            line-height: 1.4;
+        }
+
+        @media(max-width: 768px) {
+            .container { padding: 40px 20px; }
+            .page-title { font-size: 32px; }
+            header { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</a>
+        <a href="index.html" class="btn-back">➔ GO BACK</a>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">ਕਾਨੂੰਨੀ ਸਹਾਇਤਾ ਪੈਨਲ</h1>
+        <div class="page-subtitle">ਲੋੜਵੰਦਾਂ ਲਈ ਮਦਦਗਾਰ ਐਡਵੋਕੇਟਾਂ ਦੀ ਸੂਚੀ</div>
+
+        <div class="advocate-grid">
+            
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. First Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 101, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43210</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Second Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 102, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43211</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Third Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 103, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43212</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Fourth Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 104, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43213</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Fifth Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 105, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43214</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Sixth Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 106, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43215</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Seventh Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 107, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43216</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Eighth Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 108, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43217</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Ninth Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 109, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43218</span>
+                </div>
+            </div>
+
+            <div class="adv-card">
+                <h3 class="adv-name">Adv. Tenth Name</h3>
+                <div class="adv-detail">
+                    <strong>ADDRESS:</strong>
+                    <span>Chamber No. 110, District Courts, City Name</span>
+                </div>
+                <div class="adv-detail">
+                    <strong>MOBILE:</strong>
+                    <span>+91 98765-43219</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
