@@ -8,6 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
@@ -24,29 +25,32 @@
         firebase.initializeApp(firebaseConfig);
         
         window.addEventListener('DOMContentLoaded', (event) => {
+            // 🔴 18 ਸਾਲ ਦੀ ਉਮਰ ਦਾ ਲੌਕ ਲਗਾਉਣਾ 🔴
+            const dobInput = document.querySelector('input[name="dob"]');
+            const today = new Date();
+            let maxYear = today.getFullYear() - 18;
+            let month = (today.getMonth() + 1).toString().padStart(2, '0');
+            let day = today.getDate().toString().padStart(2, '0');
+            dobInput.setAttribute('max', `${maxYear}-${month}-${day}`); // ਇਸ ਤੋਂ ਅੱਗੇ ਦੀ ਤਰੀਕ ਸਿਲੈਕਟ ਨਹੀਂ ਹੋਵੇਗੀ
+
             try {
                 if (typeof firebase.appCheck === 'function') {
-                    const appCheck = firebase.appCheck();
-                    appCheck.activate(
-                        new firebase.appCheck.ReCaptchaV3Provider('6LcoAlUtAAAAADB1TLvzs243UBY_fo8mdF_5Q5_3'),
-                        true 
+                    firebase.appCheck().activate(
+                        new firebase.appCheck.ReCaptchaV3Provider('6LcoAlUtAAAAADB1TLvzs243UBY_fo8mdF_5Q5_3'), true 
                     );
                 }
-            } catch (e) {
-                console.warn("App Check Load Alert: ", e);
-            }
+            } catch (e) { console.warn("App Check Load Alert: ", e); }
         });
 
         const database = firebase.database();
+        const storage = firebase.storage();
         
         firebase.auth().onAuthStateChanged(user => {
             if (user) { document.body.classList.add('auth-ready'); } 
             else { window.location.replace("login.html"); }
         });
 
-        function logout() {
-            firebase.auth().signOut().then(() => window.location.href = "login.html");
-        }
+        function logout() { firebase.auth().signOut().then(() => window.location.href = "login.html"); }
     </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -74,6 +78,7 @@
         .form-group { margin-bottom: 25px; }
         label { display: block; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: #555; margin-bottom: 10px; }
         input, textarea { width: 100%; padding: 15px; border: 1px solid #ccc; background: #ece8df; color: #111; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box; transition: border 0.3s; }
+        input[type="file"] { padding: 10px; background: #fff; cursor: pointer; }
         input:focus, textarea:focus { outline: none; border: 1px solid #111; background: #fff; }
         textarea { height: 180px; resize: vertical; }
         .btn-action { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; font-weight: bold; cursor: pointer; width: 100%; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 3px 3px 0px #111; transition: all 0.2s; }
@@ -115,13 +120,22 @@
                     <div class="form-group"><label>FULL NAME (ਪੂਰਾ ਨਾਮ) *</label><input type="text" name="name" required></div>
                     <div class="form-group"><label>EMAIL ADDRESS (ਈਮੇਲ) *</label><input type="email" name="email" required></div>
                     <div class="form-group"><label>FATHER'S NAME (ਪਿਤਾ ਦਾ ਨਾਮ) *</label><input type="text" name="father_name" required></div>
+                    
+                    <div class="form-group"><label>DATE OF BIRTH (ਜਨਮ ਤਰੀਕ - 18+ ਸਾਲ ਲਾਜ਼ਮੀ) *</label><input type="date" name="dob" required></div>
+
                     <div class="form-group">
-                        <label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ) *</label>
+                        <label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ ਨੰਬਰ) *</label>
                         <input type="text" id="aadhaarNumber" name="aadhaar" placeholder="12-digit number" maxlength="12" required oninput="checkAadhaar()">
                         <div id="aadhaarError" style="color: #c04a2c; font-size: 12px; font-weight: bold; display: none; margin-top: 5px;">❌ ਇਹ ਆਧਾਰ ਨੰਬਰ ਗਲਤ ਹੈ।</div>
                     </div>
+                    
+                    <!-- 🔴 ਨਵਾਂ ਫੋਟੋ ਅੱਪਲੋਡ ਬਟਨ 🔴 -->
+                    <div class="form-group">
+                        <label>UPLOAD AADHAAR PHOTO (ਆਧਾਰ ਕਾਰਡ ਦੀ ਫੋਟੋ ਅੱਪਲੋਡ ਕਰੋ) *</label>
+                        <input type="file" id="aadhaar_photo" accept="image/*" required>
+                    </div>
+
                     <div class="form-group"><label>MOBILE NUMBER (ਮੋਬਾਈਲ ਨੰਬਰ) *</label><input type="tel" name="mobile" required></div>
-                    <div class="form-group"><label>DATE OF BIRTH (ਜਨਮ ਤਰੀਕ) *</label><input type="date" name="dob" required></div>
                 </div>
 
                 <div id="step2-panel">
@@ -208,14 +222,28 @@
         form.addEventListener("submit", async function(event) {
             event.preventDefault(); 
             const submitBtn = document.getElementById('submit-btn');
-            submitBtn.innerText = "SUBMITTING..."; submitBtn.disabled = true; 
-
+            
             try {
+                // 🔴 ਫੋਟੋ ਅੱਪਲੋਡ ਕਰਨ ਵਾਲਾ ਹਿੱਸਾ 🔴
+                const fileInput = document.getElementById('aadhaar_photo');
+                const file = fileInput.files[0];
+                let photoURL = "";
+
+                if (file) {
+                    submitBtn.innerText = "UPLOADING PHOTO... ⏳";
+                    submitBtn.disabled = true;
+                    const storageRef = firebase.storage().ref('aadhaar_cards/' + Date.now() + '_' + file.name);
+                    await storageRef.put(file);
+                    photoURL = await storageRef.getDownloadURL();
+                }
+
+                submitBtn.innerText = "SUBMITTING COMPLAINT... ⏳";
+
                 const data = new FormData(form);
                 const SECRET_KEY = "Mera_Khatarnak_Password_@2026!"; 
                 
-                // 🔴 ਨਵਾਂ ਕੋਡ: ਸਾਰਾ ਫਾਰਮ ਸੁਰੱਖਿਅਤ ਕਰਨ ਲਈ 🔴
                 const allFormData = Object.fromEntries(data.entries());
+                allFormData.aadhaar_photo = photoURL; // ਫੋਟੋ ਦਾ ਲਿੰਕ ਡਾਟਾ ਵਿੱਚ ਜੋੜਿਆ
                 
                 const encryptedEmail = CryptoJS.AES.encrypt(allFormData.email.toLowerCase(), SECRET_KEY).toString();
                 const encryptedAccusedName = CryptoJS.AES.encrypt(allFormData.accused_name, SECRET_KEY).toString();
@@ -224,7 +252,7 @@
                 const dbData = {
                     email: encryptedEmail,
                     accused_name: encryptedAccusedName,
-                    full_data: encryptedFullData, // ਇਹ ਪੂਰੀ ਸ਼ਿਕਾਇਤ ਨੂੰ ਲੌਕ ਕਰ ਦੇਵੇਗਾ
+                    full_data: encryptedFullData, 
                     status: "Pending",
                     timestamp: Date.now()
                 };
