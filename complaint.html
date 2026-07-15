@@ -8,6 +8,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <!-- Cloud Functions ਲਿੰਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
@@ -277,24 +279,14 @@
             submitBtn.disabled = true; 
 
             try {
-                // 1. Save to Firebase Database
                 const data = new FormData(form);
                 
-                // 🔴 CryptoJS Encryption Code 🔴
-                const SECRET_KEY = "Mera_Khatarnak_Password_@2026!"; 
-                
-                const encryptedEmail = CryptoJS.AES.encrypt(data.get('email').toLowerCase(), SECRET_KEY).toString();
-                const encryptedAccusedName = CryptoJS.AES.encrypt(data.get('accused_name'), SECRET_KEY).toString();
-                
-                const dbData = {
-                    email: encryptedEmail,
-                    accused_name: encryptedAccusedName,
-                    status: "Pending",
-                    timestamp: Date.now()
-                };
-
-                database.ref('complaints').push(dbData);
-                database.ref('complaint_count').transaction((current) => (current || 0) + 1);
+                // 1. Save to Firebase via Secure Cloud Function (Encryption is now on server)
+                const secureSubmitComplaint = firebase.functions().httpsCallable('secureSubmitComplaint');
+                await secureSubmitComplaint({
+                    email: data.get('email'),
+                    accused_name: data.get('accused_name')
+                });
 
                 // 2. Send to Formspree
                 const response = await fetch(form.action, {
@@ -321,4 +313,3 @@
     </script>
 </body>
 </html>
-
