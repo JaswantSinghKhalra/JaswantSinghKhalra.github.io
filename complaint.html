@@ -25,12 +25,18 @@
         };
         firebase.initializeApp(firebaseConfig);
         
-        // --- 🔴 API SECURITY & BOT PROTECTION ---
-        const appCheck = firebase.appCheck();
-        appCheck.activate(
-            new firebase.appCheck.ReCaptchaV3Provider('6LcoAlUtAAAAADB1TLvzs243UBY_fo8mdF_5Q5_3'),
-            true 
-        );
+        // --- 🔴 API SECURITY & BOT PROTECTION (Crash-Proof) ---
+        try {
+            if (typeof firebase.appCheck === 'function') {
+                const appCheck = firebase.appCheck();
+                appCheck.activate(
+                    new firebase.appCheck.ReCaptchaV3Provider('6LcoAlUtAAAAADB1TLvzs243UBY_fo8mdF_5Q5_3'),
+                    true 
+                );
+            }
+        } catch (e) {
+            console.warn("App Check Load Alert (Page will still work): ", e);
+        }
 
         const database = firebase.database();
         
