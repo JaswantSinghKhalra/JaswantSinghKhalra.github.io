@@ -9,7 +9,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
-    <!-- App Check/reCAPTCHA ਲਿੰਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
@@ -35,15 +34,13 @@
                 );
             }
         } catch (e) {
-            console.warn("App Check Load Alert (Page will still work): ", e);
+            console.warn("App Check Load Alert: ", e);
         }
 
         const database = firebase.database();
         
         firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                document.body.classList.add('auth-ready');
-            } else {
+            if (!user) {
                 window.location.replace("login.html");
             }
         });
@@ -55,8 +52,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; opacity: 0; transition: opacity 0.3s ease-in; }
-        body.auth-ready { opacity: 1; }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; }
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
         .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
