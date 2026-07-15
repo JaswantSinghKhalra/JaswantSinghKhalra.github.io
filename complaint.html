@@ -10,6 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check-compat.js"></script>
     
+    <!-- CryptoJS Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
     <script>
@@ -24,7 +25,7 @@
         };
         firebase.initializeApp(firebaseConfig);
         
-        // 🔴 Tuhadi reCAPTCHA Site Key baki rakhi gayi hai 🔴
+        // reCAPTCHA App Check Setup
         window.addEventListener('DOMContentLoaded', (event) => {
             try {
                 if (typeof firebase.appCheck === 'function') {
@@ -59,7 +60,7 @@
         body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; opacity: 0; transition: opacity 0.3s ease-in; }
         body.auth-ready { opacity: 1; }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
         .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
         .progress-bar-container { width: 100%; height: 4px; background: #e0dcd2; }
@@ -292,13 +293,13 @@
                     timestamp: Date.now()
                 };
 
-                // 🔴 REALTIME DATABASE WRITE (App Check Error Fixed) 🔴
+                // 🔴 REALTIME DATABASE WRITE (Directly to secure DB) 🔴
                 await database.ref('complaints').push(dbData);
                 
                 // 🔴 LIVE COUNTER UPDATE 🔴
                 await database.ref('complaint_count').transaction((current) => (current || 0) + 1);
 
-                // 2. Formspree (ਸੁਰੱਖਿਅਤ ਪੇਲੋਡ)
+                // Formspree Safe Payload Setup
                 const safeData = new FormData();
                 safeData.append("Alert", "⚠️ ਨਵੀਂ ਸ਼ਿਕਾਇਤ ਆਈ ਹੈ!");
                 safeData.append("Message", "ਕਿਰਪਾ ਕਰਕੇ ਸ਼ਿਕਾਇਤ ਪੜ੍ਹਨ ਲਈ ਆਪਣਾ ਸੁਰੱਖਿਅਤ Firebase ਡਾਟਾਬੇਸ ਖੋਲ੍ਹੋ। Formspree 'ਤੇ ਨਿੱਜੀ ਡਾਟਾ ਆਉਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।");
@@ -319,7 +320,6 @@
                     submitBtn.disabled = false;
                 }
             } catch (error) {
-                // ਜੇਕਰ ਕੋਈ ਐਰਰ ਆਉਂਦਾ ਹੈ ਤਾਂ ਇੱਥੇ ਸ਼ੋਅ ਹੋਵੇਗਾ
                 alert("ਸੁਰੱਖਿਆ ਜਾਂ ਸਰਵਰ ਐਰਰ: " + error.message);
                 submitBtn.innerText = "SUBMIT COMPLAINT ➔";
                 submitBtn.disabled = false;
