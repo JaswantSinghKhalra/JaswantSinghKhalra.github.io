@@ -8,8 +8,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check-compat.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
     <script>
@@ -24,7 +24,7 @@
         };
         firebase.initializeApp(firebaseConfig);
         
-        // --- 🔴 FIXED: App Check Load Fix ---
+        // 🔴 Tuhadi reCAPTCHA Site Key baki rakhi gayi hai 🔴
         window.addEventListener('DOMContentLoaded', (event) => {
             try {
                 if (typeof firebase.appCheck === 'function') {
@@ -42,7 +42,9 @@
         const database = firebase.database();
         
         firebase.auth().onAuthStateChanged(user => {
-            if (!user) {
+            if (user) {
+                document.body.classList.add('auth-ready');
+            } else {
                 window.location.replace("login.html");
             }
         });
@@ -54,7 +56,9 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; opacity: 0; transition: opacity 0.3s ease-in; }
+        body.auth-ready { opacity: 1; }
+
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
         .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
@@ -275,14 +279,26 @@
             try {
                 const data = new FormData(form);
                 
-                // 1. Firebase Secure Server (App Check + Encryption)
-                const secureSubmitComplaint = firebase.functions().httpsCallable('secureSubmitComplaint');
-                await secureSubmitComplaint({
-                    email: data.get('email'),
-                    accused_name: data.get('accused_name')
-                });
+                // 🔴 CryptoJS Encryption Code 🔴
+                const SECRET_KEY = "Mera_Khatarnak_Password_@2026!"; 
+                
+                const encryptedEmail = CryptoJS.AES.encrypt(data.get('email').toLowerCase(), SECRET_KEY).toString();
+                const encryptedAccusedName = CryptoJS.AES.encrypt(data.get('accused_name'), SECRET_KEY).toString();
+                
+                const dbData = {
+                    email: encryptedEmail,
+                    accused_name: encryptedAccusedName,
+                    status: "Pending",
+                    timestamp: Date.now()
+                };
 
-                // 2. Formspree (ਸੁਰੱਖਿਅਤ ਪੇਲੋਡ - ਸਿਰਫ਼ ਅਲਰਟ ਜਾਵੇਗਾ, ਨਿੱਜੀ ਡਾਟਾ ਨਹੀਂ)
+                // 🔴 REALTIME DATABASE WRITE (App Check Error Fixed) 🔴
+                await database.ref('complaints').push(dbData);
+                
+                // 🔴 LIVE COUNTER UPDATE 🔴
+                await database.ref('complaint_count').transaction((current) => (current || 0) + 1);
+
+                // 2. Formspree (ਸੁਰੱਖਿਅਤ ਪੇਲੋਡ)
                 const safeData = new FormData();
                 safeData.append("Alert", "⚠️ ਨਵੀਂ ਸ਼ਿਕਾਇਤ ਆਈ ਹੈ!");
                 safeData.append("Message", "ਕਿਰਪਾ ਕਰਕੇ ਸ਼ਿਕਾਇਤ ਪੜ੍ਹਨ ਲਈ ਆਪਣਾ ਸੁਰੱਖਿਅਤ Firebase ਡਾਟਾਬੇਸ ਖੋਲ੍ਹੋ। Formspree 'ਤੇ ਨਿੱਜੀ ਡਾਟਾ ਆਉਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।");
@@ -303,6 +319,7 @@
                     submitBtn.disabled = false;
                 }
             } catch (error) {
+                // ਜੇਕਰ ਕੋਈ ਐਰਰ ਆਉਂਦਾ ਹੈ ਤਾਂ ਇੱਥੇ ਸ਼ੋਅ ਹੋਵੇਗਾ
                 alert("ਸੁਰੱਖਿਆ ਜਾਂ ਸਰਵਰ ਐਰਰ: " + error.message);
                 submitBtn.innerText = "SUBMIT COMPLAINT ➔";
                 submitBtn.disabled = false;
