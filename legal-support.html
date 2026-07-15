@@ -3,142 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Support - ਸੱਚਾਈ ਦੀ ਆਵਾਜ਼</title>
-    
+    <title>Legal Support - ਸੱਚ ਦੀ ਆਵਾਜ਼</title>
+    <link rel="icon" type="image/png" href="hand.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f4f1ea; 
-            color: #1a1a1a; 
-            margin: 0; 
-            padding: 0; 
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* Header Styling matches your theme */
-        header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 20px 40px; 
-            border-bottom: 2px solid #111; 
-            background-color: #f4f1ea;
-        }
-        .logo { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 22px; 
-            font-weight: 900; 
-            letter-spacing: 1px; 
-            color: #111; 
-            text-decoration: none;
-        }
-        .btn-back {
-            background: #111;
-            color: #fff;
-            padding: 10px 20px;
-            border: 2px solid #111;
-            font-weight: bold;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-decoration: none;
-            box-shadow: 4px 4px 0px #c04a2c;
-            transition: all 0.2s;
-        }
-        .btn-back:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #c04a2c;
-        }
+        /* Top Scrolling Marquee */
+        .top-bar { background-color: #111; color: #d4ccb8; padding: 8px 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-bottom: 2px solid #c04a2c; }
+        .top-bar span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
+        @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            font-weight: 900;
-            color: #111;
-            margin-bottom: 10px;
-            line-height: 1.1;
-        }
-        .page-subtitle {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        /* Advocate Grid */
-        .advocate-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
+        /* Sticky Header */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #e0dcd2; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         
-        /* Advocate Card */
-        .adv-card {
-            background: #ece8df;
-            border: 2px solid #111;
-            padding: 30px;
-            box-shadow: 6px 6px 0px #111;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .adv-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 8px 8px 0px #c04a2c;
-        }
-        .adv-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 900;
-            margin: 0 0 15px 0;
-            color: #111;
-            border-bottom: 2px solid #111;
-            padding-bottom: 10px;
-        }
-        .adv-detail {
-            font-size: 14px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-        }
-        .adv-detail strong {
-            min-width: 80px;
-            color: #c04a2c;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 2px;
-        }
-        .adv-detail span {
-            color: #333;
-            line-height: 1.4;
-        }
+        /* 3D LOGO DESIGN */
+        .logo-wrapper { display: flex; align-items: center; justify-content: flex-start; gap: 15px; text-decoration: none; }
+        .logo-circle { width: 60px; height: 60px; border-radius: 50%; border: 2.5px solid #111; background-color: #f4f1ea; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.35); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; flex-shrink: 0; }
+        .logo-inner-img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; transform: scale(1.35) translateY(12%); }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #692415; letter-spacing: 1px; }
 
-        @media(max-width: 768px) {
-            .container { padding: 40px 20px; }
-            .page-title { font-size: 32px; }
-            header { flex-direction: column; gap: 20px; }
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+        nav { display: flex; gap: 30px; }
+        nav a { text-decoration: none; color: #333; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: #c04a2c; }
+        .header-buttons { display: flex; gap: 15px; align-items: center; }
+        
+        .btn-large { background-color: #c04a2c; color: white; border: 2px solid #111; padding: 15px 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 4px 4px 0px #111; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; text-align: center; display: inline-block; }
+        .btn-large:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
+
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .hamburger .bar { width: 30px; height: 3px; background-color: #111; transition: all 0.3s ease-in-out; border-radius: 2px; }
+
+        /* HERO SECTION */
+        .security-hero { background-color: #0c0908; color: #f4eee0; padding: 100px 20px; text-align: center; border-bottom: 2px solid #1a4331; }
+        .security-tag { color: #4CAF50; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 15px; }
+        .security-title { font-family: 'Playfair Display', serif; font-size: 65px; font-weight: 900; margin: 0 0 20px 0; letter-spacing: -1px; }
+        .security-subtitle { font-size: 16px; color: #aaa; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        /* ADVOCATE GRID */
+        .content-section { max-width: 1200px; margin: 80px auto; padding: 0 40px; }
+        .advocate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .adv-card { background: #ece8df; border: 2px solid #111; padding: 30px; box-shadow: 6px 6px 0px #111; transition: transform 0.2s, box-shadow 0.2s; }
+        .adv-card:hover { transform: translateY(-5px); box-shadow: 8px 8px 0px #c04a2c; }
+        .adv-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin: 0 0 15px 0; color: #111; border-bottom: 2px solid #111; padding-bottom: 10px; }
+        .adv-detail { font-size: 14px; margin-bottom: 12px; display: flex; align-items: flex-start; }
+        .adv-detail strong { min-width: 80px; color: #c04a2c; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+        .adv-detail span { color: #333; line-height: 1.4; }
+
+        /* FOOTER */
+        .site-footer { background-color: #111; color: white; padding: 50px 40px 20px; margin-top: 50px; font-family: 'Inter', sans-serif; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .footer-grid .footer-col { flex: 1; min-width: 150px; }
+        .footer-label { color: #c04a2c; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; display: block; margin-bottom: 15px; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1.1; margin: 0; color: #fff; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #aaa; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.3s; }
+        .footer-links a:hover { color: #c04a2c; }
+        .footer-msg-small { font-size: 12px; color: #aaa; font-weight: bold; }
+        .footer-msg-big { font-family: 'Playfair Display', serif; font-size: 28px; color: #4CAF50; font-weight: 900; margin-top: 5px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 11px; font-weight: bold; color: #777; max-width: 1300px; margin-left: auto; margin-right: auto; }
+        .footer-bottom a { color: #777; text-decoration: none; margin-right: 20px; transition: color 0.3s; }
+        .footer-bottom a:hover { color: #fff; }
+        .footer-owner-click { font-size: 15px; margin-top: 5px; color: #aaa; cursor: pointer; display: inline-block; transition: color 0.3s ease; }
+        .footer-owner-click:hover { color: #c04a2c; }
+
+        /* VIDEO MODAL */
+        .video-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 9999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; padding: 20px; box-sizing: border-box; }
+        .video-modal-overlay.show { display: flex; opacity: 1; }
+        .video-modal-card { background-color: #f4f1ea; padding: 25px; border: 2px solid #111; box-shadow: 10px 10px 0px #111; width: 100%; max-width: 480px; display: flex; flex-direction: column; position: relative; transform: translateY(30px); transition: transform 0.4s ease; box-sizing: border-box; }
+        .video-modal-overlay.show .video-modal-card { transform: translateY(0); }
+        .video-modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #888; font-size: 22px; font-weight: bold; line-height: 1; cursor: pointer; transition: color 0.2s ease; z-index: 20; padding: 5px; }
+        .video-modal-close:hover { color: #111; }
+        .video-modal-header { margin-bottom: 15px; border-bottom: 2px solid #111; padding-bottom: 15px; padding-right: 25px; }
+        .video-modal-header h3 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: #111; line-height: 1.2; margin: 0; letter-spacing: -0.5px; }
+        .video-author-signature { text-align: right; font-size: 15px; color: #555; font-style: italic; margin-top: 10px; font-weight: 600; }
+        .video-wrapper-sleek { width: 100%; aspect-ratio: 9 / 16; max-height: 55vh; background-color: #000; border: 2px solid #111; position: relative; overflow: hidden; margin: 0 auto; }
+        .video-wrapper-sleek video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .mute-mini-btn { position: absolute; bottom: 12px; left: 12px; background: rgba(0, 0, 0, 0.6); color: white; border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 16px; font-size: 12px; font-weight: bold; border-radius: 20px; cursor: pointer; backdrop-filter: blur(4px); z-index: 10; display: flex; align-items: center; gap: 6px; letter-spacing: 1px; transition: all 0.3s ease; }
+        .mute-mini-btn:hover { background: rgba(0, 0, 0, 0.9); border-color: #fff; }
+
+        /* MOBILE ADJUSTMENTS */
+        @media(max-width: 900px) {
+            header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
+            .logo-wrapper { justify-content: flex-start; position: static; } 
+            .logo-circle { width: 55px; height: 55px; position: relative; z-index: 10; pointer-events: auto; border: 2.5px solid #111; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.35); }
+            .logo-text { position: absolute; left: 50%; transform: translateX(-50%); font-size: 28px; white-space: nowrap; z-index: 5; pointer-events: auto; }
+            .hamburger { display: flex; position: relative; z-index: 10; }
+            .nav-container { position: absolute; top: 100%; left: 0; width: 100%; background-color: #f4f1ea; flex-direction: column; align-items: flex-start; padding: 0; box-shadow: 0px 10px 15px rgba(0,0,0,0.1); border-bottom: 2px solid #111; display: none; }
+            .nav-container.active { display: flex; } 
+            nav { flex-direction: column; width: 100%; padding: 10px 20px; box-sizing: border-box; gap: 0; }
+            nav a { padding: 15px 0; border-bottom: 1px solid #e0dcd2; width: 100%; display: block; }
+            nav a:last-child { border-bottom: none; }
+            .header-buttons { flex-direction: column; width: 100%; padding: 20px; box-sizing: border-box; gap: 15px; }
+            .header-buttons .btn-large { width: 100%; box-sizing: border-box; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            
+            .security-title { font-size: 45px; }
+            .security-hero { padding: 60px 20px; }
+            .content-section { padding: 0 20px; margin: 40px auto; }
+            
+            .footer-grid { flex-direction: column; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        }
+        @media(max-width: 600px) {
+            header { padding: 15px; }
+            .logo-circle { width: 50px; height: 50px; } 
+            .logo-text { font-size: 24px; } 
+            .video-modal-card { width: 92%; padding: 20px; }
+            .video-modal-header h3 { font-size: 26px; }
+            .video-wrapper-sleek { max-height: 65vh; }
         }
     </style>
 </head>
 <body>
 
+    <div id="videoModal" class="video-modal-overlay">
+        <div class="video-modal-card">
+            <button class="video-modal-close" onclick="closeVideoModal()">✖</button>
+            <div class="video-modal-header">
+                <h3>ਅਸੀਂ ਇਹ ਪਲੇਟਫਾਰਮ<br><span style="color: #1a4331;">ਕਿਉਂ ਬਣਾਇਆ?</span></h3>
+                <div class="video-author-signature">- ਬੀਬਰ ਸਰਪੰਚ</div>
+            </div>
+            <div class="video-wrapper-sleek">
+                <video id="promoVideo" playsinline loop autoplay muted>
+                    <source src="your-video.mp4" type="video/mp4">
+                </video>
+                <button id="muteToggleBtn" class="mute-mini-btn" onclick="toggleMute()">
+                    <span id="muteIcon">🔇</span> <span id="muteText">UNMUTE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="top-bar">
+        <span>✦ ਸ਼ਹੀਦ ਜਸਵੰਤ ਸਿੰਘ ਖਾਲੜਾ ਜੀ ਦੀ ਸੋਚ ✦ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਰਾਖੀ ✦ ਸੱਚ ਨੂੰ ਦਬਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ✦ ਬਿਨਾਂ ਡਰ ਆਪਣੀ ਆਵਾਜ਼ ਚੁੱਕੋ - Adv ਬੀਬਰ ਸਰਪੰਚ ✦</span>
+    </div>
+
     <header>
-        <a href="index.html" class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</a>
-        <a href="index.html" class="btn-back">➔ GO BACK</a>
+        <a href="index.html" class="logo-wrapper">
+            <div class="logo-circle">
+                <img src="hand.png" alt="Logo" class="logo-inner-img">
+            </div>
+            <span class="logo-text">ਸੱਚ ਦੀ ਆਵਾਜ਼.</span>
+        </a>
+        <div class="hamburger" id="hamburgerMenu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div class="nav-container" id="navMenu">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="manifesto.html">Manifesto</a>
+                <a href="security.html">Security</a>
+                <a href="about.html">About Us</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="complaint.html" class="btn-large">File Complaint ➔</a>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <h1 class="page-title">ਕਾਨੂੰਨੀ ਸਹਾਇਤਾ ਪੈਨਲ</h1>
-        <div class="page-subtitle">ਲੋੜਵੰਦਾਂ ਲਈ ਮਦਦਗਾਰ ਐਡਵੋਕੇਟਾਂ ਦੀ ਸੂਚੀ</div>
+    <section class="security-hero">
+        <div class="security-tag">LEGAL PROTECTION</div>
+        <h1 class="security-title">Legal Support Panel.</h1>
+        <p class="security-subtitle">
+            ਲੋੜਵੰਦਾਂ ਲਈ ਮਦਦਗਾਰ ਐਡਵੋਕੇਟਾਂ ਦੀ ਸੂਚੀ। ਅਸੀਂ ਯਕੀਨੀ ਬਣਾਉਂਦੇ ਹਾਂ ਕਿ ਸੱਚ ਬੋਲਣ ਵਾਲੇ ਨੂੰ ਕਦੇ ਵੀ ਇਕੱਲਾ ਨਾ ਛੱਡਿਆ ਜਾਵੇ।
+        </p>
+    </section>
 
+    <div class="content-section">
         <div class="advocate-grid">
             
             <div class="adv-card">
@@ -264,5 +302,94 @@
         </div>
     </div>
 
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <span class="footer-label">Since 2026</span>
+                <h2 class="footer-brand">ਸੱਚ ਦੀ<br>ਆਵਾਜ਼.</h2>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Legal & Contact</span>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="security.html">Security Guidelines</a></li>
+                    <li><a href="vision.html">Our Vision</a></li>
+                    <li><a href="contact.html">Secure Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">Social Media</span>
+                <ul class="footer-links">
+                    <li><a href="https://www.instagram.com/biebersarpanch" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com/@biebersarpanch" target="_blank">YouTube</a></li>
+                    <li><a href="https://x.com/BieberOP22" target="_blank">Twitter (X)</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">The System</span>
+                <div class="footer-msg-small">Who's in charge now?</div>
+                <div class="footer-msg-big">YOU ARE.</div>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">OWNER</span>
+                <div class="footer-owner-click" onclick="openVideoModal()">ਬੀਬਰ ਸਰਪੰਚ</div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="bottom-left">
+                <a href="https://www.instagram.com/biebersarpanch" target="_blank">INSTAGRAM</a>
+                <a href="https://youtube.com/@biebersarpanch" target="_blank">YOUTUBE</a>
+            </div>
+            <div class="bottom-center" style="color: #c04a2c; letter-spacing: 1px;">A SECURE PLATFORM · VOICE OF PUNJAB</div>
+            <div class="bottom-right">© 2026 ਸੱਚ ਦੀ ਆਵਾਜ਼ · ALL RIGHTS RESERVED</div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('promoVideo');
+            
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+            
+            video.currentTime = 0; 
+            video.play().catch(e => console.log(e)); 
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('promoVideo');
+            
+            modal.classList.remove('show');
+            setTimeout(() => { modal.style.display = 'none'; }, 400); 
+            video.pause(); 
+        }
+
+        function toggleMute() {
+            const video = document.getElementById('promoVideo');
+            const icon = document.getElementById('muteIcon');
+            const text = document.getElementById('muteText');
+            
+            if(video.muted) {
+                video.muted = false;
+                icon.innerText = '🔊';
+                text.innerText = 'MUTE';
+            } else {
+                video.muted = true;
+                icon.innerText = '🔇';
+                text.innerText = 'UNMUTE';
+            }
+        }
+    </script>
 </body>
 </html>
