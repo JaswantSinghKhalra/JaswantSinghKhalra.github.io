@@ -7,14 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; padding: 0; background-color: #111; height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Inter', sans-serif; }
-        .login-box { width: 100%; max-width: 400px; padding: 40px; background-color: #1a1a1a; border: 1px solid #333; text-align: center; color: white; }
+        .login-box { width: 100%; max-width: 400px; padding: 40px; background-color: #1a1a1a; border: 1px solid #333; text-align: center; color: white; box-sizing: border-box;}
         .label-top { font-size: 10px; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
         .title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin-bottom: 30px; }
         input { width: 100%; padding: 12px; margin: 15px 0; background: #222; border: 1px solid #444; color: white; box-sizing: border-box; }
         button { width: 100%; padding: 15px; background: #c04a2c; border: none; color: white; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
         button:hover { background: #a03d24; }
         .result-area { margin-top: 25px; text-align: left; border-top: 1px solid #333; padding-top: 20px; }
-        .res-item { background: #222; padding: 10px; margin-bottom: 10px; font-size: 13px; }
+        .res-item { background: #222; padding: 15px; margin-bottom: 10px; font-size: 14px; border-left: 4px solid #c04a2c; }
         .back-link { display: block; margin-top: 20px; color: #888; text-decoration: none; font-size: 12px; }
     </style>
 </head>
@@ -24,16 +24,18 @@
         <div class="label-top">SECURE PORTAL</div>
         <div class="title">COMPLAINT STATUS</div>
 
-        <input type="email" id="userEmail" placeholder="ENTER YOUR EMAIL">
+        <input type="email" id="userEmail" placeholder="ENTER YOUR EMAIL ADDRESS">
         <button onclick="checkStatus()">CHECK STATUS ➔</button>
 
         <div id="result" class="result-area"></div>
         <a href="index.html" class="back-link">← BACK TO HOME</a>
     </div>
 
-    <!-- Firebase -->
+    <!-- Firebase & CryptoJS -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAkD_PomZqaa9rA76Emnm2YRxBmB-fsmYo",
@@ -43,26 +45,81 @@
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        function checkStatus() {
-            const email = document.getElementById('userEmail').value.toLowerCase();
-            const resDiv = document.getElementById('result');
-            if(!email) { alert("Please enter email"); return; }
-            resDiv.innerHTML = "SEARCHING...";
+        // 🔴 ਉਹੀ ਪਾਸਵਰਡ ਜੋ ਆਪਾਂ ਡਾਟਾ ਸੇਵ ਕਰਨ ਵੇਲੇ ਵਰਤਿਆ ਸੀ 🔴
+        const SECRET_KEY = "Mera_Khatarnak_Password_@2026!";
 
-            db.ref('complaints').orderByChild('email').equalTo(email).once('value').then(snapshot => {
-                if(snapshot.exists()) {
-                    resDiv.innerHTML = "";
-                    snapshot.forEach(child => {
-                        const data = child.val();
-                        resDiv.innerHTML += `<div class="res-item">
-                            <strong>ACCUSED:</strong> ${data.accused_name}<br>
-                            <strong>STATUS:</strong> <span style="color:#4CAF50">${data.status}</span>
-                        </div>`;
-                    });
-                } else {
-                    resDiv.innerHTML = "No complaints found for this email.";
+        async function checkStatus() {
+            const emailInput = document.getElementById('userEmail').value.toLowerCase().trim();
+            const resDiv = document.getElementById('result');
+            
+            if(!emailInput) { 
+                resDiv.innerHTML = "<span style='color:red;'>ਕਿਰਪਾ ਕਰਕੇ ਈਮੇਲ ਭਰੋ।</span>"; 
+                return; 
+            }
+            
+            resDiv.innerHTML = "SEARCHING... ⏳";
+
+            try {
+                // 1. ਯੂਜ਼ਰ ਵੱਲੋਂ ਭਰੀ ਈਮੇਲ ਨੂੰ ਉਸੇ ਪਾਸਵਰਡ ਨਾਲ 'ਲੌਕ' ਕਰੋ
+                const encryptedEmailToSearch = CryptoJS.AES.encrypt(emailInput, SECRET_KEY).toString();
+                
+                let found = false;
+                resDiv.innerHTML = "";
+
+                // 2. ਫਾਇਰਬੇਸ ਵਿੱਚੋਂ ਸਾਰਾ ਡਾਟਾ ਲਿਆਓ ਅਤੇ ਮੈਚ ਕਰੋ
+                const snapshot = await db.ref('complaints').once('value');
+                const allData = snapshot.val();
+
+                if (allData) {
+                    // ਹਰੇਕ ਸ਼ਿਕਾਇਤ ਨੂੰ ਚੈੱਕ ਕਰੋ
+                    for (const key in allData) {
+                        const complaint = allData[key];
+                        
+                        // ਕਿਉਂਕਿ ਹਰ ਵਾਰ Encrypt ਕਰਨ 'ਤੇ ਅੱਖਰ ਬਦਲ ਜਾਂਦੇ ਹਨ, ਇਸ ਲਈ ਆਪਾਂ ਡਾਟਾਬੇਸ ਵਾਲੀ ਈਮੇਲ ਨੂੰ Decrypt ਕਰਕੇ ਮੈਚ ਕਰਾਂਗੇ
+                        try {
+                            const dbEmailBytes = CryptoJS.AES.decrypt(complaint.email, SECRET_KEY);
+                            const dbEmailOriginal = dbEmailBytes.toString(CryptoJS.enc.Utf8);
+
+                            // ਜੇਕਰ ਫਾਇਰਬੇਸ ਵਾਲੀ ਈਮੇਲ ਅਤੇ ਯੂਜ਼ਰ ਵੱਲੋਂ ਭਰੀ ਈਮੇਲ ਮੈਚ ਕਰ ਗਈ
+                            if (dbEmailOriginal === emailInput) {
+                                found = true;
+                                
+                                // ਦੋਸ਼ੀ ਦਾ ਨਾਮ ਵੀ Decrypt ਕਰੋ
+                                const accusedBytes = CryptoJS.AES.decrypt(complaint.accused_name, SECRET_KEY);
+                                const realAccused = accusedBytes.toString(CryptoJS.enc.Utf8);
+                                
+                                const date = new Date(complaint.timestamp).toLocaleDateString('en-IN');
+
+                                resDiv.innerHTML += `
+                                    <div class="res-item">
+                                        <div style="font-size:11px; color:#888; margin-bottom:5px;">DATE: ${date}</div>
+                                        <strong>ACCUSED:</strong> ${realAccused}<br>
+                                        <div style="margin-top:8px;"><strong>STATUS:</strong> <span style="background:#c04a2c; color:white; padding:3px 8px; font-size:12px; border-radius:3px;">${complaint.status || 'PENDING'}</span></div>
+                                    </div>
+                                `;
+                            }
+                        } catch(e) {
+                            // ਜੇਕਰ ਕੋਈ ਪੁਰਾਣੀ ਸ਼ਿਕਾਇਤ (ਬਿਨਾਂ ਲੌਕ ਵਾਲੀ) ਹੋਵੇ
+                            if(complaint.email === emailInput) {
+                                found = true;
+                                resDiv.innerHTML += `<div class="res-item"><strong>STATUS:</strong> ${complaint.status || 'PENDING'}</div>`;
+                            }
+                        }
+                    }
                 }
-            });
+
+                if (!found) {
+                    resDiv.innerHTML = "<span style='color:#ccc;'>ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਸ਼ਿਕਾਇਤ ਨਹੀਂ ਮਿਲੀ।</span>";
+                }
+
+            } catch (error) {
+                // ਜੇਕਰ Firebase Rules ਡਾਟਾ ਪੜ੍ਹਨ ਤੋਂ ਰੋਕ ਦੇਣ (Permission Denied)
+                resDiv.innerHTML = `
+                    <div style="color:red; font-size:12px; text-align:center;">
+                        ⚠️ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਸਿੱਧਾ ਸਟੇਟਸ ਚੈੱਕ ਕਰਨਾ ਬੰਦ ਹੈ।<br>
+                        ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਸੁਰੱਖਿਅਤ ਹੈ।
+                    </div>`;
+            }
         }
     </script>
 </body>
