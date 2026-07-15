@@ -8,7 +8,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-    <!-- Cloud Functions ਲਿੰਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
@@ -43,15 +42,12 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; opacity: 0; transition: opacity 0.3s ease-in; }
         body.auth-ready { opacity: 1; }
-
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
         .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
         .progress-bar-container { width: 100%; height: 4px; background: #e0dcd2; }
         .progress-bar { width: 33%; height: 100%; background: #c04a2c; transition: width 0.3s; }
         .layout { display: flex; gap: 40px; padding: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
-        
-        /* Sidebar Styling */
         .sidebar { width: 280px; border: 2px solid #111; padding: 30px; background: #f4f1ea; height: fit-content; box-shadow: 4px 4px 0px #111; box-sizing: border-box; }
         .sidebar-top { color: #c04a2c; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
         .sidebar h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin: 0 0 30px; line-height: 1.1; }
@@ -62,8 +58,6 @@
         .step.active .step-num { background: #c04a2c; color: white; border-color: #c04a2c; }
         .step-text { font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
         .step-sub { font-size: 10px; font-weight: normal; color: #888; text-transform: none; display: block; margin-top: 3px; }
-        
-        /* Main Panel Styling */
         .main-panel { flex: 1; min-width: 300px; border: 2px solid #111; padding: 40px; background: #f4f1ea; box-shadow: 6px 6px 0px #111; box-sizing: border-box; position: relative; }
         .panel-header { font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #111; padding-bottom: 15px; margin-bottom: 30px; }
         .form-group { margin-bottom: 25px; }
@@ -71,19 +65,15 @@
         input, textarea { width: 100%; padding: 15px; border: 1px solid #ccc; background: #ece8df; color: #111; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box; transition: border 0.3s; }
         input:focus, textarea:focus { outline: none; border: 1px solid #111; background: #fff; }
         textarea { height: 180px; resize: vertical; }
-        
-        /* Buttons moved to bottom */
         .btn-action { background: #c04a2c; color: white; padding: 15px; border: 2px solid #111; font-weight: bold; cursor: pointer; width: 100%; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 3px 3px 0px #111; transition: all 0.2s; }
         .btn-action:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #111; }
         .btn-action:disabled { background: #555; cursor: not-allowed; box-shadow: none; transform: none; }
         .cancel-link { display: inline-block; font-size: 10px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-bottom: 1px solid #555; }
-        
         #step2-panel, #step3-panel, #success-panel { display: none; }
         .success-box { text-align: center; padding: 40px 20px; }
         .success-icon { font-size: 60px; color: #1a4331; margin-bottom: 20px; }
         .success-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #111; margin-bottom: 15px; }
         .success-text { font-size: 14px; color: #555; line-height: 1.6; }
-        
         @media(max-width: 768px) { .layout { padding: 20px; flex-direction: column; } .sidebar, .main-panel { width: 100%; } }
     </style>
 </head>
@@ -169,7 +159,7 @@
             <div id="success-panel" class="success-box">
                 <div class="success-icon">✔</div>
                 <div class="success-title">ਸ਼ਿਕਾਇਤ ਦਰਜ ਹੋ ਗਈ ਹੈ।</div>
-                <div class="success-text">ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਸਾਡੇ ਸਿਸਟਮ ਵਿੱਚ ਆ ਗਏ ਹਨ。<br>ਅਸੀਂ ਜਲਦੀ ਹੀ ਇਸਦੀ ਜਾਂਚ ਕਰਾਂਗੇ।</div>
+                <div class="success-text">ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ ਸਿਸਟਮ ਵਿੱਚ ਆ ਗਏ ਹਨ।<br>ਅਸੀਂ ਜਲਦੀ ਹੀ ਇਸਦੀ ਜਾਂਚ ਕਰਾਂਗੇ।</div>
                 <button type="button" class="btn-action" style="background: #111; margin-top: 30px; width: auto; padding: 15px 30px;" onclick="window.location.reload()">ਨਵੀਂ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ</button>
             </div>
         </section>
@@ -212,9 +202,7 @@
         function checkAadhaar() {
             let inputField = document.getElementById("aadhaarNumber");
             let errorMsg = document.getElementById("aadhaarError");
-
             inputField.value = inputField.value.replace(/\D/g, ''); 
-
             if (inputField.value.length === 12) {
                 if (validateAadhaar(inputField.value)) {
                     errorMsg.style.display = "none";
@@ -231,9 +219,7 @@
                 inputField.setCustomValidity("Please enter 12 digits"); 
             }
         }
-    </script>
 
-    <script>
         let currentStep = 1;
         function validatePanel(panelId) {
             let inputs = document.querySelectorAll('#' + panelId + ' input, #' + panelId + ' textarea');
@@ -251,10 +237,7 @@
                 document.getElementById('step-counter').innerText = 'STEP 02 / 03';
                 document.getElementById('progress-bar').style.width = '66%';
                 currentStep = 2;
-                
-                // 🔴 Smooth Scroll Added Here 🔴
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                
             } else if(currentStep === 2 && validatePanel('step2-panel')) {
                 document.getElementById('step2-panel').style.display = 'none';
                 document.getElementById('step3-panel').style.display = 'block';
@@ -265,8 +248,6 @@
                 document.getElementById('next-btn').style.display = 'none';
                 document.getElementById('submit-btn').style.display = 'block';
                 currentStep = 3;
-                
-                // 🔴 Smooth Scroll Added Here 🔴
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
@@ -281,14 +262,14 @@
             try {
                 const data = new FormData(form);
                 
-                // 1. Save to Firebase via Secure Cloud Function (Encryption is now on server)
+                // 1. Firebase Secure Server (100% ਸੁਰੱਖਿਅਤ ਅਤੇ ਐਨਕ੍ਰਿਪਟਡ)
                 const secureSubmitComplaint = firebase.functions().httpsCallable('secureSubmitComplaint');
                 await secureSubmitComplaint({
                     email: data.get('email'),
                     accused_name: data.get('accused_name')
                 });
 
-                // 2. Send to Formspree
+                // 2. Formspree (ਈਮੇਲ ਲਈ - ਡਾਟਾ ਪਲੇਨ ਟੈਕਸਟ ਵਿੱਚ ਜਾਵੇਗਾ)
                 const response = await fetch(form.action, {
                     method: form.method,
                     body: data,
@@ -300,7 +281,7 @@
                     document.getElementById('success-panel').style.display = 'block';
                     submitBtn.style.display = 'none';
                 } else {
-                    alert("Error submitting to Formspree.");
+                    alert("Formspree ਵਿੱਚ ਗਲਤੀ ਆਈ ਹੈ।");
                     submitBtn.innerText = "SUBMIT COMPLAINT ➔";
                     submitBtn.disabled = false;
                 }
