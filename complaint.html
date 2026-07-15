@@ -24,18 +24,20 @@
         };
         firebase.initializeApp(firebaseConfig);
         
-        // --- 🔴 API SECURITY & BOT PROTECTION (Crash-Proof) ---
-        try {
-            if (typeof firebase.appCheck === 'function') {
-                const appCheck = firebase.appCheck();
-                appCheck.activate(
-                    new firebase.appCheck.ReCaptchaV3Provider('6LcoAlUtAAAAADB1TLvzs243UBY_fo8mdF_5Q5_3'),
-                    true 
-                );
+        // --- 🔴 FIXED: App Check Load Fix ---
+        window.addEventListener('DOMContentLoaded', (event) => {
+            try {
+                if (typeof firebase.appCheck === 'function') {
+                    const appCheck = firebase.appCheck();
+                    appCheck.activate(
+                        new firebase.appCheck.ReCaptchaV3Provider('6LcoAlUtAAAAADB1TLvzs243UBY_fo8mdF_5Q5_3'),
+                        true 
+                    );
+                }
+            } catch (e) {
+                console.warn("App Check Load Alert: ", e);
             }
-        } catch (e) {
-            console.warn("App Check Load Alert: ", e);
-        }
+        });
 
         const database = firebase.database();
         
