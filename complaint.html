@@ -9,8 +9,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check-compat.js"></script>
-    
-    <!-- CryptoJS Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
     <script>
@@ -25,7 +23,6 @@
         };
         firebase.initializeApp(firebaseConfig);
         
-        // reCAPTCHA App Check Setup
         window.addEventListener('DOMContentLoaded', (event) => {
             try {
                 if (typeof firebase.appCheck === 'function') {
@@ -43,11 +40,8 @@
         const database = firebase.database();
         
         firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                document.body.classList.add('auth-ready');
-            } else {
-                window.location.replace("login.html");
-            }
+            if (user) { document.body.classList.add('auth-ready'); } 
+            else { window.location.replace("login.html"); }
         });
 
         function logout() {
@@ -59,7 +53,6 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f4f1ea; color: #1a1a1a; margin: 0; padding: 0; opacity: 0; transition: opacity 0.3s ease-in; }
         body.auth-ready { opacity: 1; }
-
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 2px solid #111; position: sticky; top: 0; background-color: #f4f1ea; z-index: 1000; }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #111; }
         .step-counter { font-size: 11px; font-weight: bold; color: #c04a2c; letter-spacing: 2px; text-transform: uppercase; }
@@ -101,50 +94,32 @@
         <div class="logo">ਸੱਚ ਦੀ ਆਵਾਜ਼.</div>
         <div class="step-counter" id="step-counter">STEP 01 / 03</div>
     </header>
-    <div class="progress-bar-container">
-        <div class="progress-bar" id="progress-bar"></div>
-    </div>
+    <div class="progress-bar-container"><div class="progress-bar" id="progress-bar"></div></div>
 
     <div class="layout">
         <aside class="sidebar">
             <div class="sidebar-top">SECURE PORTAL</div>
             <h2>ਸਬੂਤ<br>ਦਰਜ ਕਰੋ.</h2>
-            
             <ul class="step-nav">
-                <li class="step active" id="nav-step1">
-                    <div class="step-num">01</div>
-                    <div><span class="step-text">IDENTITY</span><span class="step-sub">Who are you?</span></div>
-                </li>
-                <li class="step" id="nav-step2">
-                    <div class="step-num">02</div>
-                    <div><span class="step-text">ACCUSED</span><span class="step-sub">Target details</span></div>
-                </li>
-                <li class="step" id="nav-step3">
-                    <div class="step-num">03</div>
-                    <div><span class="step-text">EVIDENCE</span><span class="step-sub">Proof & Incident</span></div>
-                </li>
+                <li class="step active" id="nav-step1"><div class="step-num">01</div><div><span class="step-text">IDENTITY</span><span class="step-sub">Who are you?</span></div></li>
+                <li class="step" id="nav-step2"><div class="step-num">02</div><div><span class="step-text">ACCUSED</span><span class="step-sub">Target details</span></div></li>
+                <li class="step" id="nav-step3"><div class="step-num">03</div><div><span class="step-text">EVIDENCE</span><span class="step-sub">Proof & Incident</span></div></li>
             </ul>
-
             <a href="#" class="cancel-link" onclick="logout()">LOGOUT (ਬਾਹਰ ਜਾਓ)</a>
         </aside>
 
         <section class="main-panel">
             <form id="complaint-form" action="https://formspree.io/f/mvzjeqop" method="POST">
-                
                 <div id="step1-panel">
                     <div class="panel-header">01. IDENTITY — ਆਪਣੀ ਪਛਾਣ ਦੱਸੋ</div>
                     <div class="form-group"><label>FULL NAME (ਪੂਰਾ ਨਾਮ) *</label><input type="text" name="name" required></div>
                     <div class="form-group"><label>EMAIL ADDRESS (ਈਮੇਲ) *</label><input type="email" name="email" required></div>
                     <div class="form-group"><label>FATHER'S NAME (ਪਿਤਾ ਦਾ ਨਾਮ) *</label><input type="text" name="father_name" required></div>
-                    
                     <div class="form-group">
                         <label>AADHAAR CARD NUMBER (ਆਧਾਰ ਕਾਰਡ) *</label>
                         <input type="text" id="aadhaarNumber" name="aadhaar" placeholder="12-digit number" maxlength="12" required oninput="checkAadhaar()">
-                        <div id="aadhaarError" style="color: #c04a2c; font-size: 12px; font-weight: bold; display: none; margin-top: 5px;">
-                            ❌ ਇਹ ਆਧਾਰ ਨੰਬਰ ਗਲਤ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਅਸਲੀ ਨੰਬਰ ਭਰੋ।
-                        </div>
+                        <div id="aadhaarError" style="color: #c04a2c; font-size: 12px; font-weight: bold; display: none; margin-top: 5px;">❌ ਇਹ ਆਧਾਰ ਨੰਬਰ ਗਲਤ ਹੈ।</div>
                     </div>
-                    
                     <div class="form-group"><label>MOBILE NUMBER (ਮੋਬਾਈਲ ਨੰਬਰ) *</label><input type="tel" name="mobile" required></div>
                     <div class="form-group"><label>DATE OF BIRTH (ਜਨਮ ਤਰੀਕ) *</label><input type="date" name="dob" required></div>
                 </div>
@@ -159,10 +134,7 @@
 
                 <div id="step3-panel">
                     <div class="panel-header">03. COMPLAINT & EVIDENCE — ਸ਼ਿਕਾਇਤ ਅਤੇ ਸਬੂਤ</div>
-                    <div class="form-group">
-                        <label>EVIDENCE LINK (ਸਬੂਤ ਦਾ ਗੂਗਲ ਡਰਾਈਵ ਲਿੰਕ) *</label>
-                        <input type="url" name="evidence_link" placeholder="https://drive.google.com/..." required>
-                    </div>
+                    <div class="form-group"><label>EVIDENCE LINK (ਸਬੂਤ ਦਾ ਗੂਗਲ ਡਰਾਈਵ ਲਿੰਕ) *</label><input type="url" name="evidence_link" placeholder="https://drive.google.com/..." required></div>
                     <div class="form-group"><label>LOCATION OF INCIDENT (ਘਟਨਾ ਵਾਲੀ ਜਗ੍ਹਾ) *</label><input type="text" name="location" required></div>
                     <div class="form-group"><label>DETAILED DESCRIPTION (ਪੂਰਾ ਵੇਰਵਾ) *</label><textarea name="complaint_details" placeholder="ਪੂਰੀ ਘਟਨਾ ਦੀ ਜਾਣਕਾਰੀ ਇੱਥੇ ਲਿਖੋ..." required></textarea></div>
                 </div>
@@ -171,7 +143,6 @@
                     <button type="button" class="btn-action" id="next-btn" onclick="nextStep()">NEXT ➔</button>
                     <button type="submit" class="btn-action" id="submit-btn" style="display:none; background: #1a4331;">SUBMIT COMPLAINT ➔</button>
                 </div>
-
             </form>
 
             <div id="success-panel" class="success-box">
@@ -184,36 +155,14 @@
     </div>
 
     <script>
-        const d = [
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-            [1, 2, 3, 4, 0, 6, 7, 8, 9, 5],
-            [2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
-            [3, 4, 0, 1, 2, 8, 9, 5, 6, 7],
-            [4, 0, 1, 2, 3, 9, 5, 6, 7, 8],
-            [5, 9, 8, 7, 6, 0, 4, 3, 2, 1],
-            [6, 5, 9, 8, 7, 1, 0, 4, 3, 2],
-            [7, 6, 5, 9, 8, 2, 1, 0, 4, 3],
-            [8, 7, 6, 5, 9, 3, 2, 1, 0, 4],
-            [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-        ];
-        const p = [
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-            [1, 5, 7, 6, 2, 8, 3, 0, 9, 4],
-            [5, 8, 0, 3, 7, 9, 6, 1, 4, 2],
-            [8, 9, 1, 6, 0, 4, 3, 5, 2, 7],
-            [9, 4, 5, 3, 1, 2, 6, 8, 7, 0],
-            [4, 2, 8, 6, 5, 7, 3, 9, 0, 1],
-            [2, 7, 9, 3, 8, 0, 6, 4, 1, 5],
-            [7, 0, 4, 6, 9, 1, 3, 2, 5, 8]
-        ];
+        const d = [[0,1,2,3,4,5,6,7,8,9],[1,2,3,4,0,6,7,8,9,5],[2,3,4,0,1,7,8,9,5,6],[3,4,0,1,2,8,9,5,6,7],[4,0,1,2,3,9,5,6,7,8],[5,9,8,7,6,0,4,3,2,1],[6,5,9,8,7,1,0,4,3,2],[7,6,5,9,8,2,1,0,4,3],[8,7,6,5,9,3,2,1,0,4],[9,8,7,6,5,4,3,2,1,0]];
+        const p = [[0,1,2,3,4,5,6,7,8,9],[1,5,7,6,2,8,3,0,9,4],[5,8,0,3,7,9,6,1,4,2],[8,9,1,6,0,4,3,5,2,7],[9,4,5,3,1,2,6,8,7,0],[4,2,8,6,5,7,3,9,0,1],[2,7,9,3,8,0,6,4,1,5],[7,0,4,6,9,1,3,2,5,8]];
 
         function validateAadhaar(aadhaarNumber) {
             if (aadhaarNumber.length !== 12 || !/^\d{12}$/.test(aadhaarNumber)) return false;
             let c = 0;
             let array = aadhaarNumber.split('').map(Number).reverse();
-            for (let i = 0; i < array.length; i++) {
-                c = d[c][p[i % 8][array[i]]];
-            }
+            for (let i = 0; i < array.length; i++) { c = d[c][p[i % 8][array[i]]]; }
             return c === 0;
         }
 
@@ -223,18 +172,12 @@
             inputField.value = inputField.value.replace(/\D/g, ''); 
             if (inputField.value.length === 12) {
                 if (validateAadhaar(inputField.value)) {
-                    errorMsg.style.display = "none";
-                    inputField.style.borderColor = "green";
-                    inputField.setCustomValidity(""); 
+                    errorMsg.style.display = "none"; inputField.style.borderColor = "green"; inputField.setCustomValidity(""); 
                 } else {
-                    errorMsg.style.display = "block";
-                    inputField.style.borderColor = "red";
-                    inputField.setCustomValidity("Invalid Aadhaar"); 
+                    errorMsg.style.display = "block"; inputField.style.borderColor = "red"; inputField.setCustomValidity("Invalid Aadhaar"); 
                 }
             } else {
-                errorMsg.style.display = "none";
-                inputField.style.borderColor = "#ccc";
-                inputField.setCustomValidity("Please enter 12 digits"); 
+                errorMsg.style.display = "none"; inputField.style.borderColor = "#ccc"; inputField.setCustomValidity("Please enter 12 digits"); 
             }
         }
 
@@ -248,25 +191,16 @@
 
         function nextStep() {
             if(currentStep === 1 && validatePanel('step1-panel')) {
-                document.getElementById('step1-panel').style.display = 'none';
-                document.getElementById('step2-panel').style.display = 'block';
-                document.getElementById('nav-step1').classList.remove('active');
-                document.getElementById('nav-step2').classList.add('active');
-                document.getElementById('step-counter').innerText = 'STEP 02 / 03';
-                document.getElementById('progress-bar').style.width = '66%';
-                currentStep = 2;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                document.getElementById('step1-panel').style.display = 'none'; document.getElementById('step2-panel').style.display = 'block';
+                document.getElementById('nav-step1').classList.remove('active'); document.getElementById('nav-step2').classList.add('active');
+                document.getElementById('step-counter').innerText = 'STEP 02 / 03'; document.getElementById('progress-bar').style.width = '66%';
+                currentStep = 2; window.scrollTo({ top: 0, behavior: 'smooth' });
             } else if(currentStep === 2 && validatePanel('step2-panel')) {
-                document.getElementById('step2-panel').style.display = 'none';
-                document.getElementById('step3-panel').style.display = 'block';
-                document.getElementById('nav-step2').classList.remove('active');
-                document.getElementById('nav-step3').classList.add('active');
-                document.getElementById('step-counter').innerText = 'STEP 03 / 03';
-                document.getElementById('progress-bar').style.width = '100%';
-                document.getElementById('next-btn').style.display = 'none';
-                document.getElementById('submit-btn').style.display = 'block';
-                currentStep = 3;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                document.getElementById('step2-panel').style.display = 'none'; document.getElementById('step3-panel').style.display = 'block';
+                document.getElementById('nav-step2').classList.remove('active'); document.getElementById('nav-step3').classList.add('active');
+                document.getElementById('step-counter').innerText = 'STEP 03 / 03'; document.getElementById('progress-bar').style.width = '100%';
+                document.getElementById('next-btn').style.display = 'none'; document.getElementById('submit-btn').style.display = 'block';
+                currentStep = 3; window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
@@ -274,55 +208,43 @@
         form.addEventListener("submit", async function(event) {
             event.preventDefault(); 
             const submitBtn = document.getElementById('submit-btn');
-            submitBtn.innerText = "SUBMITTING...";
-            submitBtn.disabled = true; 
+            submitBtn.innerText = "SUBMITTING..."; submitBtn.disabled = true; 
 
             try {
                 const data = new FormData(form);
-                
-                // 🔴 CryptoJS Encryption Code 🔴
                 const SECRET_KEY = "Mera_Khatarnak_Password_@2026!"; 
                 
-                const encryptedEmail = CryptoJS.AES.encrypt(data.get('email').toLowerCase(), SECRET_KEY).toString();
-                const encryptedAccusedName = CryptoJS.AES.encrypt(data.get('accused_name'), SECRET_KEY).toString();
+                // 🔴 ਨਵਾਂ ਕੋਡ: ਸਾਰਾ ਫਾਰਮ ਸੁਰੱਖਿਅਤ ਕਰਨ ਲਈ 🔴
+                const allFormData = Object.fromEntries(data.entries());
+                
+                const encryptedEmail = CryptoJS.AES.encrypt(allFormData.email.toLowerCase(), SECRET_KEY).toString();
+                const encryptedAccusedName = CryptoJS.AES.encrypt(allFormData.accused_name, SECRET_KEY).toString();
+                const encryptedFullData = CryptoJS.AES.encrypt(JSON.stringify(allFormData), SECRET_KEY).toString();
                 
                 const dbData = {
                     email: encryptedEmail,
                     accused_name: encryptedAccusedName,
+                    full_data: encryptedFullData, // ਇਹ ਪੂਰੀ ਸ਼ਿਕਾਇਤ ਨੂੰ ਲੌਕ ਕਰ ਦੇਵੇਗਾ
                     status: "Pending",
                     timestamp: Date.now()
                 };
 
-                // 🔴 REALTIME DATABASE WRITE (Directly to secure DB) 🔴
                 await database.ref('complaints').push(dbData);
-                
-                // 🔴 LIVE COUNTER UPDATE 🔴
                 await database.ref('complaint_count').transaction((current) => (current || 0) + 1);
 
-                // Formspree Safe Payload Setup
                 const safeData = new FormData();
                 safeData.append("Alert", "⚠️ ਨਵੀਂ ਸ਼ਿਕਾਇਤ ਆਈ ਹੈ!");
-                safeData.append("Message", "ਕਿਰਪਾ ਕਰਕੇ ਸ਼ਿਕਾਇਤ ਪੜ੍ਹਨ ਲਈ ਆਪਣਾ ਸੁਰੱਖਿਅਤ Firebase ਡਾਟਾਬੇਸ ਖੋਲ੍ਹੋ। Formspree 'ਤੇ ਨਿੱਜੀ ਡਾਟਾ ਆਉਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।");
+                safeData.append("Message", "ਕਿਰਪਾ ਕਰਕੇ ਸ਼ਿਕਾਇਤ ਪੜ੍ਹਨ ਲਈ ਆਪਣਾ ਸੁਰੱਖਿਅਤ Firebase ਡਾਟਾਬੇਸ ਖੋਲ੍ਹੋ।");
 
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: safeData,
-                    headers: { 'Accept': 'application/json' }
-                });
+                const response = await fetch(form.action, { method: form.method, body: safeData, headers: { 'Accept': 'application/json' } });
 
                 if (response.ok) {
-                    document.getElementById('step3-panel').style.display = 'none';
-                    document.getElementById('success-panel').style.display = 'block';
-                    submitBtn.style.display = 'none';
+                    document.getElementById('step3-panel').style.display = 'none'; document.getElementById('success-panel').style.display = 'block'; submitBtn.style.display = 'none';
                 } else {
-                    alert("Formspree ਵਿੱਚ ਗਲਤੀ ਆਈ ਹੈ।");
-                    submitBtn.innerText = "SUBMIT COMPLAINT ➔";
-                    submitBtn.disabled = false;
+                    alert("Formspree ਵਿੱਚ ਗਲਤੀ ਆਈ ਹੈ।"); submitBtn.innerText = "SUBMIT COMPLAINT ➔"; submitBtn.disabled = false;
                 }
             } catch (error) {
-                alert("ਸੁਰੱਖਿਆ ਜਾਂ ਸਰਵਰ ਐਰਰ: " + error.message);
-                submitBtn.innerText = "SUBMIT COMPLAINT ➔";
-                submitBtn.disabled = false;
+                alert("ਸੁਰੱਖਿਆ ਜਾਂ ਸਰਵਰ ਐਰਰ: " + error.message); submitBtn.innerText = "SUBMIT COMPLAINT ➔"; submitBtn.disabled = false;
             }
         });
     </script>
